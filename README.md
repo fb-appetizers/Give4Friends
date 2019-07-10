@@ -58,7 +58,7 @@ Required Must-have Stories
   - Notifications*
   - Edit Profile
   
- * Profile
+* Profile
   - Description of favorite cause areas/charities (optional)
   - Total raised (private)*
   - User info
@@ -66,7 +66,7 @@ Required Must-have Stories
   - Favorite charities*
   - Edit Profile
     
- * Home Page
+* Home Page
     - Get to see most recent events/ updates from friends
     - Nav Bar
     - Likes on posts*
@@ -104,7 +104,8 @@ Navigation Bar-
 * Profile
 * Settings
 * Log out
-* Charities 
+* Liked Charities 
+* Charity search Page
 * Recent transactions*
 
 # Flow Navigation (Screen to Screen)
