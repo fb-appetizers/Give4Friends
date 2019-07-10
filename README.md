@@ -35,35 +35,66 @@ Required Must-have Stories
 
 ## Screen Archetypes
 
-* Sign in
+* Log in
   - Sign in 
   - Sign up
   
- * Home Page
-    - Get to see most recent events/ updates from friends
-    - Nav Bar
-    - Likes on posts*
-    - Comments on posts*
-    - Donate Now button
-     
-* Profiles
+* Sign up
+  - Name
+  - Email
+  - Username
+  - Password
+  - Photo
+  - Credit Card
+
+* Preferences*
+  * Skip
+  * List of charities you can pick from
+  
+* Settings (not public)
+  - Credit card info 
+  - Privacy Settings*
+  - Change Password*
+  - Notifications*
+  - Edit Profile
+  
+ * Profile
   - Description of favorite cause areas/charities (optional)
   - Total raised (private)*
   - User info
   - User pic
   - Favorite charities*
+  - Edit Profile
+    
+ * Home Page
+    - Get to see most recent events/ updates from friends
+    - Nav Bar
+    - Likes on posts*
+    - Comments on posts*
+    - Donate Now button  
+  
+* Charity search page
+  - Suggested charities*
+  - Dropdown search bar for charities
+
+* Charity Info Page *
+  - Charity name
+  - Info
+  - Comments *
     
 * Donate page
   - friend's info
   - amount
   - charity
   - Message to friend
+
+* Liked charities* (Not Public)
+  - List of liked charities
+  - time liked
   
-  
-* Settings (not public)
-  - Credit card info 
-  - Privacy Settings*
-  - Change Password
+* Transactions*
+  - different sides for if they donated or were donated on behalf of *
+  - Different colors ^^ *
 
 …
 # Navigation
@@ -74,20 +105,24 @@ Navigation Bar-
 * Settings
 * Log out
 * Charities 
-- Recent transactions*
+* Recent transactions*
 
 # Flow Navigation (Screen to Screen)
 
 * Login
 => Home
 => Sign up
+
 * Sign up
 => Home
+
 * Home
 => Charity Search Page
+
 * Charity Search Page
 => Charity info
 => Donate 
+
 * Donate
 => Home
 
