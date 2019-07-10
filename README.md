@@ -3,36 +3,71 @@ A social network-like platform that allows friends to donate to charity in eacho
 
 1. User Stories (Required and Optional)
 Required Must-have Stories
+* See history (feed of exchanges)
+* User has profile
+* User can login
+* User can create account
+* 
+
+  
+… 
+Optional Nice-to-have Stories
+
+* Suggested Charities
+  - effetive charities
+  -Charities mutual with friends
+* Privacy Settings
+* Liked Charities (on profile) 
+* Friend requests
+* Comments (and report user) - on charity and feed events
+* Anonymous donations
+* Link to effective charities
+
+
+
+
+…
+2. Screen Archetypes
+Home Page
+  * Get to see most recent events/ updates from friends
+  * Buttons to get to profile/
+  
+  
 * Profiles
   - Credit card info (not public)
   - Description of favorite cause areas/charities
   - Total raised
+  
 * Home Page
   - Shows recent giving
+  _ Likes on posts
   - Shows menu
     - Profile
     - Donate Button
-    - Suggested Charities
+    - *Suggested Charities
+    
 * Donate page
   - friend's info
   - amount
   - charity
-*
-  
-…
-Optional Nice-to-have Stories
 
-[fill in your required user stories here]
-…
-2. Screen Archetypes
-[list first screen here]
-[list associated required story here]
-…
-[list second screen here]
-[list associated required story here]
 …
 3. Navigation
 Tab Navigation (Tab to Screen)
+
+* Login
+=> Home
+=> Sign up
+* Sign up
+=> Home
+* Home
+=> Profile
+=> Charity Search Page
+=> Setting
+* Charity Search Page
+=> Charity info
+=> Donate 
+
 
 [fill out your first tab]
 [fill out your second tab]
