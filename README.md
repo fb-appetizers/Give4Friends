@@ -152,16 +152,15 @@ Class for charities - info pulled from API
   
 
 
-### User Profile Info (credentials)
+### Financial Info (credentials)
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
 | objectID         |String            | Unique Id for user                            |  
-| userName         |String            | Unique Username                               | 
-| firstName        |String            | First Name                                    |
-| lastName         |String            | Last name                                     |
+| credit_card_num  |Number            | Credit Card Number                            | 
+| expiration_date  |Date              | Date of Expiration for the Credit Card        |
+| cvc              |Number            | Credit card code                              |
 | email            |String            | User email                                    |
-| friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
-| charityID        |Pointer to Charity| Pointer to charity                            |
+| userId           |Pointer to User   | Pointer to the user of the credit card info   |
 
 
 ### Transaction History
