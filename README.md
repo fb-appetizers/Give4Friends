@@ -150,8 +150,8 @@ Navigation Bar-
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
 | objectID         |String            | Unique Id for user                            |  
-| credit card num  |Number            | Credit Card Number                            | 
-| expiration date  |Date              | Date of Expiration for the Credit Card        |
+| credit_card_num  |Number            | Credit Card Number                            | 
+| expiration_date  |Date              | Date of Expiration for the Credit Card        |
 | cvc              |Number            | Credit card code                              |
 | email            |String            | User email                                    |
 | userId           |Pointer to User   | Pointer to the user of the credit card info   |
