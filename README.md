@@ -129,3 +129,17 @@ Navigation Bar-
 
 
 …
+
+
+# Schema
+
+### Post
+| Property         | Type             |  Description                                  | 
+|------------------|------------------|-----------------------------------------------|
+| objectID         |String            | Unique Id for user post                       |  
+| donorID          |Pointer to User   | Pointer to user who donated                   |   
+| friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
+| charityID        |Pointer to Charity| Pointer to charity                            |
+
+
+
