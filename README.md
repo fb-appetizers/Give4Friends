@@ -133,8 +133,26 @@ Navigation Bar-
 
 # Schema            
 
+Class for charities - info pulled from API
 
 ### User
+| Property         | Type              |  Description                                  | 
+|------------------|-------------------|-----------------------------------------------|
+| objectID         |String             | Unique Id for user                            |  
+| userName         |String             | Unique Username                               | 
+| password         |String             | Hashed Password                               |
+| firstName        |String             | First Name                                    |
+| lastName         |String             | Last name                                     |
+| email            |String             | User email                                    |
+| friends          |Array<Pointer>     | Array of pointers to friends                  | *
+| favCharities     |Array<Charity>     | Array of charities(Objects)                   | *
+| bio              |String             | User bio (Cause area interests)               |
+| totalDonated     |Number             | Total amount personally donated               |
+| totalRaised      |Number             | Total amount friends donated on behalf of them|
+  
+
+
+### User Profile Info (credentials)
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
 | objectID         |String            | Unique Id for user                            |  
@@ -146,18 +164,6 @@ Navigation Bar-
 | charityID        |Pointer to Charity| Pointer to charity                            |
 
 
-### Financial Info (credentials)
-| Property         | Type             |  Description                                  | 
-|------------------|------------------|-----------------------------------------------|
-| objectID         |String            | Unique Id for user                            |  
-| credit_card_num  |Number            | Credit Card Number                            | 
-| expiration_date  |Date              | Date of Expiration for the Credit Card        |
-| cvc              |Number            | Credit card code                              |
-| email            |String            | User email                                    |
-| userId           |Pointer to User   | Pointer to the user of the credit card info   |
-
-
-
 ### Transaction History
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
@@ -166,7 +172,14 @@ Navigation Bar-
 | friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
 | charityID        |Pointer to Charity| Pointer to charity                            |
 | amountDonated    |Number            | Amount that was donated                       |
-| likesCount       |Number            | Total number of likes on the transaction      |
-| likesUsers       |Array             | Array of users who liked the transaction      |
+| message          |String            | Message to friend                             |
+| likesCount       |Number            | Total number of likes on the transaction      | *
+| likesUsers       |Array             | Array of users who liked the transaction      | *
+
+### Potential Model for charities
+--- Comments
+--- Likes
+--- Total 
+
 
 
