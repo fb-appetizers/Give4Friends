@@ -131,15 +131,42 @@ Navigation Bar-
 …
 
 
-# Schema
+# Schema            
 
-### Post
+
+### User
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
-| objectID         |String            | Unique Id for user post                       |  
-| donorID          |Pointer to User   | Pointer to user who donated                   |   
+| objectID         |String            | Unique Id for user                            |  
+| userName         |String            | Unique Username                               | 
+| firstName        |String            | First Name                                    |
+| lastName         |String            | Last name                                     |
+| email            |String            | User email                                    |
 | friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
 | charityID        |Pointer to Charity| Pointer to charity                            |
 
+
+### User Profile Info (credentials)
+| Property         | Type             |  Description                                  | 
+|------------------|------------------|-----------------------------------------------|
+| objectID         |String            | Unique Id for user                            |  
+| userName         |String            | Unique Username                               | 
+| firstName        |String            | First Name                                    |
+| lastName         |String            | Last name                                     |
+| email            |String            | User email                                    |
+| friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
+| charityID        |Pointer to Charity| Pointer to charity                            |
+
+
+### Transaction History
+| Property         | Type             |  Description                                  | 
+|------------------|------------------|-----------------------------------------------|
+| objectID         |String            | Unique Id for user transaction                |  
+| donorID          |Pointer to User   | Pointer to user who donated                   |   
+| friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
+| charityID        |Pointer to Charity| Pointer to charity                            |
+| amountDonated    |Number            | Amount that was donated                       |
+| likesCount       |Number            | Total number of likes on the transaction      |
+| likesUsers       |Array             | Array of users who liked the transaction      |
 
 
