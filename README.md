@@ -146,7 +146,7 @@ Navigation Bar-
 | charityID        |Pointer to Charity| Pointer to charity                            |
 
 
-### User Profile Info (credentials)
+### Financial Info (credentials)
 | Property         | Type             |  Description                                  | 
 |------------------|------------------|-----------------------------------------------|
 | objectID         |String            | Unique Id for user                            |  
