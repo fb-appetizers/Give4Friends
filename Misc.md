@@ -1,11 +1,11 @@
-#Misc.
+# Misc.
 
 * This file is where we can put miscellaneous relevant information
 
 
 
 
-##Charity APIs
+## Charity APIs
   - Not checked to make sure they are free
 
 https://developers.facebook.com/docs/fundraisers/
@@ -19,7 +19,7 @@ https://orghunter.com/
 
 
 
-##Effective Giving
+## Effective Giving
 
 https://www.givewell.org/
   * They don't have a public API ;( but I am going to contact some people I know to see if there is a way we could still integrate it
