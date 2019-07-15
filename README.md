@@ -179,9 +179,8 @@ Class for charities - info pulled from API
 
 Property | Type | Description
 -- | -- | --
-objectID | String | Unique Id for user transaction
-charityID | Pointer to Charity | Pointer to charity
-charityName | String | Name of charity
+objectID | String | Unique Id for user charity
+name | String | Name of charity
 info | String | Information on the charity
 
 
