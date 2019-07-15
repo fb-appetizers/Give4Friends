@@ -176,6 +176,15 @@ Class for charities - info pulled from API
 | likesUsers       |Array             | Array of users who liked the transaction      | *
 
 ### Potential Model for charities
+
+Property | Type | Description
+-- | -- | --
+objectID | String | Unique Id for user transaction
+charityID | Pointer to Charity | Pointer to charity
+charityName | String | Name of charity
+info | String | Information on the charity
+
+
 --- Comments
 --- Likes
 --- Total 
