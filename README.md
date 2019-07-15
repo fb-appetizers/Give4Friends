@@ -190,4 +190,34 @@ info | String | Information on the charity
 --- Total 
 
 
+## Goals
+
+### Week 1
+
+- [ ] Parse models set up
+- [ ] Profile Page 
+- [ ] Sign up page
+- [ ] Login page
+- [ ] Search page layout and some functionality
+- [ ] Basics of API
+
+
+### Week 2 
+- [ ] Basic flows with intents
+
+### Halfway Point!
+- [ ] All layouts done
+
+###  Week 3
+- [ ] Basic walkthrough ability
+- [ ] Most back end
+
+### Week 4
+- [ ] Beta Version
+
+### Week 5
+- [ ] Cleaned
+- [ ] Dogfooded
+- [ ] Updated from feedback
+
 
