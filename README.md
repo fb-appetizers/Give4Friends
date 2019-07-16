@@ -1,5 +1,5 @@
 # Give4Friends
-A social network-like platform that allows friends to donate to charity in eachother's names. On each person's profile it will show the donations raised for them (and maybe their past activity for friends).  On the profile people can list and describe their favorite charities/cause areas.
+A social network-like platform that allows friends to donate to charityAPI in eachother's names. On each person's profile it will show the donations raised for them (and maybe their past activity for friends).  On the profile people can list and describe their favorite charities/cause areas.
 
 ## User Stories (Required and Optional)
 
@@ -8,7 +8,7 @@ Required Must-have Stories
 * User has profile
 * User can login
 * User can create account
-* User can pick a charity/friend/amount to donate
+* User can pick a charityAPI/friend/amount to donate
 
 
 ## Optional Nice-to-have Stories
@@ -20,7 +20,7 @@ Required Must-have Stories
 * Privacy Settings
 * Liked Charities (on profile) 
 * Friend requests
-* Comments (and report user) - on charity and feed events
+* Comments (and report user) - on charityAPI and feed events
 * Anonymous donations
 * Link to effective charities
 * After signing up - add favorite charities 
@@ -85,7 +85,7 @@ Required Must-have Stories
 * Donate page
   - friend's info
   - amount
-  - charity
+  - charityAPI
   - Message to friend
 
 * Liked charities* (Not Public)
@@ -149,6 +149,7 @@ Class for charities - info pulled from API
 | bio              |String             | User bio (Cause area interests)               |
 | totalDonated     |Number             | Total amount personally donated               |
 | totalRaised      |Number             | Total amount friends donated on behalf of them|
+| financialInfo          |Pointer to Financia info   | Pointer to the credit card info   |
   
 
 
@@ -160,7 +161,7 @@ Class for charities - info pulled from API
 | expiration_date  |Date              | Date of Expiration for the Credit Card        |
 | cvc              |Number            | Credit card code                              |
 | email            |String            | User email                                    |
-| userId           |Pointer to User   | Pointer to the user of the credit card info   |
+
 
 
 ### Transaction History
@@ -169,7 +170,7 @@ Class for charities - info pulled from API
 | objectID         |String            | Unique Id for user transaction                |  
 | donorID          |Pointer to User   | Pointer to user who donated                   |   
 | friendID         |Pointer to User   | Pointer to person who was donated on behalf of|
-| charityID        |Pointer to Charity| Pointer to charity                            |
+| charityID        |Pointer to Charity| Pointer to charityAPI                            |
 | amountDonated    |Number            | Amount that was donated                       |
 | message          |String            | Message to friend                             |
 | likesCount       |Number            | Total number of likes on the transaction      | *
@@ -179,9 +180,9 @@ Class for charities - info pulled from API
 
 Property | Type | Description
 -- | -- | --
-objectID | String | Unique Id for user charity
-name | String | Name of charity
-info | String | Information on the charity
+objectID | String | Unique Id for user charityAPI
+name | String | Name of charityAPI
+info | String | Information on the charityAPI
 
 
 --- Comments
@@ -193,7 +194,7 @@ info | String | Information on the charity
 
 ### Week 1
 
-- [ ] Parse models set up
+- [x] Parse models set up
 - [ ] Profile Page 
 - [ ] Sign up page
 - [ ] Login page
