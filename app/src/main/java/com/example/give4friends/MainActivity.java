@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
                 final Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 finish();

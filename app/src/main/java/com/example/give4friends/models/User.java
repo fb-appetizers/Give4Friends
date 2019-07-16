@@ -11,8 +11,8 @@ public class User extends ParseObject {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ID = "objectId";
     public static final String KEY_BIO  = "bio";
-    public static final String KEY_FIRSTNAME  = "firstName";
-    public static final String KEY_LASTNAME  = "lastName";
+    public static final String KEY_FIRST_NAME  = "firstName";
+    public static final String KEY_LAST_NAME  = "lastName";
     public static final String KEY_TOTAL_DONATED  = "totalDonated";
     public static final String KEY_TOTAL_RAISED  = "totalRaised";
     public static final String KEY_FAVORITE_CHARITIES  = "favCharities";
@@ -41,19 +41,19 @@ public class User extends ParseObject {
     }
 
     public String getKeyFirstname() {
-        return getString(KEY_FIRSTNAME);
+        return getString(KEY_FIRST_NAME);
     }
 
     public void setKeyFirstname(String name){
-        put(KEY_FIRSTNAME, name);
+        put(KEY_FIRST_NAME, name);
     }
 
     public String getKeyLastname() {
-        return getString(KEY_LASTNAME);
+        return getString(KEY_LAST_NAME);
     }
 
     public void setKeyLastname(String name){
-        put(KEY_LASTNAME, name);
+        put(KEY_LAST_NAME, name);
     }
 
     public Number getKeyTotalDonated() {
