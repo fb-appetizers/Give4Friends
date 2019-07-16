@@ -26,10 +26,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="196dp">
+        android:id="@+id/textInputLayout"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="116dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -37,5 +40,16 @@
             android:foreground="@drawable/ic_search_black_24dp"
             android:foregroundGravity="left|center" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
