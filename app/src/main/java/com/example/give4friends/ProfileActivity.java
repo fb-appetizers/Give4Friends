@@ -8,8 +8,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,21 +17,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.give4friends.models.User;
-import com.parse.GetCallback;
-import com.parse.Parse;
+import com.example.give4friends.models.Charity;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
     FavCharitiesAdapter feedAdapter;
-    ArrayList<String> charities;
+    ArrayList<Charity> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
     private Object FavCharitiesAdapter;
@@ -72,21 +69,39 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         //Below for recycler view of charities
-        ParseRelation<ParseObject> favCharities = myUser.getRelation("favCharities");
-
 
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
         // get favorite charities from user
 
-        // initialize the array list (starting with just array of strings)
-        charities = new ArrayList<String>();
-        // Temporarily add charities
-        // Initialize an ArrayList with add()
-        charities.add("A");
-        charities.add("B");
-        charities.add("C");
+        // initialize the array list of charities
+        charities = new ArrayList<Charity>();
+
+
+        //Get relation
+        ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+        //Get all charities in relation
+        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for(int i = 0; i < objects.size(); i++){
+                        charities.add(objects.get(i));
+
+                    }
+
+                }
+
+            }
+        });
+
+
+
 
         //construct the adapter from this datasource
         feedAdapter = new FavCharitiesAdapter(charities);

@@ -1,6 +1,9 @@
 package com.example.give4friends.models;
 
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,9 +11,8 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
-@Parcel
-
-public class Charity {
+@ParseClassName("Charity")
+public class Charity extends ParseObject {
 
     public String name;
     public String mission;
