@@ -16,14 +16,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.io.File;
@@ -36,12 +35,13 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText lastName;
     private EditText email;
     private EditText userName;
+    private TextView addProfilePic;
     private Button signUp;
     private ImageView profilePic;
     private EditText passWord;
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
-    public String photoFileName = "photo.jpg";
+    public String photoFileName;
     private File photoFile;
 
     @Override
@@ -54,10 +54,16 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         userName = findViewById(R.id.userName);
         passWord = findViewById(R.id.password);
-        profilePic = findViewById(R.id.imageView);
+        profilePic = findViewById(R.id.profilePic);
         signUp = findViewById(R.id.signUpBtn);
+        addProfilePic = findViewById(R.id.addProfilePic);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
+//        Glide.with(this)
+//                .load("")
+//                .placeholder()
+//        profilePic.setImageDrawable(R.drawable.);
+
+        addProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLaunchCamera();
@@ -67,8 +73,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String first = userName.getText().toString();
-                final String last = passWord.getText().toString();
+                final String first = firstName.getText().toString();
+                final String last = lastName.getText().toString();
                 final String emailInput = email.getText().toString();
                 final String username = userName.getText().toString();
                 final String password = passWord.getText().toString();

@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(LoginActivity.this, HomePage.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if(e == null){
                     Log.d("login", "Login Successful");
-                    Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
                     user.saveInBackground();
