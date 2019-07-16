@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Parcel
 
-public class Charity {
+public class CharityAPI {
 
     public String name;
     public String mission;
@@ -53,35 +53,35 @@ public class Charity {
     public String getRatingsUrl() {
         return ratingsUrl;
     }
-// Returns a Charity from the expected JSON
+// Returns a CharityAPI from the expected JSON
 
-    public static Charity fromJSON(JSONObject object) {
-        Charity charity = new Charity();
+    public static CharityAPI fromJSON(JSONObject object) {
+        CharityAPI charityAPI = new CharityAPI();
 
         try {
 
 
-            charity.name = object.getString("charityName");
+            charityAPI.name = object.getString("charityName");
             if (object.has("mission")) {
-                charity.mission = object.getString("mission");
+                charityAPI.mission = object.getString("mission");
             }
             if (object.has("currentRating")) {
-                charity.rating = object.getJSONObject("currentRating").getInt("rating");
-                charity.ratingsUrl = object.getJSONObject("currentRating")
+                charityAPI.rating = object.getJSONObject("currentRating").getInt("rating");
+                charityAPI.ratingsUrl = object.getJSONObject("currentRating")
                         .getJSONObject("ratingImage")
                         .getString("large");
             }
 
             if (object.has("category")) {
-                charity.categoryName = object.getJSONObject("category").getString("categoryName");
+                charityAPI.categoryName = object.getJSONObject("category").getString("categoryName");
             }
             if (object.has("cause")) {
-                charity.causeName = object.getJSONObject("cause").getString("causeName");
+                charityAPI.causeName = object.getJSONObject("cause").getString("causeName");
             }
 
 
-            charity.ein = object.getString("ein");
-            charity.websiteUrl = object.getString("websiteURL");
+            charityAPI.ein = object.getString("ein");
+            charityAPI.websiteUrl = object.getString("websiteURL");
 
 
         } catch (JSONException e) {
@@ -89,14 +89,14 @@ public class Charity {
             return null;
         }
 
-        return charity;
+        return charityAPI;
     }
 
 
 
-    public static ArrayList<Charity> fromJSON(JSONArray array){
+    public static ArrayList<CharityAPI> fromJSON(JSONArray array){
 
-        ArrayList<Charity> charities = new ArrayList<>(array.length());
+        ArrayList<CharityAPI> charities = new ArrayList<>(array.length());
 
         for(int i = 0; i<array.length();i++){
             JSONObject charityJson;
@@ -110,10 +110,10 @@ public class Charity {
                 continue;
             }
 
-            Charity charity = Charity.fromJSON(charityJson);
+            CharityAPI charityAPI = CharityAPI.fromJSON(charityJson);
 
-            if(charity!=null){
-                charities.add(charity);
+            if(charityAPI !=null){
+                charities.add(charityAPI);
             }
 
         }
