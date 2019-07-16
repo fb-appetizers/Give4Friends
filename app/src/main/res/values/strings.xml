@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Give4Friends</string>
+    <string name = "API_KEY">a6ec0399e2688d91fe0d419cf84443d0</string>
 </resources>

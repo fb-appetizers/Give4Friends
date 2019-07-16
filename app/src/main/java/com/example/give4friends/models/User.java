@@ -83,7 +83,6 @@ public class User extends ParseObject {
     }
 
 
-
     public ParseFile getKeyProfileImage() {
         return getParseFile(KEY_PROFILE_IMAGE);
     }
