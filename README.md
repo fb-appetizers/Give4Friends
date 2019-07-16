@@ -149,6 +149,7 @@ Class for charities - info pulled from API
 | bio              |String             | User bio (Cause area interests)               |
 | totalDonated     |Number             | Total amount personally donated               |
 | totalRaised      |Number             | Total amount friends donated on behalf of them|
+| financialInfo          |Pointer to Financia info   | Pointer to the credit card info   |
   
 
 
@@ -160,7 +161,7 @@ Class for charities - info pulled from API
 | expiration_date  |Date              | Date of Expiration for the Credit Card        |
 | cvc              |Number            | Credit card code                              |
 | email            |String            | User email                                    |
-| userId           |Pointer to User   | Pointer to the user of the credit card info   |
+
 
 
 ### Transaction History
@@ -193,7 +194,7 @@ info | String | Information on the charity
 
 ### Week 1
 
-- [ ] Parse models set up
+- [x] Parse models set up
 - [ ] Profile Page 
 - [ ] Sign up page
 - [ ] Login page
