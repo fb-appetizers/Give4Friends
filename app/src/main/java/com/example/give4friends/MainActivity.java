@@ -7,17 +7,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.models.Charity;
+import com.example.give4friends.net.CharityClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTextBox;
     private TextView tvMission;
     private ImageView ivRating;
+    CharityClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,77 +45,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void getReponse(String search, boolean search_by_name){
 
-        /*
-        Parameter:
-        String search - String of what you want to be searched by the API
-        boolean search_by_name - boolean parameter. Input true if you want to search the API by name
-
-        Output:
-        String array
-
-
-         */
-        Integer pageNum = 1;
-        Integer pageSize = 20;
-        String APP_ID  = "45f1c9cb";
-        String API_KEY = "a6ec0399e2688d91fe0d419cf84443d0";
-        String searchType = search_by_name ? "NAME_ONLY" : "DEFAULT";
-        OkHttpClient client = new OkHttpClient();
-
-        String base_url = "https://api.data.charitynavigator.org/v2/Organizations";
-        //app_id code from the account
-        base_url = base_url + "?" + "app_id=" + APP_ID;
-        //API key from the account
-        base_url = base_url + "&" + "app_key=" + API_KEY;
-        //Number of results per page
-        base_url = base_url + "&" + "pageSize=" + pageSize.toString();
-        //The number of pages
-        base_url = base_url + "&" + "pageNum=" + pageNum.toString();
-        // Is the charity rated
-        base_url = base_url + "&" + "rated=" + "true";
-
-        if (!search.equals("")){
-            base_url = base_url + "&" + "search=" + search;
-        }
-
-        base_url = base_url + "&" + "searchType=" + searchType;
-
-
-
-
-        Request request = new Request.Builder()
-                .url(base_url)
-                .build();
-
-
-        client.newCall(request).enqueue(new Callback() {
+        client = new CharityClient();
+        client.getCharities("", false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
+
                 if (response.isSuccessful()){
                     final String myResponse = response.body().string();
-
-                    try {
-                        final JSONArray object = new JSONArray(myResponse);
 
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 try {
-                                    JSONObject object2 = object.getJSONObject(0);
-
-                                    tvTextBox.setText(object2.getString("charityName"));
-                                    tvMission.setText(object2.getString("mission"));
+                                    JSONArray charityArray;
+                                    charityArray = new JSONArray(myResponse);
 
 
-                                    String url = object2.getJSONObject("currentRating")
-                                            .getJSONObject("ratingImage")
-                                            .getString("large");
+                                    final ArrayList <Charity> charities = Charity.fromJSON(charityArray);
 
+
+                                    tvTextBox.setText(charities.get(0).getName());
+                                    tvMission.setText(charities.get(0).getMission());
+
+                                    String url = charities.get(0).ratingsUrl;
 
                                     if (url != null) {
                                         Glide.with(getApplicationContext())
@@ -126,28 +85,20 @@ public class MainActivity extends AppCompatActivity {
                                                 .into(ivRating);
 
                                     }
-
-
-
-
-
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
-
                             }
                         });
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
 
 
                 }
             }
         });
+
     }
 
 
