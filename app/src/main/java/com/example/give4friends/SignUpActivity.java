@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -36,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email;
     private EditText userName;
     private Button signUp;
-    private ImageButton profilePic;
+    private ImageView profilePic;
     private EditText passWord;
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
@@ -53,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         userName = findViewById(R.id.userName);
         passWord = findViewById(R.id.password);
-        profilePic = findViewById(R.id.profileImage);
+        profilePic = findViewById(R.id.imageView);
         signUp = findViewById(R.id.signUpBtn);
 
         profilePic.setOnClickListener(new View.OnClickListener() {
