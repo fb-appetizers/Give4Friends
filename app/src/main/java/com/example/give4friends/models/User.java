@@ -18,6 +18,8 @@ public class User extends ParseObject {
     public static final String KEY_FAVORITE_CHARITIES  = "favCharities";
     public static final String KEY_PROFILE_IMAGE = "profileImage";
 
+    public User(){}
+
     public String getKeyUsername() {
         return getString(KEY_USERNAME);
     }

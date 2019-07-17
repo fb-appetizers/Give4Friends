@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,13 +21,16 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -43,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvTotalRaised;
     public TextView tvTotalDonated;
 
+
+    //ArrayList<Charity> testCharities;
 
     ParseUser myUser = ParseUser.getCurrentUser();
 
@@ -71,6 +77,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         //Below for recycler view of charities
 
+
+
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
@@ -79,9 +87,8 @@ public class ProfileActivity extends AppCompatActivity {
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
-
         //Get relation
-        ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
         //Get all charities in relation
         favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
             @Override
@@ -92,28 +99,20 @@ public class ProfileActivity extends AppCompatActivity {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for(int i = 0; i < objects.size(); i++){
-                        charities.add(objects.get(i));
+                        charities.add((Charity)objects.get(i));
 
                     }
+                    recyclerSetup();
 
                 }
 
             }
         });
 
-
-
-
-        //construct the adapter from this datasource
-        feedAdapter = new FavCharitiesAdapter(charities);
-
-        //RecyclerView setup (layout manager, use adapter)
-
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
         rvCharities.setLayoutManager(linearLayoutManager);
-        rvCharities.setAdapter(feedAdapter);
-        rvCharities.scrollToPosition(0);
+
 
 
         // Below for static elements of profile
@@ -134,7 +133,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Waiting to see what is going on
 
-        /*
+
 
         // Handles images
         Glide.with(context)
@@ -142,11 +141,24 @@ public class ProfileActivity extends AppCompatActivity {
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20)))
                 .into(ivProfileImage);
-*/
+
 
 
     }
-}
+
+
+public void recyclerSetup(){
+
+    //construct the adapter from this datasource
+    feedAdapter = new FavCharitiesAdapter(charities);
+
+    //RecyclerView setup (layout manager, use adapter)
+
+    rvCharities.setAdapter(feedAdapter);
+    rvCharities.scrollToPosition(0);
+
+}}
+
 
 
 
@@ -183,7 +195,7 @@ public class ProfileActivity extends AppCompatActivity {
                             .into(ivProfileImage);
 
                 }else {
-                    Log.e("ProfileActivity", "Can't get post");
+                    Log.e("ProfileActivity", "Can't get Charity");
                     e.printStackTrace();
                 }
             }

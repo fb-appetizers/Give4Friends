@@ -40,8 +40,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View postView = inflater.inflate(R.layout.item_charity, parent, false);
-        ViewHolder viewHolder = new ViewHolder(postView);
+        View CharityView = inflater.inflate(R.layout.item_charity, parent, false);
+        ViewHolder viewHolder = new ViewHolder(CharityView);
         return viewHolder;
     }
 
@@ -49,9 +49,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     @Override
     public void  onBindViewHolder(ViewHolder holder, int position) {
 
-        //Temporarily only filling with string of charity name
         // get data according to position.
-        Charity charity = charities.get(position);
+        Charity charity = (Charity) charities.get(position);
 
 
 
@@ -61,6 +60,9 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         holder.categoryName.setText(charity.getKeyCategoryName());
         holder.mission.setText(charity.getKeyMission());
 
+
+        /*
+
         // Handles images
         Glide.with(context)
                 .load(charity.getKeyRating().getUrl())
@@ -69,6 +71,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                 .into(holder.rating);
 
 
+*/
+
         /*
 
 
@@ -76,7 +80,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
         // Handles images
         Glide.with(context)
-                .load(post.getUser().getParseFile("profileImage").getUrl())
+                .load(Charity.getUser().getParseFile("profileImage").getUrl())
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20)))
                 .into(holder.ivProfileImage);
@@ -86,13 +90,13 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
         // Handles images
         Glide.with(context)
-                .load(post.getImage()
+                .load(Charity.getImage()
                         .getUrl())
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20))
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background))
-                .into(holder.ivPostImage);
+                .into(holder.ivCharityImage);
 
 
 
@@ -145,12 +149,12 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     // make sure the position is valid, i.e. actually exists in the view
                     if (position != RecyclerView.NO_POSITION) {
                         // get the movie at the position, this won't work if the class is static
-                        Post post = posts.get(position);
+                        Charity Charity = Charitys.get(position);
                         // create intent for the new activity
                         Intent intent = new Intent(context, DetailsActivity.class);
                         // serialize the tweet using parceler, use its short name as a key
-                        intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
-                        //intent.putExtra( "id" , post.getObjectId());
+                        intent.putExtra(Charity.class.getSimpleName(), Parcels.wrap(Charity));
+                        //intent.putExtra( "id" , Charity.getObjectId());
                         // show the activity
                         context.startActivity(intent);
                     }
