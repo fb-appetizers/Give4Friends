@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
     <Button
-        android:id="@+id/idEditProfile"
+        android:id="@+id/btEditProfile"
         android:layout_width="64dp"
         android:layout_height="41dp"
         android:layout_marginEnd="9dp"

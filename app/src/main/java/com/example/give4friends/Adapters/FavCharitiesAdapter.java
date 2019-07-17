@@ -1,15 +1,20 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +24,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
 
 
-    private List<String> charities;
-    public FavCharitiesAdapter(ArrayList<String> charities) {
+    private List<Charity> charities;
+    public FavCharitiesAdapter(ArrayList<Charity> charities) {
         this.charities = charities;
     }
 
@@ -42,10 +47,10 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
         //Temporarily only filling with string of charity name
         // get data according to position.
-        String charity = charities.get(position);
+        Charity charity = charities.get(position);
 
         //populate the views according to this data
-        holder.charityName.setText(charity);
+       // holder.charityName.setText(charity);
 
 
 
@@ -98,22 +103,25 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView charityName;
-        /*
-        public ImageView ivProfileImage;
-        public TextView tvUserName;
-        public TextView tvUserName2;
-        public TextView tvDescription;
-        public ImageView ivPostImage;
-        public TextView tvCreatedAt;
-        */
+        //public TextView charityName;
+
+        public TextView name;
+        public TextView mission;
+        public Integer rating;
+        public TextView ein; // Organization ID for the charity
+        public TextView categoryName;
+        public TextView causeName;
+        public TextView websiteUrl;
+        public TextView ratingsUrl;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
+
             // perform findViewById lookups
-            charityName = (TextView) itemView.findViewById(R.id.charityName);
+            name = (TextView) itemView.findViewById(R.id.charityName);
 
           /*
             ivProfileImage = (ImageView) itemView.findViewById((R.id.ivProfileImage));
@@ -155,7 +163,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     }
 
     // Add a list of items -- change to type used
-    public void addAll(List<String> list) {
+    public void addAll(List<Charity> list) {
         charities.addAll(list);
         notifyDataSetChanged();
     }
