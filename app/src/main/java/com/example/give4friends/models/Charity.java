@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 @ParseClassName("Charity")
@@ -35,8 +36,8 @@ public class Charity extends ParseObject {
         put(KEY_MISSION, mission);
     }
 
-    public  String getKeyRating() {
-        return getString(KEY_RATING);
+    public ParseFile getKeyRating() {
+        return getParseFile(KEY_RATING);
     }
 
     public void setKeyRating(Number rating){

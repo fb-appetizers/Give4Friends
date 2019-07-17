@@ -18,38 +18,47 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCharitySearch"
-        android:layout_width="409dp"
-        android:layout_height="404dp"
+        android:layout_width="407dp"
+        android:layout_height="426dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/tiCharity"
         android:layout_width="311dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="116dp"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCharity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="@drawable/ic_search_black_24dp"
-            android:foregroundGravity="left|center" />
+            android:clickable="true"
+            android:contextClickable="true"
+            android:focusable="auto"
+            android:foregroundGravity="left|center"
+            android:freezesText="false"
+            android:hint="Search for charities ..."
+            android:selectAllOnFocus="true"
+            tools:clickable="true"
+            tools:longClickable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
+        android:layout_width="88dp"
+        android:layout_height="56dp"
         android:layout_marginTop="116dp"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toEndOf="@+id/tiCharity"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

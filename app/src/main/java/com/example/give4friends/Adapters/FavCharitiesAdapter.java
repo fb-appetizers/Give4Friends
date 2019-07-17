@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 
@@ -49,20 +53,23 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         // get data according to position.
         Charity charity = charities.get(position);
 
-        //populate the views according to this data
-       // holder.charityName.setText(charity);
 
+
+        //populate the views according to this data
+        holder.name.setText(charity.getKeyName());
+        holder.causeName.setText(charity.getKeyCauseName());
+        holder.categoryName.setText(charity.getKeyCategoryName());
+        holder.mission.setText(charity.getKeyMission());
+
+        // Handles images
+        Glide.with(context)
+                .load(charity.getKeyRating().getUrl())
+                .apply(new RequestOptions()
+                        .transforms(new CenterCrop(), new RoundedCorners(20)))
+                .into(holder.rating);
 
 
         /*
-        //populate the views according to this data
-        holder.tvUserName.setText(charity.getUser().getUsername());
-        holder.tvUserName2.setText(post.getUser().getUsername());
-        holder.tvDescription.setText(post.getDescription());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        holder.tvCreatedAt.setText(sdf.format( post.getCreatedAt()));
-
-
 
 
         // we don't have profile pic yet
@@ -107,7 +114,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
         public TextView name;
         public TextView mission;
-        public Integer rating;
+        public ImageView rating;
         public TextView ein; // Organization ID for the charity
         public TextView categoryName;
         public TextView causeName;
@@ -121,15 +128,14 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
 
             // perform findViewById lookups
-            name = (TextView) itemView.findViewById(R.id.charityName);
+            name = (TextView) itemView.findViewById(R.id.tvCharityName);
+            mission = (TextView) itemView.findViewById(R.id.tvMission);
+            categoryName = (TextView) itemView.findViewById(R.id.tvCategory);
+            causeName = (TextView) itemView.findViewById(R.id.tvCause);
+            rating = (ImageView) itemView.findViewById(R.id.ivRating);
 
           /*
-            ivProfileImage = (ImageView) itemView.findViewById((R.id.ivProfileImage));
-            tvUserName = (TextView) itemView.findViewById(R.id.tvUserName);
-            tvUserName2 = (TextView) itemView.findViewById(R.id.tvUserName2);
-            tvDescription = (TextView) itemView.findViewById((R.id.tvDescription));
-            ivPostImage = (ImageView) itemView.findViewById((R.id.iv_PostImage));
-            tvCreatedAt = (TextView) itemView.findViewById((R.id.tvCreatedAt));
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
