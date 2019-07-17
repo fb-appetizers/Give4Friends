@@ -7,4 +7,13 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Charity Search"
         app:actionViewClass="android.widget.SearchView" />
+    <item
+        android:id="@+id/transactionHistory"
+        android:title="Transaction History" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings" />
+    <item
+        android:id="@+id/logOut"
+        android:title="Log Out" />
 </menu>
