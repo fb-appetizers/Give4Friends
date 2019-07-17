@@ -1,5 +1,6 @@
 package com.example.give4friends;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +51,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Give4Friends");
+        toolbar.setNavigationIcon(R.drawable.ic_account_4);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
@@ -56,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
         acharities = new ArrayList<CharityAPI>();
 
+//        tvTextBox = findViewById(R.id.tvCharityName);
+//        tvMission = findViewById(R.id.tvMission);
+//        ivRating = findViewById(R.id.ivRating);
         charityAdapter = new CharityViewAdapter(acharities);
 
 
