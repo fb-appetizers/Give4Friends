@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvBio;
     public TextView tvTotalRaised;
     public TextView tvTotalDonated;
+    public TextView tvFullName;
 
 
     //ArrayList<Charity> testCharities;
@@ -123,12 +124,14 @@ public class ProfileActivity extends AppCompatActivity {
         tvBio= (TextView) findViewById(R.id.tvBio);
         tvTotalRaised= (TextView) findViewById((R.id.tvTotalRaised));
         tvTotalDonated = (TextView) findViewById((R.id.tvTotalDonated));
+        tvFullName = (TextView) findViewById(R.id.tvFullName);
 
 
         tvUserName.setText(myUser.getUsername());
         tvBio.setText(myUser.getString("Bio"));
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
         tvTotalRaised.setText("Total Raised: $" +  myUser.getNumber("totalRaised"));
+        tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
 
         // Waiting to see what is going on

@@ -26,14 +26,14 @@
 
     <TextView
         android:id="@+id/tvName"
-        android:layout_width="165dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="240dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="4dp"
         android:text="tvName"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
 
     <TextView
         android:id="@+id/tvBio"
@@ -50,7 +50,7 @@
         android:layout_width="363dp"
         android:layout_height="283dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,11 +63,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="147dp"
         android:layout_marginBottom="15dp"
         android:text="Favorite Charities"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rvFavCharities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,10 +77,11 @@
 
     <Button
         android:id="@+id/btEditProfile"
-        android:layout_width="64dp"
+        android:layout_width="247dp"
         android:layout_height="41dp"
         android:layout_marginEnd="9dp"
-        android:text="Edit"
+        android:background="#03A9F4"
+        android:text="Edit Profile"
         app:layout_constraintBottom_toTopOf="@+id/tvBio"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -91,6 +94,20 @@
         android:text="Total Donated"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalRaised" />
+
+    <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="tvFullName"
+        android:textColor="#2196F3"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--
     <androidx.recyclerview.widget.RecyclerView
