@@ -61,30 +61,20 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         holder.mission.setText(charity.getKeyMission());
 
 
+
+        if(charity.getKeyRating() != null){
+            // Handles images
+            Glide.with(context)
+                    .load(charity.getKeyRating().getUrl())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+                    .into(holder.rating);
+
+        }
+
+
+
         /*
-
-        // Handles images
-        Glide.with(context)
-                .load(charity.getKeyRating().getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20)))
-                .into(holder.rating);
-
-
-*/
-
-        /*
-
-
-        // we don't have profile pic yet
-
-        // Handles images
-        Glide.with(context)
-                .load(Charity.getUser().getParseFile("profileImage").getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20)))
-                .into(holder.ivProfileImage);
-
 
 
 
