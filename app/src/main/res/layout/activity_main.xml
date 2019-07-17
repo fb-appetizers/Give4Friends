@@ -6,71 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="28dp"
-        android:text="Button"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Profile Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCharitySearch"
-        android:layout_width="407dp"
-        android:layout_height="426dp"
-        android:layout_marginBottom="8dp"
-        android:isScrollContainer="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiCharity"
-        android:layout_width="311dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="40dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCharity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:contextClickable="true"
-            android:focusedByDefault="false"
-            android:foregroundGravity="left|center"
-            android:freezesText="false"
-            android:hint="Search for charities ..."
-            android:isScrollContainer="false"
-            android:keepScreenOn="false"
-            android:keyboardNavigationCluster="false"
-            android:singleLine="false"
-            tools:clickable="true"
-            tools:longClickable="false" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="88dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="40dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="84dp"
+        android:text="Search Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/tiCharity"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

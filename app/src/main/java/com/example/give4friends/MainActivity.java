@@ -39,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private EditText etCharity;
-    private TextView goHome;
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
     CharityClient client;
     ArrayList <CharityAPI> acharities;
     CharityViewAdapter charityAdapter;
+    private Button profileChange;
+    private Button searchChange;
 
 
     @Override
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar)
         toolbar.setTitle("Give4Friends");
         toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
@@ -80,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
-        goHome = findViewById(R.id.goHome);
+//        profileChange = findViewById(R.id.btnProfile);
+//        searchChange = findViewById(R.id.btnSearch);
+//        goHome = findViewById(R.id.goHome);
 
         acharities = new ArrayList<CharityAPI>();
 
@@ -93,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
 
-        // Set layout manager to position the items
-        rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,32 +106,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // for testing
 
-        getResponse("", false);
-
-
-        //When you hit submit the recycler view updates
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        profileChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getResponse(etCharity.getText().toString(),false);
-
-//                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
+                final Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
 
-
-        change = findViewById(R.id.button2);
-
-        // for testing
-
-        change.setOnClickListener(new View.OnClickListener() {
+        searchChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                final Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
                 startActivity(intent);
-                finish();
 
             }
         });

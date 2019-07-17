@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/constraint_border"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
-    android:background="@drawable/constraint_border">
+    tools:background="#FFFFFF">
 
 
     <TextView
