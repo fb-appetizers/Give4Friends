@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCharitySearch"
-        android:layout_width="410dp"
-        android:layout_height="358dp"
+        android:layout_width="409dp"
+        android:layout_height="291dp"
         android:layout_marginBottom="8dp"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,19 +59,18 @@
 
         android:id="@+id/cvRoot"
 
-        android:layout_width="match_parent"
-        android:layout_height="215dp"
+        android:layout_width="378dp"
+        android:layout_height="298dp"
 
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="17dp"
         android:clickable="true"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="8dp"
-        card_view:layout_constraintBottom_toTopOf="@+id/tiCharity"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent"
-        card_view:layout_constraintVertical_bias="0.0">
+        card_view:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCharitySugg"

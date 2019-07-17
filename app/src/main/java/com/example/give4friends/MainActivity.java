@@ -35,7 +35,6 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private Button profileChange;
-    private Button searchChange;
 
 
     @Override
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Toolbar toolbar = findViewById(R.id.too);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Give4Friends");
         toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         profileChange = findViewById(R.id.btnProfile);
-        searchChange = findViewById(R.id.btnSearch);
+
         // for testing
 
         profileChange.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        searchChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
-                startActivity(intent);
 
-            }
-        });
     }
 
     @Override
@@ -98,8 +90,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.etCharity:
-                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_SHORT).show();
                 //TODO: link to the suggestions page which is currently in the main activity
+                final Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+                startActivity(intent);
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
