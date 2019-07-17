@@ -17,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Adapters.CharityViewAdapter;
+import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
 import com.google.android.material.textfield.TextInputLayout;
