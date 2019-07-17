@@ -2,12 +2,18 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharityViewAdapter;
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
+    private Button btnSubmit;
     CharityClient client;
     ArrayList <CharityAPI> acharities;
     CharityViewAdapter charityAdapter;
@@ -45,17 +52,33 @@ public class MainActivity extends AppCompatActivity {
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
         acharities = new ArrayList<CharityAPI>();
 
+        charityAdapter = new CharityViewAdapter(acharities);
 
 
-//        tvTextBox = findViewById(R.id.tvCharityName);
-//        tvMission = findViewById(R.id.tvMission);
-//        ivRating = findViewById(R.id.ivRating);
+        // attach the adapter to the RecyclerView
+        rvCharitySearch.setAdapter(charityAdapter);
 
-        getReponse("", false);
+        // Set layout manager to position the items
+        rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
+
+        getResponse("", false);
+
+
+        //When you hit submit the recycler view updates
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getResponse(etCharity.getText().toString(),false);
+
+//                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         change = findViewById(R.id.button2);
@@ -73,11 +96,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.charity_menu, menu);
 
-    private void getReponse(String search, boolean search_by_name){
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.etCharity:
+                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                //TODO: link to the suggestions page which is currently in the main activity
+                return true;
+            case R.id.transactionHistory:
+                Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.settings:
+                Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.logOut:
+                Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
+                logOut();
+            default:
+//                Log.e()
+        }
+        return true;
+    }
+
+    private void getResponse(String search, boolean search_by_name){
 
         client = new CharityClient();
-        client.getCharities("", false, new Callback() {
+        client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -104,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                                     for(CharityAPI charityAPI : charities){
                                         acharities.add(charityAPI);
                                     }
+                                    charityAdapter.notifyDataSetChanged();
 
 
 //                                    tvTextBox.setText(charities.get(0).getName());
@@ -137,8 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    public void logOut(){
+        ParseUser.logOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
