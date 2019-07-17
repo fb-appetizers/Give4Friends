@@ -1,6 +1,5 @@
 package com.example.give4friends;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,15 +34,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private Button change;
-
-
-    private EditText etCharity;
-    private RecyclerView rvCharitySearch;
-    private Button btnSubmit;
-    CharityClient client;
-    ArrayList <CharityAPI> acharities;
-    CharitySearchAdapter charityAdapter;
+    private Button profileChange;
+    private Button searchChange;
 
 
     @Override
@@ -51,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        Toolbar toolbar = findViewById(R.id.too)
         toolbar.setTitle("Give4Friends");
         toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
@@ -66,49 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        etCharity = findViewById(R.id.etCharity);
-        rvCharitySearch = findViewById(R.id.rvCharitySearch);
-        etCharity = findViewById(R.id.etCharity);
-        btnSubmit = findViewById(R.id.btnSubmit);
-
-        acharities = new ArrayList<CharityAPI>();
-
-//        tvTextBox = findViewById(R.id.tvCharityName);
-//        tvMission = findViewById(R.id.tvMission);
-//        ivRating = findViewById(R.id.ivRating);
-        charityAdapter = new CharitySearchAdapter(acharities);
 
 
-        // attach the adapter to the RecyclerView
-        rvCharitySearch.setAdapter(charityAdapter);
 
-        // Set layout manager to position the items
-        rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
-
-
-        getResponse("", false);
-
-
-        //When you hit submit the recycler view updates
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getResponse(etCharity.getText().toString(),false);
-
-//                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-        change = findViewById(R.id.button2);
-
+        profileChange = findViewById(R.id.btnProfile);
+        searchChange = findViewById(R.id.btnSearch);
         // for testing
 
-        change.setOnClickListener(new View.OnClickListener() {
+        profileChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                final Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -155,69 +116,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void getResponse(String search, boolean search_by_name){
-
-        client = new CharityClient();
-        client.getCharities(search, false, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-
-                if (response.isSuccessful()){
-                    final String myResponse = response.body().string();
-
-                        MainActivity.this.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    JSONArray charityArray;
-                                    charityArray = new JSONArray(myResponse);
-
-
-                                    final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
-
-                                    acharities.clear();
-                                    for(CharityAPI charityAPI : charities){
-                                        acharities.add(charityAPI);
-                                    }
-                                    charityAdapter.notifyDataSetChanged();
-
-
-//                                    tvTextBox.setText(charities.get(0).getName());
-//                                    tvMission.setText(charities.get(0).getMission());
-
-//                                    String url = charities.get(0).ratingsUrl;
-//
-//                                    if (url != null) {
-//                                        Glide.with(getApplicationContext())
-//                                                .load(url)
-//                                                .into(ivRating);
-//                                    }else{
-//                                        Glide.with(getApplicationContext())
-//                                                .load(R.drawable.noratings)
-//                                                .into(ivRating);
-//
-//                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        });
-
-
-
-
-                }
-            }
-        });
-
-    }
 
     public void logOut(){
         ParseUser.logOut();
