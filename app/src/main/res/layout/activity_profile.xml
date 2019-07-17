@@ -77,13 +77,15 @@
 
     <Button
         android:id="@+id/btEditProfile"
-        android:layout_width="247dp"
-        android:layout_height="41dp"
-        android:layout_marginEnd="9dp"
+        android:layout_width="408dp"
+        android:layout_height="30dp"
         android:background="#03A9F4"
-        android:text="Edit Profile"
+        android:text="Edit Bio"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tvBio"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
 
     <TextView
         android:id="@+id/tvTotalDonated"
@@ -108,6 +110,17 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btChangePic"
+        android:layout_width="44dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="130dp"
+        android:background="#1203A9F4"
+        android:scrollbarSize="18dp"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toTopOf="@+id/btEditProfile"
+        app:layout_constraintEnd_toStartOf="@+id/tvTotalDonated" />
 
     <!--
     <androidx.recyclerview.widget.RecyclerView
