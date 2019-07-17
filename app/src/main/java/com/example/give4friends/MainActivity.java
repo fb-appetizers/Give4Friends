@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharityViewAdapter;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
+    private Button btnSubmit;
     CharityClient client;
     ArrayList <CharityAPI> acharities;
     CharityViewAdapter charityAdapter;
@@ -45,17 +47,33 @@ public class MainActivity extends AppCompatActivity {
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
         acharities = new ArrayList<CharityAPI>();
 
+        charityAdapter = new CharityViewAdapter(acharities);
 
 
-//        tvTextBox = findViewById(R.id.tvCharityName);
-//        tvMission = findViewById(R.id.tvMission);
-//        ivRating = findViewById(R.id.ivRating);
+        // attach the adapter to the RecyclerView
+        rvCharitySearch.setAdapter(charityAdapter);
 
-        getReponse("", false);
+        // Set layout manager to position the items
+        rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
+
+        getResponse("", false);
+
+
+        //When you hit submit the recycler view updates
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getResponse(etCharity.getText().toString(),false);
+
+//                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         change = findViewById(R.id.button2);
@@ -74,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getReponse(String search, boolean search_by_name){
+    private void getResponse(String search, boolean search_by_name){
 
         client = new CharityClient();
-        client.getCharities("", false, new Callback() {
+        client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -104,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                     for(CharityAPI charityAPI : charities){
                                         acharities.add(charityAPI);
                                     }
+                                    charityAdapter.notifyDataSetChanged();
 
 
 //                                    tvTextBox.setText(charities.get(0).getName());

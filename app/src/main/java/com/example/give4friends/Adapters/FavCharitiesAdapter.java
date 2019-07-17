@@ -121,7 +121,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
 
             // perform findViewById lookups
-            name = (TextView) itemView.findViewById(R.id.charityName);
+//            name = (TextView) itemView.findViewById(R.id.charityName);
 
           /*
             ivProfileImage = (ImageView) itemView.findViewById((R.id.ivProfileImage));

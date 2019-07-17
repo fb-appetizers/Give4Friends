@@ -10,8 +10,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,6 +21,7 @@
         android:layout_width="407dp"
         android:layout_height="426dp"
         android:layout_marginBottom="8dp"
+        android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,7 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginTop="116dp"
+        android:layout_marginBottom="40dp"
         android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2">
 
@@ -41,11 +44,14 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contextClickable="true"
-            android:focusable="auto"
+            android:focusedByDefault="false"
             android:foregroundGravity="left|center"
             android:freezesText="false"
             android:hint="Search for charities ..."
-            android:selectAllOnFocus="true"
+            android:isScrollContainer="false"
+            android:keepScreenOn="false"
+            android:keyboardNavigationCluster="false"
+            android:singleLine="false"
             tools:clickable="true"
             tools:longClickable="false" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,7 +61,9 @@
         android:layout_width="88dp"
         android:layout_height="56dp"
         android:layout_marginTop="116dp"
+        android:layout_marginBottom="40dp"
         android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/tiCharity"
