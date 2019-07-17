@@ -1,7 +1,6 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,26 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 
 import java.util.List;
 
-import static java.security.AccessController.getContext;
-
-public class CharityViewAdapter extends RecyclerView.Adapter<CharityViewAdapter.ViewHolder> {
+public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
 
     private List<CharityAPI> mCharity;
     private Context context;
 
-    public CharityViewAdapter(List<CharityAPI> mCharity) {
+    public CharitySearchAdapter(List<CharityAPI> mCharity) {
         this.mCharity = mCharity;
 
     }
 
 
     @Override
-    public CharityViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CharitySearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -41,13 +37,13 @@ public class CharityViewAdapter extends RecyclerView.Adapter<CharityViewAdapter.
         View bookView = inflater.inflate(R.layout.item_charity, parent, false);
 
         // Return a new holder instance
-        CharityViewAdapter.ViewHolder viewHolder = new CharityViewAdapter.ViewHolder(bookView);
+        CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(bookView);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharityViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CharitySearchAdapter.ViewHolder holder, int position) {
         CharityAPI charity = mCharity.get(position);
         holder.tvCharityName.setText(charity.getName());
         holder.tvMission.setText(charity.getMission());

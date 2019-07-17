@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharitySearch">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCharitySearch"
+        android:layout_width="410dp"
+        android:layout_height="358dp"
+        android:layout_marginBottom="8dp"
+        android:isScrollContainer="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiCharity"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCharity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:focusedByDefault="false"
+            android:foregroundGravity="left|center"
+            android:freezesText="false"
+            android:hint="Search for charities ..."
+            android:isScrollContainer="false"
+            android:keepScreenOn="false"
+            android:keyboardNavigationCluster="false"
+            android:singleLine="false"
+            tools:clickable="true"
+            tools:longClickable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="88dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/rvCharitySearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/tiCharity" />
+
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/cvRoot"
+
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="8dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/tiCharity"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCharitySugg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
