@@ -2,16 +2,17 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.give4friends.models.Charity;
+import com.example.give4friends.Adapters.CharityViewAdapter;
+import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,26 +24,30 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import com.parse.ParseUser;
-
 public class MainActivity extends AppCompatActivity {
     private Button change;
 
 
-    private TextView tvTextBox;
-    private TextView tvMission;
-    private ImageView ivRating;
+    private EditText sbCharity;
+    private RecyclerView rvCharitySearch;
     CharityClient client;
+    ArrayList <CharityAPI> acharities;
+    CharityViewAdapter charityAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sbCharity = findViewById(R.id.sbCharity);
+        rvCharitySearch = findViewById(R.id.rvCharitySearch);
+
+        acharities = new ArrayList<CharityAPI>();
 
 
-        tvTextBox = findViewById(R.id.tvCharityName);
-        tvMission = findViewById(R.id.tvMission);
-        ivRating = findViewById(R.id.ivRating);
+//        tvTextBox = findViewById(R.id.tvCharityName);
+//        tvMission = findViewById(R.id.tvMission);
+//        ivRating = findViewById(R.id.ivRating);
 
         getReponse("", false);
 
@@ -88,24 +93,29 @@ public class MainActivity extends AppCompatActivity {
                                     charityArray = new JSONArray(myResponse);
 
 
-                                    final ArrayList <Charity> charities = Charity.fromJSON(charityArray);
+                                    final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-
-                                    tvTextBox.setText(charities.get(0).getName());
-                                    tvMission.setText(charities.get(0).getMission());
-
-                                    String url = charities.get(0).ratingsUrl;
-
-                                    if (url != null) {
-                                        Glide.with(getApplicationContext())
-                                                .load(url)
-                                                .into(ivRating);
-                                    }else{
-                                        Glide.with(getApplicationContext())
-                                                .load(R.drawable.noratings)
-                                                .into(ivRating);
-
+                                    acharities.clear();
+                                    for(CharityAPI charityAPI : charities){
+                                        acharities.add(charityAPI);
                                     }
+
+
+//                                    tvTextBox.setText(charities.get(0).getName());
+//                                    tvMission.setText(charities.get(0).getMission());
+
+//                                    String url = charities.get(0).ratingsUrl;
+//
+//                                    if (url != null) {
+//                                        Glide.with(getApplicationContext())
+//                                                .load(url)
+//                                                .into(ivRating);
+//                                    }else{
+//                                        Glide.with(getApplicationContext())
+//                                                .load(R.drawable.noratings)
+//                                                .into(ivRating);
+//
+//                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    FavCharitiesAdapter feedAdapter;
+    com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
