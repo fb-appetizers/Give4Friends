@@ -1,126 +1,69 @@
 package com.example.give4friends.models;
 
-
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.parceler.Parcel;
-
-import java.util.ArrayList;
 
 @ParseClassName("Charity")
 public class Charity extends ParseObject {
 
-    public String name;
-    public String mission;
-    public Integer rating;
-    public String ein; // Organization ID for the charity
-    public String categoryName;
-    public String causeName;
-    public String websiteUrl;
-    public String ratingsUrl;
+    public static final String KEY_NAME = "name";
+    public static final String KEY_ID= "objectId";
+    public static final String KEY_MISSION  = "mission";
+    public static final String KEY_RATING  = "rating";
+    public static final String KEY_CATEGORY_NAME  = "categoryName";
+    public static final String KEY_URL  = "websiteUrl";
+    public static final String KEY_CAUSE_NAME  = "causeName";
 
-
-    public String getName() {
-        return name;
+    public String getKeyName() {
+        return getString(KEY_NAME);
     }
 
-    public String getMission() {
-        return mission;
+    public void setKeyName(String name){
+        put(KEY_NAME, name);
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public String getEin() {
-        return ein;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public String getCauseName() {
-        return causeName;
-    }
-
-    public String getWebsiteUrl() {
-        return websiteUrl;
-    }
-
-    public String getRatingsUrl() {
-        return ratingsUrl;
-    }
-// Returns a Charity from the expected JSON
-
-    public static Charity fromJSON(JSONObject object) {
-        Charity charity = new Charity();
-
-        try {
-
-
-            charity.name = object.getString("charityName");
-            if (object.has("mission")) {
-                charity.mission = object.getString("mission");
-            }
-            if (object.has("currentRating")) {
-                charity.rating = object.getJSONObject("currentRating").getInt("rating");
-                charity.ratingsUrl = object.getJSONObject("currentRating")
-                        .getJSONObject("ratingImage")
-                        .getString("large");
-            }
-
-            if (object.has("category")) {
-                charity.categoryName = object.getJSONObject("category").getString("categoryName");
-            }
-            if (object.has("cause")) {
-                charity.causeName = object.getJSONObject("cause").getString("causeName");
-            }
-
-
-            charity.ein = object.getString("ein");
-            charity.websiteUrl = object.getString("websiteURL");
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return charity;
+    public String getKeyId() {
+        return getString(KEY_ID);
     }
 
 
+    public String getKeyMission() {
+        return getString(KEY_MISSION);
+    }
 
-    public static ArrayList<Charity> fromJSON(JSONArray array){
+    public void setKeyMission(String mission){
+        put(KEY_MISSION, mission);
+    }
 
-        ArrayList<Charity> charities = new ArrayList<>(array.length());
+    public  String getKeyRating() {
+        return getString(KEY_RATING);
+    }
 
-        for(int i = 0; i<array.length();i++){
-            JSONObject charityJson;
+    public void setKeyRating(Number rating){
+        put(KEY_RATING, rating);
+    }
 
+    public String getKeyCategoryName() {
+        return getString(KEY_CATEGORY_NAME);
+    }
 
-            try {
-                charityJson = array.getJSONObject(i);
+    public void setKeyCategoryName(String name){
+        put(KEY_CATEGORY_NAME, name);
+    }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                continue;
-            }
+    public String getKeyUrl() {
+        return getString(KEY_URL);
+    }
 
-            Charity charity = Charity.fromJSON(charityJson);
+    public void setKeyUrl(String url){
+        put(KEY_URL, url);
+    }
 
-            if(charity!=null){
-                charities.add(charity);
-            }
+    public String getKeyCauseName() {
+        return getString(KEY_CAUSE_NAME);
+    }
 
-        }
-
-        return charities;
-
+    public void setKeyCauseName(String name){
+        put(KEY_CAUSE_NAME, name);
     }
 }
