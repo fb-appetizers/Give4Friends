@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        Toolbar toolbar = findViewById(R.id.too)
         toolbar.setTitle("Give4Friends");
         toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
