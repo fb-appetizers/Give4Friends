@@ -62,10 +62,10 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
 
 
-        if(charity.getKeyRating() != null){
+        if(charity.getKeyRatingURL() != null){
             // Handles images
             Glide.with(context)
-                    .load(charity.getKeyRating().getUrl())
+                    .load(charity.getKeyRatingURL())
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.rating);

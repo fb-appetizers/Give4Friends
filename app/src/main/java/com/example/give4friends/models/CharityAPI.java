@@ -1,12 +1,24 @@
 package com.example.give4friends.models;
 
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Parcel
 
@@ -96,10 +108,45 @@ public class CharityAPI {
 
     public static ArrayList<CharityAPI> fromJSON(JSONArray array){
 
+        //This number controls how many charities will be saved on Parse whenever you call this
+        //function
+
+        Integer charitySavedSize = 3;
+
         ArrayList<CharityAPI> charities = new ArrayList<>(array.length());
+
+        final List<String> currentCharityIDs = new ArrayList<String>();
+        List<Charity> charityList = new ArrayList<Charity>();
+        ParseUser mainUser = ParseUser.getCurrentUser();
+
+
+        // This step is to save the first three results of the request into the Parse Server
+        // for the suggestions. Along with some of our own directly inputted into Parse
+
+
+        // Before you save the entries onto Parse first check if they're any duplicates using a query
+        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class);
+        postQuery.include(Charity.KEY_ID);
+        postQuery.addDescendingOrder("createdAt");
+
+
+        charityList = mainUser.getList("charityArray");
+
+        try {
+            for(Charity charity : postQuery.find()){
+                currentCharityIDs.add(charity.getKeyCharityID());
+
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
 
         for(int i = 0; i<array.length();i++){
             JSONObject charityJson;
+            Charity charity = new Charity();
 
 
             try {
@@ -112,11 +159,51 @@ public class CharityAPI {
 
             CharityAPI charityAPI = CharityAPI.fromJSON(charityJson);
 
+            if (charityAPI !=null && i<charitySavedSize && !currentCharityIDs.contains(charityAPI.getEin())){
+                charity.setKeyName(charityAPI.getName());
+                charity.setKeyCategoryName(charityAPI.getCategoryName());
+                charity.setKeyMission(charityAPI.getMission());
+                charity.setKeyCauseName(charityAPI.getMission());
+                charity.setKeyUrl(charityAPI.getWebsiteUrl());
+                charity.setKeyRatingURL(charityAPI.getRatingsUrl());
+                charity.setKeyCharityID(charityAPI.getEin());
+
+
+                // First save the newly created charity in background
+
+                charity.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e!=null){
+                            Log.e("Charity API", "error while saving a specific charity");
+                        }else{
+                            Log.d("Charity API", "Saved a specific charity successfully");
+                        }
+                    }
+                });
+
+
+                charityList.add(charity);
+
+            }
             if(charityAPI !=null){
                 charities.add(charityAPI);
             }
 
         }
+
+        mainUser.put("charityArray", charityList);
+
+        mainUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!=null){
+                    Log.e("Charity API", "error while saving Charity List in use");
+                }else{
+                    Log.d("Charity API", "Saved Charity List successfully");
+                }
+            }
+        });
 
         return charities;
 
