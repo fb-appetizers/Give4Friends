@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.give4friends.Adapters.CharityViewAdapter;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
-import com.google.android.material.textfield.TextInputLayout;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private EditText etCharity;
+    private TextView goHome;
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
     CharityClient client;
@@ -56,13 +57,22 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+//        final int abTitleId = getResources().getIdentifier("action_bar_title", "id", "android");
+//        findViewById(abTitleId).setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                //Do something
+//            }
+//        });
+
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -70,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
+        goHome = findViewById(R.id.goHome);
 
         acharities = new ArrayList<CharityAPI>();
 
@@ -84,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Set layout manager to position the items
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         getResponse("", false);
