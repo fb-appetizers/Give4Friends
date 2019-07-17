@@ -15,6 +15,8 @@ public class Charity extends ParseObject {
     public static final String KEY_URL  = "websiteUrl";
     public static final String KEY_CAUSE_NAME  = "causeName";
 
+    public Charity(){}
+
     public String getKeyName() {
         return getString(KEY_NAME);
     }

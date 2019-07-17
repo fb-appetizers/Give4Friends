@@ -2,6 +2,8 @@ package com.example.give4friends;
 
 import android.app.Application;
 
+import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -11,7 +13,7 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        //ParseObject.registerSubclass(Post.class);
+        //ParseObject.registerSubclass(Charity.class);
 
             /*
             final Parse.Configuration configuration = new Parse.Configuration.Builder(this).build()
@@ -41,6 +43,8 @@ public class ParseApplication extends Application {
                 .build();
 
 
+        ParseObject.registerSubclass(Charity.class);
+        ParseObject.registerSubclass(User.class);
         Parse.initialize(configuration);
             /*
             // New test creation of object below

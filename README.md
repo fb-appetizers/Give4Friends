@@ -28,7 +28,7 @@ Required Must-have Stories
 
 
 ### Super Stretch
-* Having charities be able to post
+* Having charities be able to Charity
 * Milestones
 
 
@@ -69,8 +69,8 @@ Required Must-have Stories
 * Home Page
     - Get to see most recent events/ updates from friends
     - Nav Bar
-    - Likes on posts*
-    - Comments on posts*
+    - Likes on Charitys*
+    - Comments on Charitys*
     - Donate Now button  
   
 * Charity search page

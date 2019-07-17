@@ -2,6 +2,7 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,12 +13,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Adapters.CharitySearchAdapter;
+import com.example.give4friends.Adapters.CharityViewAdapter;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputLayout;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
@@ -39,6 +42,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Give4Friends");
+        toolbar.setNavigationIcon(R.drawable.ic_account_4);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
 
 
         profileChange = findViewById(R.id.btnProfile);
