@@ -50,19 +50,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af06a234-d597-4b09-9439-06f569bfedbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Charity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Charity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/CharityAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/CharityAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -98,36 +86,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/CharityAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="143" selection-start-line="143" selection-end-line="143" />
-              <folding>
-                <element signature="e#2962#2970#0" expanded="true" />
-                <element signature="e#2983#2992#0" expanded="true" />
-                <element signature="e#3274#3283#0" expanded="true" />
-                <element signature="e#4869#5293#0" expanded="true" />
-                <element signature="e#5292#5293#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-259">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="437">
+              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
             </state>
           </provider>
         </entry>
@@ -149,18 +109,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Charity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_search.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
@@ -171,9 +119,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharitySearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="-123">
               <caret line="116" selection-start-line="116" selection-end-line="116" />
             </state>
           </provider>
@@ -554,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563396811497</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Able to automatically save API calls to the server when searched.">
+      <created>1563406498017</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1563406498017</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -570,7 +537,7 @@
     <frame x="76" y="23" width="1467" height="947" extended-state="0" />
     <layout>
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.33333334" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.33333334" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -579,7 +546,7 @@
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.8196491" visible="true" weight="0.32865497" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8196491" visible="true" weight="0.32865497" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.32906976" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49964914" weight="0.32982457" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.18035087" side_tool="true" visible="true" weight="0.32865497" />
@@ -681,7 +648,8 @@
     <MESSAGE value="Random Commit" />
     <MESSAGE value="Added a semicolon" />
     <MESSAGE value="Added the Charity Search Activity to the toolbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the Charity Search Activity to the toolbar" />
+    <MESSAGE value="Able to automatically save API calls to the server when searched." />
+    <option name="LAST_COMMIT_MESSAGE" value="Able to automatically save API calls to the server when searched." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -886,16 +854,6 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -927,20 +885,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Charity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        <state relative-caret-position="360">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/net/CharityClient.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
+        <state relative-caret-position="328">
+          <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-259">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -958,34 +926,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/net/CharityClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-259">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        <state relative-caret-position="453">
+          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharitySearch.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="116" selection-start-line="116" selection-end-line="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+        <state relative-caret-position="242">
+          <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Charity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharitySearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="-123">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -994,15 +962,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/CharityAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="143" selection-start-line="143" selection-end-line="143" />
-          <folding>
-            <element signature="e#2962#2970#0" expanded="true" />
-            <element signature="e#2983#2992#0" expanded="true" />
-            <element signature="e#3274#3283#0" expanded="true" />
-            <element signature="e#4869#5293#0" expanded="true" />
-            <element signature="e#5292#5293#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="437">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
         </state>
       </provider>
     </entry>

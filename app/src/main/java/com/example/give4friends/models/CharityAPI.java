@@ -116,8 +116,9 @@ public class CharityAPI {
         ArrayList<CharityAPI> charities = new ArrayList<>(array.length());
 
         final List<String> currentCharityIDs = new ArrayList<String>();
-        List<Charity> charityList = new ArrayList<Charity>();
         ParseUser mainUser = ParseUser.getCurrentUser();
+        List<Charity> charityList = mainUser.getList("charityArray");
+
 
 
         // This step is to save the first three results of the request into the Parse Server
@@ -129,8 +130,6 @@ public class CharityAPI {
         postQuery.include(Charity.KEY_ID);
         postQuery.addDescendingOrder("createdAt");
 
-
-        charityList = mainUser.getList("charityArray");
 
         try {
             for(Charity charity : postQuery.find()){
