@@ -6,10 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".CharitySearch">
 
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCharitySearch"
-        android:layout_width="409dp"
-        android:layout_height="291dp"
+        android:layout_width="410dp"
+        android:layout_height="255dp"
         android:layout_marginBottom="8dp"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,23 +64,26 @@
 
         android:id="@+id/cvRoot"
 
-        android:layout_width="378dp"
-        android:layout_height="298dp"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="8dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/tiCharity"
         card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.0"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent">
+        card_view:layout_constraintTop_toBottomOf="@+id/toolbar"
+        card_view:layout_constraintVertical_bias="0.148">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCharitySugg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="216dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

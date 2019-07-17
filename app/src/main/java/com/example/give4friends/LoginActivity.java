@@ -1,27 +1,15 @@
 package com.example.give4friends;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.give4friends.MainActivity;
-import com.example.give4friends.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -52,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                    loadingProgressBar.setVisibility(View.VISIBLE);
-                    login(username.getText().toString(), password.getText().toString());
+            loadingProgressBar.setVisibility(View.VISIBLE);
+            login(username.getText().toString(), password.getText().toString());
             }
         });
 

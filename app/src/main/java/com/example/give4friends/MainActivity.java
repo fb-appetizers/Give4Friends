@@ -2,39 +2,23 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Adapters.CharitySearchAdapter;
-import com.example.give4friends.models.CharityAPI;
-import com.example.give4friends.net.CharityClient;
-import com.google.android.material.textfield.TextInputLayout;
 import com.parse.ParseUser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
 public class MainActivity extends AppCompatActivity {
-    private Button profileChange;
+    private ImageButton suggBtn;
 
 
     @Override
@@ -42,11 +26,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        configureToolbar();
 
+        suggBtn = findViewById(R.id.suggBtn);
+        // for testing
+
+        suggBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Give4Friends");
-        toolbar.setNavigationIcon(R.drawable.ic_account_4);
         setSupportActionBar(toolbar);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayShowTitleEnabled(false);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,27 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-
-
-        profileChange = findViewById(R.id.btnProfile);
-
-        // for testing
-
-        profileChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
-
-
     }
 
     @Override
@@ -90,9 +69,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.etCharity:
-                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_SHORT).show();
-                //TODO: link to the suggestions page which is currently in the main activity
-                final Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
                 startActivity(intent);
                 return true;
             case R.id.transactionHistory:
@@ -109,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
     public void logOut(){
         ParseUser.logOut();
