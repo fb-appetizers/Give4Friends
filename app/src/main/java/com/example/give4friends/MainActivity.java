@@ -2,11 +2,16 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -91,6 +96,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.charity_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.etCharity:
+                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                //TODO: link to the suggestions page which is currently in the main activity
+                return true;
+            case R.id.transactionHistory:
+                Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.settings:
+                Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.logOut:
+                Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
+                logOut();
+            default:
+//                Log.e()
+        }
+        return true;
+    }
 
     private void getResponse(String search, boolean search_by_name){
 
@@ -156,8 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    public void logOut(){
+        ParseUser.logOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

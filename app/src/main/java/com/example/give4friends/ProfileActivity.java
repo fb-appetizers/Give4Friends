@@ -128,8 +128,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvUserName.setText(myUser.getUsername());
         tvBio.setText(myUser.getString("Bio"));
-        tvTotalDonated.setText("$" + myUser.getNumber("totalDonated"));
-        tvTotalRaised.setText("$" +  myUser.getNumber("totalRaised"));
+        tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
+        tvTotalRaised.setText("Total Raised: $" +  myUser.getNumber("totalRaised"));
+
+
+        // Waiting to see what is going on
+
+        /*
 
         // Handles images
         Glide.with(context)
@@ -137,7 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20)))
                 .into(ivProfileImage);
-
+*/
 
 
     }
