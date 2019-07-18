@@ -173,13 +173,13 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         // Handles images
-        Glide.with(context)
-                .load(myUser.getParseFile("profileImage").getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background))
-                .into(ivProfileImage);
+//        Glide.with(context)
+//                .load(myUser.getParseFile("profileImage").getUrl())
+//                .apply(new RequestOptions()
+//                        .transforms(new CenterCrop(), new RoundedCorners(20))
+//                        .placeholder(R.drawable.ic_launcher_background)
+//                        .error(R.drawable.ic_launcher_background))
+//                .into(ivProfileImage);
 
 
     }

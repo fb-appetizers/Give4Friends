@@ -10,10 +10,11 @@ public class Charity extends ParseObject {
     public static final String KEY_NAME = "name";
     public static final String KEY_ID= "objectId";
     public static final String KEY_MISSION  = "mission";
-    public static final String KEY_RATING  = "rating";
+    public static final String KEY_RATING  = "ratingURL";
     public static final String KEY_CATEGORY_NAME  = "categoryName";
     public static final String KEY_URL  = "websiteUrl";
     public static final String KEY_CAUSE_NAME  = "causeName";
+    public static final String KEY_CHARITY_ID  = "charityID";
 
     public Charity(){}
 
@@ -21,13 +22,15 @@ public class Charity extends ParseObject {
         return getString(KEY_NAME);
     }
 
-    public void setKeyName(String name){
-        put(KEY_NAME, name);
-    }
+    public void setKeyName(String name){ put(KEY_NAME, name); }
 
     public String getKeyId() {
         return getString(KEY_ID);
     }
+
+    public String getKeyCharityID(){return getString(KEY_CHARITY_ID);}
+
+    public void setKeyCharityID(String ID){put(KEY_CHARITY_ID, ID );}
 
 
     public String getKeyMission() {
@@ -38,13 +41,15 @@ public class Charity extends ParseObject {
         put(KEY_MISSION, mission);
     }
 
-    public ParseFile getKeyRating() {
-        return getParseFile(KEY_RATING);
+
+    public String getKeyRatingURL() {
+        return getString(KEY_RATING);
     }
 
-    public void setKeyRating(Number rating){
-        put(KEY_RATING, rating);
+    public void setKeyRatingURL(String url) {
+        put(KEY_RATING, url);
     }
+
 
     public String getKeyCategoryName() {
         return getString(KEY_CATEGORY_NAME);

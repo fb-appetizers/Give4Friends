@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/toolbar" android:id="@+id/toolbar">
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
-    </include>
-
-    <Button
-        android:id="@+id/btnProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="172dp"
-        android:text="Profile Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <ImageButton
+        android:id="@+id/suggBtn"
+        android:layout_width="86dp"
+        android:layout_height="95dp"
+        android:elevation="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_circle_4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
