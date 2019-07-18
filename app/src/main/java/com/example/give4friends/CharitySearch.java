@@ -13,13 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -30,7 +27,6 @@ import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
-import com.example.give4friends.models.User;
 import com.example.give4friends.net.CharityClient;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
@@ -108,7 +104,7 @@ public class CharitySearch extends AppCompatActivity {
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
 
-        getResponseUpper();
+        getResponseSuggested();
 
 
         final ConstraintSet constraintSetMain = new ConstraintSet();
@@ -223,13 +219,13 @@ public class CharitySearch extends AppCompatActivity {
     }
 
 
-    private void getResponseUpper(){
+    private void getResponseSuggested(){
 
         ParseUser mainUser = ParseUser.getCurrentUser();
 
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
-        postQuery.setLimit(10);
+        postQuery.setLimit(1);
         postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
         postQuery.findInBackground(new FindCallback<ParseUser>() {
