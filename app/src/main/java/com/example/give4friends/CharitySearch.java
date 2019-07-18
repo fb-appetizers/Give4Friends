@@ -159,6 +159,14 @@ public class CharitySearch extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CharitySearch.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

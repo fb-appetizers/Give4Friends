@@ -1,5 +1,6 @@
 package com.example.give4friends;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,16 +8,20 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.braintreepayments.cardform.view.CardForm;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -35,9 +40,10 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email;
     private EditText userName;
     private TextView addProfilePic;
-    private Button signUp;
+    private ImageButton signUp;
     private ImageView profilePic;
     private EditText passWord;
+
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     private Bitmap photo;
@@ -77,19 +83,6 @@ public class SignUpActivity extends AppCompatActivity {
                 signUp(first, last, emailInput, username, password);
             }
         });
-    }
-
-    public File getPhotoFileUri(String fileName) {
-
-        File mediaStorageDir = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
-
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d(APP_TAG, "failed to create directory");
-        }
-
-        File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
-
-        return file;
     }
 
     private void onLaunchCamera() {
@@ -180,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();

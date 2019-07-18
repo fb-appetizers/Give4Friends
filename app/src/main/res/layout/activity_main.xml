@@ -14,13 +14,13 @@
         android:id="@+id/suggBtn"
         android:layout_width="86dp"
         android:layout_height="95dp"
-        android:elevation="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:elevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_circle_4" />
+        app:srcCompat="@drawable/ic_add_circle_5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
