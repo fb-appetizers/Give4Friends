@@ -48,7 +48,7 @@
             android:focusedByDefault="false"
             android:foregroundGravity="left|center"
             android:freezesText="false"
-            android:hint="Search for transactions ..."
+            android:hint="Search for charities ..."
             android:isScrollContainer="false"
             android:keepScreenOn="false"
             android:keyboardNavigationCluster="false"
@@ -74,9 +74,9 @@
         android:id="@+id/cvSugg"
 
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="570dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="22dp"
         android:layout_marginRight="15dp"
 
         android:backgroundTint="#FFFFFF"
