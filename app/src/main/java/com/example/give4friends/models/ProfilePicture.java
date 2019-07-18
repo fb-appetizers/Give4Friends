@@ -109,18 +109,18 @@ public final class ProfilePicture {
                 if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                     if (resultCode == Activity.RESULT_OK) {
                         photo = (Bitmap) data.getExtras().get("data");
-                        savePost(ParseUser.getCurrentUser(), photoFile);
+                        //savePost(ParseUser.getCurrentUser(), photoFile);
                     } else { // Result was a failure
                         //Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
                     }
                 } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
                     if (resultCode == Activity.RESULT_OK) {
                         Uri photoUri = data.getData();
-                        //photo = (Bitmap) data.getExtras().get("data");
+                        photo = (Bitmap) data.getExtras().get("data");
 
                         //photoFile = new File(photoUri.getPath());
                         photoFile = new File(getRealPathFromURI(context, photoUri));
-                        savePost(ParseUser.getCurrentUser(), photoFile);
+                        //savePost(ParseUser.getCurrentUser(), photoFile);
 
                         // Do something with the photo based on Uri
                         //Bitmap selectedImage = null;
