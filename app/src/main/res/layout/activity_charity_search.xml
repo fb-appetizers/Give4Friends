@@ -5,6 +5,7 @@
     android:id="@+id/clCharitySearch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".CharitySearch">
 
     <include
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvSugg">
@@ -72,15 +74,16 @@
         android:id="@+id/cvSugg"
 
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
 
+        android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:elevation="8dp"
-        app:cardCornerRadius="8dp"
 
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +94,7 @@
             android:id="@+id/rvCharitySugg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#2A03524A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

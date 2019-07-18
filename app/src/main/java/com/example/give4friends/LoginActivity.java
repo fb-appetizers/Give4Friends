@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     Log.e("login", "Login failure.");
+
                     e.printStackTrace();
                 }
                 }
