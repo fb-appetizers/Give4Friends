@@ -30,6 +30,7 @@ import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.User;
 import com.example.give4friends.net.CharityClient;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
@@ -156,7 +157,7 @@ public class CharitySearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getResponseLower(etCharity.getText().toString(),false);
-               
+
 
                 cardView.setVisibility(View.GONE);
 
@@ -226,21 +227,34 @@ public class CharitySearch extends AppCompatActivity {
 
         ParseUser mainUser = ParseUser.getCurrentUser();
 
-        List<Charity> charities = mainUser.getList("charityArray");
-        if (charities == null){
-            charities = new ArrayList<Charity>();
-        }
+        ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
+        postQuery.include("charityArray");
+        postQuery.setLimit(10);
+        postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
+
+        postQuery.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+
+                ParseUser mainUser = objects.get(0);// They'll only be one
+                List <Charity> charities = mainUser.getList("charityArray");
+                if (charities == null){
+                    charities = new ArrayList<Charity>();
+                }
+
+                for (Charity charity : charities) {
+                    acharitiesUpper.add(CharityAPI.fromParse(charity));
+                }
+
+
+                charityAdapterUpper.notifyDataSetChanged();
+
+
+            }
+        });
 
 
 
-        for (Charity charity : charities) {
-            acharitiesUpper.add(CharityAPI.fromParse(charity));
-        }
-
-
-
-
-        charityAdapterUpper.notifyDataSetChanged();
 
 
 

@@ -45,10 +45,10 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
     @Override
     public void onBindViewHolder(@NonNull CharitySearchAdapter.ViewHolder holder, int position) {
         CharityAPI charity = mCharity.get(position);
-        holder.tvCharityName.setText(charity.getName());
+        holder.tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
         holder.tvMission.setText(charity.getMission());
-        holder.tvCategory.setText(charity.getCategoryName());
-        holder.tvCause.setText(charity.getCauseName());
+//        holder.tvCategory.setText(charity.getCategoryName());
+        holder.tvCause.setText("Cause: " + charity.getCauseName());
 
         Glide.with(context)
                 .load(charity.getRatingsUrl())
@@ -66,7 +66,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
         public TextView tvCharityName;
         public TextView tvMission;
-        public TextView tvCategory;
+//        public TextView tvCategory;
         public TextView tvCause;
         public ImageView ivRating;
 
@@ -75,7 +75,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             itemView.setOnClickListener(this);
             tvCharityName = itemView.findViewById(R.id.tvCharityName);
             tvMission = itemView.findViewById(R.id.tvMission);
-            tvCategory = itemView.findViewById(R.id.tvCategory);
+//            tvCategory = itemView.findViewById(R.id.tvCategory);
             tvCause = itemView.findViewById(R.id.tvCause);
             ivRating = itemView.findViewById(R.id.ivRating);
 
