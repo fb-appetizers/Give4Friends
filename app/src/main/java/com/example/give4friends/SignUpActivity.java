@@ -55,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
     private Bitmap photo;
     private File photoFile;
-    private String type;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +100,8 @@ public class SignUpActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-
                 photo = (Bitmap) data.getExtras().get("data");
-
                 profilePic.setImageBitmap(photo);
-                type = "camera";
-
-
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -119,17 +114,10 @@ public class SignUpActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 //photoFile = new File(photoUri.getPath());
                 photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-                type = "gallery";
-
-                // Do something with the photo based on Uri
-                //Bitmap selectedImage = null;
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-
-                    //photoFile = new File(photoUri.getPath());
                     profilePic.setImageBitmap(selectedImage);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -157,9 +145,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if (e == null) {
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
-
                     user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
-
 
                     user2.saveInBackground(new SaveCallback() {
                         @Override

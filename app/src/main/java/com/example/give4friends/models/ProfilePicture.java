@@ -43,13 +43,9 @@ public final class ProfilePicture {
     static File photoFile;
     static Activity activity;
 
-    public static Bitmap changePhoto(final Context context) {
-        changePhotoPopUp(context);
-        return photo;
-    }
 
 
-    public static void changePhotoPopUp(final Context context){
+    public static void changePhoto(final Context context){
         String[] options = {"Take photo", "Choose from gallery"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         dialog.setTitle("Change Profile Picture");
@@ -105,40 +101,6 @@ public final class ProfilePicture {
     }
 
 
-    public static void onActivityResult(int requestCode, int resultCode, Intent data, Context context) {
-                if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-                    if (resultCode == Activity.RESULT_OK) {
-                        photo = (Bitmap) data.getExtras().get("data");
-                        //savePost(ParseUser.getCurrentUser(), photoFile);
-                    } else { // Result was a failure
-                        //Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-                    }
-                } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
-                    if (resultCode == Activity.RESULT_OK) {
-                        Uri photoUri = data.getData();
-                        photo = (Bitmap) data.getExtras().get("data");
-
-                        //photoFile = new File(photoUri.getPath());
-                        photoFile = new File(getRealPathFromURI(context, photoUri));
-                        //savePost(ParseUser.getCurrentUser(), photoFile);
-
-                        // Do something with the photo based on Uri
-                        //Bitmap selectedImage = null;
-                        try {
-                            Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-                           // ivProfileImage.setImageBitmap(selectedImage);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        // Load the selected image into a preview
-                        // ivPostImage.setImageBitmap(selectedImage);
-                    }
-                }
-
-            }
-
-
     private static Bitmap rotateBitmapOrientation(String photoFilePath) {
         // Create and configure BitmapFactory
         BitmapFactory.Options bounds = new BitmapFactory.Options();
@@ -184,29 +146,26 @@ public final class ProfilePicture {
 
 
 
-    private static void savePost(ParseUser parseUser, final File photoFile) {
+    public static void updatePhoto(ParseUser parseUser, final Bitmap photo) {
 
         //pb.setVisibility(ProgressBar.VISIBLE);
-
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
 
 
-        ParseUser.getCurrentUser().put("profileImage", new ParseFile(photoFile));
+        ParseUser.getCurrentUser().put("profileImage", conversionBitmapParseFile(photo));
         ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                                                        @Override
-                                                        public void done(ParseException e) {
-                                                            if (e != null) {
-                                                                e.printStackTrace();
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                                return;
-                                                            } else {
-                                                                // run a background job and once complete
-                                                                //ivPostImage.setImageResource(0);
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                            }
-                                                        }
-                                                    }
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        e.printStackTrace();
+                        //pb.setVisibility(ProgressBar.INVISIBLE);
+                        return;
+                    } else {
+                        // run a background job and once complete
+                        //pb.setVisibility(ProgressBar.INVISIBLE);
+                    }
+                }
+            }
         );}
 
     public static ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
@@ -216,7 +175,5 @@ public final class ProfilePicture {
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
         return parseFile;
     }
-
-
 }
 
