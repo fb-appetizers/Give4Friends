@@ -6,6 +6,8 @@ import com.parse.ParseUser;
 
 import org.json.JSONArray;
 
+import java.util.Date;
+
 @ParseClassName("Transaction")
 public class Transaction extends ParseObject{
 
@@ -17,13 +19,15 @@ public class Transaction extends ParseObject{
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
     public static final String KEY_CHARITY_ID  = "charityID";
+    public static final String KEY_CREATED_AT  = "createdAt";
+
 
 
     public Transaction(){}
 
 
-    public ParseUser getKeyFriendId() {
-        return getParseUser(KEY_FRIEND_ID);
+    public User getKeyFriendId() {
+        return (User) getParseUser(KEY_FRIEND_ID);
     }
 
     public void setKeyFriendId(ParseUser friend){
@@ -34,8 +38,8 @@ public class Transaction extends ParseObject{
         return getString(KEY_OBJECT_ID);
     }
 
-    public ParseUser getKeyDonorId() {
-        return getParseUser(KEY_DONOR_ID);
+    public User getKeyDonorId() {
+        return (User) getParseUser(KEY_DONOR_ID);
     }
 
     public void setKeyDonorId(ParseUser donor){
@@ -76,5 +80,9 @@ public class Transaction extends ParseObject{
 
     public void setKeyCharityId(Charity charity){
         put(KEY_CHARITY_ID, charity);
+    }
+
+    public Date getKeyCreatedAt(){
+        return getDate(KEY_CREATED_AT);
     }
 }

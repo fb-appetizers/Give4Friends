@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -9,7 +10,7 @@ import org.json.JSONArray;
 
 import java.util.List;
 
-@ParseClassName("User")
+@ParseClassName("_User")
 public class User extends ParseUser {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ID = "objectId";
@@ -25,11 +26,21 @@ public class User extends ParseUser {
     public User(){}
 
     public String getKeyFirstName() {
-        return getString(KEY_FIRST_NAME);
+        try {
+            return fetchIfNeeded().getString(KEY_FIRST_NAME);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ("Missing First Name");
+        }
     }
 
     public String getKeyLastName() {
-        return getString(KEY_LAST_NAME);
+        try {
+            return fetchIfNeeded().getString(KEY_LAST_NAME);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ("Missing Last Name");
+        }
     }
 
     public List<Charity> getKeyCharityArray() {
@@ -86,16 +97,16 @@ public class User extends ParseUser {
     }
 
     // possibly want an increment function rather than set?
-    public void setKeyTotalDonated(double amount){
-        put(KEY_TOTAL_DONATED, amount);
+    public void incrementKeyTotalDonated(double amount){
+        increment(KEY_TOTAL_DONATED, amount);
     }
 
     public Number getKeyTotalRaised() {
         return getNumber(KEY_TOTAL_RAISED);
     }
 
-    public void setKeyTotalRaised(double amount){
-        put(KEY_TOTAL_RAISED, amount);
+    public void incrementKeyTotalRaised(double amount){
+        increment(KEY_TOTAL_RAISED, amount);
     }
 
 
