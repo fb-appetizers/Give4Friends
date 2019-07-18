@@ -1,14 +1,12 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,7 +16,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +37,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View CharityView = inflater.inflate(R.layout.item_charity, parent, false);
+        View CharityView = inflater.inflate(R.layout.item_charity_search, parent, false);
         ViewHolder viewHolder = new ViewHolder(CharityView);
         return viewHolder;
     }

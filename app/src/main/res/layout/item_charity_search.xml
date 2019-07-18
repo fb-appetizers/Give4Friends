@@ -39,7 +39,7 @@
         android:layout_width="192dp"
         android:layout_height="32dp"
         android:background="@android:color/white"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +61,9 @@
 
     <TextView
         android:id="@+id/tvCause"
-        android:layout_width="110dp"
+        android:layout_width="96dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="8dp"
         android:text="Cause"

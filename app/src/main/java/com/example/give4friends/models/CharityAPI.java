@@ -33,6 +33,37 @@ public class CharityAPI {
     public String websiteUrl;
     public String ratingsUrl;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMission(String mission) {
+        this.mission = mission;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public void setEin(String ein) {
+        this.ein = ein;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setCauseName(String causeName) {
+        this.causeName = causeName;
+    }
+
+    public void setWebsiteUrl(String websiteUrl) {
+        this.websiteUrl = websiteUrl;
+    }
+
+    public void setRatingsUrl(String ratingsUrl) {
+        this.ratingsUrl = ratingsUrl;
+    }
 
     public String getName() {
         return name;
@@ -65,7 +96,22 @@ public class CharityAPI {
     public String getRatingsUrl() {
         return ratingsUrl;
     }
-// Returns a CharityAPI from the expected JSON
+
+
+// Returns a CharityAPI instance from the expected JSON
+
+    public static CharityAPI fromParse(Charity charity){
+        CharityAPI charityAPI = new CharityAPI();
+        charityAPI.setName(charity.getKeyName());
+        charityAPI.setCategoryName(charity.getKeyCategoryName());
+        charityAPI.setCauseName(charity.getKeyCauseName());
+        charityAPI.setEin(charity.getKeyCharityID());
+        charityAPI.setMission(charity.getKeyMission());
+        charityAPI.setRatingsUrl(charity.getKeyRatingURL());
+        charityAPI.setWebsiteUrl(charity.getKeyUrl());
+
+        return charityAPI;
+    }
 
     public static CharityAPI fromJSON(JSONObject object) {
         CharityAPI charityAPI = new CharityAPI();
@@ -162,7 +208,7 @@ public class CharityAPI {
                 charity.setKeyName(charityAPI.getName());
                 charity.setKeyCategoryName(charityAPI.getCategoryName());
                 charity.setKeyMission(charityAPI.getMission());
-                charity.setKeyCauseName(charityAPI.getMission());
+                charity.setKeyCauseName(charityAPI.getCauseName());
                 charity.setKeyUrl(charityAPI.getWebsiteUrl());
                 charity.setKeyRatingURL(charityAPI.getRatingsUrl());
                 charity.setKeyCharityID(charityAPI.getEin());
