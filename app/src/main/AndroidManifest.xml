@@ -24,6 +24,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomePage" />
+        <activity android:name=".HistoryActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

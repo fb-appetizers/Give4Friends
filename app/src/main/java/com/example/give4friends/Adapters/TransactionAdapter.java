@@ -55,10 +55,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //populate the views according to this data
 
         if((transaction.getKeyDonorId() != null) && ((transaction.getKeyDonorId()).getKeyFirstName()) != null){
-            holder.donor.setText((transaction.getKeyDonorId()).getKeyFirstName() + " donated on behalf of");
+            holder.donor.setText((transaction.getKeyDonorId()).getKeyFirstName());
         }
         if( (transaction.getKeyFriendId()) != null  && ((transaction.getKeyFriendId()).getKeyFirstName()) != null){
-            holder.friend.setText((transaction.getKeyFriendId()).getKeyFirstName() + " to:");
+            holder.friend.setText((transaction.getKeyFriendId()).getKeyFirstName());
         }
         if( ((transaction.getKeyCharityId()) != null)  && ((transaction.getKeyCharityId()).getKeyName()) != null){
             holder.charity.setText((transaction.getKeyCharityId()).getKeyName());
