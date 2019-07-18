@@ -1,22 +1,32 @@
 package com.example.give4friends;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+//import com.braintreepayments.cardform.view.CardForm;
+import com.example.give4friends.models.ProfilePicture;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -35,12 +45,17 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email;
     private EditText userName;
     private TextView addProfilePic;
-    private Button signUp;
+    private ImageButton signUp;
     private ImageView profilePic;
     private EditText passWord;
+    Context context;
+
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
+    public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
     private Bitmap photo;
+    private File photoFile;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +73,12 @@ public class SignUpActivity extends AppCompatActivity {
 
 //        profilePic.setImageDrawable();
 
+        context = this;
         addProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLaunchCamera();
+                //onLaunchCamera();
+                ProfilePicture.changePhoto(context);
             }
         });
 
@@ -79,83 +96,50 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    public File getPhotoFileUri(String fileName) {
-
-        File mediaStorageDir = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
-
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d(APP_TAG, "failed to create directory");
-        }
-
-        File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
-
-        return file;
-    }
-
-    private void onLaunchCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//        photoFile = getPhotoFileUri(photoFileName);
-
-//        Uri fileProvider = FileProvider.getUriForFile(this, "com.codepath.fileprovider", photoFile);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
-        if (intent.resolveActivity(this.getPackageManager()) != null) {
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        }
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-//                Uri selectedImage = data.getData();
-//                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-//
-//                Cursor cursor = getContentResolver().query(selectedImage,
-//                        filePathColumn, null, null, null);
-//                cursor.moveToFirst();
-//
-//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                String picturePath = cursor.getString(columnIndex);
-//                cursor.close();
 
                 photo = (Bitmap) data.getExtras().get("data");
 
                 profilePic.setImageBitmap(photo);
+                type = "camera";
+
 
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
+        else if(requestCode == SELECT_IMAGE_REQUEST_CODE ){
+            if (resultCode == Activity.RESULT_OK) {
+                Uri photoUri = data.getData();
+                try {
+                    photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //photoFile = new File(photoUri.getPath());
+                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+                type = "gallery";
+
+                // Do something with the photo based on Uri
+                //Bitmap selectedImage = null;
+                try {
+                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
+
+                    //photoFile = new File(photoUri.getPath());
+                    profilePic.setImageBitmap(selectedImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
     }
 
-    public Bitmap rotateBitmapOrientation(String photoFilePath) {
-        // Create and configure BitmapFactory
-        BitmapFactory.Options bounds = new BitmapFactory.Options();
-        bounds.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoFilePath, bounds);
-        BitmapFactory.Options opts = new BitmapFactory.Options();
-        Bitmap bm = BitmapFactory.decodeFile(photoFilePath, opts);
-        // Read EXIF Data
-        ExifInterface exif = null;
-        try {
-            exif = new ExifInterface(photoFilePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String orientString = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
-        int orientation = orientString != null ? Integer.parseInt(orientString) : ExifInterface.ORIENTATION_NORMAL;
-        int rotationAngle = 0;
-        if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotationAngle = 90;
-        if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotationAngle = 180;
-        if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotationAngle = 270;
-        // Rotate Bitmap
-        Matrix matrix = new Matrix();
-        matrix.setRotate(rotationAngle, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(bm, 0, 0, bounds.outWidth, bounds.outHeight, matrix, true);
-        // Return result
-        return rotatedBitmap;
-    }
 
     private void signUp(String firstName, String lastName, String email, String username, String password) {
         // Create the ParseUser
@@ -174,13 +158,14 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
 
-                    user2.put("profileImage", conversionBitmapParseFile(photo));
+                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
+
 
                     user2.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, HomePage.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
@@ -193,12 +178,5 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    public ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-        byte[] imageByte = byteArrayOutputStream.toByteArray();
-        ParseFile parseFile = new ParseFile("image_file.png",imageByte);
-        return parseFile;
-    }
 }
 

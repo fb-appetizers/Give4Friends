@@ -12,6 +12,9 @@
         android:id="@+id/transactionHistory"
         android:title="Transaction History" />
     <item
+        android:id="@+id/useOffline"
+        android:title="Use Offline" />
+    <item
         android:id="@+id/settings"
         android:title="Settings" />
     <item

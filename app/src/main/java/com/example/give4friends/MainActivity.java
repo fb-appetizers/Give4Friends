@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.useOffline:
+                Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
+                return true;
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
                 return true;
