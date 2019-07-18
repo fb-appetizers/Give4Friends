@@ -16,43 +16,44 @@ import com.example.give4friends.models.CharityAPI;
 
 import java.util.List;
 
-public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
+public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.ViewHolder> {
+
 
     private List<CharityAPI> mCharity;
     private Context context;
 
-    public CharitySearchAdapter(List<CharityAPI> mCharity) {
+    public CharitySuggAdapter(List<CharityAPI> mCharity) {
         this.mCharity = mCharity;
 
     }
 
 
     @Override
-    public CharitySearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CharitySuggAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View bookView = inflater.inflate(R.layout.item_charity_search, parent, false);
+        View bookView = inflater.inflate(R.layout.item_charity_sugg, parent, false);
 
         // Return a new holder instance
-        CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(bookView);
+        CharitySuggAdapter.ViewHolder viewHolder = new CharitySuggAdapter.ViewHolder(bookView);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharitySearchAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CharitySuggAdapter.ViewHolder holder, int position) {
         CharityAPI charity = mCharity.get(position);
-        holder.tvCharityName.setText(charity.getName());
-        holder.tvMission.setText(charity.getMission());
-        holder.tvCategory.setText(charity.getCategoryName());
-        holder.tvCause.setText(charity.getCauseName());
+        holder.tvCharityNameSugg.setText(charity.getName());
+
+        holder.tvCategorySugg.setText(charity.getCategoryName());
+        holder.tvCauseSugg.setText(charity.getCauseName());
 
         Glide.with(context)
                 .load(charity.getRatingsUrl())
-                .into(holder.ivRating);
+                .into(holder.ivRatingSugg);
 
 
     }
@@ -64,25 +65,25 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView tvCharityName;
-        public TextView tvMission;
-        public TextView tvCategory;
-        public TextView tvCause;
-        public ImageView ivRating;
+        public TextView tvCharityNameSugg;
+        public TextView tvCategorySugg;
+        public TextView tvCauseSugg;
+        public ImageView ivRatingSugg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            tvCharityName = itemView.findViewById(R.id.tvCharityName);
-            tvMission = itemView.findViewById(R.id.tvMission);
-            tvCategory = itemView.findViewById(R.id.tvCategory);
-            tvCause = itemView.findViewById(R.id.tvCause);
-            ivRating = itemView.findViewById(R.id.ivRating);
+            tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
+            tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
+            tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
+            ivRatingSugg = itemView.findViewById(R.id.ivRatingSugg);
 
         }
 
         @Override
         public void onClick(View view) {
+
+            int position = getAdapterPosition();
 
         }
     }

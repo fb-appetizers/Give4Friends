@@ -24,7 +24,7 @@ public class Charity extends ParseObject {
 
     public void setKeyName(String name){ put(KEY_NAME, name); }
 
-    public String getKeyId() {
+    public String getKeyObjectId() {
         return getString(KEY_ID);
     }
 

@@ -4,22 +4,34 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alespero.expandablecardview.ExpandableCardView;
 import com.example.give4friends.Adapters.CharitySearchAdapter;
+import com.example.give4friends.Adapters.CharitySuggAdapter;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputLayout;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
@@ -27,6 +39,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,10 +49,17 @@ public class CharitySearch extends AppCompatActivity {
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
+    private RecyclerView rvCharitySugg;
+    private CardView cardView;
+    private Animation animationUp;
+    private Animation animationDown;
+    private TextView tvCharitySugg;
+    private TextInputLayout tiCharity;
     CharityClient client;
-    ArrayList<CharityAPI> acharities;
-    CharitySearchAdapter charityAdapter;
-
+    ArrayList<CharityAPI> acharitiesLower;
+    ArrayList<CharityAPI> acharitiesUpper;
+    CharitySuggAdapter charityAdapterUpper;
+    CharitySearchAdapter charityAdapterLower;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,30 +70,83 @@ public class CharitySearch extends AppCompatActivity {
 
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
+        rvCharitySugg = findViewById(R.id.rvCharitySugg);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
+        tvCharitySugg = findViewById(R.id.tvCharitySugg);
+        tiCharity = findViewById(R.id.tiCharity);
 
-        acharities = new ArrayList<CharityAPI>();
+        cardView = findViewById(R.id.cvSugg);
 
-        charityAdapter = new CharitySearchAdapter(acharities);
+
+        //TODO setup a collapsing suggestions view
+        animationUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+        animationDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
+
+
+
+
+
+        acharitiesLower = new ArrayList<CharityAPI>();
+        acharitiesUpper = new ArrayList<CharityAPI>();
+
+        charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
+        charityAdapterLower = new CharitySearchAdapter(acharitiesLower);
 
 
 
         // attach the adapter to the RecyclerView
-        rvCharitySearch.setAdapter(charityAdapter);
+        rvCharitySugg.setAdapter(charityAdapterUpper);
+        rvCharitySearch.setAdapter(charityAdapterLower);
+
 
         // Set layout manager to position the items
+        rvCharitySugg.setLayoutManager(new LinearLayoutManager(this));
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
 
-//        getResponse("", false);
+        getResponseUpper();
 
 
+        tvCharitySugg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!cardView.isShown()) {
+                    cardView.setVisibility(View.VISIBLE);
+                    cardView.startAnimation(animationDown);
+
+                    btnSubmit.setVisibility(View.VISIBLE);
+                    tiCharity.setVisibility(View.VISIBLE);
+                    etCharity.setVisibility(View.VISIBLE);
+
+                }else{
+                    cardView.setVisibility(View.GONE);
+                    cardView.startAnimation(animationUp);
+
+                    btnSubmit.setVisibility(View.GONE);
+                    tiCharity.setVisibility(View.GONE);
+                    etCharity.setVisibility(View.GONE);
+                }
+
+            }
+        });
         //When you hit submit the recycler view updates
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getResponse(etCharity.getText().toString(),false);
+                getResponseLower(etCharity.getText().toString(),false);
+
+                if(cardView.isShown()){
+                    cardView.setVisibility(View.GONE);
+                    cardView.startAnimation(animationUp);
+
+                    btnSubmit.setVisibility(View.GONE);
+                    tiCharity.setVisibility(View.GONE);
+                    etCharity.setVisibility(View.GONE);
+
+
+                }
 
 //                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
 
@@ -85,7 +158,7 @@ public class CharitySearch extends AppCompatActivity {
     }
 
 
-    private void getResponse(String search, boolean search_by_name){
+    private void getResponseLower(String search, boolean search_by_name){
 
         client = new CharityClient();
         client.getCharities(search, false, new Callback() {
@@ -111,28 +184,12 @@ public class CharitySearch extends AppCompatActivity {
 
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-                                acharities.clear();
+                                acharitiesLower.clear();
                                 for(CharityAPI charityAPI : charities){
-                                    acharities.add(charityAPI);
+                                    acharitiesLower.add(charityAPI);
                                 }
-                                charityAdapter.notifyDataSetChanged();
+                                charityAdapterLower.notifyDataSetChanged();
 
-
-//                                    tvTextBox.setText(charities.get(0).getName());
-//                                    tvMission.setText(charities.get(0).getMission());
-
-//                                    String url = charities.get(0).ratingsUrl;
-//
-//                                    if (url != null) {
-//                                        Glide.with(getApplicationContext())
-//                                                .load(url)
-//                                                .into(ivRating);
-//                                    }else{
-//                                        Glide.with(getApplicationContext())
-//                                                .load(R.drawable.noratings)
-//                                                .into(ivRating);
-//
-//                                    }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -141,6 +198,30 @@ public class CharitySearch extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+
+    private void getResponseUpper(){
+        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class);
+        postQuery.setLimit(20);
+
+
+
+            postQuery.findInBackground(new FindCallback<Charity>() {
+                @Override
+                public void done(List<Charity> charities, ParseException e) {
+                    for(Charity charity : charities){
+                        acharitiesUpper.add(CharityAPI.fromParse(charity));
+                    }
+                    charityAdapterUpper.notifyDataSetChanged();
+                }
+            });
+
+
+
+
+
 
     }
 
