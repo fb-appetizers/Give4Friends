@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clCharitySearch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CharitySearch">
@@ -17,12 +18,14 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
+        android:focusableInTouchMode="true"
         android:isScrollContainer="true"
         android:paddingTop="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tiCharity" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiCharity"
@@ -98,11 +101,12 @@
         android:id="@+id/tvCharitySugg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F44336"
+        android:background="@color/colorPrimaryDark"
         android:clickable="true"
         android:text="Charity Suggestions"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

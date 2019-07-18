@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
+
+
+                Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
                 startActivity(intent);
                 return true;
             case R.id.transactionHistory:

@@ -20,4 +20,13 @@
     <item
         android:id="@+id/logOut"
         android:title="Log Out" />
+
+
+    <item
+        android:id="@+id/miActionProgress"
+        android:orderInCategory="100"
+        android:title="Loading..."
+        android:visible="false"
+        app:actionLayout="@layout/menu_progress_circle"
+        app:showAsAction="always" />
 </menu>

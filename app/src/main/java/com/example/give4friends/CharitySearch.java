@@ -5,12 +5,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +21,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alespero.expandablecardview.ExpandableCardView;
 import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.models.Charity;
@@ -55,11 +57,14 @@ public class CharitySearch extends AppCompatActivity {
     private Animation animationDown;
     private TextView tvCharitySugg;
     private TextInputLayout tiCharity;
+
     CharityClient client;
     ArrayList<CharityAPI> acharitiesLower;
     ArrayList<CharityAPI> acharitiesUpper;
     CharitySuggAdapter charityAdapterUpper;
     CharitySearchAdapter charityAdapterLower;
+    ConstraintLayout constraintLayoutMain;
+    MenuItem miActionProgressItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,8 @@ public class CharitySearch extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         tvCharitySugg = findViewById(R.id.tvCharitySugg);
         tiCharity = findViewById(R.id.tiCharity);
+        constraintLayoutMain = findViewById(R.id.clCharitySearch);
+
 
         cardView = findViewById(R.id.cvSugg);
 
@@ -108,25 +115,41 @@ public class CharitySearch extends AppCompatActivity {
         getResponseUpper();
 
 
+        final ConstraintSet constraintSetMain = new ConstraintSet();
+        final ConstraintSet constraintSetTemp = new ConstraintSet();
+
+        constraintSetMain.clone(constraintLayoutMain);
+        constraintSetTemp.clone(constraintLayoutMain);
+
+
         tvCharitySugg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (!cardView.isShown()) {
+
+
+
+
                     cardView.setVisibility(View.VISIBLE);
-                    cardView.startAnimation(animationDown);
+
 
                     btnSubmit.setVisibility(View.VISIBLE);
                     tiCharity.setVisibility(View.VISIBLE);
                     etCharity.setVisibility(View.VISIBLE);
 
+
                 }else{
+
                     cardView.setVisibility(View.GONE);
-                    cardView.startAnimation(animationUp);
+
 
                     btnSubmit.setVisibility(View.GONE);
                     tiCharity.setVisibility(View.GONE);
                     etCharity.setVisibility(View.GONE);
+
+
+
                 }
 
             }
@@ -138,13 +161,13 @@ public class CharitySearch extends AppCompatActivity {
                 getResponseLower(etCharity.getText().toString(),false);
 
                 if(cardView.isShown()){
+
+
                     cardView.setVisibility(View.GONE);
-                    cardView.startAnimation(animationUp);
 
                     btnSubmit.setVisibility(View.GONE);
                     tiCharity.setVisibility(View.GONE);
                     etCharity.setVisibility(View.GONE);
-
 
                 }
 
@@ -161,6 +184,7 @@ public class CharitySearch extends AppCompatActivity {
     private void getResponseLower(String search, boolean search_by_name){
 
         client = new CharityClient();
+        showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -189,9 +213,11 @@ public class CharitySearch extends AppCompatActivity {
                                     acharitiesLower.add(charityAPI);
                                 }
                                 charityAdapterLower.notifyDataSetChanged();
+                                hideProgressBar();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                hideProgressBar();
                             }
                         }
                     });
@@ -214,6 +240,7 @@ public class CharitySearch extends AppCompatActivity {
                     for(Charity charity : charities){
                         acharitiesUpper.add(CharityAPI.fromParse(charity));
                     }
+
                     charityAdapterUpper.notifyDataSetChanged();
                 }
             });
@@ -263,8 +290,10 @@ public class CharitySearch extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CharitySearch.this, CharitySearch.class);
-                startActivity(intent);
+
+
+//                Intent intent = new Intent(CharitySearch.this, CharitySearch.class);
+//                startActivity(intent);
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
@@ -282,10 +311,38 @@ public class CharitySearch extends AppCompatActivity {
         return true;
     }
 
+
+    public void showProgressBar() {
+        // Show progress item
+
+        miActionProgressItem.setVisible(true);
+    }
+
+    public void hideProgressBar() {
+        // Hide progress item
+        miActionProgressItem.setVisible(false);
+    }
+
     public void logOut(){
         ParseUser.logOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        // Store instance of the menu item containing progress
+        miActionProgressItem = menu.findItem(R.id.miActionProgress);
+        // Extract the action-view from the menu item
+        ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+        // Return to finish
+//        miActionProgressItem.setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+
+
+        return true;
     }
 
 }
