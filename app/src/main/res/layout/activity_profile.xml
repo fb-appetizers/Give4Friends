@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvBio"
         android:layout_width="377dp"
         android:layout_height="85dp"
@@ -44,6 +44,8 @@
         android:text="bio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavCharities"
@@ -121,6 +123,17 @@
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toTopOf="@+id/btEditProfile"
         app:layout_constraintEnd_toStartOf="@+id/tvTotalDonated" />
+
+    <Button
+        android:id="@+id/btSave"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="#03A9F4"
+        android:text="Save"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
     <!--
     <androidx.recyclerview.widget.RecyclerView

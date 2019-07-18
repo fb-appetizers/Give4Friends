@@ -64,8 +64,9 @@ public class ProfileActivity extends AppCompatActivity {
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
     private Object FavCharitiesAdapter;
-    private Button btEditProfile;
+    private Button btEditBio;
     private ImageButton btChangePic;
+    private Button btSave;
 
     public ImageView ivProfileImage;
     public TextView tvUserName;
@@ -93,20 +94,41 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         context = this;
 
-        btEditProfile = findViewById(R.id.btEditProfile);
+        btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
+        btSave = findViewById(R.id.btSave);
+        btSave.setVisibility(View.INVISIBLE);
+        btSave.setClickable(false);
 
-        btEditProfile.setOnClickListener(new View.OnClickListener() {
+
+
+
+        btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tvBio.setEnabled(true);
+                btSave.setVisibility(View.VISIBLE);
+                btSave.setClickable(true);
             }
         });
 
-        //TODO working here
+
         btChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ProfilePicture.changePhoto(context);
+            }
+        });
+
+        btSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvBio.setEnabled(false);
+                btSave.setVisibility(View.INVISIBLE);
+                btSave.setClickable(false);
+                String bio = tvBio.getText().toString();
+                updateBio(bio);
+
             }
         });
 
@@ -159,7 +181,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         tvUserName.setText(myUser.getUsername());
-        tvBio.setText(myUser.getString("Bio"));
+        tvBio.setText(myUser.getString("bio"));
+        tvBio.setEnabled(false);
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
         tvTotalRaised.setText("Total Raised: $" + myUser.getNumber("totalRaised"));
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
@@ -199,16 +222,10 @@ public class ProfileActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                //photoFile = new File(photoUri.getPath());
                 photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-
-
                 // Do something with the photo based on Uri
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-
-                    //photoFile = new File(photoUri.getPath());
                     ivProfileImage.setImageBitmap(selectedImage);
                     ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
@@ -223,26 +240,20 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void recyclerSetup() {
-
         //construct the adapter from this datasource
         feedAdapter = new FavCharitiesAdapter(charities);
-
         //RecyclerView setup (layout manager, use adapter)
-
         rvCharities.setAdapter(feedAdapter);
         rvCharities.scrollToPosition(0);
-
     }
 
-    public void updatePhoto() {
-            // Retrieve the object by id
-            ParseUser.getCurrentUser().put("profileImage", new ParseFile(photoFile));
-        try {
-            ParseUser.getCurrentUser().save();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void updateBio(String bio){
+        ParseUser user = ParseUser.getCurrentUser();
+        user.put("bio", bio);
+        user.saveInBackground();
     }
+
+
 }
 
 

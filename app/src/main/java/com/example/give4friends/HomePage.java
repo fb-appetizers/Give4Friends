@@ -17,6 +17,6 @@ public class HomePage extends AppCompatActivity {
 
         hello = findViewById(R.id.hello);
 
-        hello.setText("Hello" + ParseUser.getCurrentUser().getUsername() + "!");
+        hello.setText("Hello " + ParseUser.getCurrentUser().getUsername() + "!");
     }
 }
