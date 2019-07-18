@@ -127,7 +127,7 @@ public class CharityAPI {
                 charityAPI.rating = object.getJSONObject("currentRating").getInt("rating");
                 charityAPI.ratingsUrl = object.getJSONObject("currentRating")
                         .getJSONObject("ratingImage")
-                        .getString("large");
+                        .getString("large");//set to small if you want a small image
             }
 
             if (object.has("category")) {
@@ -163,8 +163,11 @@ public class CharityAPI {
 
         final List<String> currentCharityIDs = new ArrayList<String>();
         ParseUser mainUser = ParseUser.getCurrentUser();
-        List<Charity> charityList = mainUser.getList("charityArray");
 
+        List<Charity> charityList = mainUser.getList("charityArray");
+        if (charityList == null || charityList.size() == 0){
+            charityList = new ArrayList<Charity>();
+        }
 
 
         // This step is to save the first three results of the request into the Parse Server
@@ -195,6 +198,7 @@ public class CharityAPI {
 
 
             try {
+
                 charityJson = array.getJSONObject(i);
 
             } catch (JSONException e) {
@@ -216,19 +220,25 @@ public class CharityAPI {
 
                 // First save the newly created charity in background
 
-                charity.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e!=null){
-                            Log.e("Charity API", "error while saving a specific charity");
-                        }else{
-                            Log.d("Charity API", "Saved a specific charity successfully");
-                        }
-                    }
-                });
+                try {
+                    charity.save();
+                    charityList.add(charity);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                charity.saveInBackground(new SaveCallback() {
+//                    @Override
+//                    public void done(ParseException e) {
+//                        if (e!=null){
+//                            Log.e("Charity API", "error while saving a specific charity");
+//                        }else{
+//                            Log.d("Charity API", "Saved a specific charity successfully");
+//                        }
+//                    }
+//                });
 
 
-                charityList.add(charity);
+//                charityList.add(charity);
 
             }
             if(charityAPI !=null){
