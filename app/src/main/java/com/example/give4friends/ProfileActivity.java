@@ -79,7 +79,9 @@ public class ProfileActivity extends AppCompatActivity {
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
     public String photoFileName = "photo.jpg";
-    File photoFile;
+    private File photoFile;
+    private Bitmap photo;
+
 
     ParseUser myUser = ParseUser.getCurrentUser();
 
@@ -89,37 +91,27 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         context = this;
 
         btEditProfile = findViewById(R.id.btEditProfile);
-
+        btChangePic = findViewById(R.id.btChangePic);
 
         btEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
             }
         });
-
-
-        btChangePic = findViewById(R.id.btChangePic);
-
 
         //TODO working here
         btChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ProfilePicture.changePhoto(context);
-
             }
         });
 
 
-        //Below for recycler view of charities
-
-
+        //Below for recycler view of charities\
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
@@ -151,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        //linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setReverseLayout(true);
         rvCharities.setLayoutManager(linearLayoutManager);
 
 
@@ -173,17 +165,61 @@ public class ProfileActivity extends AppCompatActivity {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
 
-         //Handles images
-       Glide.with(context)
-               .load(myUser.getParseFile("profileImage").getUrl())
-               .apply(new RequestOptions()
+        //Handles images
+        Glide.with(context)
+                .load(myUser.getParseFile("profileImage").getUrl())
+                .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20))
-                       .placeholder(R.drawable.ic_launcher_background)
+                        .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background))
                 .into(ivProfileImage);
 
 
     }
+
+    @Override
+    public void onActivityResult ( int requestCode, int resultCode, Intent data){
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                photo = (Bitmap) data.getExtras().get("data");
+
+                ivProfileImage.setImageBitmap(photo);
+                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
+
+
+            } else { // Result was a failure
+                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri photoUri = data.getData();
+                try {
+                    photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //photoFile = new File(photoUri.getPath());
+                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+
+
+                // Do something with the photo based on Uri
+                try {
+                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
+
+                    //photoFile = new File(photoUri.getPath());
+                    ivProfileImage.setImageBitmap(selectedImage);
+                    ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    };
+
 
 
     public void recyclerSetup() {
@@ -198,173 +234,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-        byte[] imageByte = byteArrayOutputStream.toByteArray();
-        ParseFile parseFile = new ParseFile("image_file.png",imageByte);
-        return parseFile;
+    public void updatePhoto() {
+            // Retrieve the object by id
+            ParseUser.getCurrentUser().put("profileImage", new ParseFile(photoFile));
+        try {
+            ParseUser.getCurrentUser().save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
-    /*
-
-    // Change profile picture
-
-
-
-    public void launchCamera() {
-        // create Intent to take a picture and return control to the calling application
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Create a File reference to access to future access
-        photoFile = getPhotoFileUri(photoFileName);
-
-        // wrap File object into a content provider
-        // required for API >= 24
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(ProfileActivity.this, "com.codepath.fileprovider", photoFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(ProfileActivity.this.getPackageManager()) != null) {
-            // Start the image capture intent to take photo
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        }
-    }
-
-
-    public void launchSelect() {
-
-        //photoFile = getPhotoFileUri(photoFileName);
-
-        // Create intent for picking a photo from the gallery
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        // Create a File reference to access to future access
-
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            // Bring up gallery to select a photo
-            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                ivProfileImage.setImageBitmap(takenImage);
-
-            } else { // Result was a failure
-                Toast.makeText(ProfileActivity.this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri photoUri = data.getData();
-
-                //photoFile = new File(photoUri.getPath());
-                photoFile = new File(getRealPathFromURI(ProfileActivity.this, photoUri));
-
-                // Do something with the photo based on Uri
-                //Bitmap selectedImage = null;
-                try {
-                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(ProfileActivity.this.getContentResolver(), photoUri);
-                    ivProfileImage.setImageBitmap(selectedImage);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // Load the selected image into a preview
-                // ivPostImage.setImageBitmap(selectedImage);
-            }
-        }
-    }
-
-    // Returns the File for a photo stored on disk given the fileName
-    public File getPhotoFileUri(String fileName) {
-        // Get safe storage directory for photos
-        // Use `getExternalFilesDir` on Context to access package-specific directories.
-        // This way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(ProfileActivity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Profile Activity");
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d("Profile Activity", "failed to create directory");
-        }
-
-        // Return the file target for the photo based on filename
-        File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
-
-        return file;
-    }
-
-    private void savePost(ParseUser parseUser, final File photoFile, View view) {
-
-        //pb.setVisibility(ProgressBar.VISIBLE);
-
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-
-
-        // Retrieve the object by id
-        ParseUser.getCurrentUser().put("profileImage", new ParseFile(photoFile));
-        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                                                        @Override
-                                                        public void done(ParseException e) {
-                                                            if (e != null) {
-                                                                e.printStackTrace();
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                                return;
-                                                            } else {
-                                                                // run a background job and once complete
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                            }
-                                                        }
-                                                    }
-        );
-
-
-    }
-
-
-
-
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }}}
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
 
 
 
