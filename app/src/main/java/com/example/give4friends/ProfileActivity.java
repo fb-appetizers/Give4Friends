@@ -106,9 +106,10 @@ public class ProfileActivity extends AppCompatActivity {
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvBio.setEnabled(true);
-                btSave.setVisibility(View.VISIBLE);
-                btSave.setClickable(true);
+                //tvBio.setEnabled(true);
+                //btSave.setVisibility(View.VISIBLE);
+                //btSave.setClickable(true);
+                showAddItemDialog(context);
             }
         });
 
@@ -251,6 +252,25 @@ public class ProfileActivity extends AppCompatActivity {
         ParseUser user = ParseUser.getCurrentUser();
         user.put("bio", bio);
         user.saveInBackground();
+    }
+
+    private void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+            taskEditText.setText(myUser.getString("bio"));
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Edit Bio")
+                .setView(taskEditText)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String bio = String.valueOf(taskEditText.getText());
+                        updateBio(bio);
+                        tvBio.setText(bio);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 
 
