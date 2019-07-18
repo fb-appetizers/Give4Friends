@@ -216,5 +216,7 @@ public final class ProfilePicture {
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
         return parseFile;
     }
+
+
 }
 

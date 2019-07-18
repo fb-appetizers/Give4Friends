@@ -50,6 +50,7 @@ import android.content.DialogInterface;
 import android.app.AlertDialog.Builder;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -172,14 +173,14 @@ public class ProfileActivity extends AppCompatActivity {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
 
-        // Handles images
-//        Glide.with(context)
-//                .load(myUser.getParseFile("profileImage").getUrl())
-//                .apply(new RequestOptions()
-//                        .transforms(new CenterCrop(), new RoundedCorners(20))
-//                        .placeholder(R.drawable.ic_launcher_background)
-//                        .error(R.drawable.ic_launcher_background))
-//                .into(ivProfileImage);
+         //Handles images
+       Glide.with(context)
+               .load(myUser.getParseFile("profileImage").getUrl())
+               .apply(new RequestOptions()
+                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                       .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background))
+                .into(ivProfileImage);
 
 
     }
@@ -195,6 +196,14 @@ public class ProfileActivity extends AppCompatActivity {
         rvCharities.setAdapter(feedAdapter);
         rvCharities.scrollToPosition(0);
 
+    }
+
+    public ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        byte[] imageByte = byteArrayOutputStream.toByteArray();
+        ParseFile parseFile = new ParseFile("image_file.png",imageByte);
+        return parseFile;
     }
 }
     /*
