@@ -48,7 +48,7 @@
             android:focusedByDefault="false"
             android:foregroundGravity="left|center"
             android:freezesText="false"
-            android:hint="Search for charities ..."
+            android:hint="Search for transactions ..."
             android:isScrollContainer="false"
             android:keepScreenOn="false"
             android:keyboardNavigationCluster="false"

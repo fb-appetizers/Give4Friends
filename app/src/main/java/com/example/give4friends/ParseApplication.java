@@ -3,6 +3,7 @@ package com.example.give4friends;
 import android.app.Application;
 
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.Transaction;
 import com.example.give4friends.models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -45,6 +46,7 @@ public class ParseApplication extends Application {
 
         ParseObject.registerSubclass(Charity.class);
         ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Transaction.class);
         Parse.initialize(configuration);
             /*
             // New test creation of object below

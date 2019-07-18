@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 
@@ -14,12 +15,18 @@ public class Charity extends ParseObject {
     public static final String KEY_CATEGORY_NAME  = "categoryName";
     public static final String KEY_URL  = "websiteUrl";
     public static final String KEY_CAUSE_NAME  = "causeName";
-    public static final String KEY_CHARITY_ID  = "charityID";
+    public static final String KEY_CHARITY_ID  = "charityId";
 
     public Charity(){}
 
     public String getKeyName() {
-        return getString(KEY_NAME);
+
+        try {
+            return fetchIfNeeded().getString(KEY_NAME);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return("missing name");
+        }
     }
 
     public void setKeyName(String name){ put(KEY_NAME, name); }
