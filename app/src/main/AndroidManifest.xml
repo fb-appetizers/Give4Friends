@@ -5,6 +5,8 @@
     android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -16,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CharitySearch" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomePage" />
         <activity android:name=".LoginActivity">
@@ -27,8 +30,7 @@
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

@@ -33,6 +33,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.ProfilePicture;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -105,10 +106,11 @@ public class ProfileActivity extends AppCompatActivity {
         btChangePic = findViewById(R.id.btChangePic);
 
 
+        //TODO working here
         btChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showChangePicDialog(context);
+                ProfilePicture.changePhoto(context);
 
             }
         });
@@ -194,35 +196,12 @@ public class ProfileActivity extends AppCompatActivity {
         rvCharities.scrollToPosition(0);
 
     }
+}
+    /*
 
     // Change profile picture
 
 
-    private void showChangePicDialog(Context c) {
-        String[] options = {"Take photo", "Choose from gallery"};
-        AlertDialog.Builder dialog = new AlertDialog.Builder(c);
-                dialog.setTitle("Change Profile Picture");
-                dialog.setItems(options, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                       changePic(i);
-                    }
-                });
-        dialog.show();
-    }
-
-
-    public void changePic(int i) {
-        if(i == 0)
-        {
-            launchCamera();
-        }
-        else
-        {
-            launchSelect();
-
-        }
-    }
 
     public void launchCamera() {
         // create Intent to take a picture and return control to the calling application
@@ -366,7 +345,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
+*/
 
 
 

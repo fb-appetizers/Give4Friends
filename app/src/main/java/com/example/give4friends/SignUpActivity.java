@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.give4friends.models.ProfilePicture;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -61,9 +63,13 @@ public class SignUpActivity extends AppCompatActivity {
         addProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLaunchCamera();
+                //TODO working here will need to query for pic and fill view
+                photo = ProfilePicture.changePhoto(SignUpActivity.this);
+                profilePic.setImageBitmap(photo);
             }
         });
+
+
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+
+
+/*
+
     public File getPhotoFileUri(String fileName) {
 
         File mediaStorageDir = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
@@ -92,7 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
         return file;
     }
 
-    private void onLaunchCamera() {
+    public void onLaunchCamera() {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 //        photoFile = getPhotoFileUri(photoFileName);
 
@@ -103,6 +113,8 @@ public class SignUpActivity extends AppCompatActivity {
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -157,7 +169,9 @@ public class SignUpActivity extends AppCompatActivity {
         return rotatedBitmap;
     }
 
-    private void signUp(String firstName, String lastName, String email, String username, String password) {
+*/
+
+    protected void signUp(String firstName, String lastName, String email, String username, String password) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
 
@@ -199,6 +213,12 @@ public class SignUpActivity extends AppCompatActivity {
         byte[] imageByte = byteArrayOutputStream.toByteArray();
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
         return parseFile;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+        super.onActivityResult(requestCode, resultCode, result);
+        ProfilePicture.onActivityResult(requestCode, resultCode, result, SignUpActivity.this);
     }
 }
 
