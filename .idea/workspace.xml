@@ -49,19 +49,7 @@
     <last-search-timestamp>1563223549796</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af06a234-d597-4b09-9439-06f569bfedbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
-    </list>
+    <list default="true" id="af06a234-d597-4b09-9439-06f569bfedbc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/source/r/" />
@@ -116,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
+            <state relative-caret-position="225">
               <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
             </state>
           </provider>
@@ -138,39 +126,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-495">
-              <caret line="102" column="75" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="75" />
+            <state relative-caret-position="420">
+              <caret line="175" column="11" selection-start-line="162" selection-start-column="8" selection-end-line="175" selection-end-column="11" />
               <folding>
                 <element signature="method#getPhotoFileUri#0;class#ProfilePicture#0" />
                 <element signature="method#onLaunchCamera#0;class#ProfilePicture#0" />
                 <element signature="method#onLaunchSelect#0;class#ProfilePicture#0" />
                 <element signature="method#getRealPathFromURI#0;class#ProfilePicture#0" />
+                <element signature="e#6174#6670#0" expanded="true" />
+                <element signature="e#6669#6670#0" expanded="true" />
                 <element signature="method#conversionBitmapParseFile#0;class#ProfilePicture#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1641">
-              <caret line="112" selection-start-line="112" selection-end-line="112" />
+            <state relative-caret-position="165">
+              <caret line="183" column="47" lean-forward="true" selection-start-line="183" selection-start-column="47" selection-end-line="183" selection-end-column="47" />
               <folding>
-                <element signature="e#3234#3410#0" expanded="true" />
-                <element signature="e#3655#3809#0" expanded="true" />
-                <element signature="e#3808#3809#0" expanded="true" />
+                <element signature="e#3234#3488#0" expanded="true" />
+                <element signature="e#3487#3488#0" expanded="true" />
+                <element signature="e#3742#4090#0" expanded="true" />
+                <element signature="e#4089#4090#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -178,7 +159,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="-135">
               <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
             </state>
           </provider>
@@ -226,6 +207,7 @@
       <find>Enabl</find>
       <find>updateP</find>
       <find>tvBio</find>
+      <find>&quot;Bio</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -634,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563422311629</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Can edit bio on profile page">
+      <created>1563425626241</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1563425626241</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -648,10 +637,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="528" y="23" width="1122" height="949" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.23981482" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23981482" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -661,7 +649,7 @@
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8196491" weight="0.32788798" />
-      <window_info active="true" anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" visible="true" weight="0.32905483" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" visible="true" weight="0.32905483" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49964914" weight="0.32905483" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.18035087" side_tool="true" weight="0.32865497" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49964914" weight="0.32865497" />
@@ -768,7 +756,8 @@
     <MESSAGE value="Offline option added" />
     <MESSAGE value="Sign up uses ProfilImage class and can now get photos from gallery" />
     <MESSAGE value="Profile page uses profilepicture class to change the profile picture from camera and gallery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile page uses profilepicture class to change the profile picture from camera and gallery" />
+    <MESSAGE value="Can edit bio on profile page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can edit bio on profile page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1109,33 +1098,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1149,27 +1116,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="102" column="75" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="75" />
+        <state relative-caret-position="420">
+          <caret line="175" column="11" selection-start-line="162" selection-start-column="8" selection-end-line="175" selection-end-column="11" />
           <folding>
             <element signature="method#getPhotoFileUri#0;class#ProfilePicture#0" />
             <element signature="method#onLaunchCamera#0;class#ProfilePicture#0" />
             <element signature="method#onLaunchSelect#0;class#ProfilePicture#0" />
             <element signature="method#getRealPathFromURI#0;class#ProfilePicture#0" />
+            <element signature="e#6174#6670#0" expanded="true" />
+            <element signature="e#6669#6670#0" expanded="true" />
             <element signature="method#conversionBitmapParseFile#0;class#ProfilePicture#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1641">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="165">
+          <caret line="183" column="47" lean-forward="true" selection-start-line="183" selection-start-column="47" selection-end-line="183" selection-end-column="47" />
           <folding>
-            <element signature="e#3234#3410#0" expanded="true" />
-            <element signature="e#3655#3809#0" expanded="true" />
-            <element signature="e#3808#3809#0" expanded="true" />
+            <element signature="e#3234#3488#0" expanded="true" />
+            <element signature="e#3487#3488#0" expanded="true" />
+            <element signature="e#3742#4090#0" expanded="true" />
+            <element signature="e#4089#4090#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
         </state>
       </provider>
     </entry>
