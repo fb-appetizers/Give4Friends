@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         holder.tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
         holder.tvMission.setText(charity.getMission());
 //        holder.tvCategory.setText(charity.getCategoryName());
-        holder.tvCause.setText("Cause: " + charity.getCauseName());
+
+        holder.tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
         Glide.with(context)
                 .load(charity.getRatingsUrl())

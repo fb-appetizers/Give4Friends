@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 
 import java.util.List;
@@ -48,8 +50,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         CharityAPI charity = mCharity.get(position);
         holder.tvCharityNameSugg.setText(charity.getName());
 
-        holder.tvCategorySugg.setText(charity.getCategoryName());
-        holder.tvCauseSugg.setText(charity.getCauseName());
+        holder.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
+        holder.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+
 
 
 
@@ -82,6 +85,11 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         public void onClick(View view) {
 
             int position = getAdapterPosition();
+            CharityAPI charity = mCharity.get(position);
+
+
+
+
 
         }
     }
