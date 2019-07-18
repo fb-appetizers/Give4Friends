@@ -4,6 +4,8 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+
+
 import org.json.JSONArray;
 
 import java.util.Date;
@@ -18,7 +20,7 @@ public class Transaction extends ParseObject{
     public static final String KEY_AMOUNT_DONATED  = "amountDonated";
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
-    public static final String KEY_CHARITY_ID  = "charityID";
+    public static final String KEY_CHARITY_ID  = "charityId";
     public static final String KEY_CREATED_AT  = "createdAt";
 
 
@@ -85,4 +87,6 @@ public class Transaction extends ParseObject{
     public Date getKeyCreatedAt(){
         return getDate(KEY_CREATED_AT);
     }
+
+
 }

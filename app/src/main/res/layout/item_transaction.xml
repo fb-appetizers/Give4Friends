@@ -13,19 +13,18 @@
     card_view:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvCharity"
             android:layout_width="260dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="65dp"
+            android:layout_height="33dp"
             android:text="TextView"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintBottom_toTopOf="@+id/tvMessage"
             card_view:layout_constraintEnd_toStartOf="@+id/ivFriend"
-            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/ivDonor"
             card_view:layout_constraintTop_toBottomOf="@+id/tvFriend" />
 
         <ImageView
@@ -34,7 +33,10 @@
             android:layout_height="68dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="102dp"
             android:scaleType="centerCrop"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/tvDonor"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
@@ -44,10 +46,13 @@
             android:layout_height="68dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="36dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="81dp"
             android:scaleType="centerCrop"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent" />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/tvCharity"
+            card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -76,20 +81,36 @@
 
         <TextView
             android:id="@+id/tvFriend"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
+            android:layout_width="258dp"
+            android:layout_height="29dp"
             android:text="TextView"
+            card_view:layout_constraintBottom_toTopOf="@+id/tvCharity"
             card_view:layout_constraintEnd_toStartOf="@+id/ivFriend"
             card_view:layout_constraintStart_toEndOf="@+id/ivDonor"
             card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
 
         <TextView
             android:id="@+id/tvDonor"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
+            android:layout_width="256dp"
+            android:layout_height="30dp"
             android:text="TextView"
+            card_view:layout_constraintBottom_toTopOf="@+id/tvFriend"
             card_view:layout_constraintEnd_toEndOf="@+id/tvFriend"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/ivDonor"
             card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="256dp"
+            android:layout_height="77dp"
+            android:layout_marginStart="71dp"
+            android:layout_marginEnd="76dp"
+            android:text="TextView"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

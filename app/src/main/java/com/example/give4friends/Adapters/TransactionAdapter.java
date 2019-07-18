@@ -55,13 +55,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //populate the views according to this data
 
         if((transaction.getKeyDonorId() != null) && ((transaction.getKeyDonorId()).getKeyFirstName()) != null){
-            holder.donor.setText((transaction.getKeyDonorId()).getKeyFirstName());
+            holder.donor.setText((transaction.getKeyDonorId()).getKeyFirstName() + " donated on behalf of");
         }
         if( (transaction.getKeyFriendId()) != null  && ((transaction.getKeyFriendId()).getKeyFirstName()) != null){
-            holder.friend.setText((transaction.getKeyFriendId()).getKeyFirstName());
+            holder.friend.setText((transaction.getKeyFriendId()).getKeyFirstName() + " to:");
         }
         if( ((transaction.getKeyCharityId()) != null)  && ((transaction.getKeyCharityId()).getKeyName()) != null){
             holder.charity.setText((transaction.getKeyCharityId()).getKeyName());
+        }
+        if((transaction.getKeyMessage()) != null){
+            holder.message.setText(transaction.getKeyMessage());
         }
 
 
@@ -70,7 +73,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if(transaction.getKeyDonorId().getKeyProfileImage() != null){
             // Handles images
             Glide.with(context)
-                    .load(transaction.getKeyDonorId().getKeyProfileImage())
+                    .load((transaction.getKeyDonorId().getKeyProfileImage().getUrl()))
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.donorPhoto);
@@ -80,7 +83,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if(transaction.getKeyFriendId().getKeyProfileImage() != null){
             // Handles images
             Glide.with(context)
-                    .load(transaction.getKeyDonorId().getKeyProfileImage())
+                    .load(((transaction.getKeyFriendId().getKeyProfileImage()).getUrl()))
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.friendPhoto);
@@ -89,7 +92,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
 
         /*
-=
+=.load(myUser.getParseFile("profileImage").getUrl())
         // Handles images
         Glide.with(context)
                 .load(Charity.getImage()
@@ -121,6 +124,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ImageView donorPhoto;
         public ImageView friendPhoto;
         public TextView charity;
+        public TextView message;
 
 
 
@@ -133,6 +137,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             charity = (TextView) itemView.findViewById(R.id.tvCharity);
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
             friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
+            message = (TextView) itemView.findViewById(R.id.tvMessage);
 
 
         }
