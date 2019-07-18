@@ -81,6 +81,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
         }
 
+
         @Override
         public void onClick(View view) {
 

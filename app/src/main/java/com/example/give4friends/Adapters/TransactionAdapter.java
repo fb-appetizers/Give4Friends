@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +52,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // get data according to position.
         Transaction transaction = (Transaction) transactions.get(position);
 
+
+        // like button
+        holder.ibFullHeart.setVisibility(View.INVISIBLE);
 
 
         //populate the views according to this data
@@ -126,6 +131,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public TextView charity;
         public TextView message;
 
+        //like button
+        public ImageButton ibEmptyHeart;
+        public ImageButton ibFullHeart;
+
 
 
         public ViewHolder(View itemView) {
@@ -138,6 +147,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
             friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
             message = (TextView) itemView.findViewById(R.id.tvMessage);
+
+            // like button
+            ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
+            ibFullHeart = (ImageButton) itemView.findViewById(R.id.ib_full_heart);
 
 
         }
