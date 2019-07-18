@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.useOffline:
                 Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void populate(){
+    protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         postQuery.setLimit(20);

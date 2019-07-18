@@ -23,13 +23,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
+            android:layout_marginTop="49dp"
             android:layout_marginEnd="135dp"
-            android:layout_marginBottom="5dp"
             android:text="TextView"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            card_view:layout_constraintBottom_toTopOf="@+id/tvMessage"
+            android:textColor="#000000"
             card_view:layout_constraintEnd_toStartOf="@+id/ivFriend"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
 
         <ImageView
             android:id="@+id/ivDonor"
@@ -37,6 +39,8 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:scaleType="centerCrop"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +52,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="54dp"
+            android:layout_marginEnd="5dp"
             android:scaleType="centerCrop"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
@@ -78,9 +83,9 @@
 
         <TextView
             android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:background="#C603A9F4"
             android:backgroundTint="#2503A9F4"
@@ -94,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text=" donated on behalf of"
             android:textSize="20sp"
             android:textStyle="italic"
