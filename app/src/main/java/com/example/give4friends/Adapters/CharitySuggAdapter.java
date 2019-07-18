@@ -51,9 +51,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         holder.tvCategorySugg.setText(charity.getCategoryName());
         holder.tvCauseSugg.setText(charity.getCauseName());
 
-        Glide.with(context)
-                .load(charity.getRatingsUrl())
-                .into(holder.ivRatingSugg);
+
 
 
     }
@@ -68,7 +66,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         public TextView tvCharityNameSugg;
         public TextView tvCategorySugg;
         public TextView tvCauseSugg;
-        public ImageView ivRatingSugg;
+//        public ImageView ivRatingSugg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +74,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
-            ivRatingSugg = itemView.findViewById(R.id.ivRatingSugg);
+
 
         }
 
