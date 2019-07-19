@@ -30,9 +30,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton suggBtn;
+    private ImageButton emptyHeartBtn;
+    private ImageButton fullHeartBtn;
+
     protected RecyclerView rvTransactions;
     protected ArrayList<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
+
 
 
 
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // Implement Recycler View
         rvTransactions = (RecyclerView) findViewById(R.id.rvTransactions);

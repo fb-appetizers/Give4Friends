@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,10 +47,37 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     // bind the values based on the position of the element
     @Override
-    public void  onBindViewHolder(ViewHolder holder, int position) {
+    public void  onBindViewHolder(final ViewHolder holder, int position) {
 
         // get data according to position.
         Transaction transaction = (Transaction) transactions.get(position);
+
+
+        // like button
+        holder.ibFullHeart.setVisibility(View.INVISIBLE);
+        holder.ibFullHeart.setClickable(false);
+
+
+        holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.ibFullHeart.setVisibility(View.VISIBLE);
+                holder.ibEmptyHeart.setVisibility(View.INVISIBLE);
+                holder.ibFullHeart.setClickable(true);
+                holder.ibEmptyHeart.setClickable(false);
+            }
+        });
+
+        holder.ibFullHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.ibFullHeart.setVisibility(View.INVISIBLE);
+                holder.ibEmptyHeart.setVisibility(View.VISIBLE);
+                holder.ibFullHeart.setClickable(false);
+                holder.ibEmptyHeart.setClickable(true);
+            }
+        });
+
 
 
 
@@ -64,7 +93,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.charity.setText((transaction.getKeyCharityId()).getKeyName());
         }
         if((transaction.getKeyMessage()) != null){
-            holder.message.setText(transaction.getKeyMessage());
+            holder.message.setText("Message: " + transaction.getKeyMessage());
         }
 
 
@@ -126,6 +155,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public TextView charity;
         public TextView message;
 
+        //like button
+        public ImageButton ibEmptyHeart;
+        public ImageButton ibFullHeart;
+
 
 
         public ViewHolder(View itemView) {
@@ -138,6 +171,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
             friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
             message = (TextView) itemView.findViewById(R.id.tvMessage);
+
+            // like button
+            ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
+            ibFullHeart = (ImageButton) itemView.findViewById(R.id.ib_full_heart);
 
 
         }
@@ -155,4 +192,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             notifyDataSetChanged();
         }
 
-    }}
+
+
+    }
+
+
+}

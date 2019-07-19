@@ -91,7 +91,7 @@
             android:backgroundTint="#2503A9F4"
             android:text="TextView"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/imageButton"
+            card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart"
             card_view:layout_constraintTop_toBottomOf="@+id/ivFriend" />
 
         <TextView
@@ -107,12 +107,28 @@
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/ib_empty_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#FFFFFF"
+
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:srcCompat="@android:drawable/btn_star" />
+            card_view:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+        <ImageButton
+            android:id="@+id/ib_full_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#FFFFFF"
+            android:tint="#E497B1"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:srcCompat="@drawable/ic_vector_heart" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

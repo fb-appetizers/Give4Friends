@@ -14,6 +14,9 @@ import java.util.List;
 
 public class HistoryActivity extends MainActivity{
 
+    //Will need to call .setVisibility(View.VISIBLE) on amount witch is
+    // setVisibility(View.INVISIBLE) on mainActivity
+
     @Override
     protected void populate(){
         //get query
