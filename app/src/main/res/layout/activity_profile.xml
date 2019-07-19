@@ -7,16 +7,21 @@
     tools:context=".ProfileActivity">
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTotalRaised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:text="Total Raised"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="123dp" />
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -30,17 +35,18 @@
         android:id="@+id/tvName"
         android:layout_width="240dp"
         android:layout_height="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:text="tvName"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintTop_toBottomOf="@+id/tvFullName"
-        tools:layout_editor_absoluteX="170dp" />
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
 
     <TextView
         android:id="@+id/tvBio"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="Bio:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -50,15 +56,15 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
-        android:layout_width="410dp"
-        android:layout_height="407dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="411dp"
+        android:layout_height="387dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavCharities"
@@ -105,9 +111,11 @@
         android:id="@+id/tvTotalDonated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Total Donated"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalRaised" />
 
     <TextView
         android:id="@+id/tvFullName"
