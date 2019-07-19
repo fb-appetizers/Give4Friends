@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.Transaction;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected RecyclerView rvTransactions;
     protected List<TransactionHome> transactions;
     protected TransactionAdapter transactionAdapter;
+    private SwipeRefreshLayout swipeContainer;
 
 
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
+                Intent intent = new Intent(MainActivity.this, DonateActivity.class);
                 startActivity(intent);
             }
         });
@@ -73,6 +75,28 @@ public class MainActivity extends AppCompatActivity {
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                transactionAdapter.clear();
+                transactionAdapter.addAll(transactions);
+                populate();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         populate();
 
@@ -111,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-
-
                 Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
                 startActivity(intent);
                 return true;
@@ -126,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.logOut:
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();

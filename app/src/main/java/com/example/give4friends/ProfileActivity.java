@@ -98,9 +98,6 @@ public class ProfileActivity extends AppCompatActivity {
         btChangePic = findViewById(R.id.btChangePic);
 
 
-
-
-
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,42 +114,51 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-
-
         //Below for recycler view of charities\
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
-        // get favorite charities from user
 
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
-        //Get relation
-        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
-        //Get all charities in relation
-        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
-            @Override
-            public void done(List<Charity> objects, ParseException e) {
-                if (e != null) {
-                    // There was an error
-                } else {
-                    // results have all the charities the current user liked.
-                    // go through relation adding charities
-                    for (int i = 0; i < objects.size(); i++) {
-                        charities.add((Charity) objects.get(i));
-
-                    }
-                    recyclerSetup();
-
-                }
-
-            }
-        });
-
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         rvCharities.setLayoutManager(linearLayoutManager);
+
+        //construct the adapter from this datasource
+        feedAdapter = new FavCharitiesAdapter(charities);
+        //RecyclerView setup (layout manager, use adapter)
+        rvCharities.setAdapter(feedAdapter);
+        rvCharities.scrollToPosition(0);
+
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                feedAdapter.clear();
+                feedAdapter.addAll(charities);
+                populate();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+
+        populate();
+
 
 
         // Below for static elements of profile
@@ -179,6 +185,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .load(myUser.getParseFile("profileImage").getUrl())
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20))
+                        .circleCropTransform()
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background))
                 .into(ivProfileImage);
@@ -187,7 +194,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityResult ( int requestCode, int resultCode, Intent data){
+    public void onActivityResult ( int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
@@ -225,13 +233,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-    public void recyclerSetup() {
-        //construct the adapter from this datasource
-        feedAdapter = new FavCharitiesAdapter(charities);
-        //RecyclerView setup (layout manager, use adapter)
-        rvCharities.setAdapter(feedAdapter);
-        rvCharities.scrollToPosition(0);
-    }
 
     public void updateBio(String bio){
         ParseUser user = ParseUser.getCurrentUser();
@@ -259,7 +260,30 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-}
+
+private void populate(){
+
+
+    //Get relation
+    final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+    //Get all charities in relation
+    favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+        @Override
+        public void done(List<Charity> objects, ParseException e) {
+            if (e != null) {
+                // There was an error
+            } else {
+                // results have all the charities the current user liked.
+                // go through relation adding charities
+                for (int i = 0; i < objects.size(); i++) {
+                    charities.add((Charity) objects.get(i));
+
+                }
+            }
+
+        }
+    });
+}}
 
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,8 +16,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
-import com.example.give4friends.models.TransactionHome;
+import com.example.give4friends.models.User;
+import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -101,22 +105,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     .load(transaction.getDonorProfile().getUrl())
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20)))
+                            .circleCropTransform()
                     .into(holder.donorPhoto);
-////
-////        }
-////
-////        if(transaction.getKeyFriendId().getKeyProfileImage() != null){
-////            // Handles images
+
+        }
+
+        if(transaction.getKeyFriendId().getKeyProfileImage() != null){
+            // Handles images
             Glide.with(context)
                     .load(transaction.getFriendProfile().getUrl())
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20)))
+                            .circleCropTranform())
                     .into(holder.friendPhoto);
 ////
 ////        }
 
 
-
+*/
     }
 
 
@@ -175,8 +181,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             transactions.addAll(list);
             notifyDataSetChanged();
         }
-
-
 
 
 
