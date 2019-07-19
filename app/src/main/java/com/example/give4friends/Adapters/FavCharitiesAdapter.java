@@ -96,6 +96,18 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         return charities.size();
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        charities.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Charity> list) {
+        charities.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
 
     // create ViewHolder Class
@@ -153,16 +165,5 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     }
 
 
-    // Clean all elements of the recycler
-    public void clear() {
-        charities.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Charity> list) {
-        charities.addAll(list);
-        notifyDataSetChanged();
-    }
 
 }}

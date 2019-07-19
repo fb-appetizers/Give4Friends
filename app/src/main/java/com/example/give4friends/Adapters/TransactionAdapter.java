@@ -103,8 +103,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // Handles images
             Glide.with(context)
                     .load((transaction.getKeyDonorId().getKeyProfileImage().getUrl()))
-//                    .apply(new RequestOptions()
-//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+                    .apply(new RequestOptions()
+                          .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform())
                     .into(holder.donorPhoto);
 
         }
@@ -113,8 +114,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // Handles images
             Glide.with(context)
                     .load(((transaction.getKeyFriendId().getKeyProfileImage()).getUrl()))
-//                    .apply(new RequestOptions()
-//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform())
                     .into(holder.friendPhoto);
 
         }
@@ -141,6 +143,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactions.size();
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        transactions.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Transaction> list) {
+        transactions.addAll(list);
+        notifyDataSetChanged();
+    }
 
 
     // create ViewHolder Class
@@ -179,18 +192,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         }
 
-
-        // Clean all elements of the recycler
-        public void clear() {
-            transactions.clear();
-            notifyDataSetChanged();
-        }
-
-        // Add a list of items -- change to type used
-        public void addAll(List<Transaction> list) {
-            transactions.addAll(list);
-            notifyDataSetChanged();
-        }
 
 
 

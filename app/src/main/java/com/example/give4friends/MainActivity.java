@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.CharityAPI;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
+    private SwipeRefreshLayout swipeContainer;
 
 
 
@@ -74,6 +76,28 @@ public class MainActivity extends AppCompatActivity {
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                transactionAdapter.clear();
+                transactionAdapter.addAll(transactions);
+                populate();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         populate();
 
@@ -127,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.logOut:
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
