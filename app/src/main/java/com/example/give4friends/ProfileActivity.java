@@ -1,6 +1,9 @@
 package com.example.give4friends;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +22,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +103,8 @@ public class ProfileActivity extends AppCompatActivity {
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
 
+        configureToolbar();
+
 
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,9 +164,7 @@ public class ProfileActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
 
-
         populate();
-
 
 
         // Below for static elements of profile
@@ -189,9 +195,75 @@ public class ProfileActivity extends AppCompatActivity {
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background))
                 .into(ivProfileImage);
-
-
     }
+
+
+        //add tool bar
+        private void configureToolbar() {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.setTitle("Give4Friends");
+            setSupportActionBar(toolbar);
+
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayShowTitleEnabled(false);
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
+
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.charity_menu, menu);
+
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.etCharity:
+                    Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.transactionHistory:
+                    Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                    intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.useOffline:
+                    Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
+                    return true;
+                case R.id.settings:
+                    Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.logOut:
+                    Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
+                    logOut();
+                default:
+//                Log.e()
+            }
+            return true;
+        }
+
+        public void logOut(){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+
 
     @Override
     public void onActivityResult ( int requestCode, int resultCode, Intent data) {
@@ -229,6 +301,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         }
+
     };
 
 
