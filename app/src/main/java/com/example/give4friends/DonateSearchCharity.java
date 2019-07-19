@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.give4friends.Adapters.CharitySearchAdapter;
@@ -21,6 +22,8 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.annotation.meta.When;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -30,6 +33,7 @@ public class DonateSearchCharity extends AppCompatActivity {
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
+    private ImageButton cancel;
     CharityClient client;
     ArrayList<CharityAPI> acharities;
     CharitySearchAdapter charityAdapter;
@@ -49,12 +53,11 @@ public class DonateSearchCharity extends AppCompatActivity {
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
+        cancel = findViewById(R.id.cancel);
 
         acharities = new ArrayList<CharityAPI>();
 
         charityAdapter = new CharitySearchAdapter(acharities);
-
-
 
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
@@ -62,20 +65,21 @@ public class DonateSearchCharity extends AppCompatActivity {
         // Set layout manager to position the items
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
-
-//        getResponse("", false);
-
-
         //When you hit submit the recycler view updates
-//        btnSubmit.setOnClicgit kListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getResponse(etCharity.getText().toString(),false);
-//
-////                Toast.makeText(getApplicationContext(),etCharity.getText().toString(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getResponse(etCharity.getText().toString(),false);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DonateSearchCharity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getResponse(String search, boolean search_by_name){
@@ -110,22 +114,6 @@ public class DonateSearchCharity extends AppCompatActivity {
                                     charityAdapter.notifyDataSetChanged();
                                 }
 
-
-//                                    tvTextBox.setText(charities.get(0).getName());
-//                                    tvMission.setText(charities.get(0).getMission());
-
-//                                    String url = charities.get(0).ratingsUrl;
-//
-//                                    if (url != null) {
-//                                        Glide.with(getApplicationContext())
-//                                                .load(url)
-//                                                .into(ivRating);
-//                                    }else{
-//                                        Glide.with(getApplicationContext())
-//                                                .load(R.drawable.noratings)
-//                                                .into(ivRating);
-//
-//                                    }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

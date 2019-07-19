@@ -40,15 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         configureToolbar();
+
+
 
         suggBtn = findViewById(R.id.suggBtn);
         // for testing

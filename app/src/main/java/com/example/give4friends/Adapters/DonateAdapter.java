@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 
@@ -25,7 +24,7 @@ import java.util.List;
 import static com.example.give4friends.DonateActivity.friend;
 
 
-public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder> {
+public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder>{
     Context context;
     private List<ParseUser> friends;
 
