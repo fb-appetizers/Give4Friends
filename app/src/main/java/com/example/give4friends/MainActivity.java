@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
+                Intent intent = new Intent(MainActivity.this, DonateActivity.class);
                 startActivity(intent);
             }
         });
@@ -136,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-
-
                 Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
                 startActivity(intent);
                 return true;
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(10);
+        postQuery.setLimit(5);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
 

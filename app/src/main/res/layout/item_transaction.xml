@@ -10,6 +10,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
+    android:background="@drawable/constraint_border"
     card_view:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -23,6 +23,9 @@
             android:label="@string/title_activity_settings"></activity>
         <activity android:name=".CreditCardInfo" />
         <activity
+            android:name=".DonateActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".CharitySearch"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ProfileActivity" />
