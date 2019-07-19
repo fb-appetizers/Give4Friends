@@ -11,6 +11,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
+
     tools:background="#FFFFFF">
 
 
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="10dp"
+        android:paddingRight="5dp"
         android:text="CharityName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="bold"
@@ -62,6 +64,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
+        android:paddingRight="5dp"
         android:text="Cause"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,16 +73,18 @@
 
     <TextView
         android:id="@+id/tvMoreInfo"
-        android:layout_width="93dp"
+        android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
         android:clickable="true"
+        android:paddingLeft="5dp"
         android:text="More Information"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#2196F3"
         android:textSize="12sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivRating"
         app:layout_constraintStart_toStartOf="parent" />
