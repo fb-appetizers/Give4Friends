@@ -107,11 +107,8 @@ public class CharitySearch extends AppCompatActivity {
         getResponseSuggested();
 
 
-        final ConstraintSet constraintSetMain = new ConstraintSet();
-        final ConstraintSet constraintSetTemp = new ConstraintSet();
 
-        constraintSetMain.clone(constraintLayoutMain);
-        constraintSetTemp.clone(constraintLayoutMain);
+
 
 
 

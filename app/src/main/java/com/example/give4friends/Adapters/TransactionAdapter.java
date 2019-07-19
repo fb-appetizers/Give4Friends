@@ -29,7 +29,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
 
     private List<Transaction> transactions;
-    public TransactionAdapter(ArrayList<Transaction> transactions) {
+    public TransactionAdapter(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
@@ -103,8 +103,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // Handles images
             Glide.with(context)
                     .load((transaction.getKeyDonorId().getKeyProfileImage().getUrl()))
-                    .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+//                    .apply(new RequestOptions()
+//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.donorPhoto);
 
         }
@@ -113,8 +113,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // Handles images
             Glide.with(context)
                     .load(((transaction.getKeyFriendId().getKeyProfileImage()).getUrl()))
-                    .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+//                    .apply(new RequestOptions()
+//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.friendPhoto);
 
         }
