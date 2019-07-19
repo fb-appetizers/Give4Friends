@@ -35,10 +35,10 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View bookView = inflater.inflate(R.layout.item_charity_search, parent, false);
+        View charityView = inflater.inflate(R.layout.item_charity_search, parent, false);
 
         // Return a new holder instance
-        CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(bookView);
+        CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(charityView);
         return viewHolder;
 
     }

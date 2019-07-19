@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
-    protected ArrayList<Transaction> transactions;
+    protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
 
 
@@ -61,14 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Implement Recycler View
-        rvTransactions = (RecyclerView) findViewById(R.id.rvTransactions);
+        rvTransactions = findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
-        transactions = new ArrayList<>();
+        transactions = new ArrayList<Transaction>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
+
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
@@ -144,17 +146,27 @@ public class MainActivity extends AppCompatActivity {
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(20);
-        postQuery.addDescendingOrder(Transaction.KEY_CREATED_AT);
+        postQuery.setLimit(10);
+        postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
+
+
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
-            public void done(List<Transaction> objects, ParseException e) {
+            public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-                    for (int i = 0; i < objects.size(); ++i){
-                        transactions.add(objects.get(i));
-                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+
+
+
+                    transactions.clear();
+
+                    for(Transaction transaction : transactionList){
+                        transactions.add(transaction);
                     }
+
+
+
+                    transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
