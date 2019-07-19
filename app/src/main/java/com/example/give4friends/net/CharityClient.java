@@ -14,8 +14,6 @@ public class CharityClient {
 
 
     public void getCharities(final String search, boolean search_by_name, Callback handler){
-
-
         /*
         Parameter:
         String search - String of what you want to be searched by the API
@@ -23,7 +21,6 @@ public class CharityClient {
 
         Output:
         String array
-
 
          */
         Integer pageNum = 1;
