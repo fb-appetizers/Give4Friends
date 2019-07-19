@@ -104,7 +104,7 @@ public class TransactionHome {
         TransactionHome transactionHome = new TransactionHome();
 
         transactionHome.setAmountDonated(transaction.getKeyAmountDonated());
-//        transactionHome.setCharityName(transaction.getKeyCharityId().getKeyName());
+        transactionHome.setCharityName(transaction.getKeyCharityName());
         transactionHome.setDonorName(transaction.getKeyDonorName());
         transactionHome.setLikesCount(transaction.getKeyLikesCount());
         transactionHome.setMessage(transaction.getKeyMessage());

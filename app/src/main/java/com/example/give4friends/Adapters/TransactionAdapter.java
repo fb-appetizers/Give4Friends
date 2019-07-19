@@ -105,26 +105,23 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             Glide.with(context)
                     .load(transaction.getDonorProfile().getUrl())
                     .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20)))
-//                            .circleCropTransform()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCrop())
+
                     .into(holder.donorPhoto);
+
+
+        Glide.with(context)
+                .load(transaction.getFriendProfile().getUrl())
+                .apply(new RequestOptions()
+                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                        .circleCrop())
+
+                .into(holder.friendPhoto);
 
         }
 
-//        if(transaction.getKeyFriendId().getKeyProfileImage() != null){
-//            // Handles images
-//            Glide.with(context)
-//                    .load(transaction.getFriendProfile().getUrl())
-//                    .apply(new RequestOptions()
-//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
-//                            .circleCropTranform())
-//                    .into(holder.friendPhoto);
-//////
-////        }
-//
-//
-//
-//    }
+
 
 
     @Override
