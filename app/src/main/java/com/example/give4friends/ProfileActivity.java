@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -192,8 +194,8 @@ public class ProfileActivity extends AppCompatActivity {
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20))
                         .circleCropTransform()
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background))
+                        .placeholder(R.drawable.user_outline_24)
+                        .error(R.drawable.user_outline_24))
                 .into(ivProfileImage);
     }
 
@@ -210,8 +212,7 @@ public class ProfileActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
-                    startActivity(intent);
+                    //No need to have an intent from the profile activity to the profile activity
                 }
             });
 
@@ -273,10 +274,22 @@ public class ProfileActivity extends AppCompatActivity {
 
                 photo = (Bitmap) data.getExtras().get("data");
 
-                ivProfileImage.setImageBitmap(photo);
-                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
+                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,270);
 
 
+                Glide.with(context)
+                        .load(selectedImageRotate)
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCropTransform()
+                                .placeholder(R.drawable.user_outline_24)
+                                .error(R.drawable.user_outline_24))
+                        .into(ivProfileImage);
+
+
+                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
+
+        
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -292,6 +305,7 @@ public class ProfileActivity extends AppCompatActivity {
                 // Do something with the photo based on Uri
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
+
                     ivProfileImage.setImageBitmap(selectedImage);
                     ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
