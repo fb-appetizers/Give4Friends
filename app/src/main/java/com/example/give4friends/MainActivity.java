@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;

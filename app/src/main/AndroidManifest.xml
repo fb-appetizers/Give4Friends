@@ -18,11 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DonateSearchCharity"></activity>
         <activity
             android:name=".DonateActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".CreditCardInfo" />
+        <activity android:name=".CreditCardInfo"></activity>
         <activity
             android:name=".CharitySearch"
             android:windowSoftInputMode="adjustPan" />
