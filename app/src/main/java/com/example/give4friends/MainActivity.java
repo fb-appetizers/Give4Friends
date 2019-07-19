@@ -79,17 +79,16 @@ public class MainActivity extends AppCompatActivity {
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                transactionAdapter.clear();
-                transactionAdapter.addAll(transactions);
-                populate();
-                swipeContainer.setRefreshing(false);
-            }
-
-        });
+//        // Setup refresh listener which triggers new data loading
+//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                populate();
+//                swipeContainer.setRefreshing(false);
+//            }
+//
+//        });
 
 
         // Configure the refreshing colors
