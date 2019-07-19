@@ -10,6 +10,12 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
 
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container">
+    </androidx.viewpager.widget.ViewPager>
+
     <ImageButton
         android:id="@+id/suggBtn"
         android:layout_width="86dp"
