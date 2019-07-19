@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/etCharity"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Charity Search"
+        app:actionViewClass="android.widget.SearchView" />
+    <item
+        android:id="@+id/transactionHistory"
+        android:title="Transaction History" />
+    <item
+        android:id="@+id/useOffline"
+        android:title="Use Offline" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings" />
+    <item
+        android:id="@+id/logOut"
+        android:title="Log Out" />
+
+
+    <item
+        android:id="@+id/miActionProgress"
+        android:orderInCategory="100"
+        android:title="Loading..."
+        android:visible="false"
+        app:actionLayout="@layout/menu_progress_circle"
+        app:showAsAction="always" />
+</menu>
