@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -15,17 +16,46 @@ public class Transaction extends ParseObject{
 
     public static final String KEY_FRIEND_ID = "friendID";
     public static final String KEY_OBJECT_ID= "objectId";
+    public static final String KEY_FRIEND_NAME = "friendName";
+    public static final String KEY_DONOR_NAME= "donorName";
+    public static final String KEY_CHARITY_NAME= "charityName";
+
     public static final String KEY_DONOR_ID = "donorID";
     public static final String KEY_MESSAGE  = "message";
     public static final String KEY_AMOUNT_DONATED  = "amountDonated";
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
-    public static final String KEY_CHARITY_ID  = "charityId";
+    public static final String KEY_CHARITY_ID  = "charityName";
     public static final String KEY_CREATED_AT  = "createdAt";
-
-
+    public static final String KEY_DONOR_IMAGE  = "donorProfile";
+    public static final String KEY_FRIEND_IMAGE  = "friendProfile";
 
     public Transaction(){}
+
+    public ParseFile getKeyDonorImage() {
+
+        return getParseFile(KEY_DONOR_IMAGE);
+    }
+
+    public ParseFile getKeyFriendImage() {
+
+        return getParseFile(KEY_FRIEND_IMAGE);
+    }
+
+
+    public String getKeyFriendName() {
+        return getString(KEY_FRIEND_NAME);
+    }
+
+    public String getKeyDonorName() {
+        return getString(KEY_DONOR_NAME);
+    }
+
+    public String getKeyCharityName() {
+        return getString(KEY_CHARITY_NAME);
+    }
+
+
 
 
     public User getKeyFriendId() {

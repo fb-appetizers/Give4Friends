@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,11 +15,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
-import com.example.give4friends.models.User;
-import com.example.give4friends.models.Charity;
-import com.example.give4friends.models.Transaction;
+import com.example.give4friends.models.TransactionHome;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,8 +24,8 @@ import java.util.List;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
 
 
-    private List<Transaction> transactions;
-    public TransactionAdapter(List<Transaction> transactions) {
+    private List<TransactionHome> transactions;
+    public TransactionAdapter(List<TransactionHome> transactions) {
         this.transactions = transactions;
     }
 
@@ -50,7 +46,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void  onBindViewHolder(final ViewHolder holder, int position) {
 
         // get data according to position.
-        Transaction transaction = (Transaction) transactions.get(position);
+        TransactionHome transaction = transactions.get(position);
 
 
         // like button
@@ -83,56 +79,44 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //populate the views according to this data
 
-        if((transaction.getKeyDonorId() != null) && ((transaction.getKeyDonorId()).getKeyFirstName()) != null){
-            holder.donor.setText((transaction.getKeyDonorId()).getKeyFirstName());
-        }
-        if( (transaction.getKeyFriendId()) != null  && ((transaction.getKeyFriendId()).getKeyFirstName()) != null){
-            holder.friend.setText((transaction.getKeyFriendId()).getKeyFirstName());
-        }
-        if( ((transaction.getKeyCharityId()) != null)  && ((transaction.getKeyCharityId()).getKeyName()) != null){
-            holder.charity.setText((transaction.getKeyCharityId()).getKeyName());
-        }
-        if((transaction.getKeyMessage()) != null){
-            holder.message.setText("Message: " + transaction.getKeyMessage());
-        }
-
-
-
-
-        if(transaction.getKeyDonorId().getKeyProfileImage() != null){
-            // Handles images
+//        if((transaction.getKeyDonorId() != null) && ((transaction.getKeyDonorId()).getKeyFirstName()) != null){
+            holder.donor.setText(transaction.getDonorName());
+//        }
+//        if( (transaction.getKeyFriendId()) != null  && ((transaction.getKeyFriendId()).getKeyFirstName()) != null){
+            holder.friend.setText(transaction.getFriendName());
+//        }
+//        if( ((transaction.getKeyCharityId()) != null)  && ((transaction.getKeyCharityId()).getKeyName()) != null){
+            holder.charity.setText(transaction.getCharityName());
+//        }
+//        if((transaction.getKeyMessage()) != null){
+            holder.message.setText("Message: " + transaction.getMessage());
+//        }
+//
+//
+//
+//
+////        if(transaction.getKeyDonorId().getKeyProfileImage() != null){
+////            // Handles images
             Glide.with(context)
-                    .load((transaction.getKeyDonorId().getKeyProfileImage().getUrl()))
-//                    .apply(new RequestOptions()
-//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+                    .load(transaction.getDonorProfile().getUrl())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.donorPhoto);
-
-        }
-
-        if(transaction.getKeyFriendId().getKeyProfileImage() != null){
-            // Handles images
+////
+////        }
+////
+////        if(transaction.getKeyFriendId().getKeyProfileImage() != null){
+////            // Handles images
             Glide.with(context)
-                    .load(((transaction.getKeyFriendId().getKeyProfileImage()).getUrl()))
-//                    .apply(new RequestOptions()
-//                            .transforms(new CenterCrop(), new RoundedCorners(20)))
+                    .load(transaction.getFriendProfile().getUrl())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20)))
                     .into(holder.friendPhoto);
+////
+////        }
 
-        }
 
 
-        /*
-=.load(myUser.getParseFile("profileImage").getUrl())
-        // Handles images
-        Glide.with(context)
-                .load(Charity.getImage()
-                        .getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background))
-                .into(holder.ivCharityImage);
-
-*/
     }
 
 
@@ -187,10 +171,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         // Add a list of items -- change to type used
-        public void addAll(List<Transaction> list) {
+        public void addAll(List<TransactionHome> list) {
             transactions.addAll(list);
             notifyDataSetChanged();
         }
+
+
 
 
 

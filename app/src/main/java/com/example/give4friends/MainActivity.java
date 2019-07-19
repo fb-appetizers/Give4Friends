@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -19,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
-import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
+import com.example.give4friends.models.TransactionHome;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
-    protected List<Transaction> transactions;
+    protected List<TransactionHome> transactions;
     protected TransactionAdapter transactionAdapter;
 
 
@@ -64,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
-        transactions = new ArrayList<Transaction>();
+        transactions = new ArrayList<TransactionHome>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
-
+////
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(5);
+        postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
 
@@ -158,15 +157,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    transactions.clear();
-
                     for(Transaction transaction : transactionList){
-                        transactions.add(transaction);
+                        transactions.add(TransactionHome.fromParse(transaction));
+                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+
                     }
 
 
 
-                    transactionAdapter.notifyDataSetChanged();
+//                    transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();

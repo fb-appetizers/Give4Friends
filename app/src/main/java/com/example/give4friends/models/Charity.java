@@ -15,7 +15,7 @@ public class Charity extends ParseObject {
     public static final String KEY_CATEGORY_NAME  = "categoryName";
     public static final String KEY_URL  = "websiteUrl";
     public static final String KEY_CAUSE_NAME  = "causeName";
-    public static final String KEY_CHARITY_ID  = "charityId";
+    public static final String KEY_CHARITY_ID  = "charityName";
 
     public Charity(){}
 
