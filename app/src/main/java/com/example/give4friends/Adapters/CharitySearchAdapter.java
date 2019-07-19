@@ -48,7 +48,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         CharityAPI charity = mCharity.get(position);
         holder.tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
         holder.tvMission.setText(charity.getMission());
-//        holder.tvCategory.setText(charity.getCategoryName());
+
 
         holder.tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
@@ -68,7 +68,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
         public TextView tvCharityName;
         public TextView tvMission;
-//        public TextView tvCategory;
+
         public TextView tvCause;
         public ImageView ivRating;
 
@@ -77,7 +77,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             itemView.setOnClickListener(this);
             tvCharityName = itemView.findViewById(R.id.tvCharityName);
             tvMission = itemView.findViewById(R.id.tvMission);
-//            tvCategory = itemView.findViewById(R.id.tvCategory);
+
             tvCause = itemView.findViewById(R.id.tvCause);
             ivRating = itemView.findViewById(R.id.ivRating);
 

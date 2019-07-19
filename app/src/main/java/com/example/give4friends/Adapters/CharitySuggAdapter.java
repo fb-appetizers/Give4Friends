@@ -1,5 +1,6 @@
 package com.example.give4friends.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -7,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.Cutom_Classes.CustomDialog;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -64,34 +68,61 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         return mCharity.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
 
         public TextView tvCharityNameSugg;
         public TextView tvCategorySugg;
         public TextView tvCauseSugg;
-//        public ImageView ivRatingSugg;
+        public TextView tvMoreInfo;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
+            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
 
 
         }
 
+        @Override
+        public boolean onLongClick(View view) {
+            int position = getAdapterPosition();
+            CharityAPI charity = mCharity.get(position);
+
+            CustomDialog dialog = new CustomDialog(charity);
+            dialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "CustomDialog");
+
+
+            return false;
+        }
 
         @Override
         public void onClick(View view) {
 
-            int position = getAdapterPosition();
-            CharityAPI charity = mCharity.get(position);
-
 
 
 
 
         }
+
+
+//        @Override
+//        public void onLongClickListener(View view) {
+//
+//            int position = getAdapterPosition();
+//            CharityAPI charity = mCharity.get(position);
+//
+//            CustomDialog dialog = new CustomDialog(charity);
+//            dialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "CustomDialog");
+//
+//
+//
+//
+//
+//        }
     }
 }
