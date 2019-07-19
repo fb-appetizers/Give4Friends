@@ -121,7 +121,7 @@ public class CharitySearch extends AppCompatActivity {
 
 
 
-
+                    tvCharitySugg.setText("Close Charity Suggestions");
                     cardView.setVisibility(View.VISIBLE);
 
 
@@ -131,6 +131,8 @@ public class CharitySearch extends AppCompatActivity {
 
 
                 }else{
+
+                    tvCharitySugg.setText("Open Charity Suggestions");
 
                     cardView.setVisibility(View.GONE);
 
@@ -151,7 +153,7 @@ public class CharitySearch extends AppCompatActivity {
             public void onClick(View view) {
                 getResponseLower(etCharity.getText().toString(),false);
 
-
+                tvCharitySugg.setText("Open Charity Suggestions");
                 cardView.setVisibility(View.GONE);
 
                 btnSubmit.setVisibility(View.GONE);
