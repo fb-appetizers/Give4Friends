@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
-import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CharitySearch.class);
+                Intent intent = new Intent(MainActivity.this, DonateActivity.class);
                 startActivity(intent);
             }
         });
@@ -112,8 +111,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-
-
                 Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
                 startActivity(intent);
                 return true;
