@@ -1,6 +1,9 @@
 package com.example.give4friends;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +22,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,8 +103,7 @@ public class ProfileActivity extends AppCompatActivity {
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
 
-
-
+        configureToolbar();
 
 
         btEditBio.setOnClickListener(new View.OnClickListener() {
@@ -117,42 +122,49 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-
-
         //Below for recycler view of charities\
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
-        // get favorite charities from user
 
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
-        //Get relation
-        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
-        //Get all charities in relation
-        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
-            @Override
-            public void done(List<Charity> objects, ParseException e) {
-                if (e != null) {
-                    // There was an error
-                } else {
-                    // results have all the charities the current user liked.
-                    // go through relation adding charities
-                    for (int i = 0; i < objects.size(); i++) {
-                        charities.add((Charity) objects.get(i));
-
-                    }
-                    recyclerSetup();
-
-                }
-
-            }
-        });
-
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         rvCharities.setLayoutManager(linearLayoutManager);
+
+        //construct the adapter from this datasource
+        feedAdapter = new FavCharitiesAdapter(charities);
+        //RecyclerView setup (layout manager, use adapter)
+        rvCharities.setAdapter(feedAdapter);
+        rvCharities.scrollToPosition(0);
+
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                feedAdapter.clear();
+                feedAdapter.addAll(charities);
+                populate();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+        populate();
 
 
         // Below for static elements of profile
@@ -179,15 +191,83 @@ public class ProfileActivity extends AppCompatActivity {
                 .load(myUser.getParseFile("profileImage").getUrl())
                 .apply(new RequestOptions()
                         .transforms(new CenterCrop(), new RoundedCorners(20))
+                        .circleCropTransform()
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background))
                 .into(ivProfileImage);
-
-
     }
 
+
+        //add tool bar
+        private void configureToolbar() {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.setTitle("Give4Friends");
+            setSupportActionBar(toolbar);
+
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayShowTitleEnabled(false);
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
+
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.charity_menu, menu);
+
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.etCharity:
+                    Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.transactionHistory:
+                    Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                    intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.useOffline:
+                    Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
+                    return true;
+                case R.id.settings:
+                    Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.logOut:
+                    Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
+                    logOut();
+                default:
+//                Log.e()
+            }
+            return true;
+        }
+
+        public void logOut(){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+
+
     @Override
-    public void onActivityResult ( int requestCode, int resultCode, Intent data){
+    public void onActivityResult ( int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
@@ -221,17 +301,11 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         }
+
     };
 
 
 
-    public void recyclerSetup() {
-        //construct the adapter from this datasource
-        feedAdapter = new FavCharitiesAdapter(charities);
-        //RecyclerView setup (layout manager, use adapter)
-        rvCharities.setAdapter(feedAdapter);
-        rvCharities.scrollToPosition(0);
-    }
 
     public void updateBio(String bio){
         ParseUser user = ParseUser.getCurrentUser();
@@ -259,7 +333,30 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-}
+
+private void populate(){
+
+
+    //Get relation
+    final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+    //Get all charities in relation
+    favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+        @Override
+        public void done(List<Charity> objects, ParseException e) {
+            if (e != null) {
+                // There was an error
+            } else {
+                // results have all the charities the current user liked.
+                // go through relation adding charities
+                for (int i = 0; i < objects.size(); i++) {
+                    charities.add((Charity) objects.get(i));
+
+                }
+            }
+
+        }
+    });
+}}
 
 
 

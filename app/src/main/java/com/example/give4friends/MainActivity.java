@@ -16,9 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.Transaction;
+import com.example.give4friends.models.TransactionHome;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -33,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
-    protected List<Transaction> transactions;
+    protected List<TransactionHome> transactions;
     protected TransactionAdapter transactionAdapter;
+    private SwipeRefreshLayout swipeContainer;
 
 
     @Override
@@ -61,16 +64,37 @@ public class MainActivity extends AppCompatActivity {
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
-        transactions = new ArrayList<Transaction>();
+        transactions = new ArrayList<TransactionHome>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
-
+////
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                populate();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+
+        // Configure the refreshing colors
+//        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+//                android.R.color.holo_green_light,
+//                android.R.color.holo_orange_light,
+//                android.R.color.holo_red_light);
 
         populate();
 
@@ -122,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.logOut:
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
@@ -141,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(5);
+        postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
 
@@ -153,15 +179,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    transactions.clear();
-
                     for(Transaction transaction : transactionList){
-                        transactions.add(transaction);
+                        transactions.add(TransactionHome.fromParse(transaction));
+                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+
                     }
 
 
 
-                    transactionAdapter.notifyDataSetChanged();
+//                    transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();

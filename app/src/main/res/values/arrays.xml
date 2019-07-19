@@ -1,0 +1,14 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="privacy_entries">
+        <item>Public</item>
+        <item>Friends Only</item>
+        <item>Private</item>
+    </string-array>
+
+    <string-array name="privacy_values">
+        <item>public</item>
+        <item>friends</item>
+        <item>private</item>
+    </string-array>
+</resources>
