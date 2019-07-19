@@ -47,7 +47,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     // bind the values based on the position of the element
     @Override
-    public void  onBindViewHolder(ViewHolder holder, int position) {
+    public void  onBindViewHolder(final ViewHolder holder, int position) {
 
         // get data according to position.
         Transaction transaction = (Transaction) transactions.get(position);
@@ -55,6 +55,30 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         // like button
         holder.ibFullHeart.setVisibility(View.INVISIBLE);
+        holder.ibFullHeart.setClickable(false);
+
+
+        holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.ibFullHeart.setVisibility(View.VISIBLE);
+                holder.ibEmptyHeart.setVisibility(View.INVISIBLE);
+                holder.ibFullHeart.setClickable(true);
+                holder.ibEmptyHeart.setClickable(false);
+            }
+        });
+
+        holder.ibFullHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.ibFullHeart.setVisibility(View.INVISIBLE);
+                holder.ibEmptyHeart.setVisibility(View.VISIBLE);
+                holder.ibFullHeart.setClickable(false);
+                holder.ibEmptyHeart.setClickable(true);
+            }
+        });
+
+
 
 
         //populate the views according to this data
@@ -69,7 +93,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.charity.setText((transaction.getKeyCharityId()).getKeyName());
         }
         if((transaction.getKeyMessage()) != null){
-            holder.message.setText(transaction.getKeyMessage());
+            holder.message.setText("Message: " + transaction.getKeyMessage());
         }
 
 
@@ -168,4 +192,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             notifyDataSetChanged();
         }
 
-    }}
+
+
+    }
+
+
+}

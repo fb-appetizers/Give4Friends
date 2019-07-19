@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Object FavCharitiesAdapter;
     private Button btEditBio;
     private ImageButton btChangePic;
-    private Button btSave;
+
 
     public ImageView ivProfileImage;
     public TextView tvUserName;
@@ -96,9 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
-        btSave = findViewById(R.id.btSave);
-        btSave.setVisibility(View.INVISIBLE);
-        btSave.setClickable(false);
+
 
 
 
@@ -106,9 +104,6 @@ public class ProfileActivity extends AppCompatActivity {
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //tvBio.setEnabled(true);
-                //btSave.setVisibility(View.VISIBLE);
-                //btSave.setClickable(true);
                 showAddItemDialog(context);
             }
         });
@@ -121,17 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        btSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvBio.setEnabled(false);
-                btSave.setVisibility(View.INVISIBLE);
-                btSave.setClickable(false);
-                String bio = tvBio.getText().toString();
-                updateBio(bio);
 
-            }
-        });
 
 
         //Below for recycler view of charities\
