@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(10);
+        postQuery.setLimit(5);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
 
