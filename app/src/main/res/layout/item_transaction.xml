@@ -87,8 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            android:background="#C603A9F4"
+            android:background="#0003A9F4"
             android:backgroundTint="#2503A9F4"
+            android:outlineAmbientShadowColor="#A103A9F4"
+            android:outlineSpotShadowColor="#03A9F4"
             android:text="TextView"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart"
@@ -99,8 +101,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:text=" donated on behalf of"
+            android:layout_marginTop="8dp"
+            android:text=" donated "
             android:textSize="20sp"
             android:textStyle="italic"
             card_view:layout_constraintStart_toEndOf="@+id/tvDonor"
@@ -129,6 +131,18 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:srcCompat="@drawable/ic_vector_heart" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="8dp"
+            android:text="on behalf of"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            card_view:layout_constraintEnd_toStartOf="@+id/tvFriend"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
