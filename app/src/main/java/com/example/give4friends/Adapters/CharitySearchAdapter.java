@@ -2,6 +2,8 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.CharityAPI;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
 
@@ -46,7 +49,21 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
     @Override
     public void onBindViewHolder(@NonNull CharitySearchAdapter.ViewHolder holder, int position) {
         CharityAPI charity = mCharity.get(position);
-        holder.tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
+
+
+
+//        Linkify.addLinks(holder.tvCharityName,Linkify.ALL);
+
+//        String url = "<a href=\"http://yourdomain.com\">Your Domain Name</a>";
+//        Pattern pattern = Pattern.compile(url);
+//        Linkify.addLinks(holder.tvCharityName, pattern, "http://");
+
+        holder.tvCharityName.setMovementMethod(LinkMovementMethod.getInstance());
+
+        holder.tvCharityName.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
+                +charity.getName() + " ("
+                + charity.getCategoryName() + ")"+ "</a>"));
+
         holder.tvMission.setText(charity.getMission());
 
 
@@ -80,6 +97,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
             tvCause = itemView.findViewById(R.id.tvCause);
             ivRating = itemView.findViewById(R.id.ivRating);
+
+
 
         }
 

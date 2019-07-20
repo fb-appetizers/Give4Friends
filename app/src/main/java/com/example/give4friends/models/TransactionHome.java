@@ -111,7 +111,7 @@ public class TransactionHome {
         transactionHome.setMessage(transaction.getKeyMessage());
 
 
-//        transaction.getKeyDonorId().getKeyProfileImage();
+//        transaction.getKeyDonorId().get("username");
 
         transactionHome.setDonorProfile(transaction.getKeyDonorImage());
 

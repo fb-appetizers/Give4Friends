@@ -2,6 +2,7 @@ package com.example.give4friends.Cutom_Classes;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,12 @@ public class CustomDialog extends DialogFragment {
         tvCause = view.findViewById(R.id.tvCause);
         ivRating = view.findViewById(R.id.ivRating);
 
-
+        // The name in the dialog isn't clickable but we can change this later
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
         tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
+
+
+
         tvMission.setText(charity.getMission());
 
 
