@@ -70,8 +70,12 @@ public class Transaction extends ParseObject{
         return getString(KEY_OBJECT_ID);
     }
 
-    public User getKeyDonorId() {
-        return (User) getParseUser(KEY_DONOR_ID);
+    public ParseObject getKeyDonorId() {
+        return getParseObject("donorID");
+
+    }
+    public ParseFile getKeyDonorProfile() {
+        return getParseUser("donorID").getParseFile("profileImage");
     }
 
     public void setKeyDonorId(ParseUser donor){

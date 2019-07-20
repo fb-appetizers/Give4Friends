@@ -289,7 +289,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
 
-        
+
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }

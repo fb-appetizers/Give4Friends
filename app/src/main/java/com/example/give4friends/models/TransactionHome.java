@@ -108,7 +108,10 @@ public class TransactionHome {
         transactionHome.setDonorName(transaction.getKeyDonorName());
         transactionHome.setLikesCount(transaction.getKeyLikesCount());
         transactionHome.setMessage(transaction.getKeyMessage());
+
+//        transaction.getKeyDonorId().get("username");
         transactionHome.setDonorProfile(transaction.getKeyDonorImage());
+
         transactionHome.setFriendProfile(transaction.getKeyFriendImage());
         transactionHome.setFriendName(transaction.getKeyFriendName());
 

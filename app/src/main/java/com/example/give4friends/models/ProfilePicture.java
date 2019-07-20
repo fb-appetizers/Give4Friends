@@ -173,7 +173,14 @@ public final class ProfilePicture {
                     }
                 }
             }
-        );}
+        );
+    // Adding some way to update the pictures that go with the transactions.
+
+
+
+
+
+    }
 
     public static ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
