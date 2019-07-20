@@ -164,10 +164,13 @@ public class CharityAPI {
         final List<String> currentCharityIDs = new ArrayList<String>();
         ParseUser mainUser = ParseUser.getCurrentUser();
 
-        List<Charity> charityList = mainUser.getList("charityArray");
-        if (charityList == null || charityList.size() == 0){
-            charityList = new ArrayList<Charity>();
-        }
+//        List<Charity> charityList = mainUser.getList("charityArray");
+//        if (charityList == null || charityList.size() == 0){
+//            charityList = new ArrayList<Charity>();
+//        }
+
+        List<Charity> charityList = new ArrayList<Charity>();
+
 
 
         // This step is to save the first three results of the request into the Parse Server
@@ -182,6 +185,7 @@ public class CharityAPI {
 
         try {
             for(Charity charity : postQuery.find()){
+                //Searches all of the current charities
                 currentCharityIDs.add(charity.getKeyCharityID());
 
             }
@@ -194,7 +198,7 @@ public class CharityAPI {
 
         for(int i = 0; i<array.length();i++){
             JSONObject charityJson;
-            Charity charity = new Charity();
+
 
 
             try {
@@ -208,7 +212,9 @@ public class CharityAPI {
 
             CharityAPI charityAPI = CharityAPI.fromJSON(charityJson);
 
+            // Add the charity if it's not null, if it's the first three search results and if its not already present
             if (charityAPI !=null && i<charitySavedSize && !currentCharityIDs.contains(charityAPI.getEin())){
+                Charity charity = new Charity();
                 charity.setKeyName(charityAPI.getName());
                 charity.setKeyCategoryName(charityAPI.getCategoryName());
                 charity.setKeyMission(charityAPI.getMission());
@@ -218,36 +224,34 @@ public class CharityAPI {
                 charity.setKeyCharityID(charityAPI.getEin());
 
 
-                // First save the newly created charity in background
+                // First save the newly created charity in background if the charity is new.
 
                 try {
                     charity.save();
                     charityList.add(charity);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-//                charity.saveInBackground(new SaveCallback() {
-//                    @Override
-//                    public void done(ParseException e) {
-//                        if (e!=null){
-//                            Log.e("Charity API", "error while saving a specific charity");
-//                        }else{
-//                            Log.d("Charity API", "Saved a specific charity successfully");
-//                        }
-//                    }
-//                });
 
-
-//                charityList.add(charity);
 
             }
+            //Possibly add if already in the list
+//            if (charityAPI!=null && i<charitySavedSize && currentCharityIDs.contains(charityAPI.getEin())){
+//
+//
+//
+//                charityList.add(charity);
+//            }
             if(charityAPI !=null){
+
                 charities.add(charityAPI);
             }
 
         }
 
-        mainUser.put("charityArray", charityList);
+//        mainUser.put("charityArray", charityList);
+        mainUser.addAllUnique("charityArray",charityList);
 
         mainUser.saveInBackground(new SaveCallback() {
             @Override

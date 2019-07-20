@@ -178,6 +178,14 @@ public final class ProfilePicture {
 
 
 
+    }
+
+
+
+    public static void updatePhotoinTransactions(ParseUser parseUser){
+
+
+
 
 
     }

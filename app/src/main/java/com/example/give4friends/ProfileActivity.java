@@ -189,14 +189,29 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         //Handles images
-        Glide.with(context)
-                .load(myUser.getParseFile("profileImage").getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                        .circleCropTransform()
-                        .placeholder(R.drawable.user_outline_24)
-                        .error(R.drawable.user_outline_24))
-                .into(ivProfileImage);
+        ParseFile file = myUser.getParseFile("profileImage");
+
+        if (file!=null) {
+            Glide.with(context)
+                    .load(file.getUrl())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24))
+                    .into(ivProfileImage);
+        }
+        else{
+            Glide.with(context)
+                    .load(R.drawable.user_outline_24)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24))
+                    .into(ivProfileImage);
+        }
+
     }
 
 
@@ -285,6 +300,10 @@ public class ProfileActivity extends AppCompatActivity {
                                 .placeholder(R.drawable.user_outline_24)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
+
+
+
+
 
 
                 ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);

@@ -37,6 +37,12 @@ public class ParseApplication extends Application {
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured
         // any network interceptors must be added with the Configuration Builder given this syntax
+
+        ParseObject.registerSubclass(Charity.class);
+        ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Transaction.class);
+
+
         final Parse.Configuration configuration = new Parse.Configuration.Builder(this)
                 .applicationId("give4friends") // should correspond to APP_ID env variable
                 .clientKey("apitizersgiving4friends")  // set explicitly unless clientKey is explicitly configured on Parse server
@@ -44,9 +50,7 @@ public class ParseApplication extends Application {
                 .build();
 
 
-        ParseObject.registerSubclass(Charity.class);
-        ParseObject.registerSubclass(User.class);
-        ParseObject.registerSubclass(Transaction.class);
+
         Parse.initialize(configuration);
             /*
             // New test creation of object below

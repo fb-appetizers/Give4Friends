@@ -58,8 +58,8 @@ public class Transaction extends ParseObject{
 
 
 
-    public User getKeyFriendId() {
-        return (User) getParseUser(KEY_FRIEND_ID);
+    public ParseUser getKeyFriendId() {
+        return getParseUser(KEY_FRIEND_ID);
     }
 
     public void setKeyFriendId(ParseUser friend){
@@ -70,8 +70,8 @@ public class Transaction extends ParseObject{
         return getString(KEY_OBJECT_ID);
     }
 
-    public ParseObject getKeyDonorId() {
-        return getParseObject("donorID");
+    public ParseUser getKeyDonorId() {
+        return getParseUser("donorID");
 
     }
     public ParseFile getKeyDonorProfile() {

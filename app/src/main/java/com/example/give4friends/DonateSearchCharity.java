@@ -1,15 +1,19 @@
 package com.example.give4friends;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.give4friends.Adapters.CharitySearchAdapter;
@@ -37,6 +41,7 @@ public class DonateSearchCharity extends AppCompatActivity {
     CharityClient client;
     ArrayList<CharityAPI> acharities;
     CharitySearchAdapter charityAdapter;
+    ProgressBar miActionProgressItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,8 @@ public class DonateSearchCharity extends AppCompatActivity {
         acharities = new ArrayList<CharityAPI>();
 
         charityAdapter = new CharitySearchAdapter(acharities);
+        miActionProgressItem = findViewById(R.id.progressBar);
+
 
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
@@ -85,10 +92,11 @@ public class DonateSearchCharity extends AppCompatActivity {
     private void getResponse(String search, boolean search_by_name){
 
         client = new CharityClient();
+        showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                hideProgressBar();
             }
 
             @Override
@@ -120,8 +128,29 @@ public class DonateSearchCharity extends AppCompatActivity {
                         }
                     });
                 }
+
+                hideProgressBar();
             }
         });
 
     }
+
+    public void showProgressBar() {
+        // Show progress item
+
+        miActionProgressItem.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressBar() {
+        // Hide progress item
+        miActionProgressItem.setVisibility(View.INVISIBLE);
+    }
+
+
+
+
+
+
+
+
 }

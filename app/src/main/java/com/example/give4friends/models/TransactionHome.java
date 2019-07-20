@@ -1,5 +1,6 @@
 package com.example.give4friends.models;
 
+import com.parse.ParseException;
 import com.parse.ParseFile;
 
 import java.util.Date;
@@ -109,7 +110,9 @@ public class TransactionHome {
         transactionHome.setLikesCount(transaction.getKeyLikesCount());
         transactionHome.setMessage(transaction.getKeyMessage());
 
-//        transaction.getKeyDonorId().get("username");
+
+//        transaction.getKeyDonorId().getKeyProfileImage();
+
         transactionHome.setDonorProfile(transaction.getKeyDonorImage());
 
         transactionHome.setFriendProfile(transaction.getKeyFriendImage());
