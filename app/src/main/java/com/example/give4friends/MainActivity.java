@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
         transactionAdapter = new TransactionAdapter(transactions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        //linearLayoutManager.setReverseLayout(true);
-////
+
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
@@ -180,12 +179,9 @@ public class MainActivity extends AppCompatActivity {
                     //Clear the old set when reloading
                     transactions.clear();
 
-//                    transactionAdapter.notifyDataSetChanged();
                     for(Transaction transaction : transactionList){
 
-
                         transactions.add(transaction);
-
 
                     }
 

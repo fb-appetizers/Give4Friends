@@ -79,6 +79,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
 
 
+        //populate the views according to this data
+
         holder.message.setText("Message: " + transaction.getKeyMessage());
 
         transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
@@ -122,17 +124,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         .into(holder.donorPhoto);
             }
         });
+
+
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
                 holder.friend.setText(object.getString("firstName"));
             }
         });
-
-        //populate the views according to this data
-
-
-
 
 
 
