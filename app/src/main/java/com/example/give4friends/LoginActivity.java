@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.give4friends.models.Transaction;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -38,6 +39,22 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
+//        if (ParseUser.getCurrentUser()!=null) {
+//
+//            Transaction transaction = new Transaction();
+//            transaction.setKeyAmountDonated(5);
+//            transaction.setKeyMessage("this is for you boo");
+//            transaction.setKeyDonorId(ParseUser.getCurrentUser());
+//            transaction.setKeyFriendId(ParseUser.getCurrentUser());
+//
+//            try {
+//                transaction.save();
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        }else{
+//            Toast.makeText(this,"Make sure that you login then logout",Toast.LENGTH_SHORT).show();
+//        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

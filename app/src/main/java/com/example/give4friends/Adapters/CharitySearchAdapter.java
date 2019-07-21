@@ -23,11 +23,15 @@ import java.util.regex.Pattern;
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
 
     private List<CharityAPI> mCharity;
+    private boolean remove_links;
     private Context context;
 
-    public CharitySearchAdapter(List<CharityAPI> mCharity) {
+    public CharitySearchAdapter(List<CharityAPI> mCharity, boolean is_in_donate_charity_search) {
         this.mCharity = mCharity;
 
+        //This field is to tell whether the donate charity search page called this class. If so then
+        //hide the more information text field along with the Donate Now page
+        this.remove_links = is_in_donate_charity_search;
     }
 
 
@@ -52,11 +56,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
 
 
-//        Linkify.addLinks(holder.tvCharityName,Linkify.ALL);
-
-//        String url = "<a href=\"http://yourdomain.com\">Your Domain Name</a>";
-//        Pattern pattern = Pattern.compile(url);
-//        Linkify.addLinks(holder.tvCharityName, pattern, "http://");
 
         holder.tvCharityName.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -73,7 +72,12 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                 .load(charity.getRatingsUrl())
                 .into(holder.ivRating);
 
+        if(this.remove_links) {
 
+            holder.tvMoreInfo.setVisibility(View.GONE);
+            holder.tvDonateNow.setVisibility(View.GONE);
+
+        }
     }
 
     @Override
@@ -89,6 +93,9 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         public TextView tvCause;
         public ImageView ivRating;
 
+        public TextView tvMoreInfo;
+        public TextView tvDonateNow;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -97,7 +104,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
             tvCause = itemView.findViewById(R.id.tvCause);
             ivRating = itemView.findViewById(R.id.ivRating);
-
+            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
 
 
         }

@@ -105,18 +105,28 @@ public class TransactionHome {
         TransactionHome transactionHome = new TransactionHome();
 
         transactionHome.setAmountDonated(transaction.getKeyAmountDonated());
-        transactionHome.setCharityName(transaction.getKeyCharityName());
-        transactionHome.setDonorName(transaction.getKeyDonorName());
+
+
         transactionHome.setLikesCount(transaction.getKeyLikesCount());
         transactionHome.setMessage(transaction.getKeyMessage());
 
 
-//        transaction.getKeyDonorId().get("username");
+        try {
 
-        transactionHome.setDonorProfile(transaction.getKeyDonorImage());
 
-        transactionHome.setFriendProfile(transaction.getKeyFriendImage());
-        transactionHome.setFriendName(transaction.getKeyFriendName());
+//            transaction.getKeyCharityId().fetchIfNeeded().getString("name");
+            transactionHome.setCharityName(transaction.getKeyCharityId().fetchIfNeeded().getString("name"));
+            transactionHome.setDonorName(transaction.getKeyDonorId().fetchIfNeeded().getString("firstName"));
+            transactionHome.setFriendProfile(transaction.getKeyFriendId().fetchIfNeeded().getParseFile("profileImage"));
+            transactionHome.setDonorProfile(transaction.getKeyDonorId().fetchIfNeeded().getParseFile("profileImage"));
+            transactionHome.setFriendName(transaction.getKeyFriendId().fetchIfNeeded().getString("firstName"));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         return transactionHome;
 

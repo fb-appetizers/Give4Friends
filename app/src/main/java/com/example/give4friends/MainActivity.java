@@ -178,16 +178,16 @@ public class MainActivity extends AppCompatActivity {
                 if (e == null){
 
 
-
+                    //Clear the old set when reloading
+                    transactions.clear();
                     for(Transaction transaction : transactionList){
+
                         transactions.add(TransactionHome.fromParse(transaction));
-                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+
 
                     }
 
-
-
-//                    transactionAdapter.notifyDataSetChanged();
+                    transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();

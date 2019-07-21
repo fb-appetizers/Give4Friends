@@ -86,7 +86,7 @@ public class CharitySearch extends AppCompatActivity {
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-        charityAdapterLower = new CharitySearchAdapter(acharitiesLower);
+        charityAdapterLower = new CharitySearchAdapter(acharitiesLower, false);
 
 
 

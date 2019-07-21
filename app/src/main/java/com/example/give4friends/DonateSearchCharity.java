@@ -62,7 +62,7 @@ public class DonateSearchCharity extends AppCompatActivity {
 
         acharities = new ArrayList<CharityAPI>();
 
-        charityAdapter = new CharitySearchAdapter(acharities);
+        charityAdapter = new CharitySearchAdapter(acharities, true);//Added another field to check if this is in the Donate Search charity.
         miActionProgressItem = findViewById(R.id.progressBar);
 
 
