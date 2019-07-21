@@ -64,7 +64,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                 +charity.getName() + " ("
                 + charity.getCategoryName() + ")"+ "</a>"));
 
-        holder.tvMission.setText(charity.getMission());
+        holder.tvMission.setText(Html.fromHtml(charity.getMission()));
 
 
         holder.tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));

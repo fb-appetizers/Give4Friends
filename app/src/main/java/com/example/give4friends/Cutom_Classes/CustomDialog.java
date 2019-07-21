@@ -54,7 +54,7 @@ public class CustomDialog extends DialogFragment {
 
 
 
-        tvMission.setText(charity.getMission());
+        tvMission.setText(Html.fromHtml(charity.getMission()));
 
 
         tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
