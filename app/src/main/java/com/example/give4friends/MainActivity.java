@@ -20,7 +20,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.Transaction;
-import com.example.give4friends.models.TransactionHome;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
-    protected List<TransactionHome> transactions;
+    protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
-        transactions = new ArrayList<TransactionHome>();
+        transactions = new ArrayList<Transaction>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
 
@@ -180,9 +179,12 @@ public class MainActivity extends AppCompatActivity {
 
                     //Clear the old set when reloading
                     transactions.clear();
+
+//                    transactionAdapter.notifyDataSetChanged();
                     for(Transaction transaction : transactionList){
 
-                        transactions.add(TransactionHome.fromParse(transaction));
+
+                        transactions.add(transaction);
 
 
                     }
@@ -192,7 +194,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
                 }
+
+
             }
         });}
+
+
+
+
     }
 

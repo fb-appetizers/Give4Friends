@@ -3,7 +3,6 @@ package com.example.give4friends;
 import android.util.Log;
 
 import com.example.give4friends.models.Transaction;
-import com.example.give4friends.models.TransactionHome;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -38,7 +37,8 @@ public class HistoryActivity extends MainActivity{
             public void done(List<Transaction> objects, ParseException e) {
                 if (e == null){
                     for (int i = 0; i < objects.size(); ++i){
-                        transactions.add(TransactionHome.fromParse(objects.get(i)));
+//                        transactions.add(TransactionHome.fromParse(objects.get(i)));
+                        transactions.add(objects.get(i));
                         transactionAdapter.notifyItemInserted(transactions.size() - 1);
                     }
                 }else {
