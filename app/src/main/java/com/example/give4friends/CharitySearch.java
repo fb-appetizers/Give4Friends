@@ -267,8 +267,7 @@ public class CharitySearch extends AppCompatActivity {
         findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CharitySearch.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -286,18 +285,23 @@ public class CharitySearch extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.useOffline:
+                Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.logOut:
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
                 logOut();
-//            case R.id.toolbar
             default:
 //                Log.e()
         }

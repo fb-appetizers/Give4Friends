@@ -103,7 +103,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         @Override
         public void onClick(View view) {
 
-
+            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
 
 
 

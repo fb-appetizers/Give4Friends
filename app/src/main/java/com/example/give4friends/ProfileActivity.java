@@ -71,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
     ArrayList<Charity> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
+    private Object FavCharitiesAdapter;
     private Button btEditBio;
     private ImageButton btChangePic;
 
@@ -233,8 +234,8 @@ public class ProfileActivity extends AppCompatActivity {
             findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                    startActivity(intent);
+
+                    finish();
                 }
             });
 
@@ -275,6 +276,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
                     logOut();
                 default:
+//                Log.e()
             }
             return true;
         }
@@ -400,6 +402,103 @@ private void populate(){
 
 
 
+
+
+
+// sample popup with edit textbox
+/*
+    private void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Change Profile Picture")
+                .setView(taskEditText)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String task = String.valueOf(taskEditText.getText());
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
+*/
+
+
+
+
+
+
+
+
+        // Might be valuable code for later -- getting one user from database
+        // Didn't use because we are just looking at current user
+
+        /*
+
+        // Actually query and fill
+        //get query -- get user info and fill views
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+        //Test
+        query.whereEqualTo(User.KEY_ID, "RClE3nhbpc");
+        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            //iterate through query
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null ){
+                    // fill views
+                    User myUser = (User) object;
+                    tvUserName.setText(myUser.getKeyUsername());
+                    tvBio.setText(myUser.getKeyBio());
+                    tvTotalDonated.setText("$" + myUser.getKeyTotalDonated());
+                    tvTotalRaised.setText("$" +  myUser.getKeyTotalRaised());
+
+                    // Handles images
+                    Glide.with(context)
+                            .load(myUser.getKeyProfileImage().getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20)))
+                            .into(ivProfileImage);
+
+                }else {
+                    Log.e("ProfileActivity", "Can't get Charity");
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+
+        /*
+        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
+        query.getFirstInBackground(new GetCallback<ParseUser>() {
+            //iterate through query
+            @Override
+            public void done(ParseUser object, ParseException e) {
+
+                if (e == null ){
+
+
+                    // fill views
+
+
+                    tvUserName.setText(object.getUsername());
+                    tvBio.setText(object.getString("Bio"));
+                    tvTotalDonated.setText("$" + object.getNumber("totalDonated"));
+                    tvTotalRaised.setText("$" +  object.getNumber("totalRaised"));
+
+                    // Handles images
+                    Glide.with(context)
+                            .load(object.getParseFile("profileImage").getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20)))
+                            .into(ivProfileImage);
+                    */
+        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
 
 
 

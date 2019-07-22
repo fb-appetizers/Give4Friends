@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void configureToolbar() {
+    protected void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Give4Friends");
         setSupportActionBar(toolbar);
@@ -132,11 +132,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+
                 startActivity(intent);
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
                 intent = new Intent(getApplicationContext(), HistoryActivity.class);
+
                 startActivity(intent);
                 return true;
             case R.id.useOffline:
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.settings:
                 Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
                 intent = new Intent(getApplicationContext(), SettingsActivity.class);
+
                 startActivity(intent);
                 return true;
             case R.id.logOut:

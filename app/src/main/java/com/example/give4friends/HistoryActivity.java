@@ -1,6 +1,16 @@
 package com.example.give4friends;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
@@ -47,6 +57,76 @@ public class HistoryActivity extends MainActivity{
                 }
             }
         });}
+
+
+
+
+
+    @Override
+    protected void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Give4Friends");
+        setSupportActionBar(toolbar);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayShowTitleEnabled(false);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.charity_menu, menu);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.etCharity:
+                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
+
+                startActivityForResult(intent,0);
+                return true;
+            case R.id.transactionHistory:
+                Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
+
+                return true;
+            case R.id.useOffline:
+                Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.settings:
+                Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
+
+                startActivityForResult(intent,2);
+                return true;
+            case R.id.logOut:
+                Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
+                logOut();
+            default:
+//                Log.e()
+        }
+        return true;
+    }
 
 
 }
