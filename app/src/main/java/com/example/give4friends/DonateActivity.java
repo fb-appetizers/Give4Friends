@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.give4friends.Adapters.DonateAdapter;
+import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -27,6 +28,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     private Button searchBtn;
     private RecyclerView rvFriends;
     public static ParseUser friend;
+    public static Charity charity;
     private ImageButton cancel;
 
     ArrayList<ParseUser> friends;

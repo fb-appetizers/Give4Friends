@@ -21,6 +21,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import static com.example.give4friends.DonateActivity.charity;
 import static com.example.give4friends.DonateActivity.friend;
 
 public class DonateFinalActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private EditText message;
     private TextView charityName;
     private Button submitDonation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +47,8 @@ public class DonateFinalActivity extends AppCompatActivity {
 
         amountEntered.setVisibility(View.GONE);
 
-        Intent intent = getIntent();
-        String charityNameSent = intent.getStringExtra("charity");
-
         friendd.setText(friend.getUsername());
-        charityName.setText(charityNameSent);
+        charityName.setText("charity 1");
 
         amount.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
@@ -70,7 +69,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setNewTransaction();
-                Intent intent = new Intent();
+                Intent intent = new Intent(DonateFinalActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -83,7 +82,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(friend);
         newTransaction.setKeyDonorId(currentUser);
-//        newTransaction.setKeyCharityId(charityAPI);
+        newTransaction.setKeyCharityId(charity);
         newTransaction.setKeyAmountDonated(Integer.parseInt(amount.getText().toString()));
 
         newTransaction.saveInBackground(new SaveCallback() {

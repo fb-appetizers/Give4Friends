@@ -32,6 +32,7 @@ import com.parse.ParseQuery;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static com.example.give4friends.DonateActivity.charity;
 import static com.example.give4friends.DonateActivity.friend;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
@@ -122,7 +123,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 CharityAPI selectedCharity = mCharity.get(position);
-                final Charity[] charityy = new Charity[1];
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
@@ -138,16 +138,13 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                             return;
                         }
                         else{
-                            charityy[0] = object;
+                            charity = object;
                         }
                     }
                 });
 //                Charity charity = selectedCharity.getCharity();
 
-
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                intent.putExtra("friend", (Parcelable) DonateSearchCharity.friendInfo);
-                intent.putExtra("charity", charityy[0]);
                 view.getContext().startActivity(intent);
             }
         }
