@@ -60,11 +60,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
         holder.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
         holder.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
-
-
-
-
-
     }
 
     @Override

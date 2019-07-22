@@ -44,7 +44,7 @@
             app:defaultValue="public"
             app:entries="@array/privacy_entries"
             app:entryValues="@array/privacy_values"
-            app:key="reply"
+            app:key="privacy"
             app:title="Transaction Visibility"
             app:useSimpleSummaryProvider="true" />
 

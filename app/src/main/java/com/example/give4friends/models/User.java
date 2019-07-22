@@ -7,7 +7,9 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ParseClassName("User")
@@ -126,4 +128,6 @@ public class User extends ParseUser {
     public void setKeyProfileImageImage(ParseFile image){
         put(KEY_PROFILE_IMAGE, image);
     }
+
+
 }
