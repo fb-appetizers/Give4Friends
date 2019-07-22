@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         configureToolbar();
 
-
-
         suggBtn = findViewById(R.id.suggBtn);
 
 
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactions);
@@ -95,10 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         populate();
-
-
-
-
     }
 
     protected void configureToolbar() {
@@ -171,13 +164,11 @@ public class MainActivity extends AppCompatActivity {
         postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
-
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-
 
                     //Clear the old set when reloading
                     transactions.clear();
@@ -185,9 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     for(Transaction transaction : transactionList){
 
                         transactions.add(transaction);
-
                     }
-
                     transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");

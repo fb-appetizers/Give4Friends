@@ -19,6 +19,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CharityProfile"></activity>
+
+        <activity android:name=".DonateFinalActivity"></activity>
+
         <activity android:name=".DonateSearchCharity" />
         <activity
             android:name=".SettingsActivity"

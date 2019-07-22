@@ -86,7 +86,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                 Toast.makeText(context, "Friend: " + friend.getUsername(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(context, DonateSearchCharity.class);
-                intent.putExtra("friend", friend.getUsername());
+                intent.putExtra("friend", friend);
                 context.startActivity(intent);
             }
         }

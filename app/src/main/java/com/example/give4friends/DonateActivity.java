@@ -18,10 +18,11 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DonateActivity extends AppCompatActivity {
+public class DonateActivity extends AppCompatActivity implements Serializable {
     private EditText searchFriend;
     private Button searchBtn;
     private RecyclerView rvFriends;

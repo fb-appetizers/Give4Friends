@@ -161,6 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SignUpActivity.this, HomePage.class);
                                 startActivity(intent);
                             } else {
+                                e.printStackTrace();
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
                             }
                         }

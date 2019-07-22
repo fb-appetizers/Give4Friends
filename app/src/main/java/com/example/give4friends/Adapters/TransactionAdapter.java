@@ -18,9 +18,15 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Transaction;
+import com.example.give4friends.models.User;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -51,37 +57,70 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void  onBindViewHolder(final ViewHolder holder, int position) {
 
         // get data according to position.
-        Transaction transaction = transactions.get(position);
+        final Transaction transaction = transactions.get(position);
+        final boolean is_empty;
 
+        //check if user is in likes list
+        final List<String> array = transaction.getKeyLikesUsers();
 
-
-
+        // if user is in likesUsers - start red
+        if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+            is_empty = true;
+            holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
+            holder.ibEmptyHeart.setColorFilter(Color.BLACK);
+            holder.ibEmptyHeart.setRotation(2);
+        }
+        else{
+            is_empty = false;
+            holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+            holder.ibEmptyHeart.setColorFilter(Color.RED);
+            holder.ibEmptyHeart.setRotation(1);
+        }
 
             // This is just a temporary function that controls the clicks. Will be updated later!!
             holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
                     boolean is_empty = (holder.ibEmptyHeart.getRotation() == 2);
+
 
                     if(is_empty) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
                         holder.ibEmptyHeart.setRotation(1);
 
+                        //update parse
+
+                        //update transaction
+                        //increment likes for transaction
+                        transaction.incrementLikes(1);
+                        //add user to array
+                        transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
+                        transaction.saveInBackground();
+
+
+
                     }else{
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
                         holder.ibEmptyHeart.setColorFilter(Color.BLACK);
                         holder.ibEmptyHeart.setRotation(2);
+
+                        //update parse
+
+                        //update transaction
+                        transaction.incrementLikes(-1);
+                        //add user to array
+                        array.remove(ParseUser.getCurrentUser().getObjectId());
+                        transaction.setKeyLikesUsers(array);
+
+
+                        transaction.saveInBackground();
+
+
                     }
 
                 }
             });
-
-
-
-
 
 
 
@@ -130,8 +169,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         .into(holder.donorPhoto);
             }
         });
-
-
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
