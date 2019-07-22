@@ -31,17 +31,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton suggBtn;
-    private ImageButton emptyHeartBtn;
-    private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
     protected List<TransactionHome> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         configureToolbar();
 
         suggBtn = findViewById(R.id.suggBtn);
-        // for testing
+
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
         transactionAdapter = new TransactionAdapter(transactions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        //linearLayoutManager.setReverseLayout(true);
-////
+
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
@@ -92,15 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Configure the refreshing colors
-//        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-//                android.R.color.holo_green_light,
-//                android.R.color.holo_orange_light,
-//                android.R.color.holo_red_light);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         populate();
-
-
-
 
     }
 
@@ -154,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
                 logOut();
             default:
-//                Log.e()
         }
         return true;
     }
@@ -170,25 +159,17 @@ public class MainActivity extends AppCompatActivity {
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
-
-
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
-
-
                     for(Transaction transaction : transactionList){
                         transactions.add(TransactionHome.fromParse(transaction));
                         transactionAdapter.notifyItemInserted(transactions.size() - 1);
-
                     }
-
-
-
-//                    transactionAdapter.notifyDataSetChanged();
+                    //transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();

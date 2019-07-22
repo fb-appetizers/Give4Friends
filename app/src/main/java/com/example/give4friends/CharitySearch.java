@@ -249,12 +249,6 @@ public class CharitySearch extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
     }
 
     private void configureToolbar() {
