@@ -5,6 +5,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 
+import java.util.List;
+
 @ParseClassName("Charity")
 public class Charity extends ParseObject {
 
@@ -16,6 +18,8 @@ public class Charity extends ParseObject {
     public static final String KEY_URL  = "websiteUrl";
     public static final String KEY_CAUSE_NAME  = "causeName";
     public static final String KEY_CHARITY_ID  = "charityName";
+    public static final String KEY_LIKES_COUNT  = "likesCount";
+    public static final String KEY_LIKES_USERS  = "likesUsers";
 
     public Charity(){}
 
@@ -80,5 +84,26 @@ public class Charity extends ParseObject {
 
     public void setKeyCauseName(String name){
         put(KEY_CAUSE_NAME, name);
+    }
+
+    public Number getKeyLikesCount() {
+        return getNumber(KEY_LIKES_COUNT);
+    }
+
+    public void incrementLikes(int amount){
+        increment(KEY_LIKES_COUNT, amount );
+    }
+
+
+    public List getKeyLikesUsers() {
+        return getList(KEY_LIKES_USERS);
+    }
+
+    public void setKeyLikesUsers(List<String> list){
+        put(KEY_LIKES_USERS, list);
+    }
+
+    public void addLikesUser(String user){
+        add(KEY_LIKES_USERS, user);
     }
 }
