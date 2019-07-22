@@ -1,5 +1,16 @@
 package com.example.give4friends;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,16 +22,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.MenuItemCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
@@ -78,8 +79,8 @@ public class CharitySearch extends AppCompatActivity {
         tvCharitySugg = findViewById(R.id.tvCharitySugg);
         tiCharity = findViewById(R.id.tiCharity);
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
-
         cardView = findViewById(R.id.cvSugg);
+
 
         acharitiesLower = new ArrayList<CharityAPI>();
         acharitiesUpper = new ArrayList<CharityAPI>();
@@ -87,16 +88,26 @@ public class CharitySearch extends AppCompatActivity {
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
         charityAdapterLower = new CharitySearchAdapter(acharitiesLower, false);
 
+
+
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
         rvCharitySearch.setAdapter(charityAdapterLower);
+
 
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(this));
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
+
         getResponseSuggested();
-        //TODO -- search up MODALS/POPUP
+
+
+
+
+
+
+//TODO -- search up MODALS/POPUP
 
         //TODO move click listener
         tvCharitySugg.setOnClickListener(new View.OnClickListener() {
@@ -104,21 +115,31 @@ public class CharitySearch extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (!cardView.isShown()) {
+
+
+
                     tvCharitySugg.setText("Close Charity Suggestions");
                     cardView.setVisibility(View.VISIBLE);
+
 
                     btnSubmit.setVisibility(View.VISIBLE);
                     tiCharity.setVisibility(View.VISIBLE);
                     etCharity.setVisibility(View.VISIBLE);
 
+
                 }else{
+
                     tvCharitySugg.setText("Open Charity Suggestions");
 
                     cardView.setVisibility(View.GONE);
 
+
                     btnSubmit.setVisibility(View.GONE);
                     tiCharity.setVisibility(View.GONE);
                     etCharity.setVisibility(View.GONE);
+
+
+
                 }
 
             }
@@ -135,6 +156,10 @@ public class CharitySearch extends AppCompatActivity {
                 btnSubmit.setVisibility(View.GONE);
                 tiCharity.setVisibility(View.GONE);
                 etCharity.setVisibility(View.GONE);
+
+
+
+
             }
         });
 
@@ -189,6 +214,7 @@ public class CharitySearch extends AppCompatActivity {
 
     }
 
+
     private void getResponseSuggested(){
 
         ParseUser mainUser = ParseUser.getCurrentUser();
@@ -201,9 +227,9 @@ public class CharitySearch extends AppCompatActivity {
         postQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
+
                 ParseUser mainUser = objects.get(0);// They'll only be one
                 List <Charity> charities = mainUser.getList("charityArray");
-
                 if (charities == null){
                     charities = new ArrayList<Charity>();
                 }
@@ -212,9 +238,13 @@ public class CharitySearch extends AppCompatActivity {
                     acharitiesUpper.add(CharityAPI.fromParse(charity));
                 }
 
+
                 charityAdapterUpper.notifyDataSetChanged();
+
+
             }
         });
+
 
     }
 
@@ -296,14 +326,16 @@ public class CharitySearch extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+
         // Store instance of the menu item containing progress
         miActionProgressItem = menu.findItem(R.id.miActionProgress);
         // Extract the action-view from the menu item
         ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
         // Return to finish
-        // miActionProgressItem.setVisible(true);
+//        miActionProgressItem.setVisible(true);
         super.onPrepareOptionsMenu(menu);
 
 

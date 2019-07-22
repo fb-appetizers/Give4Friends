@@ -9,11 +9,11 @@
     android:layout_marginTop="1dp"
     android:layout_marginRight="1dp"
     android:background="#2A03524A"
+    android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:longClickable="true"
     app:cardCornerRadius="10dp"
-    app:cardElevation="@dimen/card_elevation"
-    tools:clickable="false">
+    app:cardElevation="@dimen/card_elevation">
 
     <!--android:background="#2A03524A"-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +33,7 @@
             android:layout_marginTop="8dp"
             android:text="CharityName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
