@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,9 @@ import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -117,7 +121,27 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 CharityAPI selectedCharity = mCharity.get(position);
-//                Charity charity = selectedCharity.getCharity();
+                Charity charityy;
+
+                ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+                charityParseQuery.include(Charity.KEY_CHARITY_ID);
+
+                charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
+
+//                charityParseQuery.getFirstInBackground(new FindCallback<Charity>() {
+//                    @Override
+//                    public void done(List<Charity> objects, ParseException e) {
+//                        if(e != null){
+//                            Log.e("CharitySearchAdapter", "Error with query of charity");
+//                            e.printStackTrace();
+//                            return;
+//                        }
+//                        else{
+////                            charityy = objects;
+//                        }
+//                    }
+//                });
+////                Charity charity = selectedCharity.getCharity();
 
 
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
