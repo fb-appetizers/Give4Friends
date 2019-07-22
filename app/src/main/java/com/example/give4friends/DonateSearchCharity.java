@@ -39,7 +39,6 @@ import static com.example.give4friends.DonateActivity.friend;
 
 public class DonateSearchCharity extends AppCompatActivity implements Serializable {
     private TextView friendz;
-    public static ParseUser friendInfo;
     public static Charity charity;
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
