@@ -1,6 +1,8 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,30 +54,34 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactions.get(position);
 
 
-        // like button
-        holder.ibFullHeart.setVisibility(View.INVISIBLE);
-        holder.ibFullHeart.setClickable(false);
 
 
-        holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.ibFullHeart.setVisibility(View.VISIBLE);
-                holder.ibEmptyHeart.setVisibility(View.INVISIBLE);
-                holder.ibFullHeart.setClickable(true);
-                holder.ibEmptyHeart.setClickable(false);
-            }
-        });
 
-        holder.ibFullHeart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.ibFullHeart.setVisibility(View.INVISIBLE);
-                holder.ibEmptyHeart.setVisibility(View.VISIBLE);
-                holder.ibFullHeart.setClickable(false);
-                holder.ibEmptyHeart.setClickable(true);
-            }
-        });
+            // This is just a temporary function that controls the clicks. Will be updated later!!
+            holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    boolean is_empty = (holder.ibEmptyHeart.getRotation() == 2);
+
+                    if(is_empty) {
+                        holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+                        holder.ibEmptyHeart.setColorFilter(Color.RED);
+                        holder.ibEmptyHeart.setRotation(1);
+
+                    }else{
+                        holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
+                        holder.ibEmptyHeart.setColorFilter(Color.BLACK);
+                        holder.ibEmptyHeart.setRotation(2);
+                    }
+
+                }
+            });
+
+
+
+
 
 
 
@@ -161,7 +167,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //like button
         public ImageButton ibEmptyHeart;
-        public ImageButton ibFullHeart;
+
 
 
 
@@ -178,7 +184,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // like button
             ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
-            ibFullHeart = (ImageButton) itemView.findViewById(R.id.ib_full_heart);
+
 
 
         }

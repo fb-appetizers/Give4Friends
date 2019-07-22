@@ -10,6 +10,7 @@
     android:background="@drawable/constraint_border"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:longClickable="true"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:cardElevation="@dimen/card_elevation">
 
@@ -114,27 +115,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="59dp"
             android:layout_marginBottom="8dp"
-            android:background="#FFFFFF"
 
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:srcCompat="@drawable/ic_vector_heart_stroke" />
-
-        <ImageButton
-            android:id="@+id/ib_full_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginBottom="8dp"
             android:background="#FFFFFF"
-            android:tint="#E497B1"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/ivDonor"
-            card_view:layout_constraintVertical_bias="1.0"
-            card_view:srcCompat="@drawable/ic_vector_heart" />
+            card_view:srcCompat="@drawable/ic_vector_heart_stroke" />
+
 
         <TextView
             android:id="@+id/textView7"

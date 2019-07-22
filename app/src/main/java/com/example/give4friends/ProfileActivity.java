@@ -231,6 +231,14 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
 
+            findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    finish();
+                }
+            });
+
         }
 
 
