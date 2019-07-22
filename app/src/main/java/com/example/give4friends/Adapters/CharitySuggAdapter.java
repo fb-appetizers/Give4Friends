@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.CharityProfile;
 import com.example.give4friends.Cutom_Classes.CustomDialog;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -56,11 +60,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
         holder.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
         holder.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
-
-
-
-
-
     }
 
     @Override
@@ -80,6 +79,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnLongClickListener(this);
+            itemView.setOnClickListener(this);
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
@@ -103,26 +103,20 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         @Override
         public void onClick(View view) {
 
+            int position = getAdapterPosition();
+            CharityAPI charity = mCharity.get(position);
+
+            // Send an intent to the Charity Profile
             Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
 
+            Intent intent = new Intent(context, CharityProfile.class);
 
+            intent.putExtra("Charity", Parcels.wrap(charity));
+
+            context.startActivity(intent);
 
         }
 
 
-//        @Override
-//        public void onLongClickListener(View view) {
-//
-//            int position = getAdapterPosition();
-//            CharityAPI charity = mCharity.get(position);
-//
-//            CustomDialog dialog = new CustomDialog(charity);
-//            dialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "CustomDialog");
-//
-//
-//
-//
-//
-//        }
     }
 }

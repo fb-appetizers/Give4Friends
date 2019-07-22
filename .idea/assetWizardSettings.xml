@@ -160,11 +160,11 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="4caf50" />
-                            <entry key="height" value="173" />
-                            <entry key="outputName" value="ic_shaking_hands" />
+                            <entry key="height" value="1024" />
+                            <entry key="outputName" value="ic_like_filled_con" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/shaking_hands.svg" />
-                            <entry key="width" value="291" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/like_filled_con.svg" />
+                            <entry key="width" value="1024" />
                           </map>
                         </option>
                       </PersistentState>

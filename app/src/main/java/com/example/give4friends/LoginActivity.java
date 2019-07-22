@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     loadingProgressBar.setVisibility(View.INVISIBLE);
                     user.saveInBackground();
+                    user.saveInBackground(); // does it save onto phone
                 }
                 else{
                     Log.e("login", "Login failure.");

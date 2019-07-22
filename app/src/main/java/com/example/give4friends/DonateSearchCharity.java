@@ -17,13 +17,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.give4friends.Adapters.CharitySearchAdapter;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.annotation.meta.When;
@@ -32,8 +35,12 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class DonateSearchCharity extends AppCompatActivity {
-    private TextView friend;
+import static com.example.give4friends.DonateActivity.friend;
+
+public class DonateSearchCharity extends AppCompatActivity implements Serializable {
+    private TextView friendz;
+    public static ParseUser friendInfo;
+    public static Charity charity;
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
@@ -50,9 +57,11 @@ public class DonateSearchCharity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        friend = findViewById(R.id.friendSelected);
+        friendz = findViewById(R.id.friendSelected);
 
-        friend.setText(intent.getStringExtra("friend"));
+//        friendInfo = (ParseUser) intent.getSerializableExtra("friend");
+
+        friendz.setText(friend.getUsername());
 
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
@@ -62,7 +71,9 @@ public class DonateSearchCharity extends AppCompatActivity {
 
         acharities = new ArrayList<CharityAPI>();
 
-        charityAdapter = new CharitySearchAdapter(acharities, true);//Added another field to check if this is in the Donate Search charity.
+        charityAdapter = new CharitySearchAdapter(acharities, true);
+        //Added another field to check if this is in the Donate Search charity.
+
         miActionProgressItem = findViewById(R.id.progressBar);
 
 
@@ -137,7 +148,6 @@ public class DonateSearchCharity extends AppCompatActivity {
 
     public void showProgressBar() {
         // Show progress item
-
         miActionProgressItem.setVisibility(View.VISIBLE);
     }
 
@@ -145,12 +155,4 @@ public class DonateSearchCharity extends AppCompatActivity {
         // Hide progress item
         miActionProgressItem.setVisibility(View.INVISIBLE);
     }
-
-
-
-
-
-
-
-
 }

@@ -1,6 +1,8 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -9,16 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.CharitySearch;
+import com.example.give4friends.DonateFinalActivity;
+import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.example.give4friends.DonateActivity.friend;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
 
@@ -37,7 +46,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
     @Override
     public CharitySearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -47,15 +55,11 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         // Return a new holder instance
         CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(charityView);
         return viewHolder;
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull CharitySearchAdapter.ViewHolder holder, int position) {
         CharityAPI charity = mCharity.get(position);
-
-
-
 
         holder.tvCharityName.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -65,7 +69,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
         holder.tvMission.setText(Html.fromHtml(charity.getMission()));
 
-
         holder.tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
         Glide.with(context)
@@ -73,7 +76,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                 .into(holder.ivRating);
 
         if(this.remove_links) {
-
             holder.tvMoreInfo.setVisibility(View.GONE);
             holder.tvDonateNow.setVisibility(View.GONE);
 
@@ -107,12 +109,22 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
 
-
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                CharityAPI selectedCharity = mCharity.get(position);
+//                Charity charity = selectedCharity.getCharity();
 
+
+                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                intent.putExtra("friend", (Parcelable) DonateSearchCharity.friendInfo);
+                intent.putExtra("charity", selectedCharity.getName());
+                view.getContext().startActivity(intent);
+            }
         }
     }
 }

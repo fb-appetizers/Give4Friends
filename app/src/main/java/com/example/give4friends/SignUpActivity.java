@@ -148,7 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Toast.makeText(context,"Image Clicked1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Success sign-up", Toast.LENGTH_SHORT).show();
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
                     user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
@@ -161,6 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SignUpActivity.this, HomePage.class);
                                 startActivity(intent);
                             } else {
+                                e.printStackTrace();
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
                             }
                         }
@@ -168,7 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     e.printStackTrace();
-                    Toast.makeText(context,"Image Clicked2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Error in sign-up", Toast.LENGTH_SHORT).show();
                 }
             }
 
