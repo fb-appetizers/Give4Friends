@@ -68,6 +68,7 @@ public class CharitySearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity_search);
 
+        //TODO reduce whitespace
         configureToolbar();
 
         etCharity = findViewById(R.id.etCharity);
@@ -78,19 +79,14 @@ public class CharitySearch extends AppCompatActivity {
         tvCharitySugg = findViewById(R.id.tvCharitySugg);
         tiCharity = findViewById(R.id.tiCharity);
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
-
-
         cardView = findViewById(R.id.cvSugg);
-
-
-
 
 
         acharitiesLower = new ArrayList<CharityAPI>();
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-        charityAdapterLower = new CharitySearchAdapter(acharitiesLower);
+        charityAdapterLower = new CharitySearchAdapter(acharitiesLower, false);
 
 
 
@@ -111,8 +107,9 @@ public class CharitySearch extends AppCompatActivity {
 
 
 
+//TODO -- search up MODALS/POPUP
 
-
+        //TODO move click listener
         tvCharitySugg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -290,9 +287,6 @@ public class CharitySearch extends AppCompatActivity {
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
 
-
-//                Intent intent = new Intent(CharitySearch.this, CharitySearch.class);
-//                startActivity(intent);
                 return true;
             case R.id.transactionHistory:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();

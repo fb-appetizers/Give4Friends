@@ -10,7 +10,7 @@ import org.json.JSONArray;
 
 import java.util.List;
 
-@ParseClassName("_User")
+@ParseClassName("User")
 public class User extends ParseUser {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ID = "objectId";

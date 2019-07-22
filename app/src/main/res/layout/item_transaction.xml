@@ -1,16 +1,16 @@
-<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvRoot"
-    android:layout_marginLeft="@dimen/grid_margin"
-    android:layout_marginRight="@dimen/grid_margin"
-    android:layout_marginTop="@dimen/cell_margin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/grid_margin"
+    android:layout_marginTop="@dimen/cell_margin"
+    android:layout_marginRight="@dimen/grid_margin"
+    android:background="@drawable/constraint_border"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
-    android:background="@drawable/constraint_border"
     card_view:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,16 +33,17 @@
 
         <TextView
             android:id="@+id/tvCharity"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
             android:text="TextView"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000"
-            card_view:layout_constraintBottom_toTopOf="@+id/tvMessage"
-            card_view:layout_constraintStart_toEndOf="@+id/textView8" />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/textView8"
+            card_view:layout_constraintTop_toBottomOf="@+id/ivFriend" />
 
         <ImageView
             android:id="@+id/ivDonor"
@@ -85,6 +86,7 @@
             android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="#0003A9F4"
             android:backgroundTint="#2503A9F4"
@@ -92,7 +94,8 @@
             android:outlineSpotShadowColor="#03A9F4"
             android:text="TextView"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart" />
+            card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
         <TextView
             android:id="@+id/textView3"
@@ -130,6 +133,7 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/ivDonor"
+            card_view:layout_constraintVertical_bias="1.0"
             card_view:srcCompat="@drawable/ic_vector_heart" />
 
         <TextView
@@ -149,11 +153,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="7dp"
             android:text="To:"
             android:textStyle="italic"
             card_view:layout_constraintBottom_toTopOf="@+id/tvMessage"
-            card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart" />
+            card_view:layout_constraintStart_toEndOf="@+id/ib_empty_heart"
+            card_view:layout_constraintTop_toTopOf="@+id/tvCharity" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

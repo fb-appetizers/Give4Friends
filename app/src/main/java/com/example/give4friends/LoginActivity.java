@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.give4friends.models.Transaction;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -20,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private Button signUp;
 
+    ProgressBar loadingProgressBar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +32,29 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signUp = findViewById(R.id.createAccount);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        loadingProgressBar = findViewById(R.id.loading);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
+//        if (ParseUser.getCurrentUser()!=null) {
+//
+//            Transaction transaction = new Transaction();
+//            transaction.setKeyAmountDonated(5);
+//            transaction.setKeyMessage("this is for you boo");
+//            transaction.setKeyDonorId(ParseUser.getCurrentUser());
+//            transaction.setKeyFriendId(ParseUser.getCurrentUser());
+//
+//            try {
+//                transaction.save();
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        }else{
+//            Toast.makeText(this,"Make sure that you login then logout",Toast.LENGTH_SHORT).show();
+//        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +82,13 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
+                    loadingProgressBar.setVisibility(View.INVISIBLE);
                     user.saveInBackground();
                 }
                 else{
                     Log.e("login", "Login failure.");
-
+                    Toast.makeText(getApplicationContext(), "Login Failure", Toast.LENGTH_SHORT).show();
+                    loadingProgressBar.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 }
                 }

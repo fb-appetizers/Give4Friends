@@ -18,7 +18,7 @@
         android:layout_width="410dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:background="#FFFFFF"
+        android:background="#ffffff"
         android:focusableInTouchMode="true"
         android:isScrollContainer="true"
         android:paddingTop="11dp"

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,12 +15,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
-import com.example.give4friends.models.TransactionHome;
-import com.example.give4friends.models.User;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Transaction;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,8 +27,8 @@ import java.util.List;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
 
 
-    private List<TransactionHome> transactions;
-    public TransactionAdapter(List<TransactionHome> transactions) {
+    private List<Transaction> transactions;
+    public TransactionAdapter(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
@@ -51,7 +49,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void  onBindViewHolder(final ViewHolder holder, int position) {
 
         // get data according to position.
-        TransactionHome transaction = transactions.get(position);
+        Transaction transaction = transactions.get(position);
 
 
         // like button
@@ -81,43 +79,61 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
 
 
-
         //populate the views according to this data
 
-//        if((transaction.getKeyDonorId() != null) && ((transaction.getKeyDonorId()).getKeyFirstName()) != null){
-            holder.donor.setText(transaction.getDonorName());
-//        }
-//        if( (transaction.getKeyFriendId()) != null  && ((transaction.getKeyFriendId()).getKeyFirstName()) != null){
-            holder.friend.setText(transaction.getFriendName());
-//        }
-//        if( ((transaction.getKeyCharityId()) != null)  && ((transaction.getKeyCharityId()).getKeyName()) != null){
-            holder.charity.setText(transaction.getCharityName());
-//        }
-//        if((transaction.getKeyMessage()) != null){
-            holder.message.setText("Message: " + transaction.getMessage());
-//        }
-//
-//
-//
-//
-////        if(transaction.getKeyDonorId().getKeyProfileImage() != null){
-////            // Handles images
-            Glide.with(context)
-                    .load(transaction.getDonorProfile().getUrl())
-                    .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20))
-                            .circleCrop())
+        holder.message.setText("Message: " + transaction.getKeyMessage());
 
-                    .into(holder.donorPhoto);
+        transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                holder.charity.setText(object.getString("name"));
+            }
+        });
+
+        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                holder.donor.setText(object.getString("firstName"));
+            }
+        });
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                Glide.with(context)
+                        .load(object.getParseFile("profileImage").getUrl())
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCrop())
+
+                        .into(holder.friendPhoto);
+            }
+        });
+        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                Glide.with(context)
+                        .load(object.getParseFile("profileImage").getUrl())
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCrop())
+
+                        .into(holder.donorPhoto);
+            }
+        });
 
 
-        Glide.with(context)
-                .load(transaction.getFriendProfile().getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                        .circleCrop())
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                holder.friend.setText(object.getString("firstName"));
+            }
+        });
 
-                .into(holder.friendPhoto);
+
 
         }
 
@@ -175,7 +191,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         // Add a list of items -- change to type used
-        public void addAll(List<TransactionHome> list) {
+        public void addAll(List<Transaction> list) {
             transactions.addAll(list);
             notifyDataSetChanged();
         }

@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 //import com.braintreepayments.cardform.view.CardForm;
 import com.example.give4friends.models.ProfilePicture;
+import com.example.give4friends.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -71,7 +72,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUp = findViewById(R.id.signUpBtn);
         addProfilePic = findViewById(R.id.addProfilePic);
 
-//        profilePic.setImageDrawable();
+        // Make sure to logout before you sign up !!
+        ParseUser.logOut();
 
         context = this;
         addProfilePic.setOnClickListener(new View.OnClickListener() {
@@ -98,15 +100,16 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
-                profilePic.setImageBitmap(photo);
+
+                profilePic.setImageBitmap(ProfilePicture.RotateBitmapFromBitmap(photo,270));
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
-        }
-        else if(requestCode == SELECT_IMAGE_REQUEST_CODE ){
+        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri photoUri = data.getData();
                 try {
@@ -132,6 +135,8 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(String firstName, String lastName, String email, String username, String password) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
+//        User user = new User();
+
 
         user.setEmail(email);
         user.setUsername(username);
@@ -143,9 +148,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
+                    Toast.makeText(context,"Image Clicked1", Toast.LENGTH_SHORT).show();
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
                     user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
+
 
                     user2.saveInBackground(new SaveCallback() {
                         @Override
@@ -159,7 +166,12 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 }
+                else{
+                    e.printStackTrace();
+                    Toast.makeText(context,"Image Clicked2", Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
 
     }

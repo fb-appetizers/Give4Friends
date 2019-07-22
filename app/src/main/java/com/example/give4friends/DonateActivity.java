@@ -4,23 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import com.example.give4friends.Adapters.DonateAdapter;
-import com.example.give4friends.models.User;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -32,6 +26,7 @@ public class DonateActivity extends AppCompatActivity {
     private Button searchBtn;
     private RecyclerView rvFriends;
     public static ParseUser friend;
+    private ImageButton cancel;
 
     ArrayList<ParseUser> friends;
     DonateAdapter adapter;
@@ -44,6 +39,7 @@ public class DonateActivity extends AppCompatActivity {
         searchFriend = findViewById(R.id.searchFriend);
         searchBtn = findViewById(R.id.searchBtn);
         rvFriends = findViewById(R.id.rvFriends);
+        cancel = findViewById(R.id.cancel);
 
         friends = new ArrayList<ParseUser>();
 
@@ -60,27 +56,13 @@ public class DonateActivity extends AppCompatActivity {
             }
         });
 
-//        searchFriends.setOnCloseListener(new SearchView.OnCloseListener() {
-//            @Override
-//            public boolean onClose() {
-//                queryFriends(searchFriends.getText);
-//                return false;
-//            }
-//        });
-//        searchFriends.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                friends.clear();
-//                queryFriends(s);
-//                return true; // check later if suppose to be true or false
-//            }
-//
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                queryFriends(s);
-//                return true;
-//            }
-//        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DonateActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     protected void queryFriends(String name){
@@ -99,33 +81,5 @@ public class DonateActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-//
-//        query.whereContains("firstName", name);
-//
-//        query.findInBackground(new FindCallback<ParseUser>() {
-//            @Override
-//            public void done(List<ParseUser> objects, ParseException e) {
-//                if(e != null){
-//                    Log.e("DonateAdapter", "Error with query");
-//                    e.printStackTrace();
-//                    return;
-//                }
-//                friends.addAll(objects);
-//            }
-//        });
-//
-//        query.whereEqualTo("lastName", name);
-//
-//        query.findInBackground(new FindCallback<ParseUser>() {
-//            @Override
-//            public void done(List<ParseUser> objects, ParseException e) {
-//                if(e != null){
-//                    Log.e("DonateAdapter", "Error with query");
-//                    e.printStackTrace();
-//                    return;
-//                }
-//                friends.addAll(objects);
-//            }
-//        });
     }
 }

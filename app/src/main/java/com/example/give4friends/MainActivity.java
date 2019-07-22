@@ -31,9 +31,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton suggBtn;
+    private ImageButton emptyHeartBtn;
+    private ImageButton fullHeartBtn;
 
     protected RecyclerView rvTransactions;
-    protected List<TransactionHome> transactions;
+    protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureToolbar();
+
+
 
         suggBtn = findViewById(R.id.suggBtn);
 
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
-        transactions = new ArrayList<TransactionHome>();
+        transactions = new ArrayList<Transaction>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
 
@@ -91,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         populate();
+
+
+
 
     }
 
@@ -144,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
                 logOut();
             default:
+//                Log.e()
         }
         return true;
     }
@@ -159,17 +167,25 @@ public class MainActivity extends AppCompatActivity {
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
+
+
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
+
+                    //Clear the old set when reloading
+                    transactions.clear();
+
                     for(Transaction transaction : transactionList){
-                        transactions.add(TransactionHome.fromParse(transaction));
-                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+
+                        transactions.add(transaction);
+
                     }
-                    //transactionAdapter.notifyDataSetChanged();
+
+                    transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();

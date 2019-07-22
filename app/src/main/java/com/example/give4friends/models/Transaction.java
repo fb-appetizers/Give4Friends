@@ -25,7 +25,7 @@ public class Transaction extends ParseObject{
     public static final String KEY_AMOUNT_DONATED  = "amountDonated";
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
-    public static final String KEY_CHARITY_ID  = "charityName";
+    public static final String KEY_CHARITY_ID  = "charityId";
     public static final String KEY_CREATED_AT  = "createdAt";
     public static final String KEY_DONOR_IMAGE  = "donorProfile";
     public static final String KEY_FRIEND_IMAGE  = "friendProfile";
@@ -58,8 +58,8 @@ public class Transaction extends ParseObject{
 
 
 
-    public User getKeyFriendId() {
-        return (User) getParseUser(KEY_FRIEND_ID);
+    public ParseUser getKeyFriendId() {
+        return getParseUser(KEY_FRIEND_ID);
     }
 
     public void setKeyFriendId(ParseUser friend){
@@ -70,8 +70,12 @@ public class Transaction extends ParseObject{
         return getString(KEY_OBJECT_ID);
     }
 
-    public User getKeyDonorId() {
-        return (User) getParseUser(KEY_DONOR_ID);
+    public ParseUser getKeyDonorId() {
+        return getParseUser("donorID");
+
+    }
+    public ParseFile getKeyDonorProfile() {
+        return getParseUser("donorID").getParseFile("profileImage");
     }
 
     public void setKeyDonorId(ParseUser donor){

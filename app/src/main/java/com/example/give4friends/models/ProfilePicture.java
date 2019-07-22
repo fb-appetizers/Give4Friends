@@ -103,7 +103,7 @@ public final class ProfilePicture {
     public static Bitmap RotateBitmapFromBitmap(Bitmap source, float angle)
     {
         Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
+        matrix.setRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
@@ -173,7 +173,22 @@ public final class ProfilePicture {
                     }
                 }
             }
-        );}
+        );
+    // Adding some way to update the pictures that go with the transactions.
+
+
+
+    }
+
+
+
+    public static void updatePhotoinTransactions(ParseUser parseUser){
+
+
+
+
+
+    }
 
     public static ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();

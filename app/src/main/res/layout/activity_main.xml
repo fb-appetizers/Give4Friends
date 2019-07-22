@@ -10,6 +10,12 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
 
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container">
+    </androidx.viewpager.widget.ViewPager>
+
     <ImageButton
         android:id="@+id/suggBtn"
         android:layout_width="86dp"
@@ -24,20 +30,18 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
-        android:layout_width="413dp"
-        android:layout_height="678dp"
-        tools:layout_editor_absoluteX="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="658dp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="53dp">
+        tools:layout_editor_absoluteX="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTransactions"
-            android:layout_width="392dp"
-            android:layout_height="662dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:paddingTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
