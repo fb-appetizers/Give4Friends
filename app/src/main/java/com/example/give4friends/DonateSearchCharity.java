@@ -143,7 +143,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 hideProgressBar();
             }
         });
-
     }
 
     public void showProgressBar() {
