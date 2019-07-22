@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.Transaction;
+
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         suggBtn = findViewById(R.id.suggBtn);
-        // for testing
+
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,13 +193,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
                 }
-
-
             }
         });}
-
-
-
-
     }
 
