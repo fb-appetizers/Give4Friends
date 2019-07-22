@@ -21,12 +21,13 @@
         <activity android:name=".DonateSearchCharity"/>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings"
+            android:theme="@style/PreferenceScreen"></activity>
         <activity android:name=".CreditCardInfo">
         <intent-filter>
             <action android:name="com.example.give4friends.CreditCardInfo" />
             <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>/>
+        </intent-filter>
         </activity>
         <activity
             android:name=".DonateActivity"
