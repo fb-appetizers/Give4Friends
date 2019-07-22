@@ -32,6 +32,7 @@ public class CharityAPI {
     public String causeName;
     public String websiteUrl;
     public String ratingsUrl;
+    public Charity ParseCharity;
 
     public void setName(String name) {
         this.name = name;
@@ -95,6 +96,14 @@ public class CharityAPI {
 
     public String getRatingsUrl() {
         return ratingsUrl;
+    }
+
+    public void setParseCharity(Charity charity){
+        this.ParseCharity = charity;
+    }
+
+    public Charity getParseCharity(){
+        return ParseCharity;
     }
 
 
@@ -164,10 +173,6 @@ public class CharityAPI {
         final List<String> currentCharityIDs = new ArrayList<String>();
         ParseUser mainUser = ParseUser.getCurrentUser();
 
-//        List<Charity> charityList = mainUser.getList("charityArray");
-//        if (charityList == null || charityList.size() == 0){
-//            charityList = new ArrayList<Charity>();
-//        }
 
         List<Charity> charityList = new ArrayList<Charity>();
 
@@ -224,11 +229,13 @@ public class CharityAPI {
                 charity.setKeyCharityID(charityAPI.getEin());
 
 
+
                 // First save the newly created charity in background if the charity is new.
 
                 try {
                     charity.save();
                     charityList.add(charity);
+
 
                 } catch (ParseException e) {
                     e.printStackTrace();

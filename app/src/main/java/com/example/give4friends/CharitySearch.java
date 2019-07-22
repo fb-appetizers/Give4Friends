@@ -335,7 +335,7 @@ public class CharitySearch extends AppCompatActivity {
         // Extract the action-view from the menu item
         ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
         // Return to finish
-//        miActionProgressItem.setVisible(true);
+
         super.onPrepareOptionsMenu(menu);
 
 
