@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 
@@ -52,8 +55,9 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         if(image != null){
             Glide.with(context)
                     .load(image.getUrl())
-//                .bitmapTransform(new CropCircleTransformation())
-//                .placeholder(R.drawable.ic_account)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCrop())
                     .into(holder.friendImage);
         }
     }

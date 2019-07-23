@@ -13,13 +13,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
@@ -38,7 +44,9 @@ import okhttp3.Response;
 import static com.example.give4friends.DonateActivity.friend;
 
 public class DonateSearchCharity extends AppCompatActivity implements Serializable {
-    private TextView friendz;
+    private TextView friendsUserName;
+    private TextView friendsName;
+    private ImageView friendsImage;
     public static Charity charity;
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
@@ -54,13 +62,11 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate_search_charity);
 
-        Intent intent = getIntent();
+        friendsUserName = findViewById(R.id.friendsUserName);
+        friendsName = findViewById(R.id.friendsName);
+        friendsImage = findViewById(R.id.friendsImage);
 
-        friendz = findViewById(R.id.friendSelected);
-
-//        friendInfo = (ParseUser) intent.getSerializableExtra("friend");
-
-        friendz.setText(friend.getUsername());
+        setUpFriend();
 
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
@@ -96,6 +102,22 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 finish();
             }
         });
+    }
+
+    private void setUpFriend(){
+        friendsUserName.setText("@" + friend.getUsername());
+        friendsName.setText(friend.get("firstName").toString() + " " + friend.get("lastName"));
+
+        ParseFile image = friend.getParseFile("profileImage");
+
+        if(image != null){
+            Glide.with(getApplicationContext())
+                    .load(image.getUrl())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCrop())
+                    .into(friendsImage);
+        }
     }
 
     private void getResponse(String search, boolean search_by_name){
