@@ -22,6 +22,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.CharitySearchAdapter;
+import com.example.give4friends.Adapters.DonateSearchAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
@@ -54,7 +55,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     private ImageButton cancel;
     CharityClient client;
     ArrayList<CharityAPI> acharities;
-    CharitySearchAdapter charityAdapter;
+    DonateSearchAdapter charityAdapter;
     ProgressBar miActionProgressItem;
 
     @Override
@@ -76,11 +77,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         acharities = new ArrayList<CharityAPI>();
 
-        charityAdapter = new CharitySearchAdapter(acharities, true);
+        charityAdapter = new DonateSearchAdapter(acharities);
         //Added another field to check if this is in the Donate Search charity.
 
         miActionProgressItem = findViewById(R.id.progressBar);
-
 
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
