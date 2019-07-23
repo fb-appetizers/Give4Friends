@@ -108,10 +108,6 @@ public class CharitySearch extends AppCompatActivity {
             public void onClick(View view) {
                 getResponseSearch(etCharity.getText().toString(),false);
 
-
-
-
-
             }
         });
 

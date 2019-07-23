@@ -128,7 +128,6 @@ public class ProfileActivity extends AppCompatActivity {
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
-
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
@@ -152,7 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onRefresh() {
                 feedAdapter.clear();
                 feedAdapter.addAll(charities);
-                populate();
+                populateRelations();
                 swipeContainer.setRefreshing(false);
             }
 
@@ -166,7 +165,7 @@ public class ProfileActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
 
-        populate();
+        populateRelations();
 
 
         // Below for static elements of profile
@@ -389,8 +388,29 @@ private void populate(){
 
 
 
-}
+    private void populateRelations() {
+        //Get relation
+        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+        //Get all charities in relation
+        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for (int i = 0; i < objects.size(); i++) {
+                        charities.add((Charity) objects.get(i));
 
+                    }
+                }
+            }
+        });
+
+
+    }
+}
 
 
 

@@ -15,6 +15,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,3 +169,5 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
 
 }}
+
+
