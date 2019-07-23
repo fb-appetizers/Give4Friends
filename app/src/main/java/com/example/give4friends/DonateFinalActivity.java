@@ -48,7 +48,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         amountEntered.setVisibility(View.GONE);
 
         friendd.setText(friend.getUsername());
-        charityName.setText("charity 1");
+//        charityName.setText(charity.getKeyName());
 
         amount.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
@@ -93,6 +93,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                 }
                 else{
                     Log.d("DonateFinalActivity", "Invalid transaction");
+
                     e.printStackTrace();
                 }
             }

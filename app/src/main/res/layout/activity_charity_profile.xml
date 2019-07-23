@@ -6,98 +6,32 @@
     android:background="@drawable/constraint_border"
     android:orientation="vertical"
 
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
     tools:background="#FFFFFF"
     tools:context=".CharityProfile">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
-    <ImageView
-        android:id="@+id/ivCPImage"
-        android:layout_width="125dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/charity_temp_profile" />
-
-    <TextView
-        android:id="@+id/tvCPname"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ivCPImage"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
-        android:id="@+id/tvCPCategory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvCPname"
-        app:layout_constraintTop_toBottomOf="@+id/tvCPname" />
-
-    <TextView
-        android:id="@+id/tvCPCause"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Cause"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvCPCategory"
-        app:layout_constraintTop_toBottomOf="@+id/tvCPCategory" />
-
-    <TextView
-        android:id="@+id/tvCPMission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Mission"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCPImage" />
-
-    <ImageButton
-        android:id="@+id/ibCPLike"
-        android:layout_width="46dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        android:background="#FFFFFF"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="@+id/tvCPLikedNum"
-        app:layout_constraintTop_toBottomOf="@+id/tvCPLikedNum"
-        app:srcCompat="@drawable/ic_like_icon" />
-
-    <TextView
-        android:id="@+id/tvCPLikedNum"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:text="liked by"
-        app:layout_constraintTop_toBottomOf="@+id/tvCPMission"
-        tools:layout_editor_absoluteX="38dp" />
+        android:layout_height="56dp"
+        tools:layout_editor_absoluteX="-64dp"
+        tools:layout_editor_absoluteY="5dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCPComments"
-        android:layout_width="match_parent"
-        android:layout_height="302dp"
-        android:layout_marginTop="12dp"
+        android:id="@+id/rvCPProfile"
+        android:layout_width="387dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibCPLike" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

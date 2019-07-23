@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,12 +22,18 @@ import android.widget.Toast;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.give4friends.DonateActivity.charity;
 
 public class CharityProfile extends AppCompatActivity {
 
@@ -55,7 +62,7 @@ public class CharityProfile extends AppCompatActivity {
         tvCPMission = findViewById(R.id.tvCPMission);
         tvCPLikedNum = findViewById(R.id.tvCPLikedNum);
         ibCPLike = findViewById(R.id.ibCPLike);
-        rvCPComments = findViewById(R.id.rvCPComments);
+        //rvCPComments = findViewById(R.id.rvCPComments);
 
 
         charity = (CharityAPI) Parcels.unwrap(getIntent().getParcelableExtra("Charity"));
@@ -69,8 +76,7 @@ public class CharityProfile extends AppCompatActivity {
 
         // For like button
 
-        //TODO we need to add charity to parse/get it from parse
-
+        convertCharity(charity);
 
 
         final boolean is_empty;
@@ -210,7 +216,53 @@ public class CharityProfile extends AppCompatActivity {
     }
 
 
+    public void convertCharity(final CharityAPI selectedCharity){
+        ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+        charityParseQuery.include(Charity.KEY_CHARITY_ID);
 
+
+        charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
+
+        charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+            @Override
+            public void done(Charity object, ParseException e) {
+                if(e != null){
+                    if(e.getCode() == ParseException.OBJECT_NOT_FOUND)
+                    {
+                        final Charity newCharity = new Charity();
+                        newCharity.setKeyCategoryName(selectedCharity.getCategoryName());
+                        newCharity.setKeyCauseName(selectedCharity.getCauseName());
+                        newCharity.setKeyCharityID(selectedCharity.getEin());
+                        newCharity.setKeyMission(selectedCharity.getMission());
+                        newCharity.setKeyName(selectedCharity.getName());
+                        newCharity.setKeyRatingURL(selectedCharity.getRatingsUrl());
+                        newCharity.setKeyUrl(selectedCharity.getWebsiteUrl());
+
+                        newCharity.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e == null){
+                                    Log.d("CharitySearchAdapter", "Created new charity");
+                                    parseCharity = newCharity;
+                                }
+                                else{
+                                    Log.d("CharitySearchAdapter", "Invalid charity");
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Log.e("CharitySearchAdapter", "Error with query of charity");                            }
+                }
+                else{
+                    parseCharity = object;
+                }
+            }
+
+        });
+    }
 
 
 

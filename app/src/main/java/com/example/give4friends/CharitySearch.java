@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,16 +49,13 @@ public class CharitySearch extends AppCompatActivity {
     private RecyclerView rvCharitySearch;
     private Button btnSubmit;
     private RecyclerView rvCharitySugg;
-    private CardView cardView;
 
-    private TextView tvCharitySugg;
-    private TextInputLayout tiCharity;
 
     CharityClient client;
     ArrayList<CharityAPI> acharitiesLower;
     ArrayList<CharityAPI> acharitiesUpper;
     CharitySuggAdapter charityAdapterUpper;
-    CharitySearchAdapter charityAdapterLower;
+
     ConstraintLayout constraintLayoutMain;
     MenuItem miActionProgressItem;
 
@@ -72,32 +68,30 @@ public class CharitySearch extends AppCompatActivity {
         configureToolbar();
 
         etCharity = findViewById(R.id.etCharity);
-        rvCharitySearch = findViewById(R.id.rvCharitySearch);
+
         rvCharitySugg = findViewById(R.id.rvCharitySugg);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
-        tvCharitySugg = findViewById(R.id.tvCharitySugg);
-        tiCharity = findViewById(R.id.tiCharity);
+
+
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
-        cardView = findViewById(R.id.cvSugg);
 
 
         acharitiesLower = new ArrayList<CharityAPI>();
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-        charityAdapterLower = new CharitySearchAdapter(acharitiesLower, false);
 
 
 
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
-        rvCharitySearch.setAdapter(charityAdapterLower);
+
 
 
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(this));
-        rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
+
 
 
         getResponseSuggested();
@@ -105,57 +99,15 @@ public class CharitySearch extends AppCompatActivity {
 
 
 
-
-
 //TODO -- search up MODALS/POPUP
 
-        //TODO move click listener
-        tvCharitySugg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                if (!cardView.isShown()) {
-
-
-
-                    tvCharitySugg.setText("Close Charity Suggestions");
-                    cardView.setVisibility(View.VISIBLE);
-
-
-                    btnSubmit.setVisibility(View.VISIBLE);
-                    tiCharity.setVisibility(View.VISIBLE);
-                    etCharity.setVisibility(View.VISIBLE);
-
-
-                }else{
-
-                    tvCharitySugg.setText("Open Charity Suggestions");
-
-                    cardView.setVisibility(View.GONE);
-
-
-                    btnSubmit.setVisibility(View.GONE);
-                    tiCharity.setVisibility(View.GONE);
-                    etCharity.setVisibility(View.GONE);
-
-
-
-                }
-
-            }
-        });
         //When you hit submit the recycler view updates
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getResponseLower(etCharity.getText().toString(),false);
+                getResponseSearch(etCharity.getText().toString(),false);
 
-                tvCharitySugg.setText("Open Charity Suggestions");
-                cardView.setVisibility(View.GONE);
-
-                btnSubmit.setVisibility(View.GONE);
-                tiCharity.setVisibility(View.GONE);
-                etCharity.setVisibility(View.GONE);
 
 
 
@@ -168,7 +120,7 @@ public class CharitySearch extends AppCompatActivity {
     }
 
 
-    private void getResponseLower(String search, boolean search_by_name){
+    private void getResponseSearch(String search, boolean search_by_name){
 
         client = new CharityClient();
         showProgressBar();
@@ -195,11 +147,11 @@ public class CharitySearch extends AppCompatActivity {
 
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-                                acharitiesLower.clear();
+                                acharitiesUpper.clear();
                                 for(CharityAPI charityAPI : charities){
-                                    acharitiesLower.add(charityAPI);
+                                    acharitiesUpper.add(charityAPI);
                                 }
-                                charityAdapterLower.notifyDataSetChanged();
+                                charityAdapterUpper.notifyDataSetChanged();
                                 hideProgressBar();
 
                             } catch (JSONException e) {
