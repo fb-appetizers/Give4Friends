@@ -99,8 +99,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DonateSearchCharity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

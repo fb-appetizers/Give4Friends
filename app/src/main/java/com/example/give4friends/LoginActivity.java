@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
             startActivity(intent);
         }
 //        if (ParseUser.getCurrentUser()!=null) {
