@@ -30,7 +30,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private Context context;
@@ -74,6 +74,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
+
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
 
@@ -85,16 +86,16 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
 
-            vh1.tvCPname.setText("Hello");
-//                vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
-//
-//
-//                vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-//                        +charity.getName()+ "</a>"));
-//
-//                vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-//                vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-//                vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+
+            vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+            vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
+                    +charity.getName()+ "</a>"));
+
+            vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
+            vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
+            vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
 
             final boolean is_empty;
@@ -178,6 +179,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
     }
+
 
 
     @Override
