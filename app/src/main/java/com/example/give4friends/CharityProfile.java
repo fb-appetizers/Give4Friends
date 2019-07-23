@@ -29,13 +29,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 public class CharityProfile extends AppCompatActivity {
-    TextView tvCPname;
-    TextView tvCPCategory;
-    TextView tvCPCause;
-    TextView tvCPMission;
-    TextView tvCPLikedNum;
-    ImageButton ibCPLike;
-    RecyclerView rvCPComments;
+
 
     RecyclerView rvCPProfile;
     ArrayList<Object> items;
@@ -48,7 +42,7 @@ public class CharityProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity_profile);
 
-        configureToolbar();
+
 
 
         rvCPProfile = findViewById(R.id.rvCPProfile);
@@ -77,36 +71,10 @@ public class CharityProfile extends AppCompatActivity {
     }
 
     private void configureToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Give4Friends");
-        setSupportActionBar(toolbar);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CharityProfile.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.charity_menu, menu);
 
-        return super.onCreateOptionsMenu(menu);
-    }
 
     public void logOut(){
         ParseUser.logOut();
@@ -114,31 +82,5 @@ public class CharityProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.etCharity:
-                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.transactionHistory:
-                Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.useOffline:
-                Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.settings:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
-                intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.logOut:
-                Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
-                logOut();
-            default:
-//                Log.e()
-        }
-        return true;
-    }
+
 }

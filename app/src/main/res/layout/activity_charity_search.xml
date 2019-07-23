@@ -8,21 +8,17 @@
     android:background="#FFFFFF"
     tools:context=".CharitySearch">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiCharity"
-        android:layout_width="311dp"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:background="#FFFFFF"
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvSugg">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCharity"
@@ -46,12 +42,11 @@
         android:id="@+id/btnSubmit"
         android:layout_width="88dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tiCharity"
-        app:layout_constraintTop_toBottomOf="@+id/cvSugg" />
+        app:layout_constraintTop_toTopOf="@+id/tiCharity" />
 
     <androidx.cardview.widget.CardView
 
@@ -59,10 +54,10 @@
         android:id="@+id/cvSugg"
 
         android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_height="510dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
 
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
@@ -71,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/tiCharity">
 
 
         <androidx.recyclerview.widget.RecyclerView
