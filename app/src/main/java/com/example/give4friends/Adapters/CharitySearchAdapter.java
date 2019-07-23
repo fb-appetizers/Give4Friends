@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.CharitySearch;
-import com.example.give4friends.DonateFinalActivity;
+//import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
@@ -119,11 +119,11 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                 CharityAPI selectedCharity = mCharity.get(position);
 //                Charity charity = selectedCharity.getCharity();
 
-
-                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                intent.putExtra("friend", (Parcelable) DonateSearchCharity.friendInfo);
-                intent.putExtra("charity", selectedCharity.getName());
-                view.getContext().startActivity(intent);
+//
+//                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+//                intent.putExtra("friend", (Parcelable) DonateSearchCharity.friendInfo);
+//                intent.putExtra("charity", selectedCharity.getName());
+//                view.getContext().startActivity(intent);
             }
         }
     }

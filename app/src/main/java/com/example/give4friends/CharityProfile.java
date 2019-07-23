@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,8 +19,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.give4friends.Adapters.CharityProfileAdapter;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.parse.ParseUser;
 
@@ -29,14 +31,12 @@ import java.util.ArrayList;
 public class CharityProfile extends AppCompatActivity {
 
 
-    TextView tvCPname;
-    TextView tvCPCategory;
-    TextView tvCPCause;
-    TextView tvCPMission;
-    TextView tvCPLikedNum;
-    ImageButton ibCPLike;
-    RecyclerView rvCPComments;
+
+    RecyclerView rvCPProfile;
+    ArrayList<Object> items;
     CharityAPI charity;
+    CharityProfileAdapter itemsAdapter;
+
 
 
     @Override
@@ -46,26 +46,34 @@ public class CharityProfile extends AppCompatActivity {
 
         configureToolbar();
 
-        tvCPname = findViewById(R.id.tvCPname);
-        tvCPCategory = findViewById(R.id.tvCPCategory);
-        tvCPCause = findViewById(R.id.tvCPCause);
-        tvCPMission = findViewById(R.id.tvCPMission);
-        tvCPLikedNum = findViewById(R.id.tvCPLikedNum);
-        ibCPLike = findViewById(R.id.ibCPLike);
-        rvCPComments = findViewById(R.id.rvCPComments);
 
+        rvCPProfile = findViewById(R.id.rvCPProfile);
+
+        items = new ArrayList<Object>();
+
+
+        itemsAdapter = new CharityProfileAdapter(items);
+
+        // attach the adapter to the RecyclerView
+        rvCPProfile.setAdapter(itemsAdapter);
+
+        // Set layout manager to position the items
+        rvCPProfile.setLayoutManager(new LinearLayoutManager(this));
 
         charity = (CharityAPI) Parcels.unwrap(getIntent().getParcelableExtra("Charity"));
 
-        tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-                +charity.getName()+ "</a>"));
 
-        tvCPMission.setText(Html.fromHtml(charity.getMission()));
-        tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-        tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+        populateProfile();
 
 
 
+
+
+    }
+
+    private void populateProfile(){
+        items.add(charity);
+        itemsAdapter.notifyItemInserted(items.size() - 1);
 
     }
 
