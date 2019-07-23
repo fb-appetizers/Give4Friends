@@ -39,22 +39,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
             startActivity(intent);
         }
-//        if (ParseUser.getCurrentUser()!=null) {
-//
-//            Transaction transaction = new Transaction();
-//            transaction.setKeyAmountDonated(5);
-//            transaction.setKeyMessage("this is for you boo");
-//            transaction.setKeyDonorId(ParseUser.getCurrentUser());
-//            transaction.setKeyFriendId(ParseUser.getCurrentUser());
-//
-//            try {
-//                transaction.save();
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }else{
-//            Toast.makeText(this,"Make sure that you login then logout",Toast.LENGTH_SHORT).show();
-//        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if(e == null){
                     Log.d("login", "Login Successful");
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
                     startActivity(intent);
 
                     loadingProgressBar.setVisibility(View.INVISIBLE);

@@ -105,7 +105,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setNewTransaction();
-                Intent intent = new Intent(DonateFinalActivity.this, MainActivity.class);
+                Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
                 startActivity(intent);
             }
         });
