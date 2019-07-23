@@ -23,7 +23,7 @@
         <EditTextPreference
             app:key="username"
             app:title="@string/username"
-            app:useSimpleSummaryProvider="true" />
+            />
 
         <EditTextPreference
             app:key="password"
@@ -44,7 +44,7 @@
             app:defaultValue="public"
             app:entries="@array/privacy_entries"
             app:entryValues="@array/privacy_values"
-            app:key="privacy"
+            app:key="reply"
             app:title="Transaction Visibility"
             app:useSimpleSummaryProvider="true" />
 

@@ -89,6 +89,14 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         actionbar.setDisplayShowTitleEnabled(false);
 
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

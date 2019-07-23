@@ -128,7 +128,6 @@ public class ProfileActivity extends AppCompatActivity {
         //find the RecyclerView
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
 
-
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
@@ -152,7 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onRefresh() {
                 feedAdapter.clear();
                 feedAdapter.addAll(charities);
-                populate();
+                populateRelations();
                 swipeContainer.setRefreshing(false);
             }
 
@@ -166,7 +165,7 @@ public class ProfileActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
 
-        populate();
+        populateRelations();
 
 
         // Below for static elements of profile
@@ -254,23 +253,13 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
-                case R.id.etCharity:
-                    Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
-                    startActivity(intent);
-                    return true;
                 case R.id.transactionHistory:
                     Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.useOffline:
                     Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
-                    return true;
-                case R.id.settings:
-                    Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                    startActivity(intent);
                     return true;
                 case R.id.logOut:
                     Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
@@ -378,27 +367,40 @@ public class ProfileActivity extends AppCompatActivity {
 private void populate(){
 
 
-    //Get relation
-    final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
-    //Get all charities in relation
-    favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
-        @Override
-        public void done(List<Charity> objects, ParseException e) {
-            if (e != null) {
-                // There was an error
-            } else {
-                // results have all the charities the current user liked.
-                // go through relation adding charities
-                for (int i = 0; i < objects.size(); i++) {
-                    charities.add((Charity) objects.get(i));
+    //Get list
+    final List<Charity> favCharities = myUser.getList("favCharities");
+    if(favCharities != null) {
+        for (int i = 0; i < favCharities.size(); i++) {
+            charities.add((Charity) favCharities.get(i));
+        }
+    }
+    }
 
+
+
+    private void populateRelations() {
+        //Get relation
+        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+        //Get all charities in relation
+        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for (int i = 0; i < objects.size(); i++) {
+                        charities.add((Charity) objects.get(i));
+
+                    }
                 }
             }
+        });
 
-        }
-    });
-}}
 
+    }
+}
 
 
 

@@ -3,6 +3,7 @@ package com.example.give4friends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private TextView amountEntered;
     private EditText message;
     private Button submitDonation;
+    private ImageButton cancelBtn;
 
     private ImageView friendsImage;
     private TextView friendsName;
@@ -60,6 +63,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         message = findViewById(R.id.donationMessage);
         charityName = findViewById(R.id.charityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
+        cancelBtn = findViewById(R.id.ibcancelFinal);
 
         ParseFile profilePic = friend.getParseFile("profileImage");
 
@@ -102,6 +106,14 @@ public class DonateFinalActivity extends AppCompatActivity {
                 setNewTransaction();
                 Intent intent = new Intent(DonateFinalActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

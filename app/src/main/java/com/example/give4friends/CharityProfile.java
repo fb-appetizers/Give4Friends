@@ -43,6 +43,7 @@ public class CharityProfile extends AppCompatActivity {
     CharityProfileAdapter itemsAdapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +108,6 @@ public class CharityProfile extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-
     public void logOut(){
         ParseUser.logOut();
         Intent intent = new Intent(this, LoginActivity.class);

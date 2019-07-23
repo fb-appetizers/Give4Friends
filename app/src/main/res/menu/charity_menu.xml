@@ -3,20 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/etCharity"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Charity Search"
-        app:actionViewClass="android.widget.SearchView" />
+
     <item
         android:id="@+id/transactionHistory"
         android:title="Transaction History" />
     <item
         android:id="@+id/useOffline"
         android:title="Use Offline" />
-    <item
-        android:id="@+id/settings"
-        android:title="Settings" />
+
     <item
         android:id="@+id/logOut"
         android:title="Log Out" />
