@@ -70,7 +70,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     protected void queryFriends(String name){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereContains("username", name);
-//
+
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
