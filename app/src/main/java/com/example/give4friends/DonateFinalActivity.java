@@ -82,7 +82,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         charityName.setText(charityName2);
 
         friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
-        friendsUserName.setText(currentFriend.getUsername());
+        friendsUserName.setText("@" + currentFriend.getUsername());
 
         amountEntered.setVisibility(View.GONE);
 

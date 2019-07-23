@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
@@ -25,6 +26,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class CustomDialog extends DialogFragment {
@@ -69,9 +71,9 @@ public class CustomDialog extends DialogFragment {
             public void onClick(View view) {
                 setCurrentCharity();
 
-                //TODO: charityName2 = charity.getName();
-                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                intent.putExtra("charityName", charity.getName());
+                charityName2 = charity.getName();
+                Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                intent.putExtra("donateNow", true);
                 view.getContext().startActivity(intent);
             }
         });
