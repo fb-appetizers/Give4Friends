@@ -3,12 +3,14 @@ package com.example.give4friends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private EditText message;
     private TextView charityName;
     private Button submitDonation;
+    private ImageButton cancelBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         message = findViewById(R.id.donationMessage);
         charityName = findViewById(R.id.charityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
+        cancelBtn = findViewById(R.id.ibcancelFinal);
 
         amountEntered.setVisibility(View.GONE);
 
@@ -71,6 +75,14 @@ public class DonateFinalActivity extends AppCompatActivity {
                 setNewTransaction();
                 Intent intent = new Intent(DonateFinalActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

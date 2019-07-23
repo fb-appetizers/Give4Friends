@@ -29,8 +29,13 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 public class CharityProfile extends AppCompatActivity {
-
-
+    TextView tvCPname;
+    TextView tvCPCategory;
+    TextView tvCPCause;
+    TextView tvCPMission;
+    TextView tvCPLikedNum;
+    ImageButton ibCPLike;
+    RecyclerView rvCPComments;
 
     RecyclerView rvCPProfile;
     ArrayList<Object> items;
@@ -64,11 +69,6 @@ public class CharityProfile extends AppCompatActivity {
 
 
         populateProfile();
-
-
-
-
-
     }
 
     private void populateProfile(){
@@ -76,9 +76,6 @@ public class CharityProfile extends AppCompatActivity {
         itemsAdapter.notifyItemInserted(items.size() - 1);
 
     }
-
-
-
 
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -117,9 +114,6 @@ public class CharityProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -147,8 +141,4 @@ public class CharityProfile extends AppCompatActivity {
         }
         return true;
     }
-
-
-
-
 }

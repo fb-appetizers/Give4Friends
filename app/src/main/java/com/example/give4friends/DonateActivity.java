@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +41,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         searchFriend = findViewById(R.id.searchFriend);
         searchBtn = findViewById(R.id.searchBtn);
         rvFriends = findViewById(R.id.rvFriends);
-        cancel = findViewById(R.id.cancel);
+        cancel = findViewById(R.id.ibcancelFinal);
 
         friends = new ArrayList<ParseUser>();
 
@@ -62,8 +61,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DonateActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+
             }
         });
     }
@@ -71,7 +70,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     protected void queryFriends(String name){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereContains("username", name);
-//
+
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {

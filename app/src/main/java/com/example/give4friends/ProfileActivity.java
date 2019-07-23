@@ -253,23 +253,13 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
-                case R.id.etCharity:
-                    Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
-                    startActivity(intent);
-                    return true;
                 case R.id.transactionHistory:
                     Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.useOffline:
                     Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
-                    return true;
-                case R.id.settings:
-                    Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                    startActivity(intent);
                     return true;
                 case R.id.logOut:
                     Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();

@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class CharityAPI {
     public String causeName;
     public String websiteUrl;
     public String ratingsUrl;
+    public List<String> likedUser;
     public Charity ParseCharity;
 
     public void setName(String name) {

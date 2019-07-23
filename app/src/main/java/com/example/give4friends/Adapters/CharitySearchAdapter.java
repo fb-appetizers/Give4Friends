@@ -116,66 +116,10 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             ivRating = itemView.findViewById(R.id.ivRating);
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
-
-            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            int position = getAdapterPosition(); // gets item position
-            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                final CharityAPI selectedCharity = mCharity.get(position);
-
-                ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
-                charityParseQuery.include(Charity.KEY_CHARITY_ID);
-
-                charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
-
-                charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
-                    @Override
-                    public void done(Charity object, ParseException e) {
-                        if(e != null){
-                            if(e.getCode() == ParseException.OBJECT_NOT_FOUND)
-                            {
-                                newCharity = new Charity();
-                                newCharity.setKeyCategoryName(selectedCharity.getCategoryName());
-                                newCharity.setKeyCauseName(selectedCharity.getCauseName());
-                                newCharity.setKeyCharityID(selectedCharity.getEin());
-                                newCharity.setKeyMission(selectedCharity.getMission());
-                                newCharity.setKeyName(selectedCharity.getName());
-                                newCharity.setKeyRatingURL(selectedCharity.getRatingsUrl());
-                                newCharity.setKeyUrl(selectedCharity.getWebsiteUrl());
-
-                                newCharity.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-                                        if(e == null){
-                                            Log.d("CharitySearchAdapter", "Created new charity");
-                                            charity = newCharity;
-                                        }
-                                        else{
-                                            Log.d("CharitySearchAdapter", "Invalid charity");
-
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-                            }
-                            else
-                            {
-                                Log.e("CharitySearchAdapter", "Error with query of charity");                            }
-                        }
-                        else{
-                            charity = object;
-                        }
-                    }
-                });
-
-//                Charity charity = selectedCharity.getCharity();
-
-                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                view.getContext().startActivity(intent);
-            }
         }
     }
 }

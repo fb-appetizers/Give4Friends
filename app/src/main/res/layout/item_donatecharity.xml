@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvTransactionTrans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.432" />
 
     <ImageView
-        android:id="@+id/cancel"
+        android:id="@+id/ibcancelFinal"
         android:layout_width="34dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
