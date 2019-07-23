@@ -25,7 +25,8 @@ import com.parse.SaveCallback;
 
 import java.util.List;
 
-import static com.example.give4friends.DonateActivity.charity;
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapter.ViewHolder> {
 
@@ -106,13 +107,14 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
                                 Log.e("CharitySearchAdapter", "Error with query of charity");
                             }
                         } else {
-                            charity = object;
+                            currentCharity = object;
                         }
                     }
                 });
 
+                charityName2 = selectedCharity.getName();
+
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                intent.putExtra("charityName", selectedCharity.getName());
                 view.getContext().startActivity(intent);
             }
         }
@@ -133,7 +135,7 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("CharitySearchAdapter", "Created new charity");
-                    charity = newCharity;
+                    currentCharity = newCharity;
                 } else {
                     Log.d("CharitySearchAdapter", "Invalid charity");
                     e.printStackTrace();

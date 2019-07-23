@@ -27,10 +27,11 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private Context context;
@@ -55,17 +56,16 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
-        if(viewType == CHARITY) {
+        if (viewType == CHARITY) {
 
-              View v1 = inflater.inflate(R.layout.item_main_profile_view, viewGroup, false);
-              viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
-              return viewHolder;
+            View v1 = inflater.inflate(R.layout.item_main_profile_view, viewGroup, false);
+            viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
+            return viewHolder;
 
-        }
-        else if(viewType == COMMENT) {
-              View v2 = inflater.inflate(R.layout.activity_comment_profile, viewGroup, false);
-              viewHolder = new CharityProfileAdapter.ViewHolderComment(v2);
-              return viewHolder;
+        } else if (viewType == COMMENT) {
+            View v2 = inflater.inflate(R.layout.activity_comment_profile, viewGroup, false);
+            viewHolder = new CharityProfileAdapter.ViewHolderComment(v2);
+            return viewHolder;
         }
 
 
@@ -73,7 +73,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
     }
-
 
 
     @Override
@@ -85,8 +84,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
 
-
-        vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
+            vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
 
             vh1.tvCPname.setText("Hello");
 //                vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
@@ -106,85 +104,82 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
-            final List<User> array = parseCharity.getList("likesUsers" );
+            final List<User> array = parseCharity.getList("likesUsers");
 
-        vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-                +charity.getName()+ "</a>"));
+            vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
+                    + charity.getName() + "</a>"));
             // get all of the users favorite charities
             final ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
 
-        vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-        vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-        vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
-        }else if (viewHolder.getItemViewType() == COMMENT){
+            vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
+            vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
+            vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+        } else if (viewHolder.getItemViewType() == COMMENT) {
 
 
             ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
 
 
-
-
 // if user is in likesUsers - start yellow
-            if(array == null || !(array.contains(myUser.getObjectId())) ) {
-                is_empty = true;
-                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-            }
-            else{
-                is_empty = false;
-                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
-            }
+//            if (array == null || !(array.contains(myUser.getObjectId()))) {
+//                is_empty = true;
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+//            } else {
+//                is_empty = false;
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
+//                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+//            }
+//
+//            ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
+//
+//                    if (is_empty) {
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+//                        //update parse
+//                        //updateUser
+//                        relation.add(parseCharity);
+//                        myUser.saveInBackground();
+//
+//
+//                        //increment likes for charity
+//                        parseCharity.incrementLikes(1);
+//                        //add user to array
+//                        parseCharity.addLikesUser(myUser.getObjectId());
+//                        parseCharity.saveInBackground();
+//
+//
+//                    } else {
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
+//                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+//
+//                        //update parse
+//
+//                        //update user
+//                        relation.remove(parseCharity);
+//                        myUser.saveInBackground();
+//
+//                        //update charity
+//                        parseCharity.incrementLikes(-1);
+//                        //add user to array
+//                        array.remove(myUser.getObjectId());
+//                        parseCharity.setKeyLikesUsers(array);
+//                        parseCharity.saveInBackground();
+//
+//                    }
+//
+//
+//                }
+//            });
 
-            ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
-
-                    if (is_empty) {
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
-                        //update parse
-                        //updateUser
-                            relation.add(parseCharity);
-                            myUser.saveInBackground();
-
-
-                        //increment likes for charity
-                        parseCharity.incrementLikes(1);
-                        //add user to array
-                        parseCharity.addLikesUser(myUser.getObjectId());
-                        parseCharity.saveInBackground();
-
-
-                    } else {
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-
-                        //update parse
-
-                        //update user
-                        relation.remove(parseCharity);
-                        myUser.saveInBackground();
-
-                        //update charity
-                        parseCharity.incrementLikes(-1);
-                        //add user to array
-                        array.remove(myUser.getObjectId());
-                        parseCharity.setKeyLikesUsers(array);
-                        parseCharity.saveInBackground();
-
-                    }
-
-
-                }
-            });
-
-        }else if (viewHolder.getItemViewType() == COMMENT){
+        } else if (viewHolder.getItemViewType() == COMMENT) {
 
 
             ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
@@ -192,7 +187,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
     }
-
 
 
     @Override
@@ -207,14 +201,14 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         if (position == 0) {
             return CHARITY;
-        } else  {
+        } else {
             return COMMENT;
         }
 
     }
 
 
-    public class ViewHolderCharity extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolderCharity extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         TextView tvCPname;
@@ -241,7 +235,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         public ViewHolderComment(@NonNull View itemView) {
@@ -256,18 +250,18 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    public Charity convertCharity(final CharityAPI selectedCharity){
+    public Charity convertCharity(final CharityAPI selectedCharity) {
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
 
         charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
 
         try {
-            parseCharity = charityParseQuery.getFirst();;
+            parseCharity = charityParseQuery.getFirst();
+            ;
         } catch (ParseException e) {
             e.printStackTrace();
-            if(e.getCode() == ParseException.OBJECT_NOT_FOUND)
-            {
+            if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
                 final Charity newCharity = new Charity();
                 newCharity.setKeyCategoryName(selectedCharity.getCategoryName());
                 newCharity.setKeyCauseName(selectedCharity.getCauseName());
@@ -284,11 +278,11 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     e1.printStackTrace();
                 }
 
+            } else {
+                Log.e("CharitySearchAdapter", "Error with query of charity");
             }
-            else
-            {
-                Log.e("CharitySearchAdapter", "Error with query of charity");                            }
         }
 
         return parseCharity;
     }
+}

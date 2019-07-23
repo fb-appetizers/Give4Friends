@@ -34,22 +34,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private ImageButton cancelBtn;
 
-
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history);
 
-
-//        configureToolbar();
         cancelBtn = findViewById(R.id.cancelTrans);
-
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -93,16 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         populate();
-
-
-
     }
-
-
-
-
-
-
 
     protected void populate(){
         //get query

@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 
 import com.example.give4friends.models.CharityAPI;
@@ -67,12 +69,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         Glide.with(context)
                 .load(charity.getRatingsUrl())
                 .into(holder.ivRating);
-
-        if(this.remove_links) {
-            holder.tvMoreInfo.setVisibility(View.GONE);
-            holder.tvDonateNow.setVisibility(View.GONE);
-
-        }
     }
 
     @Override
@@ -101,6 +97,15 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             ivRating = itemView.findViewById(R.id.ivRating);
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
 
         @Override

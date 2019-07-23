@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.Adapters.DonateSearchAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -35,7 +34,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.example.give4friends.DonateActivity.friend;
+import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class DonateSearchCharity extends AppCompatActivity implements Serializable {
     private TextView friendsUserName;
@@ -98,10 +97,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     }
 
     private void setUpFriend(){
-        friendsUserName.setText("@" + friend.getUsername());
-        friendsName.setText(friend.get("firstName").toString() + " " + friend.get("lastName"));
+        friendsUserName.setText("@" + currentFriend.getUsername());
+        friendsName.setText(currentFriend.get("firstName").toString() + " " + currentFriend.get("lastName"));
 
-        ParseFile image = friend.getParseFile("profileImage");
+        ParseFile image = currentFriend.getParseFile("profileImage");
 
         if(image != null){
             Glide.with(getApplicationContext())

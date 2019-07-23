@@ -31,8 +31,9 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import static com.example.give4friends.DonateActivity.charity;
-import static com.example.give4friends.DonateActivity.friend;
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
+import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class DonateFinalActivity extends AppCompatActivity {
     private ParseUser ff;
@@ -65,7 +66,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
 
-        ParseFile profilePic = friend.getParseFile("profileImage");
+        ParseFile profilePic = currentFriend.getParseFile("profileImage");
 
         if(profilePic != null){
             Glide.with(this)
@@ -78,10 +79,10 @@ public class DonateFinalActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        charityName.setText(intent.getStringExtra("charityName"));
+        charityName.setText(charityName2);
 
-        friendsName.setText(friend.get("firstName") + " " + friend.get("lastName"));
-        friendsUserName.setText(friend.getUsername());
+        friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
+        friendsUserName.setText(currentFriend.getUsername());
 
         amountEntered.setVisibility(View.GONE);
 
@@ -123,9 +124,9 @@ public class DonateFinalActivity extends AppCompatActivity {
         Transaction newTransaction = new Transaction();
 
         newTransaction.setKeyMessage(message.getText().toString());
-        newTransaction.setKeyFriendId(friend);
+        newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
-        newTransaction.setKeyCharityId(charity);
+        newTransaction.setKeyCharityId(currentCharity);
         newTransaction.setKeyAmountDonated(Integer.parseInt(amount.getText().toString()));
 
         newTransaction.saveInBackground(new SaveCallback() {
