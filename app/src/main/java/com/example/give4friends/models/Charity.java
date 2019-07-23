@@ -99,7 +99,7 @@ public class Charity extends ParseObject {
         return getList(KEY_LIKES_USERS);
     }
 
-    public void setKeyLikesUsers(List<String> list){
+    public void setKeyLikesUsers(List<Charity> list){
         put(KEY_LIKES_USERS, list);
     }
 

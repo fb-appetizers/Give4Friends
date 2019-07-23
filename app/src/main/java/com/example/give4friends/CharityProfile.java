@@ -68,27 +68,74 @@ public class CharityProfile extends AppCompatActivity {
         tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
         // For like button
+
+        //TODO we need to add charity to parse/get it from parse
+
+
+
         final boolean is_empty;
 
         //check if user is in likes list
-        final List<String> array = charity.getKeyLikesUsers();
+        final List<Charity> array = ParseUser.getCurrentUser().getList("favCharities" );
 
-        // if user is in likesUsers - start red
-        if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+        // if user is in likesUsers - start yellow
+        if(array == null || !(array.contains(parseCharity))) {
             is_empty = true;
-            ibCPLike.setImageResource(R.drawable.ic_vector_heart_stroke);
+            ibCPLike.setImageResource(R.drawable.ic_like_icon);
             ibCPLike.setColorFilter(Color.BLACK);
             ibCPLike.setRotation(2);
         }
         else{
             is_empty = false;
-            ibCPLike.setImageResource(R.drawable.ic_vector_heart);
-            ibCPLike.setColorFilter(Color.RED);
+            ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+            ibCPLike.setColorFilter(Color.YELLOW);
             ibCPLike.setRotation(1);
         }
 
+        ibCPLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean is_empty = (ibCPLike.getRotation() == 2);
+
+                if (is_empty) {
+                    ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+                    ibCPLike.setColorFilter(Color.YELLOW);
+                    ibCPLike.setRotation(1);
+                    //update parse
+                    //increment likes for charity
+                    parseCharity.incrementLikes(1);
+                    //add user to array
+                    parseCharity.addLikesUser(ParseUser.getCurrentUser().getObjectId());
+                    parseCharity.saveInBackground();
+
+                    //updateUser
+                    ParseUser.getCurrentUser().add("favCharities", parseCharity);
+                    ParseUser.getCurrentUser().saveInBackground();
+
+                } else {
+                    ibCPLike.setImageResource(R.drawable.ic_like_icon);
+                    ibCPLike.setColorFilter(Color.BLACK);
+                    ibCPLike.setRotation(2);
+
+                    //update parse
+
+                    //update transaction
+                    parseCharity.incrementLikes(-1);
+                    //add user to array
+                    array.remove(ParseUser.getCurrentUser().getObjectId());
+                    parseCharity.setKeyLikesUsers(array);
+                    parseCharity.saveInBackground();
+
+                    //update user
+                    array.remove(parseCharity);
+                    ParseUser.getCurrentUser().put("favCharities", array);
+                    ParseUser.getCurrentUser().saveInBackground();
+
+                }
 
 
+            }
+        });
     }
 
 
