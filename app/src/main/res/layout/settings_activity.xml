@@ -12,13 +12,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Settings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarSettings"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarSettings"
+        app:layout_constraintStart_toStartOf="@+id/toolbarSettings"
+        app:layout_constraintTop_toTopOf="@+id/toolbarSettings"
+        app:layout_constraintVertical_bias="0.432" />
+
+    <ImageButton
+        android:id="@+id/ibcancelSettings"
+        android:layout_width="34dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarSettings"
+        app:layout_constraintStart_toStartOf="@+id/toolbarSettings"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        app:srcCompat="@drawable/ic_cancel_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
