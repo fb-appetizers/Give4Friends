@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="5dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -19,13 +20,20 @@
 
         <TextView
             android:id="@+id/friendsName"
+            android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:fontFamily="sans-serif-thin"
+            android:textAllCaps="true"
+            android:textColor="#020202"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/friendsUserName"
+            android:layout_gravity="top"
+            android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

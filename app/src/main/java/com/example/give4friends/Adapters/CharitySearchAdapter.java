@@ -163,7 +163,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                             }
                             else
                             {
-                                Log.e("CharitySearchAdapter", "Error with query of charity");                            }
+                                Log.e("CharitySearchAdapter", "Error with query of charity");
+                            }
                         }
                         else{
                             charity = object;
@@ -171,7 +172,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
                     }
                 });
 
-//                Charity charity = selectedCharity.getCharity();
+                //Charity charity = selectedCharity.getCharity();
 
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
                 view.getContext().startActivity(intent);
