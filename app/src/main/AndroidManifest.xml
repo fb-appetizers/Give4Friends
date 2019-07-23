@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CharityProfile"></activity>
-
+        <activity android:name=".Main_Fragment_Branch"></activity>
         <activity android:name=".DonateFinalActivity"></activity>
 
         <activity android:name=".DonateSearchCharity" />

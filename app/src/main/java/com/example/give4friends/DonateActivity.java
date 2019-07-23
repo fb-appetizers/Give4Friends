@@ -62,8 +62,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DonateActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+
             }
         });
     }

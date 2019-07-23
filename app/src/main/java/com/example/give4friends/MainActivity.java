@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -21,6 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.models.Transaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -31,13 +33,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton suggBtn;
-    private ImageButton emptyHeartBtn;
-    private ImageButton fullHeartBtn;
+
 
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         populate();
+
+
+
     }
 
     protected void configureToolbar() {
