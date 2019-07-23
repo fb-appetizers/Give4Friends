@@ -110,7 +110,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
             // get all of the users favorite charities
-            final ParseRelation<ParseObject> relation = myUser.getRelation("likes");
+            final ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
 
 
 // if user is in likesUsers - start yellow
