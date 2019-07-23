@@ -82,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvTotalRaised;
     public TextView tvTotalDonated;
     public TextView tvFullName;
+    public ImageButton ibcancelProfile;
 
 
     //for changing picture
@@ -103,6 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
         context = this;
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
+        ibcancelProfile = findViewById(R.id.ibcancelProfile);
         configureToolbar();
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +117,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ProfilePicture.changePhoto(context);
+            }
+        });
+
+        ibcancelProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -198,27 +207,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         //add tool bar
         private void configureToolbar() {
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle("Give4Friends");
-            setSupportActionBar(toolbar);
+//            Toolbar toolbar = findViewById(R.id.toolbar);
+//            toolbar.setTitle("Give4Friends");
+//            setSupportActionBar(toolbar);
+//
+//            ActionBar actionbar = getSupportActionBar();
+//            actionbar.setDisplayShowTitleEnabled(false);
 
-            ActionBar actionbar = getSupportActionBar();
-            actionbar.setDisplayShowTitleEnabled(false);
 
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //No need to have an intent from the profile activity to the profile activity
-                }
-            });
-
-            findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    finish();
-                }
-            });
 
         }
 
