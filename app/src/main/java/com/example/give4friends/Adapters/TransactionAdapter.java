@@ -29,6 +29,7 @@ import com.parse.ParseUser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -78,28 +79,21 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.ibEmptyHeart.setRotation(1);
         }
 
-            // This is just a temporary function that controls the clicks. Will be updated later!!
             holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     boolean is_empty = (holder.ibEmptyHeart.getRotation() == 2);
 
-
                     if(is_empty) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
                         holder.ibEmptyHeart.setRotation(1);
-
-                        //update parse
-
                         //update transaction
                         //increment likes for transaction
                         transaction.incrementLikes(1);
                         //add user to array
                         transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
                         transaction.saveInBackground();
-
-
 
                     }else{
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
@@ -113,13 +107,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         //add user to array
                         array.remove(ParseUser.getCurrentUser().getObjectId());
                         transaction.setKeyLikesUsers(array);
-
-
                         transaction.saveInBackground();
 
-
                     }
-
                 }
             });
 
@@ -129,13 +119,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.message.setText("Message: " + transaction.getKeyMessage());
 
-        transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
+        if( transaction.getKeyCharityId() != null) {
+            transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
 
-                holder.charity.setText(object.getString("name"));
-            }
-        });
+                    holder.charity.setText(object.getString("name"));
+                }
+            });
+        }
+
 
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override

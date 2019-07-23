@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import com.parse.ParseUser;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CharityProfile extends AppCompatActivity {
 
@@ -37,6 +39,7 @@ public class CharityProfile extends AppCompatActivity {
     ImageButton ibCPLike;
     RecyclerView rvCPComments;
     CharityAPI charity;
+    Charity parseCharity;
 
 
     @Override
@@ -64,6 +67,25 @@ public class CharityProfile extends AppCompatActivity {
         tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
         tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
+        // For like button
+        final boolean is_empty;
+
+        //check if user is in likes list
+        final List<String> array = charity.getKeyLikesUsers();
+
+        // if user is in likesUsers - start red
+        if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+            is_empty = true;
+            ibCPLike.setImageResource(R.drawable.ic_vector_heart_stroke);
+            ibCPLike.setColorFilter(Color.BLACK);
+            ibCPLike.setRotation(2);
+        }
+        else{
+            is_empty = false;
+            ibCPLike.setImageResource(R.drawable.ic_vector_heart);
+            ibCPLike.setColorFilter(Color.RED);
+            ibCPLike.setRotation(1);
+        }
 
 
 
