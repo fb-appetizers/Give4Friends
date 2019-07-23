@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.User;
 
@@ -38,23 +39,23 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         context = viewGroup.getContext();
 
-        RecyclerView.ViewHolder viewHolder;
+        RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
-        switch (viewType) {
-            case CHARITY:
-                View v1 = inflater.inflate(R.layout.activity_charity_profile, viewGroup, false);
-                viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
-                break;
-            case COMMENT:
-                View v2 = inflater.inflate(R.layout.activity_comment_profile, viewGroup, false);
-                viewHolder = new CharityProfileAdapter.ViewHolderComment(v2);
-                break;
-            default:
-                View v3 = inflater.inflate(R.layout.activity_comment_profile, viewGroup, false);
-                viewHolder = new CharityProfileAdapter.ViewHolderComment(v3);
+        if(viewType == CHARITY) {
+
+              View v1 = inflater.inflate(R.layout.item_main_profile_view, viewGroup, false);
+              viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
+              return viewHolder;
 
         }
+        else if(viewType == COMMENT) {
+              View v2 = inflater.inflate(R.layout.activity_comment_profile, viewGroup, false);
+              viewHolder = new CharityProfileAdapter.ViewHolderComment(v2);
+              return viewHolder;
+        }
+
+
         return viewHolder;
 
 
@@ -66,30 +67,30 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
 
-        switch (viewHolder.getItemViewType()) {
-            case CHARITY:
-
-                CharityAPI charity = (CharityAPI) items.get(position);
-                ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
-
-                vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
+        if (viewHolder.getItemViewType() == CHARITY) {
+            CharityAPI charity = (CharityAPI) items.get(position);
+            ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
 
-                vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-                        +charity.getName()+ "</a>"));
+            vh1.tvCPname.setText("Hello");
+//                vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
+//
+//
+//                vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
+//                        +charity.getName()+ "</a>"));
+//
+//                vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
+//                vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
+//                vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+        }else if (viewHolder.getItemViewType() == COMMENT){
 
-                vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-                vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-                vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
-                break;
-            case COMMENT:
-                ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
-//                configureViewHolder2(vh2, position);
-                break;
-            default:
-                break;
+            ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
+
+
         }
+
+
     }
 
 
@@ -104,12 +105,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public int getItemViewType(int position) {
         //More to come
 
-        if (items.get(position) instanceof User) {
+        if (position == 0) {
             return CHARITY;
-        } else if (items.get(position) instanceof String) {
+        } else  {
             return COMMENT;
         }
-        return -1;
+
     }
 
 
