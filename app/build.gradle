@@ -60,4 +60,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'com.alespero:expandable-cardview:0.6'
+
+
+    implementation 'com.github.scottyab:showhidepasswordedittext:0.6'
 }

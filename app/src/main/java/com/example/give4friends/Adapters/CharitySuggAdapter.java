@@ -1,7 +1,6 @@
 package com.example.give4friends.Adapters;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -111,23 +111,22 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
             CharityAPI charity = mCharity.get(position);
 
 
-//            Fragment fragment = new Charity_Profile_Fragment(charity);
-//            FragmentManager fragmentManager = ((AppCompatActivity)context).getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//            fragmentTransaction.replace(R.id.flContainer, fragment);
-//
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();
+            Fragment fragment1 = new Charity_Profile_Fragment(charity);
+            FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+            fragmentManager.beginTransaction().
+                    replace(R.id.flContainer, fragment1)
+                    .addToBackStack(null).commit();
+
+
 
             // Send an intent to the Charity Profile
-            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(context, CharityProfile.class);
-
-            intent.putExtra("Charity", Parcels.wrap(charity));
-
-            context.startActivity(intent);
+//            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
+//
+//            Intent intent = new Intent(context, CharityProfile.class);
+//
+//            intent.putExtra("Charity", Parcels.wrap(charity));
+//
+//            context.startActivity(intent);
 
         }
 

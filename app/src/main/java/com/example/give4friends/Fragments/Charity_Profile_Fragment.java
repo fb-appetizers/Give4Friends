@@ -19,7 +19,7 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class Charity_Profile_Fragment extends Fragment{
+public class Charity_Profile_Fragment extends Fragment {
 
     RecyclerView rvCPProfile;
     ArrayList<Object> items;
