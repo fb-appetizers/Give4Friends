@@ -20,6 +20,7 @@ public class Charity extends ParseObject {
     public static final String KEY_CHARITY_ID  = "charityName";
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
+    public static final String KEY_WEBSITE = "websiteUrl";
 
     public Charity(){}
 
@@ -61,6 +62,13 @@ public class Charity extends ParseObject {
         put(KEY_RATING, url);
     }
 
+    public String getKeyWebsiteURL() {
+        return getString(KEY_WEBSITE);
+    }
+
+    public void setKeyWebsiteURL(String url) {
+        put(KEY_WEBSITE, url);
+    }
 
     public String getKeyCategoryName() {
         return getString(KEY_CATEGORY_NAME);

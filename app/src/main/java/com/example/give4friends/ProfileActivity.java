@@ -101,13 +101,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         context = this;
-
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
-
         configureToolbar();
-
-
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,14 +111,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
         btChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ProfilePicture.changePhoto(context);
             }
         });
-
 
         //Below for recycler view of charities\
         //find the RecyclerView
@@ -132,17 +126,6 @@ public class ProfileActivity extends AppCompatActivity {
         charities = new ArrayList<Charity>();
 
         populateRelations();
-
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
-        rvCharities.setLayoutManager(linearLayoutManager);
-
-        //construct the adapter from this datasource
-        feedAdapter = new FavCharitiesAdapter(charities);
-        //RecyclerView setup (layout manager, use adapter)
-        rvCharities.setAdapter(feedAdapter);
-        rvCharities.scrollToPosition(0);
-
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
@@ -213,7 +196,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-
         //add tool bar
         private void configureToolbar() {
             Toolbar toolbar = findViewById(R.id.toolbar);
@@ -239,7 +221,6 @@ public class ProfileActivity extends AppCompatActivity {
             });
 
         }
-
 
 
         @Override
@@ -394,6 +375,15 @@ private void populate(){
                         charities.add((Charity) objects.get(i));
 
                     }
+                    final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProfileActivity.this);
+                    rvCharities.setLayoutManager(linearLayoutManager);
+
+                    //construct the adapter from this datasource
+                    feedAdapter = new FavCharitiesAdapter(charities);
+                    //RecyclerView setup (layout manager, use adapter)
+                    rvCharities.setAdapter(feedAdapter);
+                    rvCharities.scrollToPosition(0);
+
                 }
             }
         });
