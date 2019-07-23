@@ -11,8 +11,6 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
-
-    //commented out now - will ask Jake how much we should do
     /*
 
     @Override

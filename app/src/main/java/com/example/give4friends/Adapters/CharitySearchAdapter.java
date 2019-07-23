@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.CharitySearch;
-//import com.example.give4friends.DonateFinalActivity;
+import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static com.example.give4friends.DonateActivity.charity;
 import static com.example.give4friends.DonateActivity.friend;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
@@ -34,6 +41,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
     private List<CharityAPI> mCharity;
     private boolean remove_links;
     private Context context;
+    private Charity newCharity;
 
     public CharitySearchAdapter(List<CharityAPI> mCharity, boolean is_in_donate_charity_search) {
         this.mCharity = mCharity;
@@ -116,14 +124,57 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         public void onClick(View view) {
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                CharityAPI selectedCharity = mCharity.get(position);
+                final CharityAPI selectedCharity = mCharity.get(position);
+
+                ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+                charityParseQuery.include(Charity.KEY_CHARITY_ID);
+
+                charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
+
+                charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+                    @Override
+                    public void done(Charity object, ParseException e) {
+                        if(e != null){
+                            if(e.getCode() == ParseException.OBJECT_NOT_FOUND)
+                            {
+                                newCharity = new Charity();
+                                newCharity.setKeyCategoryName(selectedCharity.getCategoryName());
+                                newCharity.setKeyCauseName(selectedCharity.getCauseName());
+                                newCharity.setKeyCharityID(selectedCharity.getEin());
+                                newCharity.setKeyMission(selectedCharity.getMission());
+                                newCharity.setKeyName(selectedCharity.getName());
+                                newCharity.setKeyRatingURL(selectedCharity.getRatingsUrl());
+                                newCharity.setKeyUrl(selectedCharity.getWebsiteUrl());
+
+                                newCharity.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        if(e == null){
+                                            Log.d("CharitySearchAdapter", "Created new charity");
+                                            charity = newCharity;
+                                        }
+                                        else{
+                                            Log.d("CharitySearchAdapter", "Invalid charity");
+
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Log.e("CharitySearchAdapter", "Error with query of charity");                            }
+                        }
+                        else{
+                            charity = object;
+                        }
+                    }
+                });
+
 //                Charity charity = selectedCharity.getCharity();
 
-//
-//                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-//                intent.putExtra("friend", (Parcelable) DonateSearchCharity.friendInfo);
-//                intent.putExtra("charity", selectedCharity.getName());
-//                view.getContext().startActivity(intent);
+                Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                view.getContext().startActivity(intent);
             }
         }
     }

@@ -158,7 +158,7 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Intent intent = new Intent(SignUpActivity.this, HomePage.class);
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                             } else {
                                 e.printStackTrace();
