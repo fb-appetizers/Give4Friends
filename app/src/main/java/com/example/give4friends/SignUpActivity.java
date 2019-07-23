@@ -26,6 +26,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 //import com.braintreepayments.cardform.view.CardForm;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.User;
 import com.parse.ParseException;
@@ -33,6 +37,8 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -48,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView addProfilePic;
     private ImageButton signUp;
     private ImageView profilePic;
-    private EditText passWord;
+    private ShowHidePasswordEditText passWord;
     Context context;
 
 
@@ -106,7 +112,17 @@ public class SignUpActivity extends AppCompatActivity {
                 photo = (Bitmap) data.getExtras().get("data");
                 photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
 
-                profilePic.setImageBitmap(photo);
+                Glide.with(context)
+                        .load(photo)
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCropTransform()
+                                .placeholder(R.drawable.user_outline_24)
+                                .error(R.drawable.user_outline_24))
+                        .into(profilePic);
+
+
+
 
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
@@ -116,7 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Uri photoUri = data.getData();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
-                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
+                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -126,7 +142,16 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
                     Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
-                    profilePic.setImageBitmap(selectedImageRotate);
+
+                    Glide.with(context)
+                            .load(selectedImageRotate)
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCropTransform()
+                                    .placeholder(R.drawable.user_outline_24)
+                                    .error(R.drawable.user_outline_24))
+                            .into(profilePic);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -168,6 +193,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 e.printStackTrace();
+
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
                             }
                         }
@@ -175,7 +201,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     e.printStackTrace();
-                    Toast.makeText(context,"Error in sign-up", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
