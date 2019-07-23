@@ -94,11 +94,11 @@
         android:id="@+id/amountEntered"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/amount"
         app:layout_constraintEnd_toEndOf="@+id/amount"
         app:layout_constraintStart_toStartOf="@+id/amount"
-        app:layout_constraintTop_toTopOf="@+id/amount" />
+        app:layout_constraintTop_toTopOf="@+id/amount"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/charityName"

@@ -22,6 +22,7 @@ import com.example.give4friends.models.User;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -146,27 +147,34 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
+                ParseFile image = object.getParseFile("profileImage");
 
-                Glide.with(context)
-                        .load(object.getParseFile("profileImage").getUrl())
-                        .apply(new RequestOptions()
-                                .transforms(new CenterCrop(), new RoundedCorners(20))
-                                .circleCrop())
+                if(image != null){
+                    Glide.with(context)
+                            .load(image.getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop())
 
-                        .into(holder.friendPhoto);
+                            .into(holder.friendPhoto);
+                }
             }
         });
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
 
-                Glide.with(context)
-                        .load(object.getParseFile("profileImage").getUrl())
-                        .apply(new RequestOptions()
-                                .transforms(new CenterCrop(), new RoundedCorners(20))
-                                .circleCrop())
+                ParseFile image = object.getParseFile("profileImage");
 
-                        .into(holder.donorPhoto);
+                if(image != null){
+                    Glide.with(context)
+                            .load(image.getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop())
+
+                            .into(holder.donorPhoto);
+                }
             }
         });
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
