@@ -66,13 +66,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             viewHolder = new CharityProfileAdapter.ViewHolderComment(v2);
             return viewHolder;
         }
-
-
         return viewHolder;
-
-
     }
-
 
 
     @Override
@@ -83,13 +78,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             CharityAPI charity = (CharityAPI) items.get(position);
             ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
-
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
-
-
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
-
-
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
                     +charity.getName()+ "</a>"));
 
@@ -97,9 +87,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
             vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
-
             final boolean is_empty;
             parseCharity = convertCharity(charity);
+
+
+
+            vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
 
 
 //check if user is in likes list
