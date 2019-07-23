@@ -3,7 +3,6 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,6 +101,7 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
                         if (e != null) {
                             if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
                                 addNewCharity(selectedCharity);
+                                return;
                             } else {
                                 Log.e("CharitySearchAdapter", "Error with query of charity");
                             }
@@ -112,6 +112,7 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
                 });
 
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                intent.putExtra("charityName", selectedCharity.getName());
                 view.getContext().startActivity(intent);
             }
         }
