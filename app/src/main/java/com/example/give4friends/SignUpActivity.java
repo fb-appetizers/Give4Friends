@@ -116,14 +116,17 @@ public class SignUpActivity extends AppCompatActivity {
                 Uri photoUri = data.getData();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 //photoFile = new File(photoUri.getPath());
                 photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-                    profilePic.setImageBitmap(selectedImage);
+                    Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
+                    profilePic.setImageBitmap(selectedImageRotate);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

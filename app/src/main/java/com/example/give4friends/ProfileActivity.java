@@ -314,6 +314,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Uri photoUri = data.getData();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -322,7 +323,8 @@ public class ProfileActivity extends AppCompatActivity {
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
 
-                    ivProfileImage.setImageBitmap(selectedImage);
+                    Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
+                    ivProfileImage.setImageBitmap(selectedImageRotate);
                     ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
                 } catch (IOException e) {
