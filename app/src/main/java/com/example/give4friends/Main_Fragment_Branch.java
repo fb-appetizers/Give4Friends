@@ -64,7 +64,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         break;
 
                     default:
-//                        showProgressBar();
+
                         fragment = fragment2;
 
                         break;
