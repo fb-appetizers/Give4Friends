@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton suggBtn;
+    private ImageButton cancelBtn;
 
 
     protected RecyclerView rvTransactions;
@@ -44,23 +44,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        configureToolbar();
-
-        suggBtn = findViewById(R.id.suggBtn);
+        setContentView(R.layout.activity_transaction_history);
 
 
-        suggBtn.setOnClickListener(new View.OnClickListener() {
+//        configureToolbar();
+        cancelBtn = findViewById(R.id.cancelTrans);
+
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DonateActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
         // Implement Recycler View
-        rvTransactions = findViewById(R.id.rvTransactions);
+        rvTransactions = findViewById(R.id.rvTransactionsTrans);
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         rvTransactions.scrollToPosition(0);
 
         // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainerTrans);
 
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -99,69 +98,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void configureToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Give4Friends");
-        setSupportActionBar(toolbar);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayShowTitleEnabled(false);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.charity_menu, menu);
 
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.etCharity:
-                Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), CharitySearch.class);
-
-                startActivity(intent);
-                return true;
-            case R.id.transactionHistory:
-                Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
-                intent = new Intent(getApplicationContext(), HistoryActivity.class);
-
-                startActivity(intent);
-                return true;
-            case R.id.useOffline:
-                Toast.makeText(this, "Use Offline selected", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.settings:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_LONG).show();
-                intent = new Intent(getApplicationContext(), SettingsActivity.class);
-
-                startActivity(intent);
-                return true;
-            case R.id.logOut:
-                Toast.makeText(this, "logging out...", Toast.LENGTH_LONG).show();
-                logOut();
-            default:
-//                Log.e()
-        }
-        return true;
-    }
-
-    public void logOut(){
-        ParseUser.logOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
 
     protected void populate(){
         //get query

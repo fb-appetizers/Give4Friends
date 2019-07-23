@@ -1,14 +1,10 @@
 package com.example.give4friends;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +22,6 @@ import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
 import com.parse.ParseFile;
-import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,8 +29,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import javax.annotation.meta.When;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -72,7 +65,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
-        cancel = findViewById(R.id.cancel);
+        cancel = findViewById(R.id.ibcancelFinal);
 
         acharities = new ArrayList<CharityAPI>();
 

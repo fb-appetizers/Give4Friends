@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +41,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         searchFriend = findViewById(R.id.searchFriend);
         searchBtn = findViewById(R.id.searchBtn);
         rvFriends = findViewById(R.id.rvFriends);
-        cancel = findViewById(R.id.cancel);
+        cancel = findViewById(R.id.ibcancelFinal);
 
         friends = new ArrayList<ParseUser>();
 

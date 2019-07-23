@@ -69,7 +69,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="25sp"
             card_view:layout_constraintEnd_toStartOf="@+id/ivFriend"
-            card_view:layout_constraintTop_toBottomOf="@+id/textView3" />
+            card_view:layout_constraintTop_toBottomOf="@+id/tvTransactionTrans" />
 
         <TextView
             android:id="@+id/tvDonor"
@@ -99,7 +99,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvTransactionTrans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
