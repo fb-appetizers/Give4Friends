@@ -109,75 +109,67 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
             // get all of the users favorite charities
-            final ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
-
-            vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-            vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
-            vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
-        } else if (viewHolder.getItemViewType() == COMMENT) {
-
-
-            ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
+            final ParseRelation<ParseObject> relation = myUser.getRelation("likes");
 
 
 // if user is in likesUsers - start yellow
-//            if (array == null || !(array.contains(myUser.getObjectId()))) {
-//                is_empty = true;
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-//            } else {
-//                is_empty = false;
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-//                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
-//            }
-//
-//            ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
-//
-//                    if (is_empty) {
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
-//                        //update parse
-//                        //updateUser
-//                        relation.add(parseCharity);
-//                        myUser.saveInBackground();
-//
-//
-//                        //increment likes for charity
-//                        parseCharity.incrementLikes(1);
-//                        //add user to array
-//                        parseCharity.addLikesUser(myUser.getObjectId());
-//                        parseCharity.saveInBackground();
-//
-//
-//                    } else {
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-//                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-//
-//                        //update parse
-//
-//                        //update user
-//                        relation.remove(parseCharity);
-//                        myUser.saveInBackground();
-//
-//                        //update charity
-//                        parseCharity.incrementLikes(-1);
-//                        //add user to array
-//                        array.remove(myUser.getObjectId());
-//                        parseCharity.setKeyLikesUsers(array);
-//                        parseCharity.saveInBackground();
-//
-//                    }
-//
-//
-//                }
-//            });
+            if (array == null || !(array.contains(myUser.getObjectId()))) {
+                is_empty = true;
+                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
+                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
+                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+            } else {
+                is_empty = false;
+                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
+                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+            }
+
+            ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
+
+                    if (is_empty) {
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+                        //update parse
+                        //updateUser
+                        relation.add(parseCharity);
+                        myUser.saveInBackground();
+
+
+                        //increment likes for charity
+                        parseCharity.incrementLikes(1);
+                        //add user to array
+                        parseCharity.addLikesUser(myUser.getObjectId());
+                        parseCharity.saveInBackground();
+
+
+                    } else {
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
+                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+
+                        //update parse
+
+                        //update user
+                        relation.remove(parseCharity);
+                        myUser.saveInBackground();
+
+                        //update charity
+                        parseCharity.incrementLikes(-1);
+                        //add user to array
+                        array.remove(myUser.getObjectId());
+                        parseCharity.setKeyLikesUsers(array);
+                        parseCharity.saveInBackground();
+
+                    }
+
+
+                }
+            });
 
         } else if (viewHolder.getItemViewType() == COMMENT) {
 
@@ -285,4 +277,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         return parseCharity;
     }
+
+    //testing push
 }

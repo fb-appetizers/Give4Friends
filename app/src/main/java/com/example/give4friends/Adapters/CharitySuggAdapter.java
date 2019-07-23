@@ -1,6 +1,8 @@
 package com.example.give4friends.Adapters;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
@@ -13,11 +15,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.CharityProfile;
 import com.example.give4friends.Cutom_Classes.CustomDialog;
+import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -105,6 +109,16 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
             int position = getAdapterPosition();
             CharityAPI charity = mCharity.get(position);
+
+
+//            Fragment fragment = new Charity_Profile_Fragment(charity);
+//            FragmentManager fragmentManager = ((AppCompatActivity)context).getFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//            fragmentTransaction.replace(R.id.flContainer, fragment);
+//
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
 
             // Send an intent to the Charity Profile
             Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();

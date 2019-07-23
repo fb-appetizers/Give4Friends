@@ -65,7 +65,7 @@ public class CharitySearch extends AppCompatActivity {
         setContentView(R.layout.activity_charity_search);
 
         //TODO reduce whitespace
-        configureToolbar();
+
 
         etCharity = findViewById(R.id.etCharity);
 
