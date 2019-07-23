@@ -50,7 +50,8 @@
         android:layout_marginEnd="16dp"
         android:text="Bio:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
+        android:textColor="#D2070707"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
 
@@ -142,15 +143,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btEditProfile"
         app:layout_constraintEnd_toStartOf="@+id/tvTotalDonated" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="386dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="-189dp" />
+
 
     <!--
     <androidx.recyclerview.widget.RecyclerView

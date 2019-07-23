@@ -21,6 +21,7 @@ public class Charity extends ParseObject {
     public static final String KEY_LIKES_COUNT  = "likesCount";
     public static final String KEY_LIKES_USERS  = "likesUsers";
     public static final String KEY_WEBSITE = "websiteUrl";
+    public static final String KEY_NUM_LIKES = "likesCount";
 
     public Charity(){}
 
@@ -113,5 +114,9 @@ public class Charity extends ParseObject {
 
     public void addLikesUser(String user){
         add(KEY_LIKES_USERS, user);
+    }
+
+    public int getKeyNumLikes(){
+        return getInt(KEY_NUM_LIKES);
     }
 }
