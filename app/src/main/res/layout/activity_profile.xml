@@ -6,45 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/toolbarProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        layout="@layout/toolbarprofile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTransactionTrans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="sans-serif-thin"
-        android:text="Profile"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarProfile"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarProfile"
-        app:layout_constraintStart_toStartOf="@+id/toolbarProfile"
-        app:layout_constraintTop_toTopOf="@+id/toolbarProfile"
-        app:layout_constraintVertical_bias="0.432" />
-
-
-    <ImageButton
-        android:id="@+id/ibcancelProfile"
-        android:layout_width="34dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarProfile"
-        app:layout_constraintStart_toStartOf="@+id/toolbarProfile"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cancel_2" />
 
     <TextView
         android:id="@+id/tvTotalRaised"
