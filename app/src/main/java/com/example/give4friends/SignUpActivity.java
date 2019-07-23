@@ -104,8 +104,10 @@ public class SignUpActivity extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
+                photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
 
-                profilePic.setImageBitmap(ProfilePicture.RotateBitmapFromBitmap(photo,270));
+                profilePic.setImageBitmap(photo);
+
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -151,6 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(context,"Success sign-up", Toast.LENGTH_SHORT).show();
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
+
                     user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
 
 

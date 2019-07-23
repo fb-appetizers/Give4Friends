@@ -140,6 +140,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
+
                 ParseFile image = object.getParseFile("profileImage");
 
                 if(image != null){
