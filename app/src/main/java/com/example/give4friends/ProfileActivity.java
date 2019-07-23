@@ -131,6 +131,8 @@ public class ProfileActivity extends AppCompatActivity {
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
 
+        populateRelations();
+
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         rvCharities.setLayoutManager(linearLayoutManager);
@@ -164,8 +166,6 @@ public class ProfileActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
-        populateRelations();
 
 
         // Below for static elements of profile
