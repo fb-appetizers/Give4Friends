@@ -73,6 +73,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
+            startActivity(intent);
+        }
+    }
+
     private void login(String username, String password){
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override

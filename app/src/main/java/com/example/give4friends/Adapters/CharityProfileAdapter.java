@@ -76,7 +76,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         if (viewHolder.getItemViewType() == CHARITY) {
             CharityAPI charity = (CharityAPI) items.get(position);
-            ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
+            final ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
@@ -89,8 +89,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             final boolean is_empty;
             parseCharity = convertCharity(charity);
-
-
 
             vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
 
@@ -132,12 +130,17 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         relation.add(parseCharity);
                         myUser.saveInBackground();
 
-
                         //increment likes for charity
                         parseCharity.incrementLikes(1);
                         //add user to array
                         parseCharity.addLikesUser(myUser.getObjectId());
-                        parseCharity.saveInBackground();
+                        try {
+                            parseCharity.save();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
+
 
 
                     } else {
@@ -156,7 +159,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         //add user to array
                         array.remove(myUser.getObjectId());
                         parseCharity.setKeyLikesUsers(array);
-                        parseCharity.saveInBackground();
+                        try {
+                            parseCharity.save();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
 
                     }
 
@@ -201,6 +209,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPCategory;
         TextView tvCPCause;
         TextView tvCPMission;
+
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
 

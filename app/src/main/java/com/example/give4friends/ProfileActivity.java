@@ -163,7 +163,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         tvUserName.setText(myUser.getUsername());
-        tvBio.setText("Bio: " + myUser.getString("bio"));
+        if(myUser.getString("bio") == null){
+            tvBio.setText("Looks like you don't have a bio yet! Bios let your friends know what you are passionate about.");
+        }
+        else{
+            tvBio.setText("Bio: " + myUser.getString("bio"));
+        }
         tvBio.setEnabled(false);
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
         tvTotalRaised.setText("Total Raised: $" + myUser.getNumber("totalRaised"));
@@ -436,73 +441,7 @@ private void populate(){
 
 
 
-        // Might be valuable code for later -- getting one user from database
-        // Didn't use because we are just looking at current user
 
-        /*
-
-        // Actually query and fill
-        //get query -- get user info and fill views
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-        //Test
-        query.whereEqualTo(User.KEY_ID, "RClE3nhbpc");
-        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            //iterate through query
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e == null ){
-                    // fill views
-                    User myUser = (User) object;
-                    tvUserName.setText(myUser.getKeyUsername());
-                    tvBio.setText(myUser.getKeyBio());
-                    tvTotalDonated.setText("$" + myUser.getKeyTotalDonated());
-                    tvTotalRaised.setText("$" +  myUser.getKeyTotalRaised());
-
-                    // Handles images
-                    Glide.with(context)
-                            .load(myUser.getKeyProfileImage().getUrl())
-                            .apply(new RequestOptions()
-                                    .transforms(new CenterCrop(), new RoundedCorners(20)))
-                            .into(ivProfileImage);
-
-                }else {
-                    Log.e("ProfileActivity", "Can't get Charity");
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-
-
-
-        /*
-        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
-        query.getFirstInBackground(new GetCallback<ParseUser>() {
-            //iterate through query
-            @Override
-            public void done(ParseUser object, ParseException e) {
-
-                if (e == null ){
-
-
-                    // fill views
-
-
-                    tvUserName.setText(object.getUsername());
-                    tvBio.setText(object.getString("Bio"));
-                    tvTotalDonated.setText("$" + object.getNumber("totalDonated"));
-                    tvTotalRaised.setText("$" +  object.getNumber("totalRaised"));
-
-                    // Handles images
-                    Glide.with(context)
-                            .load(object.getParseFile("profileImage").getUrl())
-                            .apply(new RequestOptions()
-                                    .transforms(new CenterCrop(), new RoundedCorners(20)))
-                            .into(ivProfileImage);
-                    */
-        // query.whereEqualTo(User.KEY_ID, ParseUser.getCurrentUser());
 
 
 
