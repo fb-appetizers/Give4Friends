@@ -1,6 +1,8 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.CharityAPI;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 
@@ -39,7 +42,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View CharityView = inflater.inflate(R.layout.item_charity_search, parent, false);
+        View CharityView = inflater.inflate(R.layout.item_charity_favorites, parent, false);
         ViewHolder viewHolder = new ViewHolder(CharityView);
         return viewHolder;
     }
@@ -49,48 +52,23 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     public void  onBindViewHolder(ViewHolder holder, int position) {
 
         // get data according to position.
-        Charity charity = (Charity) charities.get(position);
+       // Charity charity = (Charity) charities.get(position);
+        Charity charity = charities.get(position);
+
+        holder.name.setMovementMethod(LinkMovementMethod.getInstance());
+
+        holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
+                +charity.getKeyName() + " ("
+                + charity.getKeyCategoryName() + ")"+ "</a>"));
 
 
-
-        //populate the views according to this data
-        holder.name.setText(charity.getKeyName());
-        holder.causeName.setText(charity.getKeyCauseName());
-        holder.categoryName.setText(charity.getKeyCategoryName());
-        holder.mission.setText(charity.getKeyMission());
+        holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
 
 
-
-        if(charity.getKeyRatingURL() != null){
-            // Handles images
-            Glide.with(context)
-                    .load(charity.getKeyRatingURL())
-                    .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20)))
-                    .into(holder.rating);
 
         }
 
 
-
-        /*
-
-
-
-        // Handles images
-        Glide.with(context)
-                .load(Charity.getImage()
-                        .getUrl())
-                .apply(new RequestOptions()
-                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background))
-                .into(holder.ivCharityImage);
-
-
-
-*/
-    }
 
 
     @Override
@@ -118,13 +96,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         //public TextView charityName;
 
         public TextView name;
-        public TextView mission;
-        public ImageView rating;
-        public TextView ein; // Organization ID for the charity
-        public TextView categoryName;
         public TextView causeName;
-        public TextView websiteUrl;
-        public TextView ratingsUrl;
 
 
         public ViewHolder(View itemView) {
@@ -134,10 +106,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
 
             // perform findViewById lookups
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
-            mission = (TextView) itemView.findViewById(R.id.tvMission);
-//            categoryName = (TextView) itemView.findViewById(R.id.tvCategory);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
-            rating = (ImageView) itemView.findViewById(R.id.ivRating);
 
           /*
 
