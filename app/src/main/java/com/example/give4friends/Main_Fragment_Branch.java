@@ -48,28 +48,28 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
+
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
 
-                        fragment = fragment1;
-//                        finish();
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
                         break;
                     case R.id.action_search:
-                        fragment = fragment2;
 
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_settings:
-                        fragment = fragment2;
+
+                        Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                        startActivity(intent);
                         break;
 
                     default:
-
-                        fragment = fragment2;
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
                         break;
                 }
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
 
                 return true;
             }
