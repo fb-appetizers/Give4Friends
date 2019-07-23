@@ -72,16 +72,16 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
 
-            vh1.tvCPname.setText("Hello");
-//                vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
-//
-//
-//                vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-//                        +charity.getName()+ "</a>"));
-//
-//                vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-//                vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-//                vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+
+        vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+        vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
+                +charity.getName()+ "</a>"));
+
+        vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
+        vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
+        vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
         }else if (viewHolder.getItemViewType() == COMMENT){
 
 

@@ -55,11 +55,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -102,7 +101,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -130,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
+            <state relative-caret-position="343">
+              <caret line="75" selection-start-line="75" selection-end-line="83" selection-end-column="117" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -191,11 +190,11 @@
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
@@ -278,7 +277,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/fileprovider.xml" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
@@ -329,6 +327,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" />
       </list>
     </option>
   </component>
@@ -860,7 +859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563842886973</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Committed the profile view">
+      <created>1563844017703</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1563844017703</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -874,7 +880,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18681319" />
@@ -979,7 +984,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Able to automatically save API calls to the server when searched." />
     <MESSAGE value="Offline option added" />
     <MESSAGE value="Sign up uses ProfilImage class and can now get photos from gallery" />
     <MESSAGE value="Profile page uses profilepicture class to change the profile picture from camera and gallery" />
@@ -1004,7 +1008,8 @@
     <MESSAGE value="DonateFinalActivity" />
     <MESSAGE value="Donation Page complete" />
     <MESSAGE value="Saved the profile image right side up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Saved the profile image right side up" />
+    <MESSAGE value="Committed the profile view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Committed the profile view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1429,17 +1434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="52" />
-          <folding>
-            <element signature="e#2807#2808#0" expanded="true" />
-            <element signature="e#2845#2846#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharitySearch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1681">
@@ -1469,28 +1463,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_comment_profile.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharityProfile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1504,10 +1476,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="75" selection-start-line="75" selection-end-line="83" selection-end-column="117" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="52" />
+          <folding>
+            <element signature="e#2807#2808#0" expanded="true" />
+            <element signature="e#2845#2846#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_comment_profile.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
