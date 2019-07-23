@@ -177,13 +177,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 holder.friend.setText(object.getString("firstName"));
             }
         });
-
-
-
-        }
-
-
-
+    }
 
     @Override
     public int getItemCount() {

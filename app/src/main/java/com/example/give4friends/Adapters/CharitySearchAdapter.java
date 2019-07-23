@@ -1,47 +1,34 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+
 import android.content.Intent;
-import android.os.Parcelable;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.give4friends.CharitySearch;
-import com.example.give4friends.DonateFinalActivity;
-import com.example.give4friends.DonateSearchCharity;
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
+
 import com.example.give4friends.models.CharityAPI;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import java.util.List;
-import java.util.regex.Pattern;
-
-import static com.example.give4friends.DonateActivity.charity;
-import static com.example.give4friends.DonateActivity.friend;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdapter.ViewHolder> {
 
     private List<CharityAPI> mCharity;
     private boolean remove_links;
     private Context context;
-    private Charity newCharity;
 
     public CharitySearchAdapter(List<CharityAPI> mCharity, boolean is_in_donate_charity_search) {
         this.mCharity = mCharity;
@@ -82,12 +69,6 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
         Glide.with(context)
                 .load(charity.getRatingsUrl())
                 .into(holder.ivRating);
-
-        if(this.remove_links) {
-            holder.tvMoreInfo.setVisibility(View.GONE);
-            holder.tvDonateNow.setVisibility(View.GONE);
-
-        }
     }
 
     @Override
@@ -116,6 +97,15 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
             ivRating = itemView.findViewById(R.id.ivRating);
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
 
         @Override

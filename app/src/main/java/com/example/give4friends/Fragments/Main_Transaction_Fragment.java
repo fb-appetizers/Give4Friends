@@ -56,6 +56,7 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), DonateActivity.class);
+                intent.putExtra("donateNow", false);
                 startActivity(intent);
             }
         });

@@ -92,14 +92,9 @@ public class CharitySearch extends AppCompatActivity {
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(this));
 
-
-
         getResponseSuggested();
 
-
-
-
-//TODO -- search up MODALS/POPUP
+        //TODO -- search up MODALS/POPUP
 
 
         //When you hit submit the recycler view updates
@@ -110,11 +105,7 @@ public class CharitySearch extends AppCompatActivity {
 
             }
         });
-
-
-
     }
-
 
     private void getResponseSearch(String search, boolean search_by_name){
 
@@ -175,7 +166,6 @@ public class CharitySearch extends AppCompatActivity {
         postQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-
                 ParseUser mainUser = objects.get(0);// They'll only be one
                 List <Charity> charities = mainUser.getList("charityArray");
                 if (charities == null){
@@ -185,15 +175,9 @@ public class CharitySearch extends AppCompatActivity {
                 for (Charity charity : charities) {
                     acharitiesUpper.add(CharityAPI.fromParse(charity));
                 }
-
-
                 charityAdapterUpper.notifyDataSetChanged();
-
-
             }
         });
-
-
     }
 
     private void configureToolbar() {
@@ -274,10 +258,8 @@ public class CharitySearch extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
         // Store instance of the menu item containing progress
         miActionProgressItem = menu.findItem(R.id.miActionProgress);
         // Extract the action-view from the menu item
@@ -286,8 +268,6 @@ public class CharitySearch extends AppCompatActivity {
 //        miActionProgressItem.setVisible(true);
         super.onPrepareOptionsMenu(menu);
 
-
         return true;
     }
-
 }
