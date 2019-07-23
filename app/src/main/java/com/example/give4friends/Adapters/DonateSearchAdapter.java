@@ -3,7 +3,6 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,8 @@ import com.parse.SaveCallback;
 
 import java.util.List;
 
-import static com.example.give4friends.DonateActivity.charity;
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapter.ViewHolder> {
 
@@ -102,14 +102,17 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
                         if (e != null) {
                             if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
                                 addNewCharity(selectedCharity);
+                                return;
                             } else {
                                 Log.e("CharitySearchAdapter", "Error with query of charity");
                             }
                         } else {
-                            charity = object;
+                            currentCharity = object;
                         }
                     }
                 });
+
+                charityName2 = selectedCharity.getName();
 
                 Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
                 view.getContext().startActivity(intent);
@@ -132,7 +135,7 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("CharitySearchAdapter", "Created new charity");
-                    charity = newCharity;
+                    currentCharity = newCharity;
                 } else {
                     Log.d("CharitySearchAdapter", "Invalid charity");
                     e.printStackTrace();

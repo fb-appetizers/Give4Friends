@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
 
@@ -24,8 +25,9 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-import static com.example.give4friends.DonateActivity.friend;
-
+import static com.example.give4friends.DonateActivity.currentCharity;
+import static com.example.give4friends.DonateActivity.currentFriend;
+import static com.example.give4friends.DonateActivity.donateNow;
 
 public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder>{
     Context context;
@@ -86,12 +88,17 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         public void onClick(View view) {
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                friend = friends.get(position);
-                Toast.makeText(context, "Friend: " + friend.getUsername(), Toast.LENGTH_LONG).show();
+                currentFriend = friends.get(position);
+                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(context, DonateSearchCharity.class);
-                intent.putExtra("friend", friend);
-                context.startActivity(intent);
+                if(donateNow == false){
+                    Intent intent = new Intent(context, DonateSearchCharity.class);
+                    context.startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(context, DonateFinalActivity.class);
+                    context.startActivity(intent);
+                }
             }
         }
     }
