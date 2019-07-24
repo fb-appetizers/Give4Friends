@@ -42,6 +42,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.ProfilePicture;
+import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -66,6 +67,7 @@ import java.util.List;
 
 
 public class ProfileActivity extends AppCompatActivity {
+    int total = 0;
 
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
@@ -171,7 +173,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         tvBio.setEnabled(false);
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
-        tvTotalRaised.setText("Total Raised: $" + myUser.getNumber("totalRaised"));
+        getRaised();
+
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
 
@@ -269,12 +272,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-
                 photo = (Bitmap) data.getExtras().get("data");
-
-                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,270);
-
-
+                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
                 Glide.with(context)
                         .load(selectedImageRotate)
                         .apply(new RequestOptions()
@@ -283,15 +282,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .placeholder(R.drawable.user_outline_24)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
-
-
-
-
-
-
                 ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
-
-
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -300,7 +291,6 @@ public class ProfileActivity extends AppCompatActivity {
                 Uri photoUri = data.getData();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
-                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -405,6 +395,36 @@ private void populate(){
             }
         });
 
+
+    }
+
+    protected void getRaised(){
+        //get query
+        ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
+                .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
+
+        List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
+        queries.add(postQueryFriend);
+
+        ParseQuery<Transaction> mainQuery = ParseQuery.or(queries);
+        mainQuery.findInBackground(new FindCallback<Transaction>() {
+            //iterate through query
+            @Override
+            public void done(List<Transaction> objects, ParseException e) {
+                if (e == null){
+                    for (int i = 0; i < objects.size(); ++i){
+                        total = (total + (int) (objects.get(i)).getKeyAmountDonated());
+//                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+                    }
+                    tvTotalRaised.setText("Total Raised: $" + total);
+                }else {
+                    Log.e("MainActivity", "Can't get transaction");
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        );
 
     }
 }

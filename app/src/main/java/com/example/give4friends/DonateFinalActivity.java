@@ -122,12 +122,13 @@ public class DonateFinalActivity extends AppCompatActivity {
     private void setNewTransaction(){
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
+        int amountInt = Integer.parseInt(amount.getText().toString());
 
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
         newTransaction.setKeyCharityId(currentCharity);
-        newTransaction.setKeyAmountDonated(Integer.parseInt(amount.getText().toString()));
+        newTransaction.setKeyAmountDonated(amountInt);
 
         newTransaction.saveInBackground(new SaveCallback() {
             @Override
@@ -142,5 +143,14 @@ public class DonateFinalActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        //update user totals
+        currentUser.increment("totalDonated", amountInt);
+        currentUser.saveInBackground();
+
+
+
+
     }
 }
