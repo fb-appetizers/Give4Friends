@@ -3,6 +3,7 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import java.util.List;
 
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
-
+    private String friendsName;
 
     private List<Transaction> transactions;
     public TransactionAdapter(List<Transaction> transactions) {
@@ -57,7 +58,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     // bind the values based on the position of the element
     @Override
     public void  onBindViewHolder(final ViewHolder holder, int position) {
-
         // get data according to position.
         final Transaction transaction = transactions.get(position);
         final boolean is_empty;
@@ -117,26 +117,33 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //populate the views according to this data
 
-        holder.message.setText("Message: " + transaction.getKeyMessage());
+        holder.message.setText(transaction.getKeyMessage());
 
         if( transaction.getKeyCharityId() != null) {
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
 
-                    holder.charity.setText(object.getString("name"));
+                    holder.charity.setText("To: " + object.getString("name"));
                 }
             });
         }
-
 
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
 
-                holder.donor.setText(object.getString("firstName"));
+                holder.donor.setText(object.getString("firstName") + " donated on behalf of \n");
             }
         });
+
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                holder.donor.append(object.getString("firstName") + "!");
+            }
+        });
+
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
@@ -171,12 +178,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
             }
         });
-        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                holder.friend.setText(object.getString("firstName"));
-            }
-        });
     }
 
     @Override
@@ -184,13 +185,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactions.size();
     }
 
-
-
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //public TextView charityName;
-
         public TextView donor;
         public TextView friend;
         public ImageView donorPhoto;
@@ -201,15 +199,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //like button
         public ImageButton ibEmptyHeart;
 
-
-
-
         public ViewHolder(View itemView) {
             super(itemView);
 
             // perform findViewById lookups
             donor = (TextView) itemView.findViewById(R.id.tvDonor);
-            friend= (TextView) itemView.findViewById(R.id.tvFriend);
             charity = (TextView) itemView.findViewById(R.id.tvCharity);
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
             friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
@@ -217,9 +211,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // like button
             ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
-
-
-
         }
 
 
