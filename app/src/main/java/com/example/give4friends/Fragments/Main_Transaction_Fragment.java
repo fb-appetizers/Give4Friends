@@ -1,6 +1,7 @@
 package com.example.give4friends.Fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,6 +52,7 @@ public class Main_Transaction_Fragment extends Fragment {
 //        super.onViewCreated(view, savedInstanceState);
         suggBtn = view.findViewById(R.id.suggBtn);
 
+        suggBtn.setBackgroundDrawable(null);
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override

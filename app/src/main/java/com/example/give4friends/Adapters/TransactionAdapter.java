@@ -39,8 +39,6 @@ import java.util.List;
 
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
-    private String friendsName;
-
     private List<Transaction> transactions;
     public TransactionAdapter(List<Transaction> transactions) {
         this.transactions = transactions;

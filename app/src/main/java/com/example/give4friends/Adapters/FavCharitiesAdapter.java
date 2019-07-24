@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +18,21 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.DonateActivity;
+import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
 
 
 public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapter.ViewHolder> {
@@ -94,13 +101,16 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int position = getAdapterPosition(); // gets item position
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        currentCharity = charities.get(position);
+                    }
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);
                 }
             });
-
-
+        }
 
           /*
 
@@ -128,9 +138,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         */
 
     }
-
-
-
-}}
+}
 
 

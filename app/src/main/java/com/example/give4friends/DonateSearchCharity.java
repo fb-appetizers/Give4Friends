@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -87,8 +85,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             @Override
             public void onClick(View view) {
 
-                etCharity.clearFocus();
                 etCharity.getText().clear();
+                etCharity.clearFocus();
+
 
 
             }
@@ -121,10 +120,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             }
         });
 
-
-
-
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,10 +146,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
     private void getResponse(String search, boolean search_by_name){
 
-
         client = new CharityClient();
-
-
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
@@ -184,7 +176,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                                     acharities.add(charityAPI);
                                     charityAdapter.notifyDataSetChanged();
                                 }
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
