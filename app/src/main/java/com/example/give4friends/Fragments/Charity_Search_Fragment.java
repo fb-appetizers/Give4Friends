@@ -159,6 +159,11 @@ public class Charity_Search_Fragment extends Fragment {
     private void getResponseSearch(String search, boolean search_by_name){
 
         client = new CharityClient();
+
+
+
+
+
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
