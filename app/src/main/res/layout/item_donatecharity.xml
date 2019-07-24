@@ -85,7 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/btnSubmit"
         android:layout_width="88dp"
         android:layout_height="56dp"
         android:text="Submit"

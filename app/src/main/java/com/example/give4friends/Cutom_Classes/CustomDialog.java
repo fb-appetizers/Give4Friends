@@ -13,15 +13,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
-import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -48,8 +44,6 @@ public class CustomDialog extends DialogFragment {
     public ImageView ivRating;
     public TextView tvDonateNow;
 
-    public TextView tvMoreInfo;
-
 
     public CustomDialog(CharityAPI charity) {
         this.charity = charity;
@@ -67,7 +61,6 @@ public class CustomDialog extends DialogFragment {
         tvCause = view.findViewById(R.id.tvCause);
         ivRating = view.findViewById(R.id.ivRating);
         tvDonateNow = view.findViewById(R.id.tvDonateNow);
-        tvMoreInfo = view.findViewById(R.id.tvMoreInfo);
 
         // The name in the dialog isn't clickable but we can change this later
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
@@ -84,9 +77,6 @@ public class CustomDialog extends DialogFragment {
                 view.getContext().startActivity(intent);
             }
         });
-
-
-
 
         tvMission.setText(Html.fromHtml(charity.getMission()));
 

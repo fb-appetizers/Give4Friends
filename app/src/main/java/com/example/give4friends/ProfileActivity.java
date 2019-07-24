@@ -157,6 +157,10 @@ public class ProfileActivity extends AppCompatActivity {
             tvBio.setText(myUser.getString("bio"));
         }
         tvBio.setEnabled(false);
+        Number sum = myUser.getNumber("totalDonated");
+        if(sum == null){
+            sum = 0;
+        }
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
         getRaised();
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
