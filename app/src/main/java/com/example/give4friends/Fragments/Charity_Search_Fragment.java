@@ -157,12 +157,25 @@ public class Charity_Search_Fragment extends Fragment {
 
 
 
+
             }
         });
 
 
 
     }
+
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+
+
+
+    }
+
+
 
 
     private void getResponseSearch(String search, boolean search_by_name){

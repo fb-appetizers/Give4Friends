@@ -226,11 +226,11 @@ info | String | Information on the charityAPI
 Should do:
 - [ ] Redesign transaction item - Hana
 	- charity with link
-- [ ] Redesign profile page (self and other)
+- [ ] Redesign profile page (self and other)- Jessica
 - [x] Make floating button solid - Hana
-- [ ] Change settings icon 
+- [ ] Change settings icon - Jessica
 - [ ] Push Notifications
-- [ ] Compression for Parse
+- [ ] Compression for Parse - Babu
 - [ ] Settings - Jessica eventually 
 - [ ] Enter credit card info (make a note that it should be fake) - Hana
 - [ ] Recommended charities fragment - Jessica
