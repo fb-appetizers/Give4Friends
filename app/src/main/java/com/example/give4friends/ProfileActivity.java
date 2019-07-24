@@ -103,6 +103,7 @@ public class ProfileActivity extends AppCompatActivity {
         context = this;
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
+
         configureToolbar();
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +118,8 @@ public class ProfileActivity extends AppCompatActivity {
                 ProfilePicture.changePhoto(context);
             }
         });
+
+
 
         //Below for recycler view of charities\
         //find the RecyclerView
@@ -203,8 +206,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         //add tool bar
         private void configureToolbar() {
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle("Give4Friends");
+            Toolbar toolbar = findViewById(R.id.toolbarProfile);
+
             setSupportActionBar(toolbar);
 
             ActionBar actionbar = getSupportActionBar();
@@ -213,17 +216,10 @@ public class ProfileActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //No need to have an intent from the profile activity to the profile activity
-                }
-            });
-
-            findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
                     finish();
                 }
             });
+
 
         }
 

@@ -7,8 +7,8 @@
     tools:context=".ProfileActivity">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
+        android:id="@+id/toolbarProfile"
+        layout="@layout/toolbarprofile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         android:layout_width="152dp"
         android:layout_height="179dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -50,8 +50,7 @@
         android:layout_marginEnd="16dp"
         android:text="Bio:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#D2070707"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
 
@@ -130,7 +129,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile" />
 
     <ImageButton
         android:id="@+id/btChangePic"
@@ -145,11 +144,5 @@
 
 
 
-    <!--
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="395dp"
-        android:layout_height="417dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="306dp" />
-        -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
