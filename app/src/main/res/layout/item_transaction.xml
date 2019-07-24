@@ -30,10 +30,7 @@
                 android:layout_height="123dp"
                 android:orientation="vertical"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                tools:layout_editor_absoluteX="3dp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="3dp"
-                android:layout_marginStart="3dp">
+                tools:layout_editor_absoluteX="3dp">
 
                 <ImageView
                     android:id="@+id/ivDonor"
@@ -103,13 +100,13 @@
                 android:id="@+id/tvCharity"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="76dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#5F5F5F"
                 android:textSize="12sp"
-                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintStart_toStartOf="@+id/linearLayout2"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

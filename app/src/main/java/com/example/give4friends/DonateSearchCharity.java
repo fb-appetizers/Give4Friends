@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +43,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     public static Charity charity;
     private EditText etCharity;
     private RecyclerView rvCharitySearch;
-    private Button btnCancel;
+    private Button btnSubmit;
     private ImageButton cancel;
     CharityClient client;
     ArrayList<CharityAPI> acharities;
@@ -66,7 +64,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         etCharity = findViewById(R.id.etCharity);
-        btnCancel = findViewById(R.id.btnCancel);
+        btnSubmit = findViewById(R.id.btnSubmit);
         cancel = findViewById(R.id.ibcancelFinal);
 
         acharities = new ArrayList<CharityAPI>();
@@ -83,47 +81,12 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         rvCharitySearch.setLayoutManager(new LinearLayoutManager(this));
 
         //When you hit submit the recycler view updates
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                etCharity.clearFocus();
-                etCharity.getText().clear();
-
-
+                getResponse(etCharity.getText().toString(),false);
             }
         });
-
-        etCharity.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-
-                if (count == 0 ){
-                    acharities.clear();
-                    charityAdapter.notifyDataSetChanged();
-
-                }
-                if(count > 0 ){
-
-                    getResponse(etCharity.getText().toString(),false);
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-
-
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,10 +114,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
     private void getResponse(String search, boolean search_by_name){
 
-
         client = new CharityClient();
-
-
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
@@ -184,7 +144,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                                     acharities.add(charityAPI);
                                     charityAdapter.notifyDataSetChanged();
                                 }
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

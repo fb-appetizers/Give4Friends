@@ -67,8 +67,6 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="Mission"
-
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
