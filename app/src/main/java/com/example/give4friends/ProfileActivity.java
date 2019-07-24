@@ -181,6 +181,7 @@ public class ProfileActivity extends AppCompatActivity {
         //Handles images
         ParseFile file = myUser.getParseFile("profileImage");
 
+
         if (file!=null) {
             Glide.with(context)
                     .load(file.getUrl())
@@ -282,10 +283,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
-
-
-                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
+                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate, getApplicationContext());
 
 
             } else { // Result was a failure
@@ -317,7 +315,9 @@ public class ProfileActivity extends AppCompatActivity {
                                     .error(R.drawable.user_outline_24))
                             .into(ivProfileImage);
 
-                    ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
+                    ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo, getApplicationContext());
+
+
 
                 } catch (IOException e) {
                     e.printStackTrace();

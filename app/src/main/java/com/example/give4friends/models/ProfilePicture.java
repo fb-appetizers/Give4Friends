@@ -153,27 +153,42 @@ public final class ProfilePicture {
 
 
 
-    public static void updatePhoto(ParseUser parseUser, final Bitmap photo) {
+    public static void updatePhoto(ParseUser parseUser,Bitmap photo, Context context) {
 
         //pb.setVisibility(ProgressBar.VISIBLE);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+        Toast.makeText(context, "Selected1", Toast.LENGTH_SHORT).show();
 
+        final ParseFile main_photo = conversionBitmapParseFile(photo);
+        main_photo.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
-        ParseUser.getCurrentUser().put("profileImage", conversionBitmapParseFile(photo));
-        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        e.printStackTrace();
-                        //pb.setVisibility(ProgressBar.INVISIBLE);
-                        return;
-                    } else {
-                        // run a background job and once complete
-                        //pb.setVisibility(ProgressBar.INVISIBLE);
-                    }
+                if(e==null) {
+
+                    ParseUser.getCurrentUser().put("profileImage", main_photo);
+                    ParseUser.getCurrentUser().saveInBackground(
+                            new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    if (e != null) {
+                                        e.printStackTrace();
+
+                                        return;
+                                    } else {
+                                        // run a background job and once complete
+
+                                    }
+                                }
+                            }
+                    );
+
+                }else{
+                    e.printStackTrace();
                 }
             }
-        );
+        });
+
     // Adding some way to update the pictures that go with the transactions.
 
 
@@ -194,7 +209,10 @@ public final class ProfilePicture {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
         byte[] imageByte = byteArrayOutputStream.toByteArray();
-        ParseFile parseFile = new ParseFile("image_file.png",imageByte);
+        ParseFile parseFile = new ParseFile("profilePhoto.png",imageByte, "image/png");
+
+
+
         return parseFile;
     }
 }
