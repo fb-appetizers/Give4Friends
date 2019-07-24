@@ -123,7 +123,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
-                    holder.charity.setText(object.getString("name"));
+                    if(object != null){
+                        holder.charity.setText("To: " + object.getString("name"));
+                    }
                 }
             });
         }
@@ -131,15 +133,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
+                holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+                holder.donor.append(" donated on behalf of \n");
 
-                holder.donor.setText(object.getString("firstName") + " donated on behalf of \n");
-            }
-        });
-
-        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                holder.donor.append(object.getString("firstName") + "!");
+                transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        holder.donor.append(object.getString("firstName"));
+                    }
+                });
             }
         });
 
