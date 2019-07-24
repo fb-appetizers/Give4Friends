@@ -1,6 +1,8 @@
 package com.example.give4friends;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,5 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });}
+
+
     }
 
