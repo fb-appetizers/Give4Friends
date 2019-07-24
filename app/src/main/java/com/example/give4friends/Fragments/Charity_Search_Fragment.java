@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.CharitySearch;
+import com.example.give4friends.MainActivity;
+import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -80,6 +83,13 @@ public class Charity_Search_Fragment extends Fragment {
         tiCharity = view.findViewById(R.id.tiCharity);
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
+//        Toolbar toolbar = view.findViewById(R.id.toolbar);
+//
+//        ((Main_Fragment_Branch) getActivity()).getSupportActionBar().hide();
+//
+//        ((Main_Fragment_Branch) getActivity()).setSupportActionBar(toolbar);
+
+
 
 
         etCharity.addTextChangedListener(new TextWatcher() {
@@ -91,14 +101,14 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                if (count == 0 && start ==0){
+                if (count == 0 ){
 
                     getResponseSuggested();
 
                 }
                 if(count > 0 ){
 
-                    getResponseSearch(charSequence.toString(),false);
+                    getResponseSearch(etCharity.getText().toString(),false);
                 }
 
             }
@@ -143,6 +153,7 @@ public class Charity_Search_Fragment extends Fragment {
             public void onClick(View view) {
 
                 etCharity.clearFocus();
+                etCharity.getText().clear();
 
 
 
@@ -155,9 +166,26 @@ public class Charity_Search_Fragment extends Fragment {
     }
 
 
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+
+
+
+    }
+
+
+
+
     private void getResponseSearch(String search, boolean search_by_name){
 
         client = new CharityClient();
+
+
+
+
+
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
@@ -185,8 +213,10 @@ public class Charity_Search_Fragment extends Fragment {
                                 acharitiesUpper.clear();
                                 for(CharityAPI charityAPI : charities){
                                     acharitiesUpper.add(charityAPI);
+
                                 }
                                 charityAdapterUpper.notifyDataSetChanged();
+
                                 hideProgressBar();
 
                             } catch (JSONException e) {

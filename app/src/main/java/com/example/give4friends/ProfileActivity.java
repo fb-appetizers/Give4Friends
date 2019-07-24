@@ -161,7 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
         if(sum == null){
             sum = 0;
         }
-        tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
+        tvTotalDonated.setText("Total Donated: $" + sum);
         getRaised();
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 

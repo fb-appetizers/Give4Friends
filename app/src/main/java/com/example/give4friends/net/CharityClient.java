@@ -10,8 +10,12 @@ public class CharityClient {
 
     public CharityClient(){
         this.client = new OkHttpClient();
+
     }
 
+    public OkHttpClient getClient() {
+        return client;
+    }
 
     public void getCharities(final String search, boolean search_by_name, Callback handler){
         /*
@@ -23,12 +27,13 @@ public class CharityClient {
         String array
 
          */
+
         Integer pageNum = 1;
         Integer pageSize = 20;
         String APP_ID  = "45f1c9cb";
         String API_KEY = "a6ec0399e2688d91fe0d419cf84443d0";
         String searchType = search_by_name ? "NAME_ONLY" : "DEFAULT";
-        OkHttpClient client = new OkHttpClient();
+
 
         String base_url = "https://api.data.charitynavigator.org/v2/Organizations";
         //app_id code from the account
