@@ -17,16 +17,20 @@
         android:layout_marginTop="16dp"
         android:background="#FFFFFF"
         android:clickable="true"
+        android:focusable="true"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/etCharity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
             android:clickable="true"
-            android:contextClickable="true"
-            android:focusedByDefault="false"
+
+
+
             android:foregroundGravity="left|center"
             android:freezesText="false"
             android:hint="Search for charities ..."
@@ -34,8 +38,7 @@
             android:keepScreenOn="false"
             android:keyboardNavigationCluster="false"
             android:singleLine="false"
-            tools:clickable="true"
-            tools:longClickable="false" />
+   />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

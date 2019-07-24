@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +30,7 @@ import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -46,13 +50,13 @@ import okhttp3.Response;
 
 public class CharitySearch extends AppCompatActivity {
     private EditText etCharity;
-    private RecyclerView rvCharitySearch;
+    private TextInputLayout tiCharity;
     private Button btnSubmit;
     private RecyclerView rvCharitySugg;
 
 
     CharityClient client;
-    ArrayList<CharityAPI> acharitiesLower;
+
     ArrayList<CharityAPI> acharitiesUpper;
     CharitySuggAdapter charityAdapterUpper;
 
@@ -72,11 +76,24 @@ public class CharitySearch extends AppCompatActivity {
         rvCharitySugg = findViewById(R.id.rvCharitySugg);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnSubmit);
+        tiCharity = findViewById(R.id.tiCharity);
 
+
+
+        etCharity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                acharitiesUpper.clear();
+                charityAdapterUpper.notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Clicked",Toast.LENGTH_LONG).show();
+            }
+
+
+        });
 
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
 
-        acharitiesLower = new ArrayList<CharityAPI>();
+
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
@@ -102,6 +119,9 @@ public class CharitySearch extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
     private void getResponseSearch(String search, boolean search_by_name){

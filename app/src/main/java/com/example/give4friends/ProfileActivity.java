@@ -42,6 +42,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.ProfilePicture;
+import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
