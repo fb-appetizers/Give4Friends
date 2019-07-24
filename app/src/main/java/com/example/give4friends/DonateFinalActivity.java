@@ -116,7 +116,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private void setNewTransaction(){
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
-        int amountInt = Integer.parseInt(amount.getText().toString());
+        int amountInt = Integer.parseInt(amount.getText().toString().substring(1));
 
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);

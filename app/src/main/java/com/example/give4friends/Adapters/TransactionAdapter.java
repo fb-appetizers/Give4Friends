@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ import java.util.List;
 
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
-
+    private String friendsName;
 
     private List<Transaction> transactions;
     public TransactionAdapter(List<Transaction> transactions) {
@@ -60,7 +61,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     // bind the values based on the position of the element
     @Override
     public void  onBindViewHolder(final ViewHolder holder, int position) {
-
         // get data according to position.
         final Transaction transaction = transactions.get(position);
         final boolean is_empty;
@@ -117,20 +117,33 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
 
         //populate the views according to this data
-        holder.message.setText("Message: " + transaction.getKeyMessage());
 
-        if( transaction.getKeyCharityId() != null) {
+        holder.message.setText(transaction.getKeyMessage());
+
+        if (transaction.getKeyCharityId() != null) {
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
-                    holder.charity.setText(object.getString("name"));
+                    if(object != null){
+                        holder.charity.setText("To: " + object.getString("name"));
+                    }
                 }
             });
         }
+
+
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                holder.donor.setText(object.getString("firstName"));
+                holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+                holder.donor.append(" donated on behalf of \n");
+
+                transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        holder.donor.append(object.getString("firstName"));
+                    }
+                });
             }
         });
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
@@ -148,7 +161,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
             }
         });
-
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
@@ -213,13 +225,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactions.size();
     }
 
-
-
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //public TextView charityName;
-
         public TextView donor;
         public TextView friend;
         public ImageView donorPhoto;
@@ -229,9 +238,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //like button
         public ImageButton ibEmptyHeart;
-
-
-
 
         public ViewHolder(View itemView) {
             super(itemView);
