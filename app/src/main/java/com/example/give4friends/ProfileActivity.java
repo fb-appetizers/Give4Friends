@@ -390,7 +390,6 @@ private void populate(){
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);
-
                 }
             }
         });

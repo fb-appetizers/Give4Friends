@@ -3,31 +3,22 @@ package com.example.give4friends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Transaction;
-import com.example.give4friends.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -36,7 +27,6 @@ import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class DonateFinalActivity extends AppCompatActivity {
-    private ParseUser ff;
     private EditText amount;
     private TextView amountEntered;
     private EditText message;
@@ -77,8 +67,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     .into(friendsImage);
         }
 
-        Intent intent = getIntent();
-
         charityName.setText(charityName2);
 
         friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
@@ -91,7 +79,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText("$");
                     amount.setSelection(0);
                 }
-                //return false;
             }
         });
 
@@ -116,6 +103,13 @@ public class DonateFinalActivity extends AppCompatActivity {
     private void setNewTransaction(){
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
+        String amountHere = amount.getText().toString();
+
+        for(int i = 0; i < amountHere.length(); i++){
+            if(amountHere.charAt(i) == '$'){
+
+            }
+        }
         int amountInt = Integer.parseInt(amount.getText().toString().substring(1));
 
         newTransaction.setKeyMessage(message.getText().toString());
@@ -141,13 +135,8 @@ public class DonateFinalActivity extends AppCompatActivity {
             }
         });
 
-
         //update user totals
         currentUser.increment("totalDonated", amountInt);
         currentUser.saveInBackground();
-
-
-
-
     }
 }
