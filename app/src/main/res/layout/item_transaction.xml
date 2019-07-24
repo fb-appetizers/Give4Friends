@@ -102,13 +102,13 @@
                 android:id="@+id/tvCharity"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="76dp"
+                android:layout_marginStart="80dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#5F5F5F"
                 android:textSize="12sp"
-                card_view:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
