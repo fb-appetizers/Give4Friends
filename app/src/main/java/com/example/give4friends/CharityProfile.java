@@ -42,25 +42,16 @@ public class CharityProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity_profile);
 
-
-
-
         rvCPProfile = findViewById(R.id.rvCPProfile);
-
         items = new ArrayList<Object>();
-
-
         itemsAdapter = new CharityProfileAdapter(items);
 
         // attach the adapter to the RecyclerView
         rvCPProfile.setAdapter(itemsAdapter);
-
         // Set layout manager to position the items
         rvCPProfile.setLayoutManager(new LinearLayoutManager(this));
 
         charity = (CharityAPI) Parcels.unwrap(getIntent().getParcelableExtra("Charity"));
-
-
         populateProfile();
     }
 
@@ -73,7 +64,6 @@ public class CharityProfile extends AppCompatActivity {
     private void configureToolbar() {
 
     }
-
 
 
     public void logOut(){

@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
         rvTransactions.setLayoutManager(linearLayoutManager);
@@ -68,18 +67,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainerTrans);
-
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 populate();
                 swipeContainer.setRefreshing(false);
             }
 
         });
-
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -88,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         populate();
     }
-
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
@@ -100,12 +95,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-
                     //Clear the old set when reloading
                     transactions.clear();
-
                     for(Transaction transaction : transactionList){
-
                         transactions.add(transaction);
                     }
                     transactionAdapter.notifyDataSetChanged();

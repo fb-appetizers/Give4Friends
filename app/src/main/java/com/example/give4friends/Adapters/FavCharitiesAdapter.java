@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -27,8 +29,6 @@ import java.util.List;
 
 
 public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapter.ViewHolder> {
-
-
 
     private List<Charity> charities;
     public FavCharitiesAdapter(ArrayList<Charity> charities) {
@@ -50,26 +50,16 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     // bind the values based on the position of the element
     @Override
     public void  onBindViewHolder(ViewHolder holder, int position) {
-
         // get data according to position.
        // Charity charity = (Charity) charities.get(position);
         Charity charity = charities.get(position);
-
         holder.name.setMovementMethod(LinkMovementMethod.getInstance());
-
         holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
                 +charity.getKeyName() + " ("
                 + charity.getKeyCategoryName() + ")"+ "</a>"));
-
-
         holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
 
-
-
         }
-
-
-
 
     @Override
     public int getItemCount() {
@@ -88,25 +78,29 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         notifyDataSetChanged();
     }
 
-
-
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        //public TextView charityName;
-
         public TextView name;
         public TextView causeName;
-
+        public TextView tvDonateNow;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-
-
             // perform findViewById lookups
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
+            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
+
 
           /*
 
