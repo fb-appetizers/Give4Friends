@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/constraint_border"
     android:padding="5dp"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/friendImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         tools:srcCompat="@tools:sample/avatars[6]" />
 
     <LinearLayout
