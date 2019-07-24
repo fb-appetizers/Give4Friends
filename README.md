@@ -228,12 +228,12 @@ Should do:
 	- charity with link
 - [ ] Redesign profile page (self and other)
 - [ ] Make floating button solid
-- [ ] Change settings icon
+- [ ] Change settings icon 
 - [ ] Push Notifications
 - [ ] Compression for Parse
-- [ ] Settings
+- [ ] Settings - Jessica eventually 
 - [ ] Enter credit card info (make a note that it should be fake)
-- [ ] Recommended charities fragment
+- [ ] Recommended charities fragment - Jessica
 
 Stretch:
 - [ ] Unlike a charity from your profile
