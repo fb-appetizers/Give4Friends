@@ -1,6 +1,10 @@
 package com.example.give4friends.Fragments;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +30,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -45,8 +51,8 @@ public class Charity_Search_Fragment extends Fragment {
 
 
     private EditText etCharity;
-    private RecyclerView rvCharitySearch;
-    private Button btnSubmit;
+    private TextInputLayout tiCharity;
+    private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
     CharityClient client;
@@ -70,8 +76,38 @@ public class Charity_Search_Fragment extends Fragment {
 
         rvCharitySugg = view.findViewById(R.id.rvCharitySugg);
         etCharity = view.findViewById(R.id.etCharity);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnCancel = view.findViewById(R.id.btnCancel);
+        tiCharity = view.findViewById(R.id.tiCharity);
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
+
+
+
+        etCharity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+                if (count == 0 && start ==0){
+
+                    getResponseSuggested();
+
+                }
+                if(count > 0 ){
+
+                    getResponseSearch(charSequence.toString(),false);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         constraintLayoutMain = view.findViewById(R.id.clCharitySearch);
 
@@ -102,11 +138,11 @@ public class Charity_Search_Fragment extends Fragment {
 
 
         //When you hit submit the recycler view updates
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getResponseSearch(etCharity.getText().toString(),false);
 
+                etCharity.clearFocus();
 
 
 
@@ -166,6 +202,21 @@ public class Charity_Search_Fragment extends Fragment {
     }
 
 
+    // from the link above
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+
+        // Checks whether a hardware keyboard is available
+        if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
+            Toast.makeText(getContext(), "keyboard visible", Toast.LENGTH_LONG).show();
+        } else if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
+            Toast.makeText(getContext(), "keyboard hidden", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
     private void getResponseSuggested(){
 
         ParseUser mainUser = ParseUser.getCurrentUser();
@@ -185,6 +236,7 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
+                acharitiesUpper.clear();
                 for (Charity charity : charities) {
                     acharitiesUpper.add(CharityAPI.fromParse(charity));
                 }
