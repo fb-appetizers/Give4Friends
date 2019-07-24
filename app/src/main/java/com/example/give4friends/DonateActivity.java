@@ -114,13 +114,18 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     protected void queryFriends(String name){
         ParseQuery<ParseUser> query1 = ParseUser.getQuery();
 
-        ParseQuery<ParseUser> q1 = query1.whereContains("username", name);
+        ParseQuery<ParseUser> q1 = query1.whereMatches("username", "("+name+")", "i");
 
         ParseQuery<ParseUser> query2 = ParseUser.getQuery();
-        ParseQuery<ParseUser> q2 = query2.whereContains("firstName", name);
+        ParseQuery<ParseUser> q2 = query2.whereMatches("firstName", "("+name+")", "i");
+
+        ParseQuery<ParseUser> query3 = ParseUser.getQuery();
+        ParseQuery<ParseUser> q3 = query3.whereMatches("lastName", "("+name+")", "i");
+
 
         List<ParseQuery<ParseUser>> queries = new ArrayList<>();
 
+        queries.add(q3);
         queries.add(q2);
         queries.add(q1);
 

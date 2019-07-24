@@ -227,7 +227,7 @@ Should do:
 - [ ] Redesign transaction item - Hana
 	- charity with link
 - [ ] Redesign profile page (self and other)
-- [ ] Make floating button solid - Hana
+- [x] Make floating button solid - Hana
 - [ ] Change settings icon 
 - [ ] Push Notifications
 - [ ] Compression for Parse
