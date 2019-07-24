@@ -18,11 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CharityProfile"></activity>
-        <activity android:name=".Main_Fragment_Branch"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".DonateFinalActivity"></activity>
-
+        <activity android:name=".FriendProfileActivity"></activity>
+        <activity android:name=".CharityProfile" />
+        <activity
+            android:name=".Main_Fragment_Branch"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".DonateFinalActivity" />
         <activity android:name=".DonateSearchCharity" />
         <activity
             android:name=".SettingsActivity"
@@ -49,7 +50,7 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts"/>
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
