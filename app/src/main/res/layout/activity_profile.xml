@@ -46,7 +46,7 @@
         android:id="@+id/tvBio"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Bio:"
