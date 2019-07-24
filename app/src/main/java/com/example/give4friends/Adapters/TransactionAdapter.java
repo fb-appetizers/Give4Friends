@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.text.Html;
@@ -17,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.FriendProfileActivity;
+import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Transaction;
 import com.example.give4friends.models.User;
@@ -113,8 +116,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
             });
 
-
-
         //populate the views according to this data
 
         holder.message.setText(transaction.getKeyMessage());
@@ -130,6 +131,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
         }
 
+
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
@@ -144,13 +146,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 });
             }
         });
-
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-
                 ParseFile image = object.getParseFile("profileImage");
-
                 if(image != null){
                     Glide.with(context)
                             .load(image.getUrl())
@@ -179,6 +178,46 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
             }
         });
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+//                holder.friend.setText(object.getString("firstName"));
+            }
+        });
+
+        holder.friendPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    context.startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(context, FriendProfileActivity.class);
+                    intent.putExtra("user",transaction.getKeyFriendId() );
+                    context.startActivity(intent);
+
+                }
+
+            }
+        });
+
+        // if yourself send to your profile
+        holder.donorPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    context.startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(context, FriendProfileActivity.class);
+                    intent.putExtra("user",transaction.getKeyDonorId() );
+                    context.startActivity(intent);
+                }
+
+            }
+        });
     }
 
     @Override
@@ -205,15 +244,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // perform findViewById lookups
             donor = (TextView) itemView.findViewById(R.id.tvDonor);
+//            friend= (TextView) itemView.findViewById(R.id.tvFriend);
             charity = (TextView) itemView.findViewById(R.id.tvCharity);
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
+            donorPhoto.setClickable(true);
             friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
+            friendPhoto.setClickable(true);
             message = (TextView) itemView.findViewById(R.id.tvMessage);
-
             // like button
             ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
         }
-
 
         // Clean all elements of the recycler
         public void clear() {
@@ -226,8 +266,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             transactions.addAll(list);
             notifyDataSetChanged();
         }
-
-
 
     }
 
