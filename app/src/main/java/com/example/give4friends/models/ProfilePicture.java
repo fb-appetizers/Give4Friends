@@ -159,20 +159,21 @@ public final class ProfilePicture {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
 
 
-        ParseUser.getCurrentUser().put("profileImage", conversionBitmapParseFile(photo));
-        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        e.printStackTrace();
-                        //pb.setVisibility(ProgressBar.INVISIBLE);
-                        return;
-                    } else {
-                        // run a background job and once complete
-                        //pb.setVisibility(ProgressBar.INVISIBLE);
-                    }
-                }
-            }
+        parseUser.put("profileImage", conversionBitmapParseFile(photo));
+        parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                                                        @Override
+                                                        public void done(ParseException e) {
+                                                            if (e != null) {
+                                                                e.printStackTrace();
+                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
+                                                                return;
+                                                            } else {
+
+                                                                // run a background job and once complete
+                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
+                                                            }
+                                                        }
+                                                    }
         );
     // Adding some way to update the pictures that go with the transactions.
 

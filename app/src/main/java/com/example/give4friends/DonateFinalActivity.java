@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.Html;
-import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,7 +36,9 @@ import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class DonateFinalActivity extends AppCompatActivity {
+    private ParseUser ff;
     private EditText amount;
+    private TextView amountEntered;
     private EditText message;
     private Button submitDonation;
     private ImageButton cancelBtn;
@@ -60,6 +60,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         charityName = findViewById(R.id.charityName);
 
         amount = findViewById(R.id.amount);
+        //amountEntered = findViewById(R.id.amountEntered);
         message = findViewById(R.id.donationMessage);
         charityName = findViewById(R.id.charityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
@@ -90,6 +91,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText("$");
                     amount.setSelection(0);
                 }
+                //return false;
             }
         });
 
@@ -114,11 +116,13 @@ public class DonateFinalActivity extends AppCompatActivity {
     private void setNewTransaction(){
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
+        int amountInt = Integer.parseInt(amount.getText().toString());
 
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
         newTransaction.setKeyCharityId(currentCharity);
+        newTransaction.setKeyAmountDonated(amountInt);
 
         String amountEntered = amount.getText().toString();
         newTransaction.setKeyAmountDonated(Integer.parseInt(amountEntered.substring(1)));
@@ -136,5 +140,14 @@ public class DonateFinalActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        //update user totals
+        currentUser.increment("totalDonated", amountInt);
+        currentUser.saveInBackground();
+
+
+
+
     }
 }

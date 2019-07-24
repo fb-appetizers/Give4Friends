@@ -66,6 +66,7 @@ import java.util.List;
 
 
 public class ProfileActivity extends AppCompatActivity {
+    int total = 0;
 
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
@@ -105,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
         btChangePic = findViewById(R.id.btChangePic);
 
         configureToolbar();
+
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,15 +281,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .placeholder(R.drawable.user_outline_24)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
-
-
-
-
-
-
                 ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
-
-
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -316,7 +310,6 @@ public class ProfileActivity extends AppCompatActivity {
                                     .placeholder(R.drawable.user_outline_24)
                                     .error(R.drawable.user_outline_24))
                             .into(ivProfileImage);
-
                     ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
                 } catch (IOException e) {
@@ -401,6 +394,35 @@ private void populate(){
             }
         });
 
+
+    }
+
+    // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
+    protected void getRaised(){
+        //get query
+        ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
+                .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
+        List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
+        queries.add(postQueryFriend);
+        ParseQuery<Transaction> mainQuery = ParseQuery.or(queries);
+        mainQuery.findInBackground(new FindCallback<Transaction>() {
+            //iterate through query
+            @Override
+            public void done(List<Transaction> objects, ParseException e) {
+                if (e == null){
+                    for (int i = 0; i < objects.size(); ++i){
+                        total = (total + (int) (objects.get(i)).getKeyAmountDonated());
+//                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+                    }
+                    tvTotalRaised.setText("Total Raised: $" + total);
+                }else {
+                    Log.e("MainActivity", "Can't get transaction");
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        );
 
     }
 }

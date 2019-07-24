@@ -76,17 +76,14 @@ public class CharitySearch extends AppCompatActivity {
 
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
 
-
         acharitiesLower = new ArrayList<CharityAPI>();
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
 
 
-
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
-
 
 
         // Set layout manager to position the items

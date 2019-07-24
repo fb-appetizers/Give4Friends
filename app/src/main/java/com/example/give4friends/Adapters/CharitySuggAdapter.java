@@ -32,15 +32,12 @@ import java.util.List;
 
 public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.ViewHolder> {
 
-
     private List<CharityAPI> mCharity;
     private Context context;
 
     public CharitySuggAdapter(List<CharityAPI> mCharity) {
         this.mCharity = mCharity;
-
     }
-
 
     @Override
     public CharitySuggAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

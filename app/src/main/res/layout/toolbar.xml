@@ -12,7 +12,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:contentInsetStart="0dp"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:navigationIcon="@drawable/ic_account_4"
+    app:navigationIcon="@drawable/settings_icon_lb"
 
     >
 
