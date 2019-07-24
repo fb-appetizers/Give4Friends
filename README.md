@@ -221,3 +221,28 @@ info | String | Information on the charityAPI
 - [ ] Updated from feedback
 
 
+
+
+Should do:
+- [ ]Redesign transaction item
+	- charity with link
+- [ ]Redesign profile page (self and other)
+- [ ]Make floating button solid
+- [ ]Change settings icon
+- [ ]Push Notifications
+- [ ]Compression for Parse
+- [ ]Settings
+- [ ]Enter credit card info (make a note that it should be fake)
+- [ ]Recommended charities fragment
+
+Stretch:
+- [ ]Unlike a charity from your profile
+- [ ]on your profile you can search for charities to add
+- [ ]show past friends in friends search
+- [ ]connect to fb fundraiser API
+- [ ]comments on transactions
+- [ ]comments on charities
+
+
+
+
