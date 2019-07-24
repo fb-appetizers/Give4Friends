@@ -2,6 +2,8 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -115,6 +117,16 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     }
 
-
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.charity_menu, menu);
+//        return true;
+////        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        return true;
+//    }
 }
