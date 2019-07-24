@@ -90,7 +90,7 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                
+
                 if (count == 0 && start ==0){
 
                     getResponseSuggested();
