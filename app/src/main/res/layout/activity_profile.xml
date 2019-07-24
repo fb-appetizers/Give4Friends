@@ -17,8 +17,8 @@
         android:id="@+id/tvTotalRaised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Total Raised"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -27,6 +27,7 @@
         android:id="@+id/ivProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
         tools:srcCompat="@tools:sample/avatars" />
@@ -35,7 +36,7 @@
         android:id="@+id/tvName"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:text="tvName"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
@@ -45,25 +46,25 @@
         android:id="@+id/tvBio"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Bio:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#020202"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalDonated" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="467dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintVertical_bias="0.0">
@@ -84,37 +85,36 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="147dp"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="133dp"
         android:text="Favorite Charities"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#2196F3"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBio" />
+        app:layout_constraintTop_toBottomOf="@+id/btEditProfile" />
 
     <Button
         android:id="@+id/btEditProfile"
-        android:layout_width="408dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="#03A9F4"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#162196F3"
         android:text="Edit Bio"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvBio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileImage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
     <TextView
         android:id="@+id/tvTotalDonated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:text="Total Donated"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalRaised" />
@@ -123,7 +123,7 @@
         android:id="@+id/tvFullName"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif"
         android:text="tvFullName"
@@ -137,13 +137,12 @@
         android:id="@+id/btChangePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
         android:background="#00F3F5F7"
         android:scrollbarSize="18dp"
         android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toTopOf="@+id/btEditProfile"
-        app:layout_constraintStart_toStartOf="@+id/ivProfileImage" />
-
-
+        app:layout_constraintStart_toStartOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toTopOf="@+id/ivProfileImage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
