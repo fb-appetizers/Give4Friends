@@ -119,12 +119,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.message.setText(transaction.getKeyMessage());
 
-        if( transaction.getKeyCharityId() != null) {
+        if (transaction.getKeyCharityId() != null) {
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
-
-                    holder.charity.setText("To: " + object.getString("name"));
+                    holder.charity.setText(object.getString("name"));
                 }
             });
         }
