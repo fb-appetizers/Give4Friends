@@ -148,7 +148,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_chevron_right_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_brightness_1_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -159,12 +159,12 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="4caf50" />
-                            <entry key="height" value="1024" />
-                            <entry key="outputName" value="ic_like_filled_con" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="height" value="65" />
+                            <entry key="outputName" value="ic_brightness_1_black_24dp" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/like_filled_con.svg" />
-                            <entry key="width" value="1024" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_1_black_24dp.xml" />
+                            <entry key="width" value="65" />
                           </map>
                         </option>
                       </PersistentState>

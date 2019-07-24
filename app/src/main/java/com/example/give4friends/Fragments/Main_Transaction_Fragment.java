@@ -52,6 +52,7 @@ public class Main_Transaction_Fragment extends Fragment {
 //        super.onViewCreated(view, savedInstanceState);
         suggBtn = view.findViewById(R.id.suggBtn);
 
+        suggBtn.setBackgroundDrawable(null);
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
