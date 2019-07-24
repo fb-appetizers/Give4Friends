@@ -61,6 +61,15 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCrop())
                     .into(holder.friendImage);
+        }else{
+
+            Glide.with(context)
+                    .load(R.drawable.instagram_user_outline_24)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCrop())
+                    .into(holder.friendImage);
+
         }
     }
 
