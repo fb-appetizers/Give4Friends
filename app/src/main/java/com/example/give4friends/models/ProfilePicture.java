@@ -158,17 +158,20 @@ public final class ProfilePicture {
 
 
         parseUser.put("profileImage", conversionBitmapParseFile(photo));
-        parseUser.getCurrentUser().saveInBackground(e -> {
-            if (e != null) {
-                e.printStackTrace();
-                //pb.setVisibility(ProgressBar.INVISIBLE);
-                return;
-            } else {
+        parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                                                        @Override
+                                                        public void done(ParseException e) {
+                                                            if (e != null) {
+                                                                e.printStackTrace();
+                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
+                                                                return;
+                                                            } else {
 
-                // run a background job and once complete
-                //pb.setVisibility(ProgressBar.INVISIBLE);
-            }
-        }
+                                                                // run a background job and once complete
+                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
+                                                            }
+                                                        }
+                                                    }
         );
     // Adding some way to update the pictures that go with the transactions.
 

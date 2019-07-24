@@ -73,10 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
     ArrayList<Charity> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
-    private Object FavCharitiesAdapter;
     private Button btEditBio;
     private ImageButton btChangePic;
-
 
     public ImageView ivProfileImage;
     public TextView tvUserName;
@@ -85,17 +83,13 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvTotalDonated;
     public TextView tvFullName;
 
-
     //for changing picture
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
-    public String photoFileName = "photo.jpg";
     private File photoFile;
     private Bitmap photo;
 
-
     ParseUser myUser = ParseUser.getCurrentUser();
-
     Context context;
 
     @Override
@@ -105,7 +99,9 @@ public class ProfileActivity extends AppCompatActivity {
         context = this;
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
+
         configureToolbar();
+
         btEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,18 +116,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //Below for recycler view of charities\
-        //find the RecyclerView
+        //Below for recycler view of charities
         rvCharities = (RecyclerView) findViewById(R.id.rvFavCharities);
-
         // initialize the array list of charities
         charities = new ArrayList<Charity>();
-
         populateRelations();
-
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -144,39 +135,31 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
-
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
-
         // Below for static elements of profile
-
-
-        ivProfileImage = (ImageView) findViewById((R.id.ivProfileImage));
+     ivProfileImage = (ImageView) findViewById((R.id.ivProfileImage));
         tvUserName = (TextView) findViewById(R.id.tvName);
         tvBio = (TextView) findViewById(R.id.tvBio);
         tvTotalRaised = (TextView) findViewById((R.id.tvTotalRaised));
         tvTotalDonated = (TextView) findViewById((R.id.tvTotalDonated));
         tvFullName = (TextView) findViewById(R.id.tvFullName);
 
-
-        tvUserName.setText(myUser.getUsername());
+        tvUserName.setText("@" + myUser.getUsername());
         if(myUser.getString("bio") == null){
-            tvBio.setText("Looks like you don't have a bio yet! Bios let your friends know what you are passionate about.");
+            tvBio.setText("Looks like you don't have a bio yet! Edit your bio to let your friends know what you are passionate about.");
         }
         else{
-            tvBio.setText("Bio: " + myUser.getString("bio"));
+            tvBio.setText(myUser.getString("bio"));
         }
         tvBio.setEnabled(false);
         tvTotalDonated.setText("Total Donated: $" + myUser.getNumber("totalDonated"));
         getRaised();
-
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
-
 
         //Handles images
         ParseFile file = myUser.getParseFile("profileImage");
@@ -201,41 +184,25 @@ public class ProfileActivity extends AppCompatActivity {
                             .error(R.drawable.user_outline_24))
                     .into(ivProfileImage);
         }
-
     }
-
         //add tool bar
         private void configureToolbar() {
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle("Give4Friends");
+            Toolbar toolbar = findViewById(R.id.toolbarProfile);
             setSupportActionBar(toolbar);
-
             ActionBar actionbar = getSupportActionBar();
             actionbar.setDisplayShowTitleEnabled(false);
-
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //No need to have an intent from the profile activity to the profile activity
-                }
-            });
-
-            findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
                     finish();
                 }
             });
-
         }
-
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.charity_menu, menu);
-
             return true;
         }
 
@@ -298,9 +265,7 @@ public class ProfileActivity extends AppCompatActivity {
                 // Do something with the photo based on Uri
                 try {
                     Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-
                     Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
-
 
                     Glide.with(context)
                             .load(selectedImageRotate)
@@ -310,19 +275,15 @@ public class ProfileActivity extends AppCompatActivity {
                                     .placeholder(R.drawable.user_outline_24)
                                     .error(R.drawable.user_outline_24))
                             .into(ivProfileImage);
-
                     ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         }
 
     };
-
-
 
 
     public void updateBio(String bio){
@@ -349,22 +310,6 @@ public class ProfileActivity extends AppCompatActivity {
                 .create();
         dialog.show();
     }
-
-
-
-private void populate(){
-
-
-    //Get list
-    final List<Charity> favCharities = myUser.getList("favCharities");
-    if(favCharities != null) {
-        for (int i = 0; i < favCharities.size(); i++) {
-            charities.add((Charity) favCharities.get(i));
-        }
-    }
-    }
-
-
 
     private void populateRelations() {
         //Get relation
@@ -398,14 +343,13 @@ private void populate(){
 
     }
 
+    // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
         //get query
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
                 .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
-
         List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
         queries.add(postQueryFriend);
-
         ParseQuery<Transaction> mainQuery = ParseQuery.or(queries);
         mainQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query

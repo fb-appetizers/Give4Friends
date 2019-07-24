@@ -80,7 +80,6 @@
             android:keepScreenOn="false"
             android:keyboardNavigationCluster="false"
             android:singleLine="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             tools:clickable="true"
             tools:longClickable="false" />
     </com.google.android.material.textfield.TextInputLayout>

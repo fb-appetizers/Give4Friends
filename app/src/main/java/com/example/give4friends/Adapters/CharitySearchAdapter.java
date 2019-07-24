@@ -80,10 +80,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
         public TextView tvCharityName;
         public TextView tvMission;
-
         public TextView tvCause;
         public ImageView ivRating;
-
         public TextView tvMoreInfo;
         public TextView tvDonateNow;
 
