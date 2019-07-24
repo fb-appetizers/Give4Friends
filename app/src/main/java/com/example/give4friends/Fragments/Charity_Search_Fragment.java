@@ -91,14 +91,14 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                if (count == 0 && start ==0){
+                if (count == 0 ){
 
                     getResponseSuggested();
 
                 }
                 if(count > 0 ){
 
-                    getResponseSearch(charSequence.toString(),false);
+                    getResponseSearch(etCharity.getText().toString(),false);
                 }
 
             }
@@ -186,8 +186,10 @@ public class Charity_Search_Fragment extends Fragment {
                                 acharitiesUpper.clear();
                                 for(CharityAPI charityAPI : charities){
                                     acharitiesUpper.add(charityAPI);
+
                                 }
                                 charityAdapterUpper.notifyDataSetChanged();
+
                                 hideProgressBar();
 
                             } catch (JSONException e) {

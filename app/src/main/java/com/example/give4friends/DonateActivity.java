@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class DonateActivity extends AppCompatActivity implements Serializable {
     private EditText searchFriend;
-    private Button searchBtn;
+    private Button cancelSearchBtn;
     private RecyclerView rvFriends;
     public static ParseUser currentFriend;
     public static Charity currentCharity;
@@ -45,7 +47,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         donateNow = intent.getBooleanExtra("donateNow", false);
 
         searchFriend = findViewById(R.id.searchFriend);
-        searchBtn = findViewById(R.id.searchBtn);
+        cancelSearchBtn = findViewById(R.id.cancelSearchBtn);
         rvFriends = findViewById(R.id.rvFriends);
         cancel = findViewById(R.id.ibcancelFinal);
 
@@ -57,12 +59,48 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         rvFriends.setLayoutManager(new LinearLayoutManager(this));
 
 
-        searchBtn.setOnClickListener(new View.OnClickListener() {
+        cancelSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                queryFriends(searchFriend.getText().toString());
+                searchFriend.clearFocus();
+                searchFriend.getText().clear();
+
+
+
+
+
             }
         });
+
+        searchFriend.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
+
+                if (count == 0 ){
+                    friends.clear();
+                    adapter.notifyDataSetChanged();
+
+                }
+                if(count > 0 ){
+
+                    queryFriends(searchFriend.getText().toString());
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,17 +112,29 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     }
 
     protected void queryFriends(String name){
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereContains("username", name);
+        ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+        query1.whereContains("username", name);
 
-        query.findInBackground(new FindCallback<ParseUser>() {
+        ParseQuery<ParseUser> query2 = ParseUser.getQuery();
+        query2.whereContains("firstName", name);
+
+        List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
+
+        queries.add(query1);
+        queries.add(query2);
+
+        ParseQuery<ParseUser> main_query = ParseQuery.or(queries);
+
+        main_query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
+
                 if(e != null){
                     Log.e("DonateAdapter", "Error with query");
                     e.printStackTrace();
                     return;
                 }
+                friends.clear();
                 friends.addAll(objects);
                 adapter.notifyDataSetChanged();
             }
