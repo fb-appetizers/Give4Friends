@@ -91,7 +91,7 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                if (count == 0 && start ==0){
+                if (count == 0){
 
                     getResponseSuggested();
 
@@ -143,7 +143,7 @@ public class Charity_Search_Fragment extends Fragment {
             public void onClick(View view) {
 
                 etCharity.clearFocus();
-
+                etCharity.getText().clear();
 
 
 

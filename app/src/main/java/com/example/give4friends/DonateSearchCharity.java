@@ -87,8 +87,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             @Override
             public void onClick(View view) {
 
-                etCharity.clearFocus();
                 etCharity.getText().clear();
+                etCharity.clearFocus();
+
 
 
             }
