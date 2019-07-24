@@ -136,12 +136,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void done(ParseObject object, ParseException e) {
                 holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                holder.donor.append(" donated on behalf of \n");
+                holder.donor.append(" donated on behalf of ");
 
                 transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject object, ParseException e) {
-                        holder.donor.append(object.getString("firstName"));
+                        holder.donor.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
                     }
                 });
             }

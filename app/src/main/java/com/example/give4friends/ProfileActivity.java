@@ -336,7 +336,6 @@ public class ProfileActivity extends AppCompatActivity {
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);
-
                 }
             }
         });
