@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.CharitySearch;
+import com.example.give4friends.MainActivity;
+import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -81,6 +85,12 @@ public class Charity_Search_Fragment extends Fragment {
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
 
+//        Toolbar toolbar = view.findViewById(R.id.toolbar_search);
+//        ( (Main_Fragment_Branch) getActivity()).getSupportActionBar().hide();
+//        ((Main_Fragment_Branch) getActivity()).setSupportActionBar(toolbar);
+
+        ActionBar actionbar = ((Main_Fragment_Branch) getActivity()).getSupportActionBar();
+        actionbar.setDisplayShowTitleEnabled(false);
 
         etCharity.addTextChangedListener(new TextWatcher() {
             @Override
