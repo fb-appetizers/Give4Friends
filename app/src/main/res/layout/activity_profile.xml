@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:text="Total Raised"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -35,7 +36,6 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
         android:text="tvName"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
@@ -137,12 +137,11 @@
         android:id="@+id/btChangePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
         android:background="#00F3F5F7"
         android:scrollbarSize="18dp"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toTopOf="@+id/btEditProfile"
-        app:layout_constraintEnd_toStartOf="@+id/tvTotalDonated" />
+        app:layout_constraintStart_toStartOf="@+id/ivProfileImage" />
 
 
 

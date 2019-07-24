@@ -23,6 +23,7 @@
         <EditTextPreference
             app:key="username"
             app:title="@string/username"
+
             />
 
         <EditTextPreference
