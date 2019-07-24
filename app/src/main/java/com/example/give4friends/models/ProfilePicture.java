@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.provider.MediaStore;
 
+import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.SignUpActivity;
 import com.parse.ParseException;
@@ -153,29 +154,37 @@ public final class ProfilePicture {
 
 
 
-    public static void updatePhoto(ParseUser parseUser, final Bitmap photo) {
+    public static void updatePhoto(final ParseUser parseUser, final Bitmap photo) {
 
         //pb.setVisibility(ProgressBar.VISIBLE);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
 
+        final ParseFile parseFile = conversionBitmapParseFile(photo);
+        parseFile.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
-        parseUser.put("profileImage", conversionBitmapParseFile(photo));
-        parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                                                        @Override
-                                                        public void done(ParseException e) {
-                                                            if (e != null) {
-                                                                e.printStackTrace();
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                                return;
-                                                            } else {
+                if(e==null) {
+                    parseUser.put("profileImage", parseFile);
+                    parseFile.cancel();
+                    parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e!=null){
+                                e.printStackTrace();
+                            }
 
-                                                                // run a background job and once complete
-                                                                //pb.setVisibility(ProgressBar.INVISIBLE);
-                                                            }
-                                                        }
-                                                    }
-        );
-    // Adding some way to update the pictures that go with the transactions.
+                        }
+                    });
+                }else{
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
 
 
 
@@ -192,8 +201,10 @@ public final class ProfilePicture {
     }
 
     public static ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
+        Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(imageBitmap, 60);
+
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        resizedBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
         byte[] imageByte = byteArrayOutputStream.toByteArray();
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
         return parseFile;
