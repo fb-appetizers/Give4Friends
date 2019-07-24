@@ -195,29 +195,54 @@ info | String | Information on the charityAPI
 ### Week 1
 
 - [x] Parse models set up
-- [ ] Profile Page 
-- [ ] Sign up page
-- [ ] Login page
-- [ ] Search page layout and some functionality
-- [ ] Basics of API
+- [x] Profile Page 
+- [x] Sign up page
+- [x] Login page
+- [x] Search page layout and some functionality
+- [x] Basics of API
 
 
 ### Week 2 
-- [ ] Basic flows with intents
+- [x] Basic flows with intents
 
 ### Halfway Point!
-- [ ] All layouts done
+- [x] All layouts done
 
 ###  Week 3
-- [ ] Basic walkthrough ability
-- [ ] Most back end
+- [x] Basic walkthrough ability
+- [x] Most back end
 
 ### Week 4
-- [ ] Beta Version
+- [x] Beta Version
 
 ### Week 5
 - [ ] Cleaned
 - [ ] Dogfooded
 - [ ] Updated from feedback
+
+
+
+
+Should do:
+- [ ] Redesign transaction item
+	- charity with link
+- [ ] Redesign profile page (self and other)
+- [ ] Make floating button solid
+- [ ] Change settings icon 
+- [ ] Push Notifications
+- [ ] Compression for Parse
+- [ ] Settings - Jessica eventually 
+- [ ] Enter credit card info (make a note that it should be fake)
+- [ ] Recommended charities fragment - Jessica
+
+Stretch:
+- [ ] Unlike a charity from your profile
+- [ ] on your profile you can search for charities to add
+- [ ] show past friends in friends search
+- [ ] connect to fb fundraiser API
+- [ ] comments on transactions
+- [ ] comments on charities
+
+
 
 
