@@ -181,7 +181,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                holder.friend.setText(object.getString("firstName"));
+//                holder.friend.setText(object.getString("firstName"));
             }
         });
 
@@ -244,7 +244,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // perform findViewById lookups
             donor = (TextView) itemView.findViewById(R.id.tvDonor);
-            friend= (TextView) itemView.findViewById(R.id.tvFriend);
+//            friend= (TextView) itemView.findViewById(R.id.tvFriend);
             charity = (TextView) itemView.findViewById(R.id.tvCharity);
             donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
             donorPhoto.setClickable(true);

@@ -143,6 +143,7 @@ public class Charity_Search_Fragment extends Fragment {
             public void onClick(View view) {
 
                 etCharity.clearFocus();
+                etCharity.getText().clear();
 
 
 
