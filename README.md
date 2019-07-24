@@ -224,15 +224,15 @@ info | String | Information on the charityAPI
 
 
 Should do:
-- [ ] Redesign transaction item
+- [ ] Redesign transaction item - Hana
 	- charity with link
 - [ ] Redesign profile page (self and other)
-- [ ] Make floating button solid
+- [ ] Make floating button solid - Hana
 - [ ] Change settings icon 
 - [ ] Push Notifications
 - [ ] Compression for Parse
 - [ ] Settings - Jessica eventually 
-- [ ] Enter credit card info (make a note that it should be fake)
+- [ ] Enter credit card info (make a note that it should be fake) - Hana
 - [ ] Recommended charities fragment - Jessica
 
 Stretch:
