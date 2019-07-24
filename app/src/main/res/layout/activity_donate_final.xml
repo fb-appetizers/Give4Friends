@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3">
@@ -68,6 +68,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/friendsUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:text="TextView" />
+
+            <TextView
                 android:id="@+id/friendsName"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -79,63 +88,49 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/friendsUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:text="TextView" />
         </LinearLayout>
 
     </LinearLayout>
 
     <EditText
         android:id="@+id/amount"
-        android:layout_width="60dp"
+        android:layout_width="0dp"
         android:layout_height="58dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/constraint_border"
         android:ems="10"
-        android:gravity="center|right|center_horizontal|center_vertical"
-        android:hint="$$"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:hint="$0"
         android:inputType="textPersonName"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/donationMessage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout3"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <EditText
         android:id="@+id/donationMessage"
         android:layout_width="0dp"
         android:layout_height="445dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/constraint_border"
         android:ems="10"
-        android:gravity="left"
+        android:gravity="top"
         android:hint="Message..."
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-    <TextView
-        android:id="@+id/amountEntered"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/amount"
-        app:layout_constraintEnd_toEndOf="@+id/amount"
-        app:layout_constraintStart_toStartOf="@+id/amount"
-        app:layout_constraintTop_toTopOf="@+id/amount"
-        tools:visibility="gone" />
 
     <Button
         android:id="@+id/donateSubmitBtn"
@@ -150,19 +145,19 @@
 
     <TextView
         android:id="@+id/charityName"
-        android:layout_width="wrap_content"
+        android:layout_width="195dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="8dp"
-        android:background="#7AFFFFFF"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-thin"
-        android:gravity="left"
+        android:gravity="center|left|center_vertical"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/donateSubmitBtn"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"

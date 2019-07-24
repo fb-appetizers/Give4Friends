@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,9 +38,7 @@ import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class DonateFinalActivity extends AppCompatActivity {
-    private ParseUser ff;
     private EditText amount;
-    private TextView amountEntered;
     private EditText message;
     private Button submitDonation;
     private ImageButton cancelBtn;
@@ -60,7 +60,6 @@ public class DonateFinalActivity extends AppCompatActivity {
         charityName = findViewById(R.id.charityName);
 
         amount = findViewById(R.id.amount);
-        amountEntered = findViewById(R.id.amountEntered);
         message = findViewById(R.id.donationMessage);
         charityName = findViewById(R.id.charityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
@@ -84,20 +83,13 @@ public class DonateFinalActivity extends AppCompatActivity {
         friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
         friendsUserName.setText("@" + currentFriend.getUsername());
 
-        amountEntered.setVisibility(View.GONE);
-
-        amount.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        amount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (keyEvent == null || !keyEvent.isShiftPressed()) {
-                    // the user is done typing.
-                    amountEntered.setVisibility(View.VISIBLE);
-                    amountEntered.setText("$" + amount.getText().toString());
-                    amount.setVisibility(View.GONE);
-
-                    return true; // consume.
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    amount.setText("$");
+                    amount.setSelection(0);
                 }
-                return false;
             }
         });
 
@@ -127,7 +119,9 @@ public class DonateFinalActivity extends AppCompatActivity {
         newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
         newTransaction.setKeyCharityId(currentCharity);
-        newTransaction.setKeyAmountDonated(Integer.parseInt(amount.getText().toString()));
+
+        String amountEntered = amount.getText().toString();
+        newTransaction.setKeyAmountDonated(Integer.parseInt(amountEntered.substring(1)));
 
         newTransaction.saveInBackground(new SaveCallback() {
             @Override
