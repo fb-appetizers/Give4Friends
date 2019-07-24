@@ -52,7 +52,7 @@ public class Charity_Search_Fragment extends Fragment {
 
     private EditText etCharity;
     private TextInputLayout tiCharity;
-    private Button btnSubmit;
+    private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
     CharityClient client;
@@ -76,7 +76,7 @@ public class Charity_Search_Fragment extends Fragment {
 
         rvCharitySugg = view.findViewById(R.id.rvCharitySugg);
         etCharity = view.findViewById(R.id.etCharity);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnCancel = view.findViewById(R.id.btnCancel);
         tiCharity = view.findViewById(R.id.tiCharity);
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
@@ -138,10 +138,10 @@ public class Charity_Search_Fragment extends Fragment {
 
 
         //When you hit submit the recycler view updates
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getResponseSearch(etCharity.getText().toString(),false);
+
                 etCharity.clearFocus();
 
 
