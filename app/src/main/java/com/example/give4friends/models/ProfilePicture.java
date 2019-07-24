@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.provider.MediaStore;
 
-import com.example.give4friends.MainActivity;
 import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.SignUpActivity;
 import com.parse.ParseException;
@@ -60,7 +59,10 @@ public final class ProfilePicture {
             }
         });
         dialog.show();
+
     }
+
+
 
     private static File getPhotoFileUri(String fileName, Context context) {
 
@@ -154,7 +156,7 @@ public final class ProfilePicture {
     public static void updatePhoto(ParseUser parseUser, final Bitmap photo) {
 
         //pb.setVisibility(ProgressBar.VISIBLE);
-       // ParseQuery<ParseObject> query = new ParseQuery.getQuery("User");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
 
 
         parseUser.put("profileImage", conversionBitmapParseFile(photo));

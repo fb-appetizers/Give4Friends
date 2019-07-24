@@ -2,14 +2,11 @@ package com.example.give4friends;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,13 +16,14 @@ import androidx.fragment.app.FragmentManager;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.ParseUser;
 
 public class Main_Fragment_Branch extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
-
+    //        // define your fragments here
+    final Fragment fragment1 = new Main_Transaction_Fragment();
+    final Fragment fragment2 = new Charity_Search_Fragment();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +39,8 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         final FragmentManager fragmentManager = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-//        // define your fragments here
-        final Fragment fragment1 = new Main_Transaction_Fragment();
-        final Fragment fragment2 = new Charity_Search_Fragment();
-//        final Fragment fragment3 = new ProfileFragment(ParseUser.getCurrentUser());
+
+//        final Fragment fragment3 = new User_Profile_Fragment();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,10 +55,10 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
-                    case R.id.action_settings:
-
-                        Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-                        startActivity(intent);
+                    case R.id.action_profile:
+//                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
+                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivityForResult(intent,0);
                         break;
 
                     default:
@@ -81,6 +77,21 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == 0) {
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
+            bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+        }
+    }
+
     protected void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Give4Friends");
@@ -93,8 +104,11 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
+
+
+
             }
         });
 
