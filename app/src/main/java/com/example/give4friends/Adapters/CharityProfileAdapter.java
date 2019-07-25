@@ -33,6 +33,9 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
+
 public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
@@ -176,19 +179,23 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
 
 
-            ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-
-                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
-                    intent.putExtra("donateNow", true);
-                    view.getContext().startActivity(intent);
-
-
-
-                }
-            });
+//            ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int position = getAdapterPosition(); // gets item position
+//                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+//                        currentCharity = charities.get(position);
+//                        charityName2 = currentCharity.getKeyName();
+//                    }
+//
+//                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+//                    intent.putExtra("donateNow", true);
+//                    view.getContext().startActivity(intent);
+//
+//
+//
+//                }
+//            });
 
         } else if (viewHolder.getItemViewType() == COMMENT) {
 
@@ -243,6 +250,21 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
+
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition(); // gets item position
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        currentCharity = parseCharity;
+                        charityName2 = currentCharity.getKeyName();
+                    }
+
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
 
         @Override
