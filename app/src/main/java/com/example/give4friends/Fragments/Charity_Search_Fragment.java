@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -102,7 +103,7 @@ public class Charity_Search_Fragment extends Fragment {
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-                    getResponseSuggested();
+                    getEffective();
                 }
                 if(count > 0 ){
                     getResponseSearch(charSequence.toString(),false);
@@ -126,13 +127,15 @@ public class Charity_Search_Fragment extends Fragment {
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        items.add("Recommended Effective Charities");
+
         getEffective();
 
         //When you hit submit the recycler view updates
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 etCharity.clearFocus();
                 etCharity.getText().clear();
             }
@@ -267,6 +270,8 @@ public class Charity_Search_Fragment extends Fragment {
 
     public void getEffective(){
 
+        items.clear();
+        items.add("Recommended Effective Charities");
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
                 .whereEqualTo("highlyEffective", true);
 
@@ -274,6 +279,7 @@ public class Charity_Search_Fragment extends Fragment {
             //iterate through query
             @Override
             public void done(List<Charity> objects, ParseException e) {
+
 
                 if (e == null) {
                     for (int i = 0; i < objects.size(); ++i) {
