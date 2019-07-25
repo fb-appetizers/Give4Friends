@@ -36,6 +36,7 @@ import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -57,7 +58,7 @@ import okhttp3.Response;
 public class Charity_Search_Fragment extends Fragment {
 
 
-    private EditText etCharity;
+    private TextInputEditText etCharity;
     private TextInputLayout tiCharity;
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
@@ -101,7 +102,9 @@ public class Charity_Search_Fragment extends Fragment {
 
                 if (count == 0){
 
-                    client.getClient().dispatcher().cancelAll();
+                    if(client!=null) {
+                        client.getClient().dispatcher().cancelAll();
+                    }
                     getResponseSuggested();
 
                 }
