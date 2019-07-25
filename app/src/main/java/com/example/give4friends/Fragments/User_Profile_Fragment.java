@@ -60,6 +60,7 @@ import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
+
 public class User_Profile_Fragment extends Fragment {
     int total = 0;
 
@@ -294,6 +295,7 @@ public class User_Profile_Fragment extends Fragment {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
+                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,270);
                 Glide.with(context)
                         .load(selectedImageRotate)
