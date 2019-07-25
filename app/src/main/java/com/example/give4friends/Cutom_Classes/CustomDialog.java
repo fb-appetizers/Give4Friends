@@ -55,6 +55,8 @@ public class CustomDialog extends DialogFragment {
         this.charity = charity;
     }
 
+    public CustomDialog(Charity charity){this.newCharity = charity;}
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

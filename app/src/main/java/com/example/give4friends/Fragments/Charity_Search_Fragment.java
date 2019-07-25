@@ -126,10 +126,7 @@ public class Charity_Search_Fragment extends Fragment {
         acharitiesUpper = new ArrayList<CharityAPI>();
 
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-
-
-
-        // attach the adapter to the RecyclerView
+ // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
 
 
