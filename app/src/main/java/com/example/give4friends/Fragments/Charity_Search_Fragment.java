@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ import com.example.give4friends.CharitySearch;
 import com.example.give4friends.MainActivity;
 import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
+import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
@@ -85,12 +87,7 @@ public class Charity_Search_Fragment extends Fragment {
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
 
-//        Toolbar toolbar = view.findViewById(R.id.toolbar_search);
-//        ( (Main_Fragment_Branch) getActivity()).getSupportActionBar().hide();
-//        ((Main_Fragment_Branch) getActivity()).setSupportActionBar(toolbar);
-
-        ActionBar actionbar = ((Main_Fragment_Branch) getActivity()).getSupportActionBar();
-        actionbar.setDisplayShowTitleEnabled(false);
+        configureToolbar();
 
         etCharity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -152,7 +149,27 @@ public class Charity_Search_Fragment extends Fragment {
                 etCharity.clearFocus();
                 etCharity.getText().clear();
 
+            }
+        });
 
+
+
+    }
+    protected void configureToolbar() {
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTextSize(30);
+        toolbarTitle.setText("Search");
+
+        toolbar.setNavigationIcon(R.drawable.ic_settings);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
 
 
             }
@@ -161,17 +178,6 @@ public class Charity_Search_Fragment extends Fragment {
 
 
     }
-
-
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-
-
-
-
-    }
-
 
 
 
@@ -187,8 +193,6 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
-
                 if (response.isSuccessful()){
                     final String myResponse = response.body().string();
 
@@ -198,7 +202,6 @@ public class Charity_Search_Fragment extends Fragment {
                             try {
                                 JSONArray charityArray;
                                 charityArray = new JSONArray(myResponse);
-
 
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 

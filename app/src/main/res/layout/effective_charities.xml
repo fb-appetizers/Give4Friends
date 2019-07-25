@@ -6,13 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/lvEffectiveCharities"
-        android:layout_width="412dp"
-        android:layout_height="645dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"

@@ -69,7 +69,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
 
@@ -95,22 +94,18 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
-            final List<User> array = parseCharity.getList("likesUsers");
+            List<User> array = parseCharity.getList("likesUsers");
 
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
-            // get all of the users favorite charities
-            final ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
 
-
-// if user is in likesUsers - start yellow
             if (array == null || !(array.contains(myUser.getObjectId()))) {
-                is_empty = true;
+
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
             } else {
-                is_empty = false;
+
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
@@ -119,9 +114,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
 
-                    if (is_empty) {
+                    ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
+                    List<User> array = parseCharity.getList("likesUsers");
+
+
+                    if (array == null || !(array.contains(myUser.getObjectId()))) {
+
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
@@ -181,7 +180,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-
     @Override
     public int getItemCount() {
 
@@ -191,30 +189,23 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemViewType(int position) {
         //More to come
-
         if (position == 0) {
             return CHARITY;
         } else {
             return COMMENT;
         }
-
     }
 
-
     public class ViewHolderCharity extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-
         TextView tvCPname;
         TextView tvCPCategory;
         TextView tvCPCause;
         TextView tvCPMission;
-
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
-
             tvCPname = itemView.findViewById(R.id.tvCPname);
             tvCPCategory = itemView.findViewById(R.id.tvCPCategory);
             tvCPCause = itemView.findViewById(R.id.tvCPCause);
@@ -231,10 +222,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
         public ViewHolderComment(@NonNull View itemView) {
             super(itemView);
-
 
         }
 
@@ -279,6 +268,4 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         return parseCharity;
     }
-
-    //testing push
 }

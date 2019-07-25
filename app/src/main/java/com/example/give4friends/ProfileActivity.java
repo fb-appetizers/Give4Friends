@@ -67,7 +67,7 @@ import java.util.List;
 
 
 public class ProfileActivity extends AppCompatActivity {
-    int total = 0;
+    int total;
 
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
@@ -350,6 +350,7 @@ public class ProfileActivity extends AppCompatActivity {
     // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
         //get query
+        total = 0;
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
                 .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
         List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
@@ -365,15 +366,15 @@ public class ProfileActivity extends AppCompatActivity {
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                     }
                     tvTotalRaised.setText("Total Raised: $" + total);
-                }else {
+                }
+                else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
                 }
             }
 
-        }
+            }
         );
-
     }
 }
 

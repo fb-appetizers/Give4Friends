@@ -5,12 +5,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +24,7 @@ import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.MainActivity;
 import com.example.give4friends.R;
+import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -50,6 +55,7 @@ public class Main_Transaction_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
+        configureToolbar();
         suggBtn = view.findViewById(R.id.suggBtn);
 
         suggBtn.setBackgroundDrawable(null);
@@ -101,6 +107,29 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
     }
+
+    private void configureToolbar() {
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+
+        toolbarTitle.setText("Give4Friends");
+
+
+        toolbar.setNavigationIcon(R.drawable.ic_settings);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+    }
+
+
 
 
 

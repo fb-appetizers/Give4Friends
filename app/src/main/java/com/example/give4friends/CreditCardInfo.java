@@ -7,13 +7,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.braintreepayments.cardform.view.CardForm;
+import com.example.give4friends.models.FinancialInfo;
+import com.example.give4friends.models.User;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +28,7 @@ import static com.parse.ParseUser.getCurrentUser;
 public class CreditCardInfo extends AppCompatActivity {
     private CardForm cardForm;
     private Button submit;
+    private ParseObject parseObject;
     AlertDialog.Builder alertBuilder;
 
     @Override
@@ -65,7 +71,7 @@ public class CreditCardInfo extends AppCompatActivity {
                             dialogInterface.dismiss();
                             Toast.makeText(CreditCardInfo.this, "Saved", Toast.LENGTH_LONG).show();
 
-                            Intent intent = new Intent(CreditCardInfo.this, MainActivity.class);
+                            Intent intent = new Intent(CreditCardInfo.this, Main_Fragment_Branch.class);
                             startActivity(intent);
                         }
                     });
@@ -94,7 +100,7 @@ public class CreditCardInfo extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 //
-//        FinancialInfo newUserCC = new FinancialInfo();
+//        newUserCC = new FinancialInfo();
 //
 //        newUserCC.setKeyCreditCardNum(Integer.parseInt(cardNum));
 //        newUserCC.setKeyCvc(Integer.parseInt(cvv));
@@ -102,17 +108,47 @@ public class CreditCardInfo extends AppCompatActivity {
 //        newUserCC.setKeyExpDate(date);
 //        newUserCC.setKeyZipcode(Integer.parseInt(zip));
 //        newUserCC.setKeyPhoneNum(Integer.parseInt(phoneNum));
-
-        ParseObject parseObject = ParseObject.create("financialInfo");
-        parseObject.add("credit_card_num", cardNum);
-        parseObject.add("expiration_date", expDate);
-        parseObject.add("cvc", Integer.parseInt(cvv));
-        parseObject.add("zipCode", Integer.parseInt(zip));
-//        parseObject.add("email", getCurrentUser().getEmail());
-        parseObject.add("phoneNumber", phoneNum);
-
-        parseObject.saveInBackground();
 //
-//        getCurrentUser().add("financialInfo", parseObject);
+//        newUserCC.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null){
+//                    getCurrentUser().put("financialInfo", newUserCC);
+//                    Log.d("CreditCardInfo", "Credit Card Info Updated");
+//                }
+//                else{
+//                    Log.d("CreditCardInfo", "Unable to update Credit Card Info");
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
+        final ParseObject parseObject = new ParseObject("financialInfo");
+
+        parseObject.put("credit_card_num", Integer.parseInt(cardNum));
+        parseObject.put("expDate", Integer.parseInt(expDate));
+        parseObject.put("cvc", 000);
+        parseObject.put("zipCode", Integer.parseInt(zip));
+        parseObject.put("email", getCurrentUser().getEmail());
+        parseObject.put("phoneNumber", Integer.parseInt(phoneNum));
+
+        parseObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null){
+                    getCurrentUser().put("financialInfo", parseObject);
+                    getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            Log.d("CreditCardInfo", "Credit Card Info Updated");
+                        }
+                    });
+                }
+                else{
+                    Log.d("CreditCardInfo", "Unable to update Credit Card Info");
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

@@ -35,12 +35,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton cancelBtn;
-
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
@@ -84,15 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
         populate();
     }
+
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         postQuery.setLimit(10);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
-
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override

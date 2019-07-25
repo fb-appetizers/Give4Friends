@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +43,7 @@ public class Charity_Profile_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        configureToolbar();
         rvCPProfile = view.findViewById(R.id.rvCPProfile);
 
         items = new ArrayList<Object>();
@@ -63,5 +68,30 @@ public class Charity_Profile_Fragment extends Fragment {
         itemsAdapter.notifyItemInserted(items.size() - 1);
 
     }
+
+
+    protected void configureToolbar() {
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(charity.getName());
+        toolbarTitle.setTextSize(17);
+
+        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
+
+    }
+
+
+
 
 }

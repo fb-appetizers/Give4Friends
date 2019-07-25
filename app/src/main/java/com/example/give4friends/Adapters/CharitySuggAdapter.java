@@ -50,7 +50,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         LayoutInflater inflater = LayoutInflater.from(context);
 
         if (viewType == EFFECTIVE) {
-
             View v1 = inflater.inflate(R.layout.effective_charities, parent, false);
             viewHolder = new CharitySuggAdapter.ViewHolderEffective(v1);
             return viewHolder;
