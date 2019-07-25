@@ -1,6 +1,5 @@
 package com.example.give4friends.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -40,7 +38,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
-import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
@@ -250,7 +247,7 @@ public class User_Profile_Fragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.transactionHistory:
+            case R.id.reportUser:
                 Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
                 startActivity(intent);

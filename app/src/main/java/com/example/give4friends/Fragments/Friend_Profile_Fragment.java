@@ -27,10 +27,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
-import com.example.give4friends.FriendProfileActivity;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
-import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -161,9 +159,6 @@ public class Friend_Profile_Fragment extends Fragment {
                 //Pops back the fragment if you cancel
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
-
-
-
             }
         });
 
@@ -185,7 +180,12 @@ public class Friend_Profile_Fragment extends Fragment {
         switch (item.getItemId()){
             case R.id.reportUser:
                 Toast.makeText(getContext(), "Report User Selected", Toast.LENGTH_SHORT).show();
-
+                return true;
+            case R.id.TransactionHistory:
+                Toast.makeText(context, "Transaction History selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, HistoryActivity.class);
+                intent.putExtra("user", myUser);
+                startActivity(intent);
                 return true;
             default:
 //                Log.e()

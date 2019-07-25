@@ -138,7 +138,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
         }
 
-
         transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
@@ -196,7 +195,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-
 
                     // Create a new fragment instead of an activity
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
