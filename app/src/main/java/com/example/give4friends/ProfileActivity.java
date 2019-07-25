@@ -201,7 +201,7 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
-                case R.id.transactionHistory:
+                case R.id.TransactionHistory:
                     Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
                     intent.putExtra("user", ParseUser.getCurrentUser());

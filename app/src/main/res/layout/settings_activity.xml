@@ -50,6 +50,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbarSettings"
         app:layout_constraintStart_toStartOf="@+id/toolbarSettings"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_down" />
+        app:srcCompat="@drawable/ic_down_arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
