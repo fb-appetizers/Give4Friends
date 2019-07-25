@@ -105,6 +105,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
 
                 if (count == 0 ){
+                    client.getClient().dispatcher().cancelAll();
                     acharities.clear();
                     charityAdapter.notifyDataSetChanged();
 
@@ -148,12 +149,18 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
     private void getResponse(String search, boolean search_by_name){
 
+
+        if(client!=null){
+            //Clears all of the previous client calls
+            client.getClient().dispatcher().cancelAll();
+        }
+
         client = new CharityClient();
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                hideProgressBar();
+
             }
 
             @Override
@@ -173,20 +180,22 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-                                acharities.clear();
+                                acharities.clear() ;
                                 for(CharityAPI charityAPI : charities){
                                     acharities.add(charityAPI);
                                     charityAdapter.notifyDataSetChanged();
                                 }
+                                hideProgressBar();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                hideProgressBar();
                             }
                         }
                     });
                 }
 
-                hideProgressBar();
+
             }
         });
     }
