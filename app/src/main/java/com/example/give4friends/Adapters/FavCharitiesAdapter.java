@@ -111,6 +111,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     int position = getAdapterPosition(); // gets item position
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         currentCharity = charities.get(position);
+                        charityName2 = currentCharity.getKeyName();
                     }
 
 
