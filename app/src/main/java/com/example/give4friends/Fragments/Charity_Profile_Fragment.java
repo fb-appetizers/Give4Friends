@@ -78,7 +78,7 @@ public class Charity_Profile_Fragment extends Fragment {
         toolbarTitle.setText(charity.getName());
         toolbarTitle.setTextSize(17);
 
-        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+        toolbar.setNavigationIcon(R.drawable.ic_x);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
