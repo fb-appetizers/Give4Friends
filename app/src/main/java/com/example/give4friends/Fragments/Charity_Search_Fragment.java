@@ -64,7 +64,7 @@ public class Charity_Search_Fragment extends Fragment {
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
-    public static Integer NUMBER_OF_SUGGESTIONS = 20;
+    public static Integer NUMBER_OF_SUGGESTIONS = 10;
 
     CharityClient client;
     CharitySuggAdapter charityAdapterUpper;
