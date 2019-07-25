@@ -20,10 +20,16 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.DonateSearchAdapter;
+import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.User;
 import com.example.give4friends.net.CharityClient;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +37,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -89,9 +96,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
                 etCharity.getText().clear();
                 etCharity.clearFocus();
-
-
-
             }
         });
 
@@ -110,13 +114,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     }
                     acharities.clear();
                     charityAdapter.notifyDataSetChanged();
-
                 }
                 if(count > 0 ){
-
                     getResponse(etCharity.getText().toString(),false);
                 }
-
             }
 
             @Override
@@ -202,6 +203,8 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         });
     }
 
+
+
     public void showProgressBar() {
         // Show progress item
         miActionProgressItem.setVisibility(View.VISIBLE);
@@ -211,4 +214,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         // Hide progress item
         miActionProgressItem.setVisibility(View.INVISIBLE);
     }
-}
+
+
+    }

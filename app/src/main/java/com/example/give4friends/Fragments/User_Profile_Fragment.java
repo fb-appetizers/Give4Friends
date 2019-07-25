@@ -228,7 +228,7 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setTextSize(24);
         toolbarTitle.setText(myUser.getUsername());
 
-        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+        toolbar.setNavigationIcon(R.drawable.ic_x);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
