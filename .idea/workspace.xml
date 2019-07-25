@@ -51,7 +51,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dcfe0838-fc52-4d2b-a04e-988f5b1687e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -84,22 +84,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="406">
               <caret line="81" column="41" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="88" column="33" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -130,6 +130,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="358">
               <caret line="80" selection-start-line="80" selection-end-line="81" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fragment_profile.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="2190">
+              <caret line="146" column="52" selection-start-line="146" selection-start-column="52" selection-end-line="146" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -171,17 +181,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="86" selection-start-line="86" selection-end-line="87" selection-end-column="47" />
+            <state relative-caret-position="208">
+              <caret line="97" column="51" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -284,10 +285,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Friend_Profile_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/friend_user_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml" />
       </list>
     </option>
   </component>
@@ -595,13 +596,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Added a semicolon">
-      <created>1563395873821</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1563395873821</updated>
     </task>
     <task id="LOCAL-00014" summary="Added the Charity Search Activity to the toolbar">
       <created>1563396811497</created>
@@ -939,7 +933,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564073899228</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fixed a layout issue in the friend profile">
+      <created>1564074152981</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1564074152982</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1057,7 +1058,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made the transactions run in parallel to display them better" />
     <MESSAGE value="Merge branch 'master' of https://github.com/fb-appetizers/Give4Friends&#10;&#10;# Conflicts:&#10;#&#9;.gradle/5.1.1/executionHistory/executionHistory.bin&#10;#&#9;.gradle/5.1.1/executionHistory/executionHistory.lock&#10;#&#9;.gradle/5.1.1/fileHashes/fileHashes.bin&#10;#&#9;.gradle/5.1.1/fileHashes/fileHashes.lock&#10;#&#9;.gradle/5.1.1/javaCompile/classAnalysis.bin&#10;#&#9;.gradle/5.1.1/javaCompile/javaCompile.lock&#10;#&#9;.gradle/5.1.1/javaCompile/taskHistory.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/caches/build_file_checksums.ser&#10;#&#9;.idea/caches/gradle_models.ser&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/src/main/java/com/example/give4friends/MainActivity.java" />
     <MESSAGE value="Changed color of settings to match theme - edited the style folder to make the common accent color blue" />
     <MESSAGE value="settings commented out waiting on feedback" />
@@ -1082,7 +1082,8 @@
     <MESSAGE value="Added more fragments and fragment transitions" />
     <MESSAGE value="Made a fragment for the profile clicks on the transactions page" />
     <MESSAGE value="Added a dummy report user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a dummy report user" />
+    <MESSAGE value="Fixed a layout issue in the friend profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a layout issue in the friend profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1381,14 +1382,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fragment_profile.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2190">
-          <caret line="146" column="52" selection-start-line="146" selection-start-column="52" selection-end-line="146" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1539,33 +1532,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="88" column="33" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/charity_menu.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/FriendProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="845">
           <caret line="241" column="1" selection-start-line="210" selection-start-column="3" selection-end-line="241" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1591,6 +1561,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="81" column="41" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="97" column="51" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_search.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -1599,11 +1584,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/charity_menu.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="81" column="41" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="41" />
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fragment_profile.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2190">
+          <caret line="146" column="52" selection-start-line="146" selection-start-column="52" selection-end-line="146" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
         </state>
       </provider>
     </entry>
