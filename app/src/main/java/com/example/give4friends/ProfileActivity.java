@@ -244,7 +244,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
-                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,270);
                 Glide.with(context)
                         .load(selectedImageRotate)
                         .apply(new RequestOptions()

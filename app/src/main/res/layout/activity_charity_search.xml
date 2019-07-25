@@ -8,6 +8,12 @@
     android:background="#FFFFFF"
     tools:context=".CharitySearch">
 
+    <include
+        android:id="@+id/toolbar_search"
+        layout="@layout/toolbarsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiCharity"
@@ -20,7 +26,7 @@
         android:focusable="true"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_search">
 
         <EditText
             android:id="@+id/etCharity"

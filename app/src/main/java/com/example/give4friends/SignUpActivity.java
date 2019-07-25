@@ -181,22 +181,41 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(context,"Success sign-up", Toast.LENGTH_SHORT).show();
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
+                    if(photo!=null) {
+                        ParseFile parseFile = ProfilePicture.conversionBitmapParseFile(photo);
+                        try {
+                            parseFile.save();
+                            user2.put("profileImage", parseFile);
+                            parseFile.cancel();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
 
-//                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
-//
-//
-//                    user2.saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(ParseException e) {
-//                            if (e == null) {
+
+////                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
+////
+////
+////                    user2.saveInBackground(new SaveCallback() {
+////                        @Override
+////                        public void done(ParseException e) {
+////                            if (e == null) {
+//                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
+
+
+
+                    user2.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
                                 Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
                                 startActivity(intent);
-//                            } else {
-//                                e.printStackTrace();
-//                                Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//                    });
+                            } else {
+                                e.printStackTrace();
+                                Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
                 else{
                     e.printStackTrace();
