@@ -182,22 +182,21 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("signUp", "Sign Up Successful");
                     ParseUser user2 = ParseUser.getCurrentUser();
 
-                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
-
-
-                    user2.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+//                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
+//
+//
+//                    user2.saveInBackground(new SaveCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if (e == null) {
+                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
                                 startActivity(intent);
-                            } else {
-                                e.printStackTrace();
-
-                                Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
+//                            } else {
+//                                e.printStackTrace();
+//                                Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    });
                 }
                 else{
                     e.printStackTrace();

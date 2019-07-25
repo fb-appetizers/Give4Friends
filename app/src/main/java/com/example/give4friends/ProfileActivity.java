@@ -365,15 +365,15 @@ public class ProfileActivity extends AppCompatActivity {
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                     }
                     tvTotalRaised.setText("Total Raised: $" + total);
-                }else {
+                }
+                else {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
                 }
             }
 
-        }
+            }
         );
-
     }
 }
 

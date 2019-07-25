@@ -8,7 +8,7 @@ import java.util.Date;
 @ParseClassName("financailInfo")
 public class FinancialInfo extends ParseObject {
     public static final String KEY_CREDIT_CARD_NUM = "credit_card_num";
-    public static final String KEY_EXP_DATE  = "expiration_date";
+    public static final String KEY_EXP_DATE  = "expDate";
     public static final String KEY_CVC  = "cvc";
     public static final String KEY_ZIPCODE  = "zipCode";
     public static final String KEY_EMAIL  = "email";
@@ -24,11 +24,11 @@ public class FinancialInfo extends ParseObject {
         put(KEY_CREDIT_CARD_NUM, credit);
     }
 
-    public Date getKeyExpDate() {
-        return getDate(KEY_EXP_DATE);
+    public int getKeyExpDate() {
+        return getInt(KEY_EXP_DATE);
     }
 
-    public void setKeyExpDate(Date expDate){
+    public void setKeyExpDate(int expDate){
         put(KEY_EXP_DATE, expDate);
     }
 
