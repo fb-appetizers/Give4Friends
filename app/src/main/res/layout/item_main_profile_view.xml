@@ -7,8 +7,7 @@
     android:background="@drawable/constraint_border"
     android:backgroundTint="#ffffff"
 
-    android:orientation="vertical"
-    tools:background="#FFFFFF">
+    android:orientation="vertical">
 
     <!--<androidx.cardview.widget.CardView-->
     <!--android:layout_width="match_parent"-->
