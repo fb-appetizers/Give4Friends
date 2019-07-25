@@ -11,6 +11,8 @@ public class CharityClient {
     public CharityClient(){
         this.client = new OkHttpClient();
 
+
+
     }
 
     public OkHttpClient getClient() {

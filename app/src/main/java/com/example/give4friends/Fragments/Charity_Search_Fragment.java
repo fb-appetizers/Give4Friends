@@ -93,6 +93,7 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
             }
 
             @Override
@@ -100,6 +101,7 @@ public class Charity_Search_Fragment extends Fragment {
 
                 if (count == 0){
 
+                    client.getClient().dispatcher().cancelAll();
                     getResponseSuggested();
 
                 }
@@ -112,6 +114,7 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
 
             }
         });
@@ -141,18 +144,18 @@ public class Charity_Search_Fragment extends Fragment {
 
 
 
-//TODO -- search up MODALS/POPUP
-
 
         //When you hit submit the recycler view updates
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
+
                 etCharity.clearFocus();
                 etCharity.getText().clear();
 
-
+//                getResponseSuggested();
 
 
             }
@@ -186,8 +189,14 @@ public class Charity_Search_Fragment extends Fragment {
     }
 
 
+    // TODO -- shut down a thread when another one calls it
 
     private void getResponseSearch(String search, boolean search_by_name){
+
+        if(client!=null){
+            //Clears all of the previous client calls
+            client.getClient().dispatcher().cancelAll();
+        }
 
         client = new CharityClient();
         showProgressBar();
@@ -231,6 +240,8 @@ public class Charity_Search_Fragment extends Fragment {
             }
         });
 
+
+
     }
 
 
@@ -251,7 +262,7 @@ public class Charity_Search_Fragment extends Fragment {
 
     private void getResponseSuggested(){
 
-        ParseUser mainUser = ParseUser.getCurrentUser();
+
 
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
@@ -275,6 +286,7 @@ public class Charity_Search_Fragment extends Fragment {
 
 
                 charityAdapterUpper.notifyDataSetChanged();
+                hideProgressBar();
 
 
             }
