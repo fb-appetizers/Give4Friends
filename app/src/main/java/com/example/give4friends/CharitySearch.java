@@ -42,11 +42,11 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class CharitySearch extends AppCompatActivity {
+
     private EditText etCharity;
     private TextInputLayout tiCharity;
     private Button btnSubmit;
     private RecyclerView rvCharitySugg;
-
 
     CharityClient client;
 
@@ -63,15 +63,12 @@ public class CharitySearch extends AppCompatActivity {
 
         //TODO reduce whitespace
 
-
         etCharity = findViewById(R.id.etCharity);
 
         rvCharitySugg = findViewById(R.id.rvCharitySugg);
         etCharity = findViewById(R.id.etCharity);
         btnSubmit = findViewById(R.id.btnCancel);
         tiCharity = findViewById(R.id.tiCharity);
-
-
 
         etCharity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -85,24 +82,17 @@ public class CharitySearch extends AppCompatActivity {
         });
 
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
-
-
         acharitiesUpper = new ArrayList<CharityAPI>();
-
         charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-
 
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
-
 
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(this));
 
         getResponseSuggested();
-
         //TODO -- search up MODALS/POPUP
-
 
         //When you hit submit the recycler view updates
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -112,8 +102,6 @@ public class CharitySearch extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 
@@ -160,7 +148,6 @@ public class CharitySearch extends AppCompatActivity {
 
     }
 
-
     private void getResponseSuggested(){
 
         ParseUser mainUser = ParseUser.getCurrentUser();
@@ -178,7 +165,6 @@ public class CharitySearch extends AppCompatActivity {
                 if (charities == null){
                     charities = new ArrayList<Charity>();
                 }
-
                 for (Charity charity : charities) {
                     acharitiesUpper.add(CharityAPI.fromParse(charity));
                 }

@@ -52,7 +52,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
         context = viewGroup.getContext();
-
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
@@ -181,7 +180,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
     }
-
 
 
     @Override

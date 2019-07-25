@@ -30,7 +30,7 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.ViewHolder> {
+public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<CharityAPI> mCharity;
     private Context context;
@@ -39,36 +39,52 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         this.mCharity = mCharity;
     }
 
+    private final int EFFECTIVE = 0, SUGGESTED = 1;
+
+    @NonNull
     @Override
-    public CharitySuggAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         context = parent.getContext();
+        RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Inflate the custom layout
-        View bookView = inflater.inflate(R.layout.item_charity_sugg, parent, false);
+        if (viewType == EFFECTIVE) {
 
-        // Return a new holder instance
-        CharitySuggAdapter.ViewHolder viewHolder = new CharitySuggAdapter.ViewHolder(bookView);
+            View v1 = inflater.inflate(R.layout.effective_charities, parent, false);
+            viewHolder = new CharitySuggAdapter.ViewHolderEffective(v1);
+            return viewHolder;
+
+        } else if (viewType == SUGGESTED) {
+            View v2 = inflater.inflate(R.layout.item_charity_sugg, parent, false);
+            viewHolder = new CharitySuggAdapter.ViewHolderSuggested(v2);
+            return viewHolder;
+        }
+
         return viewHolder;
 
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull CharitySuggAdapter.ViewHolder holder, int position) {
-        CharityAPI charity = mCharity.get(position);
-        holder.tvCharityNameSugg.setText(charity.getName());
 
-        holder.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-        holder.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+    public class ViewHolderEffective extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public ViewHolderEffective(@NonNull View itemView) {
+            super(itemView);
+
+        }
+        @Override
+        public void onClick(View view) {
+
+        }
+        // fill list of effective charities here
+        // in other it is charity
+
+
     }
 
-    @Override
-    public int getItemCount() {
-        return mCharity.size();
-    }
+    public class ViewHolderSuggested extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
+        // in other it is comments
+        // the recycler view we have now
 
         public TextView tvCharityNameSugg;
         public TextView tvCategorySugg;
@@ -76,9 +92,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
         public TextView tvMoreInfo;
 
 
-
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
+
             itemView.setOnLongClickListener(this);
             itemView.setOnClickListener(this);
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
@@ -89,13 +105,12 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
         }
 
-        @Override
         public boolean onLongClick(View view) {
             int position = getAdapterPosition();
             CharityAPI charity = mCharity.get(position);
 
             CustomDialog dialog = new CustomDialog(charity);
-            dialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "CustomDialog");
+            dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialog");
 
 
             return false;
@@ -109,11 +124,10 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
 
             Fragment fragment1 = new Charity_Profile_Fragment(charity);
-            FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+            FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
             fragmentManager.beginTransaction().
                     replace(R.id.flContainer, fragment1)
                     .addToBackStack(null).commit();
-
 
 
             // Send an intent to the Charity Profile
@@ -129,4 +143,40 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<CharitySuggAdapter.
 
 
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        //More to come
+
+        if (position == 0) {
+            return EFFECTIVE;
+        } else {
+            return SUGGESTED;
+        }
+
+    }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+
+        if (holder.getItemViewType() == SUGGESTED) {
+            CharityAPI charity = mCharity.get(position);
+            final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
+            vh1.tvCharityNameSugg.setText(charity.getName());
+
+            vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
+            vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+        }
+        else if (holder.getItemViewType() == EFFECTIVE){
+            ViewHolderEffective vh2 = (ViewHolderEffective) holder;
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mCharity.size();
+    }
+
+
 }
