@@ -12,15 +12,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.Fragments.Charity_Profile_Fragment;
+import com.example.give4friends.Fragments.Friend_Profile_Fragment;
+import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.example.give4friends.FriendProfileActivity;
 import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
+import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.example.give4friends.models.User;
 import com.parse.GetCallback;
@@ -187,13 +194,25 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-                    Intent intent = new Intent(context, ProfileActivity.class);
-                    context.startActivity(intent);
+
+
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
                 else{
-                    Intent intent = new Intent(context, FriendProfileActivity.class);
-                    intent.putExtra("user",transaction.getKeyFriendId() );
-                    context.startActivity(intent);
+
+
+
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
 
                 }
 
@@ -205,14 +224,31 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
-                    Intent intent = new Intent(context, ProfileActivity.class);
-                    context.startActivity(intent);
+
+
+                    // Create a new fragment instead of an activity
+
+                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
                 else{
-                    Intent intent = new Intent(context, FriendProfileActivity.class);
-                    intent.putExtra("user",transaction.getKeyDonorId() );
-                    context.startActivity(intent);
+
+
+
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyDonorId());
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
+
+
+
+
 
             }
         });

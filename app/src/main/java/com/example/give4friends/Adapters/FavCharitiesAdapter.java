@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +22,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
+import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -66,6 +70,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                 + charity.getKeyCategoryName() + ")"+ "</a>"));
         holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
 
+
         }
 
     @Override
@@ -90,6 +95,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         public TextView name;
         public TextView causeName;
         public TextView tvDonateNow;
+        public TextView tvMoreInfo;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -97,6 +103,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,6 +115,22 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);
+                }
+            });
+
+
+            tvMoreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    CharityAPI charity = CharityAPI.fromParse(charities.get(position));
+
+
+                    Fragment fragment = new Charity_Profile_Fragment(charity);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
             });
         }

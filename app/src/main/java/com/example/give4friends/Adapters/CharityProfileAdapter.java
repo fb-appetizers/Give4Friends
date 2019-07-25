@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.method.CharacterPickerDialog;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -96,22 +98,18 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
-            final List<User> array = parseCharity.getList("likesUsers");
+            List<User> array = parseCharity.getList("likesUsers");
 
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
-            // get all of the users favorite charities
-            final ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
 
-
-// if user is in likesUsers - start yellow
             if (array == null || !(array.contains(myUser.getObjectId()))) {
-                is_empty = true;
+
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
             } else {
-                is_empty = false;
+
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
@@ -120,9 +118,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    boolean is_empty = (((ViewHolderCharity) viewHolder).ibCPLike.getRotation() == 2);
 
-                    if (is_empty) {
+                    ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
+                    List<User> array = parseCharity.getList("likesUsers");
+
+
+                    if (array == null || !(array.contains(myUser.getObjectId()))) {
+
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
@@ -173,6 +175,16 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 }
             });
 
+
+            ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
         } else if (viewHolder.getItemViewType() == COMMENT) {
 
 
@@ -213,6 +225,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
+        TextView tvDonateNow;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
@@ -223,10 +236,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPMission = itemView.findViewById(R.id.tvCPMission);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
+            tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
         }
 
         @Override
         public void onClick(View view) {
+
+
 
         }
     }

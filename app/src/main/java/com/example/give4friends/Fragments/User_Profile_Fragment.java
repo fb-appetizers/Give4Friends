@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -41,6 +42,7 @@ import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
+import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.Transaction;
@@ -81,11 +83,14 @@ public class User_Profile_Fragment extends Fragment {
     private File photoFile;
     private Bitmap photo;
 
-    ParseUser myUser = ParseUser.getCurrentUser();
+    ParseUser myUser;
+    boolean from_fragment;
     Context context;
 
-
-
+    public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
+        this.myUser = myUser;
+        this.from_fragment = from_another_fragment;
+    }
 
     @Nullable
     @Override
@@ -100,7 +105,13 @@ public class User_Profile_Fragment extends Fragment {
         btEditBio = view.findViewById(R.id.btEditProfile);
         btChangePic = view.findViewById(R.id.btChangePic);
 
-        configureToolbar();
+        if(!from_fragment) {
+            configureToolbar();
+        }else{
+            configureToolbarStripped();
+        }
+
+
         setHasOptionsMenu(true);
 
         btEditBio.setOnClickListener(new View.OnClickListener() {
@@ -196,8 +207,45 @@ public class User_Profile_Fragment extends Fragment {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-
+        toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Profile");
+
+        toolbar.setNavigationIcon(R.drawable.ic_settings);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
+
+
+
+            }
+        });
+    }
+
+    protected void configureToolbarStripped() {
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setTextSize(24);
+        toolbarTitle.setText(myUser.getUsername());
+
+        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Pops back the fragment if you cancel
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
+
+
+
+            }
+        });
+
+
     }
 
 
@@ -206,7 +254,9 @@ public class User_Profile_Fragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
 
-        main_activity_inflater.inflate(R.menu.charity_menu,menu);
+        if(!from_fragment) {
+            main_activity_inflater.inflate(R.menu.charity_menu, menu);
+        }
 
     }
 
