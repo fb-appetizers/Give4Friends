@@ -112,6 +112,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         currentCharity = charities.get(position);
                     }
+
+
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);

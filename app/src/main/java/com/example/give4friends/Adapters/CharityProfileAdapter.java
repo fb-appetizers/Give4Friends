@@ -179,9 +179,14 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);
+
+
+
                 }
             });
 
