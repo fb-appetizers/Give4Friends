@@ -212,6 +212,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             return COMMENT;
         }
 
+
     }
 
 
