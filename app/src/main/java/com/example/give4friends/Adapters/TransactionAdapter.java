@@ -194,8 +194,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-//                    Intent intent = new Intent(context, ProfileActivity.class);
-//                    context.startActivity(intent);
+
 
                     // Create a new fragment instead of an activity
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
@@ -205,9 +204,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .addToBackStack(null).commit();
                 }
                 else{
-//                    Intent intent = new Intent(context, FriendProfileActivity.class);
-//                    intent.putExtra("user",transaction.getKeyFriendId() );
-//                    context.startActivity(intent);
+
 
 
                     // Create a new fragment instead of an activity
@@ -227,8 +224,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
-//                    Intent intent = new Intent(context, ProfileActivity.class);
-//                    context.startActivity(intent);
+
 
                     // Create a new fragment instead of an activity
 
@@ -239,9 +235,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .addToBackStack(null).commit();
                 }
                 else{
-//                    Intent intent = new Intent(context, FriendProfileActivity.class);
-//                    intent.putExtra("user",transaction.getKeyDonorId() );
-//                    context.startActivity(intent);
+
 
 
                     // Create a new fragment instead of an activity
