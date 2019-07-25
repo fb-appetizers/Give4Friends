@@ -35,6 +35,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
@@ -68,34 +69,35 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void  onBindViewHolder(final ViewHolder holder, int position) {
         // get data according to position.
         final Transaction transaction = transactions.get(position);
-        final boolean is_empty;
 
         //check if user is in likes list
-        final List<String> array = transaction.getKeyLikesUsers();
+        List<String> array = transaction.getKeyLikesUsers();
 
         // if user is in likesUsers - start red
         if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
-            is_empty = true;
+
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
             holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-            holder.ibEmptyHeart.setRotation(2);
+
         }
         else{
-            is_empty = false;
+
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
             holder.ibEmptyHeart.setColorFilter(Color.RED);
-            holder.ibEmptyHeart.setRotation(1);
+
         }
 
             holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    boolean is_empty = (holder.ibEmptyHeart.getRotation() == 2);
 
-                    if(is_empty) {
+                    List<String> array = transaction.getKeyLikesUsers();
+
+
+                    if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
-                        holder.ibEmptyHeart.setRotation(1);
+
                         //update transaction
                         //increment likes for transaction
                         transaction.incrementLikes(1);
@@ -106,7 +108,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     }else{
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
                         holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-                        holder.ibEmptyHeart.setRotation(2);
+
 
                         //update parse
 
