@@ -193,6 +193,7 @@ public class CharitySearch extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();
+
         actionbar.setDisplayShowTitleEnabled(false);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -203,12 +204,7 @@ public class CharitySearch extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
     }
 
     @Override

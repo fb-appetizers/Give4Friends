@@ -232,7 +232,7 @@ Should do:
 - [ ] Push Notifications
 - [ ] Compression for Parse - Babu
 - [ ] Settings - Jessica eventually 
-- [ ] Enter credit card info (make a note that it should be fake) - Hana
+- [x] Enter credit card info (make a note that it should be fake) - Hana
 - [ ] Recommended charities fragment - Jessica
 
 Stretch:

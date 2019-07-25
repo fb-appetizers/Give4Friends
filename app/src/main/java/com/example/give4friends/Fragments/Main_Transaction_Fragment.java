@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +52,7 @@ public class Main_Transaction_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
+        configureToolbar();
         suggBtn = view.findViewById(R.id.suggBtn);
 
         suggBtn.setBackgroundDrawable(null);
@@ -100,6 +103,14 @@ public class Main_Transaction_Fragment extends Fragment {
         populate();
 
 
+    }
+
+    private void configureToolbar() {
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+
+        toolbarTitle.setText("Give4Friends");
     }
 
 

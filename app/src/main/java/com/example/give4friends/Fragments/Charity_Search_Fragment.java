@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -85,12 +86,7 @@ public class Charity_Search_Fragment extends Fragment {
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
 
-//        Toolbar toolbar = view.findViewById(R.id.toolbar_search);
-//        ( (Main_Fragment_Branch) getActivity()).getSupportActionBar().hide();
-//        ((Main_Fragment_Branch) getActivity()).setSupportActionBar(toolbar);
-
-        ActionBar actionbar = ((Main_Fragment_Branch) getActivity()).getSupportActionBar();
-        actionbar.setDisplayShowTitleEnabled(false);
+        configureToolbar(view);
 
         etCharity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -164,17 +160,18 @@ public class Charity_Search_Fragment extends Fragment {
 
 
     }
+    protected void configureToolbar(View view) {
 
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        ((Main_Fragment_Branch) getActivity()).setSupportActionBar(toolbar);
+        toolbarTitle.setText("Search");
 
 
 
 
     }
-
 
 
 
