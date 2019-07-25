@@ -239,6 +239,7 @@ public class Charity_Search_Fragment extends Fragment {
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
         postQuery.setLimit(1);
+
         postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
         postQuery.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -249,9 +250,10 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
-                Integer sugg = Integer.min((Integer) NUMBER_OF_SUGGESTIONS, (Integer)charities.size());
+                // The suggestedNum now goes in decending order
+                Integer suggestedNum = Integer.max((Integer) (charities.size()-1-NUMBER_OF_SUGGESTIONS), 0);
 
-                for(int i=0;i<sugg;i++){
+                for(int i=(charities.size()-1);i>suggestedNum;i--){
                     items.add(CharityAPI.fromParse(charities.get(i)));
                 }
 
