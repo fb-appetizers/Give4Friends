@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,11 +18,13 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
+import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main_Fragment_Branch extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+
 
     //        // define your fragments here
     final Fragment fragment1 = new Main_Transaction_Fragment();
@@ -41,8 +44,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         final FragmentManager fragmentManager = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-
-//        final Fragment fragment3 = new User_Profile_Fragment();
+        final Fragment fragment3 = new User_Profile_Fragment();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -58,9 +60,9 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
-//                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
-                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                        startActivityForResult(intent,0);
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
+//                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+//                        startActivityForResult(intent,0);
                         break;
 
                     default:
@@ -94,9 +96,14 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         }
     }
 
+
+
+
     protected void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Give4Friends");
+
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("Give4Friends");
         setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();
