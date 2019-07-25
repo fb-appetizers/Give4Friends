@@ -1,9 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,27 +19,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
-import com.example.give4friends.FriendProfileActivity;
-import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
-import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
-import com.example.give4friends.models.User;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.List;
 
 
@@ -127,32 +114,34 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.message.setText(transaction.getKeyMessage());
 
+        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+                holder.donor.append(" donated to");
+
+            }
+        });
+
         if (transaction.getKeyCharityId() != null) {
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
                     if(object != null){
-                        holder.charity.setText("To: " + object.getString("name"));
+                        holder.charity.setText(Html.fromHtml("<large><font color=\"#2196F3\"><b>" + object.getString("name") + "</b></large></font>"));
                     }
                 }
             });
         }
 
-
-        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                holder.donor.append(" donated on behalf of ");
-
-                transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                    @Override
-                    public void done(ParseObject object, ParseException e) {
-                        holder.donor.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                    }
-                });
+                holder.friend.setText("on behalf of ");
+                holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
             }
         });
+
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
@@ -279,16 +268,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             super(itemView);
 
             // perform findViewById lookups
-            donor = (TextView) itemView.findViewById(R.id.tvDonor);
-//            friend= (TextView) itemView.findViewById(R.id.tvFriend);
-            charity = (TextView) itemView.findViewById(R.id.tvCharity);
-            donorPhoto= (ImageView) itemView.findViewById(R.id.ivDonor);
+            donor = itemView.findViewById(R.id.tvDonor);
+            friend= itemView.findViewById(R.id.tvFriend);
+            charity = itemView.findViewById(R.id.tvCharity);
+            donorPhoto= itemView.findViewById(R.id.ivDonor);
             donorPhoto.setClickable(true);
-            friendPhoto = (ImageView) itemView.findViewById(R.id.ivFriend);
+            friendPhoto = itemView.findViewById(R.id.ivFriend);
             friendPhoto.setClickable(true);
-            message = (TextView) itemView.findViewById(R.id.tvMessage);
+            message = itemView.findViewById(R.id.tvMessage);
             // like button
-            ibEmptyHeart = (ImageButton) itemView.findViewById(R.id.ib_empty_heart);
+            ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
         }
 
         // Clean all elements of the recycler
