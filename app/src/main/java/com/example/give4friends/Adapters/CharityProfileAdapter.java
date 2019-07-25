@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.method.CharacterPickerDialog;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -173,6 +175,16 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 }
             });
 
+
+            ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
         } else if (viewHolder.getItemViewType() == COMMENT) {
 
 
@@ -213,6 +225,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
+        TextView tvDonateNow;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
@@ -223,6 +236,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPMission = itemView.findViewById(R.id.tvCPMission);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
+            tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
         }
 
         @Override
