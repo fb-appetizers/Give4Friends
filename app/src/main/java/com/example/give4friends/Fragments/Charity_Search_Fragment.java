@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -63,13 +64,15 @@ public class Charity_Search_Fragment extends Fragment {
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
+    public static Integer NUMBER_OF_SUGGESTIONS = 20;
+
     CharityClient client;
-    ArrayList<CharityAPI> acharitiesLower;
-    ArrayList<CharityAPI> acharitiesUpper;
     CharitySuggAdapter charityAdapterUpper;
+    ArrayList<Object> items;
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
+
 
     @Nullable
     @Override
@@ -88,7 +91,6 @@ public class Charity_Search_Fragment extends Fragment {
         tiCharity = view.findViewById(R.id.tiCharity);
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
-
         configureToolbar();
 
         etCharity.addTextChangedListener(new TextWatcher() {
@@ -99,20 +101,16 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-
                 if (count == 0){
 
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-                    getResponseSuggested();
-
+                    getEffective();
                 }
                 if(count > 0 ){
-
                     getResponseSearch(charSequence.toString(),false);
                 }
-
             }
 
             @Override
@@ -123,49 +121,30 @@ public class Charity_Search_Fragment extends Fragment {
 
         constraintLayoutMain = view.findViewById(R.id.clCharitySearch);
 
+        items = new ArrayList<>();
 
-        acharitiesLower = new ArrayList<CharityAPI>();
-        acharitiesUpper = new ArrayList<CharityAPI>();
-
-        charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-
-
-
+        charityAdapterUpper = new CharitySuggAdapter(items);
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
-
-
 
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-
-        getResponseSuggested();
-
-
-
-
+        getEffective();
 
         //When you hit submit the recycler view updates
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
                 etCharity.clearFocus();
                 etCharity.getText().clear();
-
-
-
-
             }
         });
-
-
-
     }
     protected void configureToolbar() {
-
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
@@ -188,7 +167,6 @@ public class Charity_Search_Fragment extends Fragment {
 
     }
 
-
     // TODO -- shut down a thread when another one calls it
 
     private void getResponseSearch(String search, boolean search_by_name){
@@ -208,8 +186,6 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
-
                 if (response.isSuccessful()){
                     final String myResponse = response.body().string();
 
@@ -220,12 +196,11 @@ public class Charity_Search_Fragment extends Fragment {
                                 JSONArray charityArray;
                                 charityArray = new JSONArray(myResponse);
 
-
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-                                acharitiesUpper.clear();
+                                items.clear();
                                 for(CharityAPI charityAPI : charities){
-                                    acharitiesUpper.add(charityAPI);
+                                    items.add(charityAPI);
                                 }
                                 charityAdapterUpper.notifyDataSetChanged();
                                 hideProgressBar();
@@ -261,7 +236,6 @@ public class Charity_Search_Fragment extends Fragment {
     private void getResponseSuggested(){
 
 
-
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
         postQuery.setLimit(1);
@@ -275,9 +249,10 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
-                acharitiesUpper.clear();
-                for (Charity charity : charities) {
-                    acharitiesUpper.add(CharityAPI.fromParse(charity));
+                Integer sugg = Integer.min((Integer) NUMBER_OF_SUGGESTIONS, (Integer)charities.size());
+
+                for(int i=0;i<sugg;i++){
+                    items.add(CharityAPI.fromParse(charities.get(i)));
                 }
 
                 charityAdapterUpper.notifyDataSetChanged();
@@ -298,6 +273,34 @@ public class Charity_Search_Fragment extends Fragment {
         // Hide progress item
 
         progressBarHome.setVisibility(View.INVISIBLE);
+    }
+
+    public void getEffective(){
+
+        items.clear();
+        items.add("Recommended Effective Charities");
+        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
+                .whereEqualTo("highlyEffective", true);
+
+        postQuery.findInBackground(new FindCallback<Charity>() {
+            //iterate through query
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+
+
+                if (e == null) {
+                    for (int i = 0; i < objects.size(); ++i) {
+                        items.add(CharityAPI.fromParse(objects.get(i)));
+                    }
+                } else {
+                    Log.e("MainActivity", "Can't get transaction");
+                    e.printStackTrace();
+                }
+                items.add("Charities Suggested For You");
+                getResponseSuggested();
+            }
+        });
+
     }
 
 

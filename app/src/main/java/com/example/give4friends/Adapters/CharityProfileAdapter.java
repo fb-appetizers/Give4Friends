@@ -57,7 +57,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
         context = viewGroup.getContext();
-
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
@@ -74,7 +73,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
         return viewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
@@ -206,8 +204,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-
-
     @Override
     public int getItemCount() {
 
@@ -217,32 +213,24 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemViewType(int position) {
         //More to come
-
         if (position == 0) {
             return CHARITY;
         } else {
             return COMMENT;
         }
-
-
     }
 
-
     public class ViewHolderCharity extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-
         TextView tvCPname;
         TextView tvCPCategory;
         TextView tvCPCause;
         TextView tvCPMission;
-
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
         TextView tvDonateNow;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
-
             tvCPname = itemView.findViewById(R.id.tvCPname);
             tvCPCategory = itemView.findViewById(R.id.tvCPCategory);
             tvCPCause = itemView.findViewById(R.id.tvCPCause);
@@ -270,17 +258,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @Override
         public void onClick(View view) {
 
-
-
         }
     }
 
     public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
         public ViewHolderComment(@NonNull View itemView) {
             super(itemView);
-
 
         }
 
@@ -325,6 +309,4 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         return parseCharity;
     }
-
-    //testing push
 }
