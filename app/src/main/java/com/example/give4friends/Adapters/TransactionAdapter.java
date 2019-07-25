@@ -1,6 +1,7 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -19,9 +20,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -126,9 +130,35 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if (transaction.getKeyCharityId() != null) {
             transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
-                public void done(ParseObject object, ParseException e) {
+                public void done(final ParseObject object, ParseException e) {
                     if(object != null){
                         holder.charity.setText(Html.fromHtml("<large><font color=\"#2196F3\"><b>" + object.getString("name") + "</b></large></font>"));
+
+                        holder.charity.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
+
+                                Fragment fragment = new Charity_Profile_Fragment(charity);
+                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                fragmentManager.beginTransaction().
+                                        replace(R.id.flContainer, fragment)
+                                        .addToBackStack(null).commit();
+                            }
+                        });
+
+                        holder.pin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
+
+                                Fragment fragment = new Charity_Profile_Fragment(charity);
+                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                fragmentManager.beginTransaction().
+                                        replace(R.id.flContainer, fragment)
+                                        .addToBackStack(null).commit();
+                            }
+                        });
                     }
                 }
             });
@@ -251,7 +281,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     // create ViewHolder Class
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         //public TextView charityName;
         public TextView donor;
@@ -260,6 +290,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ImageView friendPhoto;
         public TextView charity;
         public TextView message;
+        public ImageView pin;
 
         //like button
         public ImageButton ibEmptyHeart;
@@ -278,21 +309,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             message = itemView.findViewById(R.id.tvMessage);
             // like button
             ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
+            pin = itemView.findViewById(R.id.ivPin);
         }
-
-        // Clean all elements of the recycler
-        public void clear() {
-            transactions.clear();
-            notifyDataSetChanged();
-        }
-
-        // Add a list of items -- change to type used
-        public void addAll(List<Transaction> list) {
-            transactions.addAll(list);
-            notifyDataSetChanged();
-        }
-
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        transactions.clear();
+        notifyDataSetChanged();
+    }
 
+    // Add a list of items -- change to type used
+    public void addAll(List<Transaction> list) {
+        transactions.addAll(list);
+        notifyDataSetChanged();
+    }
 }
