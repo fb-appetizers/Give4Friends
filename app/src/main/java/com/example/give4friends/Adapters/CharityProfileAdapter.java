@@ -228,6 +228,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @Override
         public void onClick(View view) {
 
+
+
         }
     }
 

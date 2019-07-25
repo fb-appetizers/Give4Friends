@@ -20,29 +20,36 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".FriendProfileActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".CharityProfile" />
+        <activity android:name=".CharityProfile"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Main_Fragment_Branch"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
-        <activity android:name=".DonateFinalActivity" />
-        <activity android:name=".DonateSearchCharity" />
+        <activity android:name=".DonateFinalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DonateSearchCharity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CreditCardInfo" />
+        <activity android:name=".CreditCardInfo"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DonateActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CharitySearch"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ProfileActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".HistoryActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

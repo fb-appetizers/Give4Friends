@@ -20,6 +20,7 @@ import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 public class Main_Fragment_Branch extends AppCompatActivity {
 
@@ -44,7 +45,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         final FragmentManager fragmentManager = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        final Fragment fragment3 = new User_Profile_Fragment();
+        final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -109,7 +110,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(false);
 
-
+        toolbar.setNavigationIcon(R.drawable.ic_settings);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
