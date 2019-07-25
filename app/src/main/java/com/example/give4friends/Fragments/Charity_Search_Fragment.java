@@ -38,6 +38,7 @@ import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -258,12 +259,10 @@ public class Charity_Search_Fragment extends Fragment {
         postQuery.setLimit(1);
         postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
-        postQuery.findInBackground(new FindCallback<ParseUser>() {
+        postQuery.getFirstInBackground(new GetCallback<ParseUser>() {
             @Override
-            public void done(List<ParseUser> objects, ParseException e) {
-
-                ParseUser mainUser = objects.get(0);// They'll only be one
-                List <Charity> charities = mainUser.getList("charityArray");
+            public void done(ParseUser object, ParseException e) {
+                List <Charity> charities = object.getList("charityArray");
                 if (charities == null){
                     charities = new ArrayList<Charity>();
                 }
@@ -273,14 +272,9 @@ public class Charity_Search_Fragment extends Fragment {
                     acharitiesUpper.add(CharityAPI.fromParse(charity));
                 }
 
-
                 charityAdapterUpper.notifyDataSetChanged();
-
-
             }
         });
-
-
     }
 
 
