@@ -64,12 +64,15 @@ public class Charity_Search_Fragment extends Fragment {
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
+    public static Integer NUMBER_OF_SUGGESTIONS = 10;
+
     CharityClient client;
     CharitySuggAdapter charityAdapterUpper;
     ArrayList<Object> items;
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
+
 
     @Nullable
     @Override
@@ -103,7 +106,7 @@ public class Charity_Search_Fragment extends Fragment {
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-                    getResponseSuggested();
+                    getEffective();
                 }
                 if(count > 0 ){
                     getResponseSearch(charSequence.toString(),false);
@@ -127,13 +130,15 @@ public class Charity_Search_Fragment extends Fragment {
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        items.add("Recommended Effective Charities");
+
         getEffective();
 
         //When you hit submit the recycler view updates
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 etCharity.clearFocus();
                 etCharity.getText().clear();
             }
@@ -230,9 +235,11 @@ public class Charity_Search_Fragment extends Fragment {
 
     private void getResponseSuggested(){
 
+
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
         postQuery.setLimit(1);
+
         postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
         postQuery.getFirstInBackground(new GetCallback<ParseUser>() {
@@ -243,9 +250,13 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
-                for (Charity charity : charities) {
-                    items.add(CharityAPI.fromParse(charity));
+                // The suggestedNum now goes in decending order
+                Integer suggestedNum = Integer.max((Integer) (charities.size()-1-NUMBER_OF_SUGGESTIONS), 0);
+
+                for(int i=(charities.size()-1);i>suggestedNum;i--){
+                    items.add(CharityAPI.fromParse(charities.get(i)));
                 }
+
                 charityAdapterUpper.notifyDataSetChanged();
                 hideProgressBar();
             }
@@ -268,6 +279,8 @@ public class Charity_Search_Fragment extends Fragment {
 
     public void getEffective(){
 
+        items.clear();
+        items.add("Recommended Effective Charities");
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
                 .whereEqualTo("highlyEffective", true);
 
@@ -275,6 +288,7 @@ public class Charity_Search_Fragment extends Fragment {
             //iterate through query
             @Override
             public void done(List<Charity> objects, ParseException e) {
+
 
                 if (e == null) {
                     for (int i = 0; i < objects.size(); ++i) {
