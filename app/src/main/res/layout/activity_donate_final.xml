@@ -37,14 +37,14 @@
         android:layout_width="34dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintCircleRadius="25dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintCircleRadius="25dp"
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cancel_2" />
+        app:srcCompat="@drawable/arrow_down" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"

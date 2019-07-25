@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +39,7 @@ import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -62,9 +64,8 @@ public class Charity_Search_Fragment extends Fragment {
     private RecyclerView rvCharitySugg;
 
     CharityClient client;
-    ArrayList<CharityAPI> acharitiesLower;
-    ArrayList<CharityAPI> acharitiesUpper;
     CharitySuggAdapter charityAdapterUpper;
+    ArrayList<Object> items;
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
@@ -86,7 +87,6 @@ public class Charity_Search_Fragment extends Fragment {
         tiCharity = view.findViewById(R.id.tiCharity);
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
-
         configureToolbar();
 
         etCharity.addTextChangedListener(new TextWatcher() {
@@ -97,17 +97,13 @@ public class Charity_Search_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-
                 if (count == 0){
-
+                    client.getClient().dispatcher().cancelAll();
                     getResponseSuggested();
-
                 }
                 if(count > 0 ){
-
                     getResponseSearch(charSequence.toString(),false);
                 }
-
             }
 
             @Override
@@ -118,45 +114,28 @@ public class Charity_Search_Fragment extends Fragment {
 
         constraintLayoutMain = view.findViewById(R.id.clCharitySearch);
 
+        items = new ArrayList<>();
 
-        acharitiesLower = new ArrayList<CharityAPI>();
-        acharitiesUpper = new ArrayList<CharityAPI>();
-
-        charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
- // attach the adapter to the RecyclerView
+        charityAdapterUpper = new CharitySuggAdapter(items);
+        // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
-
-
 
         // Set layout manager to position the items
         rvCharitySugg.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-
-        getResponseSuggested();
-
-
-
-
-//TODO -- search up MODALS/POPUP
-
+        items.add("Recommended Effective Charities");
+        getEffective();
 
         //When you hit submit the recycler view updates
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 etCharity.clearFocus();
                 etCharity.getText().clear();
-
             }
         });
-
-
-
     }
     protected void configureToolbar() {
-
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
@@ -179,9 +158,14 @@ public class Charity_Search_Fragment extends Fragment {
 
     }
 
-
+    // TODO -- shut down a thread when another one calls it
 
     private void getResponseSearch(String search, boolean search_by_name){
+
+        if(client!=null){
+            //Clears all of the previous client calls
+            client.getClient().dispatcher().cancelAll();
+        }
 
         client = new CharityClient();
         showProgressBar();
@@ -205,9 +189,9 @@ public class Charity_Search_Fragment extends Fragment {
 
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
-                                acharitiesUpper.clear();
+                                items.clear();
                                 for(CharityAPI charityAPI : charities){
-                                    acharitiesUpper.add(charityAPI);
+                                    items.add(charityAPI);
                                 }
                                 charityAdapterUpper.notifyDataSetChanged();
                                 hideProgressBar();
@@ -242,36 +226,26 @@ public class Charity_Search_Fragment extends Fragment {
 
     private void getResponseSuggested(){
 
-        ParseUser mainUser = ParseUser.getCurrentUser();
-
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
         postQuery.setLimit(1);
         postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
-        postQuery.findInBackground(new FindCallback<ParseUser>() {
+        postQuery.getFirstInBackground(new GetCallback<ParseUser>() {
             @Override
-            public void done(List<ParseUser> objects, ParseException e) {
-
-                ParseUser mainUser = objects.get(0);// They'll only be one
-                List <Charity> charities = mainUser.getList("charityArray");
+            public void done(ParseUser object, ParseException e) {
+                List <Charity> charities = object.getList("charityArray");
                 if (charities == null){
                     charities = new ArrayList<Charity>();
                 }
 
-                acharitiesUpper.clear();
                 for (Charity charity : charities) {
-                    acharitiesUpper.add(CharityAPI.fromParse(charity));
+                    items.add(CharityAPI.fromParse(charity));
                 }
-
-
                 charityAdapterUpper.notifyDataSetChanged();
-
-
+                hideProgressBar();
             }
         });
-
-
     }
 
 
@@ -286,6 +260,31 @@ public class Charity_Search_Fragment extends Fragment {
         // Hide progress item
 
         progressBarHome.setVisibility(View.INVISIBLE);
+    }
+
+    public void getEffective(){
+
+        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
+                .whereEqualTo("highlyEffective", true);
+
+        postQuery.findInBackground(new FindCallback<Charity>() {
+            //iterate through query
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+
+                if (e == null) {
+                    for (int i = 0; i < objects.size(); ++i) {
+                        items.add(CharityAPI.fromParse(objects.get(i)));
+                    }
+                } else {
+                    Log.e("MainActivity", "Can't get transaction");
+                    e.printStackTrace();
+                }
+                items.add("Charities Suggested For You");
+                getResponseSuggested();
+            }
+        });
+
     }
 
 

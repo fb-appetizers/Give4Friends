@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cancel_2" />
+        app:srcCompat="@drawable/arrow_down" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"

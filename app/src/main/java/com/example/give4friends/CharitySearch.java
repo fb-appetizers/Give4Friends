@@ -51,6 +51,8 @@ public class CharitySearch extends AppCompatActivity {
     CharityClient client;
 
     ArrayList<CharityAPI> acharitiesUpper;
+    ArrayList<Object> items;
+
     CharitySuggAdapter charityAdapterUpper;
 
     ConstraintLayout constraintLayoutMain;
@@ -83,7 +85,9 @@ public class CharitySearch extends AppCompatActivity {
 
         constraintLayoutMain = findViewById(R.id.clCharitySearch);
         acharitiesUpper = new ArrayList<CharityAPI>();
-        charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
+        items = new ArrayList<>();
+        //charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
+        charityAdapterUpper = new CharitySuggAdapter(items);
 
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
