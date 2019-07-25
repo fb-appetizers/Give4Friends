@@ -64,12 +64,15 @@ public class Charity_Search_Fragment extends Fragment {
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
+    public static Integer NUMBER_OF_SUGGESTIONS = 20;
+
     CharityClient client;
     CharitySuggAdapter charityAdapterUpper;
     ArrayList<Object> items;
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
+
 
     @Nullable
     @Override
@@ -232,6 +235,7 @@ public class Charity_Search_Fragment extends Fragment {
 
     private void getResponseSuggested(){
 
+
         ParseQuery<ParseUser> postQuery = new ParseQuery<ParseUser>(ParseUser.class);
         postQuery.include("charityArray");
         postQuery.setLimit(1);
@@ -245,9 +249,12 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
-                for (Charity charity : charities) {
-                    items.add(CharityAPI.fromParse(charity));
+                Integer sugg = Integer.min((Integer) NUMBER_OF_SUGGESTIONS, (Integer)charities.size());
+
+                for(int i=0;i<sugg;i++){
+                    items.add(CharityAPI.fromParse(charities.get(i)));
                 }
+
                 charityAdapterUpper.notifyDataSetChanged();
                 hideProgressBar();
             }

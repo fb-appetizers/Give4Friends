@@ -50,16 +50,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcfe0838-fc52-4d2b-a04e-988f5b1687e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -166,8 +157,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2988">
-              <caret line="272" column="53" selection-start-line="272" selection-start-column="53" selection-end-line="272" selection-end-column="53" />
+            <state relative-caret-position="268">
+              <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
               <folding>
                 <element signature="e#4386#4590#0" expanded="true" />
                 <element signature="e#4589#4590#0" expanded="true" />
@@ -234,7 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>JSON</find>
       <find>findview</find>
       <find>popu</find>
       <find>quer</find>
@@ -264,6 +254,7 @@
       <find>intent</find>
       <find>from_fragment</find>
       <find>item</find>
+      <find>effective</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -634,13 +625,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00025" summary="circular images">
-      <created>1563562426882</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1563562426882</updated>
-    </task>
     <task id="LOCAL-00026" summary="Added some layout modifications">
       <created>1563569326743</created>
       <option name="number" value="00026" />
@@ -977,7 +961,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564081717989</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Fixed the getEffitive function">
+      <created>1564082118471</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1564082118471</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1095,7 +1086,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some edits on settings and layout of profile" />
     <MESSAGE value="Profile design" />
     <MESSAGE value="aligned" />
     <MESSAGE value="boarder fixed on home page" />
@@ -1120,7 +1110,8 @@
     <MESSAGE value="Changed the gravity of the settings toolbar text." />
     <MESSAGE value="Changed the layout toolbar text for donate, donate final, and donate search charity" />
     <MESSAGE value="Added some extra fragment functions to display the photos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some extra fragment functions to display the photos" />
+    <MESSAGE value="Fixed the getEffitive function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the getEffitive function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1665,8 +1656,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2988">
-          <caret line="272" column="53" selection-start-line="272" selection-start-column="53" selection-end-line="272" selection-end-column="53" />
+        <state relative-caret-position="268">
+          <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
           <folding>
             <element signature="e#4386#4590#0" expanded="true" />
             <element signature="e#4589#4590#0" expanded="true" />
