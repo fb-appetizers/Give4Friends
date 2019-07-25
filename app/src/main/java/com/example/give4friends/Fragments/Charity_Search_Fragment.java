@@ -155,7 +155,7 @@ public class Charity_Search_Fragment extends Fragment {
                 etCharity.clearFocus();
                 etCharity.getText().clear();
 
-//                getResponseSuggested();
+
 
 
             }
