@@ -58,7 +58,7 @@
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#050505"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -108,8 +108,8 @@
             <TextView
                 android:id="@+id/tvCharity"
                 android:layout_width="209dp"
-                android:clickable="true"
                 android:layout_height="0dp"
+                android:clickable="true"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textSize="16sp"
@@ -127,7 +127,7 @@
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#050505"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
         </androidx.constraintlayout.widget.ConstraintLayout>
