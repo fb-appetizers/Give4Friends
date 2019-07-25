@@ -193,6 +193,14 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
 
+////                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
+////
+////
+////                    user2.saveInBackground(new SaveCallback() {
+////                        @Override
+////                        public void done(ParseException e) {
+////                            if (e == null) {
+//                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
 
 
 
@@ -200,11 +208,10 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Intent intent = new Intent(SignUpActivity.this, Main_Fragment_Branch.class);
+                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
                                 startActivity(intent);
                             } else {
                                 e.printStackTrace();
-
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();
                             }
                         }

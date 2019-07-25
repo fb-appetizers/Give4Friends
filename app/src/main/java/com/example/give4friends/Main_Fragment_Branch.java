@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +17,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
-import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main_Fragment_Branch extends AppCompatActivity {
