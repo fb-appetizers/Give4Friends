@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +36,7 @@ import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -58,7 +58,7 @@ import okhttp3.Response;
 public class Charity_Search_Fragment extends Fragment {
 
 
-    private EditText etCharity;
+    private TextInputEditText etCharity;
     private TextInputLayout tiCharity;
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
@@ -98,7 +98,10 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (count == 0){
-                    client.getClient().dispatcher().cancelAll();
+
+                    if(client!=null) {
+                        client.getClient().dispatcher().cancelAll();
+                    }
                     getResponseSuggested();
                 }
                 if(count > 0 ){

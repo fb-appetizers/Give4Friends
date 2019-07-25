@@ -86,6 +86,7 @@ public class Charity_Profile_Fragment extends Fragment {
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
+
             }
         });
 

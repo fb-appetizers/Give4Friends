@@ -105,7 +105,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
 
                 if (count == 0 ){
-                    client.getClient().dispatcher().cancelAll();
+                    if(client!=null) {
+                        client.getClient().dispatcher().cancelAll();
+                    }
                     acharities.clear();
                     charityAdapter.notifyDataSetChanged();
 

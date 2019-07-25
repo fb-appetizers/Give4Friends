@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -142,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         // Below for static elements of profile
-     ivProfileImage = (ImageView) findViewById((R.id.ivProfileImage));
+        ivProfileImage = (ImageView) findViewById((R.id.ivProfileImage));
         tvUserName = (TextView) findViewById(R.id.tvName);
         tvBio = (TextView) findViewById(R.id.tvBio);
         tvTotalRaised = (TextView) findViewById((R.id.tvTotalRaised));
@@ -163,7 +164,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         tvTotalDonated.setText("Total Donated: $" + sum);
         getRaised();
-        tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
+
+        tvFullName.setText(Html.fromHtml("<font color=\"#434040\"" + myUser.getString("firstName") + " " + myUser.getString("lastName") + "</font>"));
 
         //Handles images
         ParseFile file = myUser.getParseFile("profileImage");

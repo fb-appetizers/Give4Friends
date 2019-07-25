@@ -7,9 +7,10 @@
     android:background="@drawable/constraint_border"
     android:orientation="vertical"
     android:paddingLeft="10dp"
+    android:paddingTop="15dp"
     android:paddingRight="10dp"
-    android:paddingBottom="10dp"
 
+    android:paddingBottom="15dp"
     tools:background="#FFFFFF">
 
 
