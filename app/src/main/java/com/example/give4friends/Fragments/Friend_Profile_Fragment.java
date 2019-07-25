@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +28,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.FriendProfileActivity;
+import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
@@ -71,6 +76,7 @@ public class Friend_Profile_Fragment extends Fragment {
 
 
         configureToolbarStripped();
+        setHasOptionsMenu(true);
 
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
@@ -162,6 +168,29 @@ public class Friend_Profile_Fragment extends Fragment {
         });
 
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuInflater main_activity_inflater = getActivity().getMenuInflater();
+
+
+        main_activity_inflater.inflate(R.menu.friend_user_menu, menu);
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.reportUser:
+                Toast.makeText(getContext(), "Report User Selected", Toast.LENGTH_SHORT).show();
+
+                return true;
+            default:
+//                Log.e()
+        }
+        return true;
     }
 
 
