@@ -69,8 +69,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                 +charity.getKeyName() + " ("
                 + charity.getKeyCategoryName() + ")"+ "</a>"));
         holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
-
-
         }
 
     @Override
@@ -128,7 +126,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     int position = getAdapterPosition();
                     CharityAPI charity = CharityAPI.fromParse(charities.get(position));
 
-
                     Fragment fragment = new Charity_Profile_Fragment(charity);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
@@ -137,31 +134,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                 }
             });
         }
-
-          /*
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // gets item position
-                    int position = getAdapterPosition();
-                    // make sure the position is valid, i.e. actually exists in the view
-                    if (position != RecyclerView.NO_POSITION) {
-                        // get the movie at the position, this won't work if the class is static
-                        Charity Charity = Charitys.get(position);
-                        // create intent for the new activity
-                        Intent intent = new Intent(context, DetailsActivity.class);
-                        // serialize the tweet using parceler, use its short name as a key
-                        intent.putExtra(Charity.class.getSimpleName(), Parcels.wrap(Charity));
-                        //intent.putExtra( "id" , Charity.getObjectId());
-                        // show the activity
-                        context.startActivity(intent);
-                    }
-                }
-            });
-        }
-        */
 
     }
 }

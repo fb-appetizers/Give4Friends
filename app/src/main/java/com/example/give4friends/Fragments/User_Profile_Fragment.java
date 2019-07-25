@@ -111,8 +111,6 @@ public class User_Profile_Fragment extends Fragment {
         }else{
             configureToolbarStripped();
         }
-
-
         setHasOptionsMenu(true);
 
         btEditBio.setOnClickListener(new View.OnClickListener() {
@@ -175,13 +173,14 @@ public class User_Profile_Fragment extends Fragment {
         }
         tvBio.setEnabled(false);
         Number sum = myUser.getNumber("totalDonated");
+        // error check
         if(sum == null){
             sum = 0;
         }
         tvTotalDonated.setText("Total Donated: $" + sum);
+        //get total amount others donated on behalf of user
         getRaised();
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
-
         //Handles images
         ParseFile file = myUser.getParseFile("profileImage");
 
@@ -216,15 +215,11 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setText("Profile");
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
-
-
-
             }
         });
     }
@@ -244,25 +239,16 @@ public class User_Profile_Fragment extends Fragment {
                 //Pops back the fragment if you cancel
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
-
-
-
             }
         });
-
-
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
-
         if(!from_fragment) {
             main_activity_inflater.inflate(R.menu.charity_menu, menu);
         }
-
     }
 
     @Override
@@ -406,6 +392,7 @@ public class User_Profile_Fragment extends Fragment {
 
     // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
+        total = 0;
         //get query
         total = 0;
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
