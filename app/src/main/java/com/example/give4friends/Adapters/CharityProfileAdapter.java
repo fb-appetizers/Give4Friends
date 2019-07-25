@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
-import android.text.method.CharacterPickerDialog;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,16 +20,12 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.User;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.security.Security;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
@@ -62,7 +57,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         if (viewType == CHARITY) {
 
-            View v1 = inflater.inflate(R.layout.item_main_profile_view, viewGroup, false);
+            View v1 = inflater.inflate(R.layout.item_charity_profile_page, viewGroup, false);
             viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
             return viewHolder;
 
