@@ -62,8 +62,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
-//                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-//                        startActivityForResult(intent,0);
+
                         break;
 
                     default:

@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.provider.MediaStore;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.SignUpActivity;
@@ -63,6 +65,24 @@ public final class ProfilePicture {
 
     }
 
+    public static void changePhotoFragment(final Fragment fragment, final Context context){
+        String[] options = {"Take photo", "Choose from gallery"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("Change Profile Picture");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    onLaunchCameraFragment(fragment, context); }
+                else {
+//                    onLaunchSelect(context);
+                    }
+            }
+        });
+        dialog.show();
+
+    }
+
 
 
     private static File getPhotoFileUri(String fileName, Context context) {
@@ -85,6 +105,16 @@ public final class ProfilePicture {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             activity = (Activity) context;
             activity.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
+    private static void onLaunchCameraFragment(Fragment fragment, Context context) {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        photoFile = getPhotoFileUri(photoFileName, context);
+
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+
+            fragment.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
 

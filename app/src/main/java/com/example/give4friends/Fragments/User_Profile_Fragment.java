@@ -125,9 +125,13 @@ public class User_Profile_Fragment extends Fragment {
         btChangePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProfilePicture.changePhoto(context);
+
+
+                ProfilePicture.changePhoto(getContext());
             }
         });
+
+
 
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
@@ -292,6 +296,7 @@ public class User_Profile_Fragment extends Fragment {
     @Override
     public void onActivityResult ( int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
@@ -402,6 +407,7 @@ public class User_Profile_Fragment extends Fragment {
     // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
         //get query
+        total = 0;
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
                 .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
         List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
