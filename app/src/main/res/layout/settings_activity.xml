@@ -25,16 +25,17 @@
 
     <TextView
         android:id="@+id/tvSettings"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="sans-serif-thin"
         android:text="Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarSettings"
         app:layout_constraintEnd_toEndOf="@+id/toolbarSettings"
-        app:layout_constraintStart_toStartOf="@+id/toolbarSettings"
+        app:layout_constraintStart_toEndOf="@+id/ibcancelSettings"
         app:layout_constraintTop_toTopOf="@+id/toolbarSettings"
         app:layout_constraintVertical_bias="0.432" />
 
