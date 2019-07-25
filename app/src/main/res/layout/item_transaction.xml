@@ -114,6 +114,7 @@
             <TextView
                 android:id="@+id/tvCharity"
                 android:layout_width="209dp"
+                android:clickable="true"
                 android:layout_height="0dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
