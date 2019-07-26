@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -27,17 +29,19 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Main_Transaction_Fragment extends Fragment {
 
     private ImageButton suggBtn;
 
-    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 20;
+    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 10;
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
     boolean friend;
 
     @Nullable
@@ -89,6 +93,8 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onRefresh() {
 
+                //Clear the old set when reloading
+                transactions.clear();
                 populate();
                 swipeContainer.setRefreshing(false);
             }
@@ -102,7 +108,22 @@ public class Main_Transaction_Fragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        //Clear the old set when reloading
+        transactions.clear();
         populate();
+
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+                populate();
+
+            }
+        };
+
+        rvTransactions.addOnScrollListener(scrollListener);
 
 
     }
@@ -112,6 +133,8 @@ public class Main_Transaction_Fragment extends Fragment {
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
+
+        toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Give4Friends");
 
 
@@ -133,9 +156,18 @@ public class Main_Transaction_Fragment extends Fragment {
     protected boolean populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
+        postQuery.include(Transaction.KEY_CREATED_AT);
+
         //Used to set a limit to the number of transactions
         postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
+//        postQuery.addDescendingOrder(Transaction.KEY_CREATED_AT);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
+
+        if(transactions.size() > 0 ){
+
+//            Date createdAt = transactions.get(transactions.size() - 1);
+//            postQuery.whereLessThan("createdAt",);
+        }
 
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
@@ -143,8 +175,8 @@ public class Main_Transaction_Fragment extends Fragment {
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
-                    //Clear the old set when reloading
-                    transactions.clear();
+//                    //Clear the old set when reloading
+//                    transactions.clear();
 
                     for(Transaction transaction : transactionList){
 

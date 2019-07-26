@@ -50,15 +50,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcfe0838-fc52-4d2b-a04e-988f5b1687e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Cutom_Classes/EndlessRecyclerViewScrollListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_preference_preference_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_preference_preference_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_alespero_expandable_cardview_0_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_alespero_expandable_cardview_0_6_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_braintreepayments_card_form_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_braintreepayments_card_form_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_codepath_libraries_android_oauth_handler_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_codepath_libraries_android_oauth_handler_1_4_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_stetho_stetho_1_5_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_stetho_stetho_1_5_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_parse_community_Parse_SDK_Android_parse_1_18_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_parse_community_Parse_SDK_Android_parse_1_18_5_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_scottyab_showhidepasswordedittext_0_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_scottyab_showhidepasswordedittext_0_6_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_wasabeef_glide_transformations_3_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_wasabeef_glide_transformations_3_3_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -92,16 +151,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings_activity.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml">
           <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
@@ -111,64 +160,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+            <state relative-caret-position="302">
+              <caret line="124" column="68" selection-start-line="124" selection-start-column="68" selection-end-line="124" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3002#4292#0" expanded="true" />
-                <element signature="e#4291#4292#0" expanded="true" />
-                <element signature="e#5103#5458#0" expanded="true" />
-                <element signature="e#5457#5458#0" expanded="true" />
-                <element signature="e#5563#7610#0" expanded="true" />
-                <element signature="e#5992#6753#0" expanded="true" />
-                <element signature="e#6752#6753#0" expanded="true" />
-                <element signature="e#6814#7576#0" expanded="true" />
-                <element signature="e#7575#7576#0" expanded="true" />
-                <element signature="e#7609#7610#0" expanded="true" />
-                <element signature="e#7563#7922#0" expanded="true" />
-                <element signature="e#7921#7922#0" expanded="true" />
-                <element signature="e#7965#9084#0" expanded="true" />
-                <element signature="e#9083#9084#0" expanded="true" />
-                <element signature="e#9164#10281#0" expanded="true" />
-                <element signature="e#10280#10281#0" expanded="true" />
-                <element signature="e#10309#10544#0" expanded="true" />
-                <element signature="e#10543#10544#0" expanded="true" />
-                <element signature="e#10823#12100#0" expanded="true" />
-                <element signature="e#12099#12100#0" expanded="true" />
-                <element signature="e#12201#13478#0" expanded="true" />
-                <element signature="e#13477#13478#0" expanded="true" />
-                <element signature="e#13600#13601#0" expanded="true" />
+                <element signature="e#5303#7230#0" expanded="true" />
+                <element signature="e#7229#7230#0" expanded="true" />
+                <element signature="e#12764#12765#0" expanded="true" />
+                <element signature="e#12806#12807#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="62" column="68" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -176,10 +179,68 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateSearchAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-365">
+            <state relative-caret-position="60">
               <caret line="30" column="95" selection-start-line="30" selection-start-column="95" selection-end-line="30" selection-end-column="95" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="136" column="37" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
+              <folding>
+                <element signature="e#5871#6567#0" expanded="true" />
+                <element signature="e#6566#6567#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="221" selection-start-line="221" selection-end-line="221" selection-end-column="37" />
+              <folding>
+                <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
+                <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
+                <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
+                <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
+                <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
+                <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="34" selection-end-column="5" />
+              <folding>
+                <element signature="e#1437#1636#1" />
+                <element signature="e#1664#1873#1" />
+                <element signature="class#ViewHolderText#0;class#CharitySuggAdapter#0" />
+                <element signature="method#ViewHolderText#0;class#ViewHolderText#0;class#CharitySuggAdapter#0" />
+                <element signature="method#onClick#0;class#ViewHolderSuggested#0;class#CharitySuggAdapter#0" />
+                <element signature="e#3829#3869#0" />
+                <element signature="method#getItemViewType#0;class#CharitySuggAdapter#0" />
+                <element signature="e#4297#4333#1" />
+                <element signature="e#4384#4423#1" />
+                <element signature="method#onBindViewHolder#0;class#CharitySuggAdapter#0" />
+                <element signature="e#4612#5088#1" />
+                <element signature="e#5139#5308#1" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Cutom_Classes/EndlessRecyclerViewScrollListener.java">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -223,7 +284,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>donateNow</find>
       <find>getcli</find>
       <find>do</find>
       <find>setc</find>
@@ -253,6 +313,7 @@
       <find>hide</find>
       <find>glide</find>
       <find>addall</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -266,7 +327,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_donate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java" />
@@ -314,15 +374,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Cutom_Classes/EndlessRecyclerViewScrollListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="40" />
-    <option name="y" value="35" />
+    <option name="x" value="332" />
+    <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="870" />
   </component>
@@ -334,21 +395,55 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
+      <pane id="AndroidView">
+        <subPane>
           <expand>
             <path>
-              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
             <path>
-              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Cutom_Classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Fragments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
@@ -402,52 +497,21 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
           <expand>
             <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
             <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -463,15 +527,18 @@
     <property name="device.picker.selection" value="94QX1ZMUB" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.example.give4friends" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.give4friends.Cutom_Classes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -605,13 +672,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Added HTML functionality to the Mission field in the charity search">
-      <created>1563667361362</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1563667361362</updated>
     </task>
     <task id="LOCAL-00034" summary="Fixed the memory pointer issue for the transactions">
       <created>1563674705716</created>
@@ -949,7 +1009,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564110606414</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Someone forgot a bracket">
+      <created>1564115591750</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1564115591750</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TodoView">
@@ -974,12 +1041,12 @@
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" weight="0.31578946" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.31530613" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.32865497" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.498779" weight="0.32748538" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.26800978" side_tool="true" weight="0.32748538" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.7319902" weight="0.3265306" />
-      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.7930403" visible="true" weight="0.3612245" />
+      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.7930403" weight="0.3612245" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.32865497" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32982457" />
@@ -1067,7 +1134,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed what happens in the search if you hit cancel." />
     <MESSAGE value="Updated the profile to be in a fragment" />
     <MESSAGE value="Did a wrap view for the charity profile" />
     <MESSAGE value="Updated the logic for stars" />
@@ -1092,7 +1158,8 @@
     <MESSAGE value="Added a placeholder image to the empty transaction pics." />
     <MESSAGE value="Added a parameter for the max number of transactions on the page" />
     <MESSAGE value="Added a white arrow to the donate search charity view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a white arrow to the donate search charity view" />
+    <MESSAGE value="Someone forgot a bracket" />
+    <option name="LAST_COMMIT_MESSAGE" value="Someone forgot a bracket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1201,7 +1268,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java</url>
-          <line>358</line>
+          <line>359</line>
           <properties method="onClick">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1260,22 +1327,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbarsearch.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbar.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/menu_progress_circle.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_donatecharity.xml">
       <provider editor-type-id="android-designer2" />
@@ -1409,27 +1460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="e#1437#1636#1" />
-            <element signature="e#1664#1873#1" />
-            <element signature="class#ViewHolderText#0;class#CharitySuggAdapter#0" />
-            <element signature="method#ViewHolderText#0;class#ViewHolderText#0;class#CharitySuggAdapter#0" />
-            <element signature="method#onClick#0;class#ViewHolderSuggested#0;class#CharitySuggAdapter#0" />
-            <element signature="e#3829#3869#0" />
-            <element signature="method#getItemViewType#0;class#CharitySuggAdapter#0" />
-            <element signature="e#4297#4333#1" />
-            <element signature="e#4384#4423#1" />
-            <element signature="method#onBindViewHolder#0;class#CharitySuggAdapter#0" />
-            <element signature="e#4612#5088#1" />
-            <element signature="e#5139#5308#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/HistoryActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -1516,26 +1546,39 @@
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
-          <folding>
-            <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
-            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
-            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
-            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
-            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings_activity.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
+        <state relative-caret-position="1095">
+          <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="62" column="68" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateSearchAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="30" column="95" selection-start-line="30" selection-start-column="95" selection-end-line="30" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -1561,14 +1604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings_activity.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -1577,63 +1612,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySearchAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Cutom_Classes/EndlessRecyclerViewScrollListener.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="182">
+          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/FavCharitiesAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="62" column="68" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateSearchAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-365">
-          <caret line="30" column="95" selection-start-line="30" selection-start-column="95" selection-end-line="30" selection-end-column="95" />
+        <state relative-caret-position="44">
+          <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="e#1437#1636#1" />
+            <element signature="e#1664#1873#1" />
+            <element signature="class#ViewHolderText#0;class#CharitySuggAdapter#0" />
+            <element signature="method#ViewHolderText#0;class#ViewHolderText#0;class#CharitySuggAdapter#0" />
+            <element signature="method#onClick#0;class#ViewHolderSuggested#0;class#CharitySuggAdapter#0" />
+            <element signature="e#3829#3869#0" />
+            <element signature="method#getItemViewType#0;class#CharitySuggAdapter#0" />
+            <element signature="e#4297#4333#1" />
+            <element signature="e#4384#4423#1" />
+            <element signature="method#onBindViewHolder#0;class#CharitySuggAdapter#0" />
+            <element signature="e#4612#5088#1" />
+            <element signature="e#5139#5308#1" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+        <state relative-caret-position="302">
+          <caret line="124" column="68" selection-start-line="124" selection-start-column="68" selection-end-line="124" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3002#4292#0" expanded="true" />
-            <element signature="e#4291#4292#0" expanded="true" />
-            <element signature="e#5103#5458#0" expanded="true" />
-            <element signature="e#5457#5458#0" expanded="true" />
-            <element signature="e#5563#7610#0" expanded="true" />
-            <element signature="e#5992#6753#0" expanded="true" />
-            <element signature="e#6752#6753#0" expanded="true" />
-            <element signature="e#6814#7576#0" expanded="true" />
-            <element signature="e#7575#7576#0" expanded="true" />
-            <element signature="e#7609#7610#0" expanded="true" />
-            <element signature="e#7563#7922#0" expanded="true" />
-            <element signature="e#7921#7922#0" expanded="true" />
-            <element signature="e#7965#9084#0" expanded="true" />
-            <element signature="e#9083#9084#0" expanded="true" />
-            <element signature="e#9164#10281#0" expanded="true" />
-            <element signature="e#10280#10281#0" expanded="true" />
-            <element signature="e#10309#10544#0" expanded="true" />
-            <element signature="e#10543#10544#0" expanded="true" />
-            <element signature="e#10823#12100#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
-            <element signature="e#12201#13478#0" expanded="true" />
-            <element signature="e#13477#13478#0" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
+            <element signature="e#5303#7230#0" expanded="true" />
+            <element signature="e#7229#7230#0" expanded="true" />
+            <element signature="e#12764#12765#0" expanded="true" />
+            <element signature="e#12806#12807#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.parse-community.Parse-SDK-Android/parse/1.18.5/e9c8ddceb873d7b401b60f5ebd12f708d0a50ae7/parse-1.18.5-sources.jar!/com/parse/ParseObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="1480" column="16" selection-start-line="1480" selection-start-column="16" selection-end-line="1480" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="221" selection-start-line="221" selection-end-line="221" selection-end-column="37" />
+          <folding>
+            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
+            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
+            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
+            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="136" column="37" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
+          <folding>
+            <element signature="e#5871#6567#0" expanded="true" />
+            <element signature="e#6566#6567#0" expanded="true" />
           </folding>
         </state>
       </provider>
