@@ -104,7 +104,6 @@ public class Main_Transaction_Fragment extends Fragment {
 
         populate();
 
-
     }
 
     private void configureToolbar() {
@@ -114,7 +113,6 @@ public class Main_Transaction_Fragment extends Fragment {
 
         toolbarTitle.setText("Give4Friends");
 
-
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -122,7 +120,6 @@ public class Main_Transaction_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
-
 
             }
         });

@@ -104,9 +104,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // if user is current user
         if(!friend ){
             if (transaction.getKeyAmountDonated() != null) {
-                holder.amount.setText(transaction.getKeyAmountDonated().toString());
+                holder.amount.setText("$" + transaction.getKeyAmountDonated().toString());
             } else {
                 holder.amount.setText(((Integer) 0).toString());
+            }
+            if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())){
+                holder.amount.setTextColor( context.getResources().getColor(R.color.colorPrimaryDark));
+            }
+            else{
+                holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
             }
         }
 
