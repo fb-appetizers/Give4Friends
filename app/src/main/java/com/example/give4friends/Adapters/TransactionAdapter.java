@@ -39,8 +39,10 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
-    public TransactionAdapter(List<Transaction> transactions) {
+    private boolean history;
+    public TransactionAdapter(List<Transaction> transactions, boolean history) {
         this.transactions = transactions;
+        this.history = history;
     }
 
     Context context;
@@ -99,6 +101,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
 
         //populate the views according to this data
+        // if user is current user
+        if(history){
+            holder.amount.setText(transaction.getKeyAmountDonated().toString());
+        }
 
         holder.message.setText(transaction.getKeyMessage());
 
@@ -262,6 +268,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public TextView charity;
         public TextView message;
         public ImageView pin;
+        public TextView amount;
 
         //like button
         public ImageButton ibEmptyHeart;
@@ -281,6 +288,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // like button
             ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
             pin = itemView.findViewById(R.id.ivPin);
+            amount = itemView.findViewById(R.id.tvAmount);
         }
     }
 

@@ -74,7 +74,8 @@ public class Main_Transaction_Fragment extends Fragment {
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
-        transactionAdapter = new TransactionAdapter(transactions);
+        transactionAdapter = new TransactionAdapter(transactions, false);
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -161,7 +162,6 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
         });}
-
 
 
 }

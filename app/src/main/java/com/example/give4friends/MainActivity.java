@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
-        transactionAdapter = new TransactionAdapter(transactions);
+        transactionAdapter = new TransactionAdapter(transactions, true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         populate();
+
+
     }
 
     protected void populate(){

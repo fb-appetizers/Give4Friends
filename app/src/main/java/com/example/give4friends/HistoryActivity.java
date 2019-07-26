@@ -27,6 +27,8 @@ public class HistoryActivity extends MainActivity{
     // setVisibility(View.INVISIBLE) on mainActivity
     ParseUser myUser;
 
+
+
     @Override
     protected void populate(){
 
