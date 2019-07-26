@@ -30,6 +30,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
     //        // define your fragments here
     final Fragment fragment1 = new Main_Transaction_Fragment();
     final Fragment fragment2 = new Charity_Search_Fragment();
+    final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +41,11 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         setContentView(R.layout.activity_fragment_home);
 
 
-
         configureToolbar();
         final FragmentManager fragmentManager = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

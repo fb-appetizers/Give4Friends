@@ -56,10 +56,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -157,19 +157,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="111" column="84" selection-start-line="111" selection-start-column="84" selection-end-line="111" selection-end-column="84" />
+            <state relative-caret-position="-1788">
+              <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
               <folding>
-                <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
                 <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
                 <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
                 <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
                 <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
                 <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
-                <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
                 <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
                 <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
               </folding>
@@ -177,17 +175,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="171" column="85" selection-start-line="171" selection-start-column="85" selection-end-line="171" selection-end-column="85" />
+            <state relative-caret-position="213">
+              <caret line="108" column="49" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
               <folding>
                 <element signature="method#onCreateViewHolder#0;class#TransactionAdapter#0" />
-                <element signature="e#7546#8158#0" expanded="true" />
-                <element signature="e#8157#8158#0" expanded="true" />
-                <element signature="e#9074#9293#0" expanded="true" />
-                <element signature="e#9292#9293#0" expanded="true" />
+                <element signature="e#7546#8177#0" expanded="true" />
+                <element signature="e#8176#8177#0" expanded="true" />
+                <element signature="e#9093#9312#0" expanded="true" />
+                <element signature="e#9311#9312#0" expanded="true" />
+                <element signature="e#12808#12809#0" expanded="true" />
                 <element signature="method#clear#0;class#TransactionAdapter#0" />
                 <element signature="method#addAll#0;class#TransactionAdapter#0" />
               </folding>
@@ -196,9 +195,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/charity_menu.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -288,7 +290,6 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/toolbar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_charity_favorites.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_profile_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_friend_profile.xml" />
@@ -320,6 +321,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_transaction.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" />
       </list>
     </option>
@@ -598,13 +600,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Fixed the homeview layout">
-      <created>1563589524962</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1563589524962</updated>
     </task>
     <task id="LOCAL-00030" summary="Fixed some sign-up problems">
       <created>1563647263332</created>
@@ -942,7 +937,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564102411097</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Added a placeholder image to the empty transaction pics.">
+      <created>1564107441826</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1564107441826</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TodoView">
@@ -956,9 +958,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.24481075" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.24481075" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="4" sideWeight="0.5017422" side_tool="true" weight="0.19750719" />
@@ -967,7 +970,7 @@
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.31578946" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.31578946" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.32865497" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.498779" weight="0.32748538" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.26800978" side_tool="true" weight="0.32748538" />
@@ -1060,7 +1063,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aligned" />
     <MESSAGE value="boarder fixed on home page" />
     <MESSAGE value="Changed the default friend picture" />
     <MESSAGE value="Changed what happens in the search if you hit cancel." />
@@ -1085,7 +1087,8 @@
     <MESSAGE value="changed x button" />
     <MESSAGE value="All toolbar buttons have consistent style" />
     <MESSAGE value="User search is pre-populated with recent friends" />
-    <option name="LAST_COMMIT_MESSAGE" value="User search is pre-populated with recent friends" />
+    <MESSAGE value="Added a placeholder image to the empty transaction pics." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a placeholder image to the empty transaction pics." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1253,10 +1256,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbarprofile.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/friend_user_menu.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -1615,24 +1614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="111" column="84" selection-start-line="111" selection-start-column="84" selection-end-line="111" selection-end-column="84" />
-          <folding>
-            <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
-            <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
-            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
-            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
-            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
-            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2402">
@@ -1647,18 +1628,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="171" column="85" selection-start-line="171" selection-start-column="85" selection-end-line="171" selection-end-column="85" />
+        <state relative-caret-position="213">
+          <caret line="108" column="49" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
           <folding>
             <element signature="method#onCreateViewHolder#0;class#TransactionAdapter#0" />
-            <element signature="e#7546#8158#0" expanded="true" />
-            <element signature="e#8157#8158#0" expanded="true" />
-            <element signature="e#9074#9293#0" expanded="true" />
-            <element signature="e#9292#9293#0" expanded="true" />
+            <element signature="e#7546#8177#0" expanded="true" />
+            <element signature="e#8176#8177#0" expanded="true" />
+            <element signature="e#9093#9312#0" expanded="true" />
+            <element signature="e#9311#9312#0" expanded="true" />
+            <element signature="e#12808#12809#0" expanded="true" />
             <element signature="method#clear#0;class#TransactionAdapter#0" />
             <element signature="method#addAll#0;class#TransactionAdapter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1788">
+          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
+          <folding>
+            <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
+            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
+            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
+            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
+            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
           </folding>
         </state>
       </provider>
