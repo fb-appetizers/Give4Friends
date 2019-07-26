@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,15 +19,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Main_Transaction_Fragment extends Fragment {
@@ -38,6 +44,7 @@ public class Main_Transaction_Fragment extends Fragment {
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
     boolean friend;
 
     @Nullable
@@ -89,6 +96,10 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onRefresh() {
 
+                //Resets the scroll listener so even during refreshes you can still scroll
+                scrollListener.resetState();
+                //Clear the old set when reloading
+                transactions.clear();
                 populate();
                 swipeContainer.setRefreshing(false);
             }
@@ -102,7 +113,27 @@ public class Main_Transaction_Fragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        //Clear the old set when reloading
+        transactions.clear();
         populate();
+
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+                populate();
+
+            }
+
+
+        };
+
+        scrollListener.resetState();
+
+        rvTransactions.addOnScrollListener(scrollListener);
+
 
     }
 
@@ -111,7 +142,10 @@ public class Main_Transaction_Fragment extends Fragment {
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
+
+        toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Give4Friends");
+
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
@@ -120,6 +154,7 @@ public class Main_Transaction_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+
 
             }
         });
@@ -131,8 +166,23 @@ public class Main_Transaction_Fragment extends Fragment {
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         //Used to set a limit to the number of transactions
+
         postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
+
+        if(transactions.size() > 0 ){
+
+
+
+            Date createdAt = transactions.get(transactions.size() - 1).getCreatedAt();
+
+            postQuery.whereLessThan(Transaction.KEY_CREATED_AT, createdAt);
+//            Toast.makeText(getContext(),createdAt.toString() , Toast.LENGTH_SHORT).show();
+
+
+
+        }
+
 
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
@@ -140,12 +190,21 @@ public class Main_Transaction_Fragment extends Fragment {
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
-                    //Clear the old set when reloading
-                    transactions.clear();
+//                    //Clear the old set when reloading
+
+//                    Date createdAt = transactionList.get(0).getCreatedAt();
+
 
                     for(Transaction transaction : transactionList){
 
                         transactions.add(transaction);
+
+                        try {
+                            transaction.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }else {

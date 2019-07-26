@@ -8,6 +8,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -76,8 +77,20 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
         if (viewHolder.getItemViewType() == CHARITY) {
+
             CharityAPI charity = (CharityAPI) items.get(position);
             final ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
+
+            vh1.tvCPMission.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    view.onTouchEvent(motionEvent);
+
+                    return true;
+                }
+            });
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
@@ -105,12 +118,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+
             } else {
 
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+
             }
 
             ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +136,9 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     if (array == null || !(array.contains(myUser.getObjectId()))) {
 
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+
                         //update parse
                         //updateUser
                         relation.add(parseCharity);
@@ -143,7 +157,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     } else {
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+
                         //update user
                         relation.remove(parseCharity);
                         myUser.saveInBackground();
@@ -166,23 +180,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
 
 
-//            ((ViewHolderCharity) viewHolder).tvDonateNow.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int position = getAdapterPosition(); // gets item position
-//                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-//                        currentCharity = charities.get(position);
-//                        charityName2 = currentCharity.getKeyName();
-//                    }
-//
-//                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
-//                    intent.putExtra("donateNow", true);
-//                    view.getContext().startActivity(intent);
-//
-//
-//
-//                }
-//            });
 
         } else if (viewHolder.getItemViewType() == COMMENT) {
 

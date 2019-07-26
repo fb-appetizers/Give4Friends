@@ -53,7 +53,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
 
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
                         break;
                     case R.id.action_search:
