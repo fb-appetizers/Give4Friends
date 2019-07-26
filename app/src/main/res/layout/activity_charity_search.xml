@@ -77,7 +77,7 @@
             android:id="@+id/rvCharitySugg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#2A03524A"
+            android:background="@color/colorAccent"
             android:scrollbarFadeDuration="15"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"

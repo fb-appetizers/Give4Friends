@@ -37,7 +37,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
     private ImageButton suggBtn;
 
-
+    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 20;
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
@@ -132,12 +132,11 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
 
-
-
     protected void populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.setLimit(10);
+        //Used to set a limit to the number of transactions
+        postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
         postQuery.findInBackground(new FindCallback<Transaction>() {

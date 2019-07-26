@@ -65,27 +65,10 @@ public final class ProfilePicture {
 
     }
 
-    public static void changePhotoFragment(final Fragment fragment, final Context context){
-        String[] options = {"Take photo", "Choose from gallery"};
-        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-        dialog.setTitle("Change Profile Picture");
-        dialog.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if(i == 0) {
-                    onLaunchCameraFragment(fragment, context); }
-                else {
-//                    onLaunchSelect(context);
-                    }
-            }
-        });
-        dialog.show();
-
-    }
 
 
 
-    private static File getPhotoFileUri(String fileName, Context context) {
+    public static File getPhotoFileUri(String fileName, Context context) {
 
         File mediaStorageDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
 
@@ -139,7 +122,7 @@ public final class ProfilePicture {
     }
 
 
-    private static Bitmap rotateBitmapOrientationFromPath(String photoFilePath) {
+    public static Bitmap rotateBitmapOrientation(String photoFilePath) {
         // Create and configure BitmapFactory
         BitmapFactory.Options bounds = new BitmapFactory.Options();
         bounds.inJustDecodeBounds = true;
@@ -186,8 +169,7 @@ public final class ProfilePicture {
 
     public static void updatePhoto(final ParseUser parseUser, final Bitmap photo) {
 
-        //pb.setVisibility(ProgressBar.VISIBLE);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+
 
         final ParseFile parseFile = conversionBitmapParseFile(photo);
         parseFile.saveInBackground(new SaveCallback() {
@@ -196,7 +178,7 @@ public final class ProfilePicture {
 
                 if(e==null) {
                     parseUser.put("profileImage", parseFile);
-                    parseFile.cancel();
+//                    parseFile.cancel();
                     parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -231,12 +213,13 @@ public final class ProfilePicture {
     }
 
     public static ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
-        Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(imageBitmap, 60);
+        Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(imageBitmap, 100);
 
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
         resizedBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
         byte[] imageByte = byteArrayOutputStream.toByteArray();
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
+
         return parseFile;
     }
 }

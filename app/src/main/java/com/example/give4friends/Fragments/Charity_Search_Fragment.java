@@ -241,6 +241,9 @@ public class Charity_Search_Fragment extends Fragment {
                     charities = new ArrayList<Charity>();
                 }
 
+                if(charities.size()>0){
+                    items.add("Charities Suggested For You");
+                }
                 // The suggestedNum now goes in decending order
                 Integer suggestedNum = Integer.max((Integer) (charities.size()-1-NUMBER_OF_SUGGESTIONS), 0);
 
@@ -289,7 +292,6 @@ public class Charity_Search_Fragment extends Fragment {
                     Log.e("MainActivity", "Can't get transaction");
                     e.printStackTrace();
                 }
-                items.add("Charities Suggested For You");
                 getResponseSuggested();
             }
         });

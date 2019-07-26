@@ -18,12 +18,12 @@
 
     <ImageButton
         android:id="@+id/suggBtn"
-        android:layout_width="86dp"
-        android:layout_height="95dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:elevation="15dp"
-        android:foreground="@drawable/ic_add_circle_4"
+        android:foreground="@drawable/ic_add_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_brightness_1_black_24dp" />

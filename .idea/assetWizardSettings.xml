@@ -165,7 +165,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_brightness_1_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_circle_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -175,13 +175,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="ffffff" />
-                            <entry key="height" value="65" />
-                            <entry key="outputName" value="ic_brightness_1_black_24dp" />
+                            <entry key="color" value="7b68ee" />
+                            <entry key="height" value="75" />
+                            <entry key="outputName" value="ic_add_circle_black_24dp" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_1_black_24dp.xml" />
-                            <entry key="width" value="65" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_circle_4.xml" />
+                            <entry key="width" value="75" />
                           </map>
                         </option>
                       </PersistentState>

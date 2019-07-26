@@ -105,6 +105,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if(history && (((transaction.getKeyDonorId().getObjectId()).equals((ParseUser.getCurrentUser().getObjectId()))) || (transaction.getKeyFriendId().getObjectId()).equals( ParseUser.getCurrentUser().getObjectId())) ){
             holder.amount.setText(transaction.getKeyAmountDonated().toString());
         }
+        if(history){
+            if(transaction.getKeyAmountDonated() != null) {
+                holder.amount.setText(transaction.getKeyAmountDonated().toString());
+            }else{
+                holder.amount.setText(((Integer)0).toString());
+            }
+
 
         holder.message.setText(transaction.getKeyMessage());
 
@@ -167,8 +174,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .load(image.getUrl())
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
-                                    .circleCrop())
+                                    .circleCrop()
+                                    )
 
+                            .into(holder.friendPhoto);
+                }
+                else{
+                    Glide.with(context)
+                            .load(R.drawable.instagram_user_outline_24)
+
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop())
                             .into(holder.friendPhoto);
                 }
             }
@@ -184,8 +201,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .load(image.getUrl())
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop()
+                                    )
+                            .into(holder.donorPhoto);
+                }else{
+                    Glide.with(context)
+                            .load(R.drawable.instagram_user_outline_24)
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop())
-
                             .into(holder.donorPhoto);
                 }
             }
