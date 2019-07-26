@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,32 +18,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
-import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Main_Transaction_Fragment extends Fragment {
 
     private ImageButton suggBtn;
 
-    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 10;
+    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 20;
     protected RecyclerView rvTransactions;
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
-    private EndlessRecyclerViewScrollListener scrollListener;
     boolean friend;
 
     @Nullable
@@ -159,8 +152,6 @@ public class Main_Transaction_Fragment extends Fragment {
     protected boolean populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.include("objectId");
-
         //Used to set a limit to the number of transactions
         postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
 //        postQuery.addDescendingOrder(Transaction.KEY_CREATED_AT);

@@ -45,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/baseline-arrow_downward-24px.svg" />
-                                      <entry key="outputName" value="ic_down_arrow" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/baseline-add_photo_alternate-24px.svg" />
+                                      <entry key="outputName" value="ic_photo" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
@@ -175,12 +175,11 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="7b68ee" />
-                            <entry key="height" value="75" />
-                            <entry key="outputName" value="ic_add_circle_black_24dp" />
+                            <entry key="outputName" value="ic_baseline_add_photo_alternate_24px" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_circle_4.xml" />
-                            <entry key="width" value="75" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/baseline-add_photo_alternate-24px.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -91,6 +91,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
+        android:outlineAmbientShadowColor="#00181717"
+        android:outlineSpotShadowColor="#00131111"
         android:paddingLeft="8dp"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,8 +116,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorAccent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Donate Now"
-        android:textColor="#2196F3"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/tvCPLikedNum"
         app:layout_constraintEnd_toEndOf="parent" />
 
