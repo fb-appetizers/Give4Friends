@@ -1,6 +1,5 @@
 package com.example.give4friends.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,7 +25,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -43,7 +41,6 @@ import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
-import com.example.give4friends.ProfileActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
@@ -241,7 +238,7 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setTextSize(24);
         toolbarTitle.setText(myUser.getUsername());
 
-        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+        toolbar.setNavigationIcon(R.drawable.ic_x);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,6 +264,7 @@ public class User_Profile_Fragment extends Fragment {
             case R.id.transactionHistory:
                 Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("user", ParseUser.getCurrentUser());
                 startActivity(intent);
                 return true;
             case R.id.useOffline:

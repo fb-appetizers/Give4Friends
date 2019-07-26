@@ -45,7 +45,7 @@
         app:layout_constraintCircleRadius="25dp"
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_down" />
+        app:srcCompat="@drawable/ic_down_arrow" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"

@@ -211,7 +211,7 @@ public class CharitySearch extends AppCompatActivity {
             case R.id.etCharity:
                 Toast.makeText(this, "Charity Search selected", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.transactionHistory:
+            case R.id.reportUser:
                 Toast.makeText(this, "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
                 startActivity(intent);

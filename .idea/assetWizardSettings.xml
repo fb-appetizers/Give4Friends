@@ -45,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/baseline_settings_black_18dp.png" />
-                                      <entry key="outputName" value="ic_settings" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/baseline-arrow_downward-24px.svg" />
+                                      <entry key="outputName" value="ic_down_arrow" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>

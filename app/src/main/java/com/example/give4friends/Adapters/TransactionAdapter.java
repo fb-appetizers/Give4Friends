@@ -39,8 +39,10 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
-    public TransactionAdapter(List<Transaction> transactions) {
+    private boolean history;
+    public TransactionAdapter(List<Transaction> transactions, boolean history) {
         this.transactions = transactions;
+        this.history = history;
     }
 
     Context context;
@@ -66,55 +68,43 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         // if user is in likesUsers - start red
         if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
-
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
             holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-
-        }
-        else{
-
+        }else{
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
             holder.ibEmptyHeart.setColorFilter(Color.RED);
-
         }
-
             holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     List<String> array = transaction.getKeyLikesUsers();
-
-
                     if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
-
                         //update transaction
                         //increment likes for transaction
                         transaction.incrementLikes(1);
                         //add user to array
                         transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
                         transaction.saveInBackground();
-
                     }else{
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
                         holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-
-
-                        //update parse
-
                         //update transaction
                         transaction.incrementLikes(-1);
                         //add user to array
                         array.remove(ParseUser.getCurrentUser().getObjectId());
                         transaction.setKeyLikesUsers(array);
                         transaction.saveInBackground();
-
                     }
                 }
             });
 
         //populate the views according to this data
+        // if user is current user
+        if(history){
+            holder.amount.setText(transaction.getKeyAmountDonated().toString());
+        }
 
         holder.message.setText(transaction.getKeyMessage());
 
@@ -123,7 +113,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             public void done(ParseObject object, ParseException e) {
                 holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
                 holder.donor.append(" donated to");
-
             }
         });
 
@@ -132,13 +121,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 @Override
                 public void done(final ParseObject object, ParseException e) {
                     if(object != null){
-                        holder.charity.setText(Html.fromHtml("<large><font color=\"#2196F3\"><b>" + object.getString("name") + "</b></large></font>"));
-
+                        holder.charity.setText(Html.fromHtml("<font color=\"#2196F3\"><b>" + object.getString("name") + "</b></font>"));
                         holder.charity.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
-
                                 Fragment fragment = new Charity_Profile_Fragment(charity);
                                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                                 fragmentManager.beginTransaction().
@@ -146,7 +133,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                         .addToBackStack(null).commit();
                             }
                         });
-
                         holder.pin.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -215,8 +201,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-
-
                     // Create a new fragment instead of an activity
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
@@ -226,15 +210,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
                 else{
 
-
-
                     // Create a new fragment instead of an activity
                     Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
                             replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
-
                 }
 
             }
@@ -245,9 +226,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
-
-
-                    // Create a new fragment instead of an activity
+   // Create a new fragment instead of an activity
 
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
@@ -256,8 +235,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .addToBackStack(null).commit();
                 }
                 else{
-
-
 
                     // Create a new fragment instead of an activity
                     Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyDonorId());
@@ -291,6 +268,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public TextView charity;
         public TextView message;
         public ImageView pin;
+        public TextView amount;
 
         //like button
         public ImageButton ibEmptyHeart;
@@ -310,6 +288,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             // like button
             ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
             pin = itemView.findViewById(R.id.ivPin);
+            amount = itemView.findViewById(R.id.tvAmount);
         }
     }
 

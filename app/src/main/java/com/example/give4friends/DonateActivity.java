@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,10 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.give4friends.Adapters.DonateAdapter;
+import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.User;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.io.Serializable;
@@ -34,6 +38,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     public static boolean donateNow;
     public static String charityName2;
     private ImageButton cancel;
+    Context context;
 
     ArrayList<ParseUser> friends;
     DonateAdapter adapter;
@@ -42,6 +47,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate);
+        context = this;
 
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);
@@ -53,11 +59,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
         friends = new ArrayList<ParseUser>();
 
-        adapter = new DonateAdapter(friends);
-
-        rvFriends.setAdapter(adapter);
-        rvFriends.setLayoutManager(new LinearLayoutManager(this));
-
+        //recyclerSetUp();
+        populateRelations();
 
         cancelSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,31 +69,23 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 searchFriend.getText().clear();
 
 
-
-
-
             }
         });
 
         searchFriend.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-
-                if (count == 0 ){
+                if (count == 0) {
                     friends.clear();
                     adapter.notifyDataSetChanged();
-
                 }
-                if(count > 0 ){
-
+                if (count > 0) {
                     queryFriends(searchFriend.getText().toString());
                 }
-
             }
 
             @Override
@@ -98,9 +93,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
             }
         });
-
-
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,16 +103,16 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         });
     }
 
-    protected void queryFriends(String name){
+    protected void queryFriends(String name) {
         ParseQuery<ParseUser> query1 = ParseUser.getQuery();
 
-        ParseQuery<ParseUser> q1 = query1.whereMatches("username", "("+name+")", "i");
+        ParseQuery<ParseUser> q1 = query1.whereMatches("username", "(" + name + ")", "i");
 
         ParseQuery<ParseUser> query2 = ParseUser.getQuery();
-        ParseQuery<ParseUser> q2 = query2.whereMatches("firstName", "("+name+")", "i");
+        ParseQuery<ParseUser> q2 = query2.whereMatches("firstName", "(" + name + ")", "i");
 
         ParseQuery<ParseUser> query3 = ParseUser.getQuery();
-        ParseQuery<ParseUser> q3 = query3.whereMatches("lastName", "("+name+")", "i");
+        ParseQuery<ParseUser> q3 = query3.whereMatches("lastName", "(" + name + ")", "i");
 
 
         List<ParseQuery<ParseUser>> queries = new ArrayList<>();
@@ -136,7 +128,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
 
-                if(e != null){
+                if (e != null) {
                     Log.e("DonateAdapter", "Error with query");
                     e.printStackTrace();
                     return;
@@ -146,5 +138,35 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void populateRelations() {
+        //Get relation
+        final ParseRelation<ParseUser> recentFriends = ParseUser.getCurrentUser().getRelation("friendsRecent");
+        //Get all charities in relation
+        recentFriends.getQuery().findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for (int i = 0; i < objects.size(); i++) {
+                        friends.add((ParseUser) objects.get(i));
+                    }
+                }
+                recyclerSetUp();
+            }
+
+        });
+    }
+
+    private void recyclerSetUp(){
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        rvFriends.setLayoutManager(linearLayoutManager);
+        adapter = new DonateAdapter(friends);
+        rvFriends.setAdapter(adapter);
+        rvFriends.setLayoutManager(new LinearLayoutManager(this));
     }
 }

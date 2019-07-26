@@ -5,6 +5,10 @@
 
 
     <item
+        android:id="@+id/TransactionHistory"
+        android:enabled="true"
+        android:title="Transaction History" />
+    <item
         android:id="@+id/reportUser"
         android:enabled="true"
         android:title="Report User" />

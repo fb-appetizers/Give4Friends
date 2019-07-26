@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
-import android.text.method.CharacterPickerDialog;
 import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,16 +22,12 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.User;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.security.Security;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
@@ -62,7 +59,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         if (viewType == CHARITY) {
 
-            View v1 = inflater.inflate(R.layout.item_main_profile_view, viewGroup, false);
+            View v1 = inflater.inflate(R.layout.item_charity_profile_page, viewGroup, false);
             viewHolder = new CharityProfileAdapter.ViewHolderCharity(v1);
             return viewHolder;
 
@@ -75,7 +72,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position){
 
 
         if (viewHolder.getItemViewType() == CHARITY) {
@@ -123,7 +120,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
                     List<User> array = parseCharity.getList("likesUsers");
 
-
                     if (array == null || !(array.contains(myUser.getObjectId()))) {
 
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
@@ -144,20 +140,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             e.printStackTrace();
                         }
                         vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
-
-
-
                     } else {
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-
-                        //update parse
-
                         //update user
                         relation.remove(parseCharity);
                         myUser.saveInBackground();
-
                         //update charity
                         parseCharity.incrementLikes(-1);
                         //add user to array
@@ -227,7 +216,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPMission;
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
-        TextView tvDonateNow;
+        Button tvDonateNow;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
@@ -238,6 +227,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
+
+            tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override

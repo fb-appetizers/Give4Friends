@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbarTrans"
         app:layout_constraintStart_toStartOf="@+id/toolbarTrans"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_down" />
+        app:srcCompat="@drawable/ic_down_arrow" />
 
     <TextView
         android:id="@+id/tvTransactionTrans"

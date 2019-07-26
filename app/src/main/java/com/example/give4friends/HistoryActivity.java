@@ -25,14 +25,20 @@ public class HistoryActivity extends MainActivity{
 
     //Will need to call .setVisibility(View.VISIBLE) on amount witch is
     // setVisibility(View.INVISIBLE) on mainActivity
+    ParseUser myUser;
+
+
 
     @Override
     protected void populate(){
+
+        //unwrap
+        myUser = getIntent().getParcelableExtra("user");
         //get query
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
-                .whereEqualTo(Transaction.KEY_FRIEND_ID, ParseUser.getCurrentUser());
+                .whereEqualTo(Transaction.KEY_FRIEND_ID, myUser);
         ParseQuery<Transaction> postQueryMe = new ParseQuery<Transaction>(Transaction.class)
-                .whereEqualTo(Transaction.KEY_DONOR_ID, ParseUser.getCurrentUser());
+                .whereEqualTo(Transaction.KEY_DONOR_ID, myUser);
 
         List<ParseQuery<Transaction>> queries = new ArrayList<ParseQuery<Transaction>>();
         queries.add(postQueryFriend);
