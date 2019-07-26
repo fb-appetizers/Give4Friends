@@ -94,7 +94,6 @@ public class Charity_Search_Fragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (count == 0){
