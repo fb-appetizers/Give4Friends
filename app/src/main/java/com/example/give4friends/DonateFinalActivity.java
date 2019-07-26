@@ -24,6 +24,8 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.Calendar;
+
 import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
@@ -119,6 +121,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         newTransaction.setKeyDonorId(currentUser);
         newTransaction.setKeyCharityId(currentCharity);
         newTransaction.setKeyAmountDonated(amountInt);
+
 
         String amountEntered = amount.getText().toString();
         newTransaction.setKeyAmountDonated(Integer.parseInt(amountEntered.substring(1)));

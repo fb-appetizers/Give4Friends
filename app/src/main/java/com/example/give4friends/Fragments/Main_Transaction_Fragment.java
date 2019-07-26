@@ -25,8 +25,11 @@ import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,7 +121,7 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
 
-                populate();
+//                populate();
 
             }
         };
@@ -156,7 +159,7 @@ public class Main_Transaction_Fragment extends Fragment {
     protected boolean populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
-        postQuery.include(Transaction.KEY_CREATED_AT);
+        postQuery.include("objectId");
 
         //Used to set a limit to the number of transactions
         postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
@@ -165,7 +168,23 @@ public class Main_Transaction_Fragment extends Fragment {
 
         if(transactions.size() > 0 ){
 
-//            Date createdAt = transactions.get(transactions.size() - 1);
+
+
+            transactions.get(0).fetchInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+
+                    if(e!=null){
+
+                        e.printStackTrace();
+                    }else {
+
+                        Date createdAt = object.getDate("createdAt");
+                        Toast.makeText(getContext(), createdAt.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
 //            postQuery.whereLessThan("createdAt",);
         }
 
@@ -178,9 +197,13 @@ public class Main_Transaction_Fragment extends Fragment {
 //                    //Clear the old set when reloading
 //                    transactions.clear();
 
+
                     for(Transaction transaction : transactionList){
 
+
                         transactions.add(transaction);
+
+
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }else {
