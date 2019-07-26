@@ -221,6 +221,18 @@ info | String | Information on the charityAPI
 - [ ] Updated from feedback
 
 
+### UI changes
+
+	* Use increments of 4 around all items
+	* make cancel buttons xs
+	* liked by should instead say favorited 
+	* tap on card and see message for transaction cards
+	* New search bar
+	* Use different colors for headers and buttons
+	* Decrease space between names and add space between items
+	* Try centering title
+	
+
 
 
 Should do:
@@ -229,18 +241,16 @@ Should do:
 - [ ] Redesign profile page (self and other)- Jessica
 - [x] Make floating button solid - Hana
 - [x] Change settings icon - Jessica
-- [ ] Push Notifications
-- [ ] Compression for Parse - Babu
 - [ ] Settings - Jessica eventually 
 - [x] Enter credit card info (make a note that it should be fake) - Hana
 - [x] Recommended charities - Jessica
-- [ ] Add amount to history
-- [ ] Transaction History of friendss
+- [x] Add amount to history
+- [x] Transaction History of friendss
 
 Stretch:
 - [ ] Unlike a charity from your profile
 - [ ] on your profile you can search for charities to add
-- [ ] show past friends in friends search
+- [x] show past friends in friends search
 - [ ] connect to fb fundraiser API
 - [ ] comments on transactions
 - [ ] comments on charities
