@@ -67,8 +67,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
             public void onClick(View view) {
                 searchFriend.clearFocus();
                 searchFriend.getText().clear();
-
-
             }
         });
 

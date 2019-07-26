@@ -111,7 +111,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         items = new ArrayList<>();
 
-        charityAdapter = new CharitySuggAdapter(items);
+        charityAdapter = new CharitySuggAdapter(items, true);
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
         // Set layout manager to position the items
@@ -183,8 +183,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                             try {
                                 JSONArray charityArray;
                                 charityArray = new JSONArray(myResponse);
-
-
                                 final ArrayList <CharityAPI> charities = CharityAPI.fromJSON(charityArray);
 
                                 items.clear() ;
@@ -202,8 +200,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                         }
                     });
                 }
-
-
             }
         });
     }
@@ -214,12 +210,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         ParseQuery<Charity> query1 = new ParseQuery<Charity>(Charity.class);
         ParseQuery<Charity> q1 = query1.whereMatches("name", "("+search+")", "i");
 
-
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
                 .whereEqualTo("highlyEffective", true);
 
         ParseQuery<Charity> q2 = postQuery.whereMatchesQuery("name",q1);
-
 
         q2.findInBackground(new FindCallback<Charity>() {
             //iterate through query
@@ -240,7 +234,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
             }
         });
-
     }
 
     public void getRecommended(){
@@ -265,10 +258,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 charityAdapter.notifyDataSetChanged();
             }
         });
-
-
     }
-
 
     private void getFavs() {
         items.clear();
@@ -286,16 +276,12 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
                         items.add(CharityAPI.fromParse((Charity) objects.get(i)));
-
                     }
-
                 }
                 getRecommended();
             }
         });
     }
-
-
 
 
 
