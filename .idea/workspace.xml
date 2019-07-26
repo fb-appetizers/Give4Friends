@@ -54,15 +54,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/HistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/HistoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_transaction.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -86,52 +82,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="461">
-                    <caret line="292" column="21" selection-start-line="292" selection-start-column="16" selection-end-line="292" selection-end-column="21" />
-                    <folding>
-                      <element signature="method#onViewCreated#0;class#Charity_Search_Fragment#0" />
-                      <element signature="class#3143:3875" />
-                      <element signature="method#onTextChanged#0;class#3143:3875" />
-                      <element signature="e#3445#3631#1" />
-                      <element signature="e#3662#3751#1" />
-                      <element signature="method#getResponseSearch#0;class#Charity_Search_Fragment#0" />
-                      <element signature="e#5404#5526#1" />
-                      <element signature="class#5640:7018" />
-                      <element signature="method#onFailure#0;class#5640:7018" />
-                      <element signature="method#onResponse#0;class#5640:7018" />
-                      <element signature="e#5905#6994#1" />
-                      <element signature="e#6155#6766#0" />
-                      <element signature="e#6514#6608#1" />
-                      <element signature="e#6791#6926#0" />
-                      <element signature="method#onConfigurationChanged#0;class#Charity_Search_Fragment#0" />
-                      <element signature="e#7328#7427#1" />
-                      <element signature="e#7507#7605#1" />
-                      <element signature="method#getResponseSuggested#0;class#Charity_Search_Fragment#0" />
-                      <element signature="e#8177#8254#1" />
-                      <element signature="e#8496#8586#1" />
-                      <element signature="method#showProgressBar#0;class#Charity_Search_Fragment#0" />
-                      <element signature="method#hideProgressBar#0;class#Charity_Search_Fragment#0" />
-                      <element signature="e#9448#9625#1" />
-                      <element signature="e#9511#9607#1" />
-                      <element signature="e#9631#9759#1" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -142,71 +92,35 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="385" column="11" selection-start-line="385" selection-start-column="11" selection-end-line="385" selection-end-column="11" />
+            <state relative-caret-position="2279">
+              <caret line="249" column="21" selection-start-line="249" selection-start-column="21" selection-end-line="249" selection-end-column="21" />
               <folding>
-                <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
-                <element signature="e#2990#2999#0" />
-                <element signature="method#onCreateView#0;class#User_Profile_Fragment#0" />
-                <element signature="method#onViewCreated#0;class#User_Profile_Fragment#0" />
-                <element signature="e#3523#3566#1" />
-                <element signature="e#3570#3621#1" />
-                <element signature="e#5725#5873#1" />
-                <element signature="e#5886#5949#1" />
-                <element signature="e#6084#6116#1" />
-                <element signature="e#6464#6905#1" />
-                <element signature="e#6918#7372#1" />
-                <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
-                <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
-                <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
-                <element signature="e#8929#9011#1" />
-                <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
-                <element signature="e#9133#9860#0" />
-                <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
-                <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
-                <element signature="e#10355#11370#1" />
-                <element signature="e#10398#11217#1" />
-                <element signature="e#11223#11360#1" />
-                <element signature="e#11422#12929#1" />
-                <element signature="e#11465#12919#1" />
-                <element signature="e#11534#11738#0" />
-                <element signature="e#11761#11821#0" />
-                <element signature="e#11994#12822#0" />
-                <element signature="e#12845#12905#0" />
-                <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
-                <element signature="e#14132#15181#0" expanded="true" />
-                <element signature="e#14376#14433#0" />
-                <element signature="e#14555#14644#1" />
-                <element signature="e#15180#15181#0" expanded="true" />
-                <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
-                <element signature="e#16127#16613#1" />
-                <element signature="e#16216#16471#1" />
-                <element signature="e#16618#16827#1" />
+                <element signature="e#2967#3175#0" expanded="true" />
+                <element signature="e#3174#3175#0" expanded="true" />
+                <element signature="e#4093#4238#0" expanded="true" />
+                <element signature="e#4237#4238#0" expanded="true" />
+                <element signature="e#5751#6708#0" expanded="true" />
+                <element signature="e#6707#6708#0" expanded="true" />
+                <element signature="e#6794#6803#0" expanded="true" />
+                <element signature="e#7285#7967#0" expanded="true" />
+                <element signature="e#7966#7967#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="34" selection-end-column="5" />
+            <state relative-caret-position="804">
+              <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
               <folding>
-                <element signature="e#1437#1636#1" />
-                <element signature="e#1664#1873#1" />
-                <element signature="class#ViewHolderText#0;class#CharitySuggAdapter#0" />
-                <element signature="method#ViewHolderText#0;class#ViewHolderText#0;class#CharitySuggAdapter#0" />
-                <element signature="method#onClick#0;class#ViewHolderSuggested#0;class#CharitySuggAdapter#0" />
-                <element signature="e#3829#3869#0" />
-                <element signature="method#getItemViewType#0;class#CharitySuggAdapter#0" />
-                <element signature="e#4297#4333#1" />
-                <element signature="e#4384#4423#1" />
-                <element signature="method#onBindViewHolder#0;class#CharitySuggAdapter#0" />
-                <element signature="e#4612#5088#1" />
-                <element signature="e#5139#5308#1" />
+                <element signature="e#4401#4607#0" expanded="true" />
+                <element signature="e#4606#4607#0" expanded="true" />
+                <element signature="e#4983#5223#0" expanded="true" />
+                <element signature="e#5222#5223#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -215,89 +129,67 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="160" selection-start-line="160" selection-end-line="160" />
-              <folding>
-                <element signature="method#queryFriends#0;class#DonateActivity#0" />
-                <element signature="e#4625#5206#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="421">
+              <caret line="117" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/ProfilePicture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1666#1811#0" expanded="true" />
-                <element signature="e#1810#1811#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2402">
+              <caret line="217" selection-start-line="217" selection-end-line="219" selection-end-column="63" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-257" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_transaction.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="141" column="41" selection-start-line="141" selection-start-column="41" selection-end-line="141" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="42" column="77" selection-start-line="42" selection-start-column="77" selection-end-line="42" selection-end-column="77" />
+            <state relative-caret-position="204">
+              <caret line="111" column="84" selection-start-line="111" selection-start-column="84" selection-end-line="111" selection-end-column="84" />
               <folding>
-                <element signature="method#onCreateViewHolder#0;class#TransactionAdapter#0" />
-                <element signature="e#2534#2691#1" />
-                <element signature="e#2695#2843#1" />
-                <element signature="e#3173#3707#1" />
-                <element signature="e#3360#3380#0" />
-                <element signature="e#3711#4246#1" />
-                <element signature="e#4845#6854#1" />
-                <element signature="e#5091#6810#1" />
-                <element signature="e#6919#7254#0" expanded="true" />
-                <element signature="e#7253#7254#0" expanded="true" />
-                <element signature="e#7549#7911#1" />
-                <element signature="e#8230#8591#1" />
-                <element signature="e#9160#9640#1" />
-                <element signature="e#9661#10140#1" />
-                <element signature="e#10466#10930#1" />
-                <element signature="e#10951#11429#1" />
-                <element signature="method#clear#0;class#TransactionAdapter#0" />
-                <element signature="method#addAll#0;class#TransactionAdapter#0" />
+                <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
+                <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
+                <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
+                <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
+                <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
+                <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
+                <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
+                <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
+                <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/HistoryActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/charity_menu.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+            <state relative-caret-position="138">
+              <caret line="56" column="19" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="19" />
               <folding>
-                <element signature="e#3933#4175#0" expanded="true" />
-                <element signature="e#4174#4175#0" expanded="true" />
+                <element signature="e#982#983#0" expanded="true" />
+                <element signature="e#1020#1021#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -316,11 +208,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myUser</find>
       <find>toolbar</find>
       <find>showprogress</find>
       <find>donateNow</find>
-      <find>hide</find>
       <find>getcli</find>
       <find>do</find>
       <find>setc</find>
@@ -346,6 +236,8 @@
       <find>ada</find>
       <find>relatio</find>
       <find>adap</find>
+      <find>yo</find>
+      <find>hide</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -397,10 +289,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_final.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateFinalActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" />
@@ -410,6 +300,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_transaction.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" />
       </list>
     </option>
   </component>
@@ -427,94 +319,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="Adapters" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="Cutom_Classes" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="Fragments" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -563,6 +367,66 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
+            <path>
+              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Give4Friends-master" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="give4friends" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Fragments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Give4Friends" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,7 +434,7 @@
     <property name="DEBUGGABLE_PROCESS" value="com.example.give4friends" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
-    <property name="device.picker.selection" value="88TX02MMF" />
+    <property name="device.picker.selection" value="94QX1ZMUB" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -715,13 +579,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Added some layout modifications">
-      <created>1563569421409</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1563569421409</updated>
     </task>
     <task id="LOCAL-00028" summary="Fixed the rotate bug in the profile activity.">
       <created>1563573043966</created>
@@ -1059,7 +916,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564098963101</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="User search is pre-populated with recent friends">
+      <created>1564102282163</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1564102282163</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1072,10 +936,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="469" y="-1314" width="1348" height="870" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.18606432" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.24481075" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="4" sideWeight="0.5017422" side_tool="true" weight="0.19750719" />
@@ -1084,12 +949,12 @@
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.31619537" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" weight="0.31619537" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.32865497" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.498779" weight="0.32857144" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.26800978" side_tool="true" weight="0.32748538" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.7319902" weight="0.3265306" />
-      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.7930403" weight="0.42105263" />
+      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.7930403" visible="true" weight="0.42105263" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.32865497" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32982457" />
@@ -1209,13 +1074,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>105</line>
+          <line>91</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>99</line>
+          <line>85</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
@@ -1233,73 +1098,73 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>273</line>
+          <line>260</line>
           <properties />
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>272</line>
+          <line>259</line>
           <properties />
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>249</line>
+          <line>236</line>
           <properties />
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>257</line>
+          <line>244</line>
           <properties />
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>236</line>
+          <line>223</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>235</line>
+          <line>222</line>
           <properties />
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>180</line>
+          <line>166</line>
           <properties />
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>174</line>
+          <line>160</line>
           <properties />
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>143</line>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>278</line>
+          <line>265</line>
           <properties />
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>283</line>
+          <line>270</line>
           <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/ProfileActivity.java</url>
-          <line>293</line>
+          <line>280</line>
           <properties />
           <option name="timeStamp" value="108" />
         </line-breakpoint>
@@ -1311,8 +1176,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java</url>
-          <line>359</line>
-          <properties class="com.example.give4friends.Fragments.User_Profile_Fragment" method="populateRelations">
+          <line>358</line>
+          <properties method="onClick">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="109" />
@@ -1395,11 +1260,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/charity_menu.xml">
       <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/toolbarsearch.xml">
       <provider selected="true" editor-type-id="android-designer2" />
@@ -1552,17 +1413,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
-        </state>
+        <state relative-caret-position="-257" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateSearchAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1573,12 +1428,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1617">
-          <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
+        <state relative-caret-position="2279">
+          <caret line="249" column="21" selection-start-line="249" selection-start-column="21" selection-end-line="249" selection-end-column="21" />
           <folding>
-            <element signature="method#setUpFriend#0;class#DonateSearchCharity#0" />
-            <element signature="method#showProgressBar#0;class#DonateSearchCharity#0" />
-            <element signature="method#hideProgressBar#0;class#DonateSearchCharity#0" />
+            <element signature="e#2967#3175#0" expanded="true" />
+            <element signature="e#3174#3175#0" expanded="true" />
+            <element signature="e#4093#4238#0" expanded="true" />
+            <element signature="e#4237#4238#0" expanded="true" />
+            <element signature="e#5751#6708#0" expanded="true" />
+            <element signature="e#6707#6708#0" expanded="true" />
+            <element signature="e#6794#6803#0" expanded="true" />
+            <element signature="e#7285#7967#0" expanded="true" />
+            <element signature="e#7966#7967#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1597,106 +1458,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
-            <element signature="e#1020#1021#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="385" column="11" selection-start-line="385" selection-start-column="11" selection-end-line="385" selection-end-column="11" />
-          <folding>
-            <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
-            <element signature="e#2990#2999#0" />
-            <element signature="method#onCreateView#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onViewCreated#0;class#User_Profile_Fragment#0" />
-            <element signature="e#3523#3566#1" />
-            <element signature="e#3570#3621#1" />
-            <element signature="e#5725#5873#1" />
-            <element signature="e#5886#5949#1" />
-            <element signature="e#6084#6116#1" />
-            <element signature="e#6464#6905#1" />
-            <element signature="e#6918#7372#1" />
-            <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
-            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
-            <element signature="e#8929#9011#1" />
-            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
-            <element signature="e#9133#9860#0" />
-            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
-            <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
-            <element signature="e#10355#11370#1" />
-            <element signature="e#10398#11217#1" />
-            <element signature="e#11223#11360#1" />
-            <element signature="e#11422#12929#1" />
-            <element signature="e#11465#12919#1" />
-            <element signature="e#11534#11738#0" />
-            <element signature="e#11761#11821#0" />
-            <element signature="e#11994#12822#0" />
-            <element signature="e#12845#12905#0" />
-            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
-            <element signature="e#14132#15181#0" expanded="true" />
-            <element signature="e#14376#14433#0" />
-            <element signature="e#14555#14644#1" />
-            <element signature="e#15180#15181#0" expanded="true" />
-            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
-            <element signature="e#16127#16613#1" />
-            <element signature="e#16216#16471#1" />
-            <element signature="e#16618#16827#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="292" column="21" selection-start-line="292" selection-start-column="16" selection-end-line="292" selection-end-column="21" />
-          <folding>
-            <element signature="method#onViewCreated#0;class#Charity_Search_Fragment#0" />
-            <element signature="class#3143:3875" />
-            <element signature="method#onTextChanged#0;class#3143:3875" />
-            <element signature="e#3445#3631#1" />
-            <element signature="e#3662#3751#1" />
-            <element signature="method#getResponseSearch#0;class#Charity_Search_Fragment#0" />
-            <element signature="e#5404#5526#1" />
-            <element signature="class#5640:7018" />
-            <element signature="method#onFailure#0;class#5640:7018" />
-            <element signature="method#onResponse#0;class#5640:7018" />
-            <element signature="e#5905#6994#1" />
-            <element signature="e#6155#6766#0" />
-            <element signature="e#6514#6608#1" />
-            <element signature="e#6791#6926#0" />
-            <element signature="method#onConfigurationChanged#0;class#Charity_Search_Fragment#0" />
-            <element signature="e#7328#7427#1" />
-            <element signature="e#7507#7605#1" />
-            <element signature="method#getResponseSuggested#0;class#Charity_Search_Fragment#0" />
-            <element signature="e#8177#8254#1" />
-            <element signature="e#8496#8586#1" />
-            <element signature="method#showProgressBar#0;class#Charity_Search_Fragment#0" />
-            <element signature="method#hideProgressBar#0;class#Charity_Search_Fragment#0" />
-            <element signature="e#9448#9625#1" />
-            <element signature="e#9511#9607#1" />
-            <element signature="e#9631#9759#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
-          <folding>
-            <element signature="method#queryFriends#0;class#DonateActivity#0" />
-            <element signature="e#4625#5206#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="421">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>
     </entry>
@@ -1843,6 +1608,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="141" column="41" selection-start-line="141" selection-start-column="41" selection-end-line="141" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="56" column="19" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="19" />
+          <folding>
+            <element signature="e#982#983#0" expanded="true" />
+            <element signature="e#1020#1021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
+          <folding>
+            <element signature="e#4401#4607#0" expanded="true" />
+            <element signature="e#4606#4607#0" expanded="true" />
+            <element signature="e#4983#5223#0" expanded="true" />
+            <element signature="e#5222#5223#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="111" column="84" selection-start-line="111" selection-start-column="84" selection-end-line="111" selection-end-column="84" />
+          <folding>
+            <element signature="method#User_Profile_Fragment#0;class#User_Profile_Fragment#0" />
+            <element signature="method#configureToolbar#0;class#User_Profile_Fragment#0" />
+            <element signature="method#configureToolbarStripped#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onCreateOptionsMenu#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onOptionsItemSelected#0;class#User_Profile_Fragment#0" />
+            <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
+            <element signature="method#onActivityResult#0;class#User_Profile_Fragment#0" />
+            <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
+            <element signature="method#getRaised#0;class#User_Profile_Fragment#0" />
+          </folding>
         </state>
       </provider>
     </entry>

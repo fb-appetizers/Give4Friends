@@ -109,7 +109,8 @@ public class User_Profile_Fragment extends Fragment {
 
         Fragment fragment = getFragmentManager().getFragments().get(0);
         if(fragment!=null){
-            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
+            //TODO -- test this fragment to activity thing to ge the camera requests
+//            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
         }
         btChangePic = view.findViewById(R.id.btChangePic);
 
