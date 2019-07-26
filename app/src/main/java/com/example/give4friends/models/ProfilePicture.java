@@ -65,6 +65,24 @@ public final class ProfilePicture {
 
     }
 
+    public static void changePhotoFragment(final Fragment fragment){
+        String[] options = {"Take photo", "Choose from gallery"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(fragment.getContext());
+        dialog.setTitle("Change Profile Picture");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    onLaunchCameraFragment(fragment); }
+                else {
+                    onLaunchSelect(fragment.getContext());
+                }
+            }
+        });
+        dialog.show();
+
+    }
+
 
 
 
@@ -91,15 +109,16 @@ public final class ProfilePicture {
         }
     }
 
-    private static void onLaunchCameraFragment(Fragment fragment, Context context) {
+    private static void onLaunchCameraFragment(Fragment fragment) {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        photoFile = getPhotoFileUri(photoFileName, context);
+        photoFile = getPhotoFileUri(photoFileName, fragment.getContext());
 
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
+        if (intent.resolveActivity(fragment.getContext().getPackageManager()) != null) {
 
             fragment.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
+
 
     public static void onLaunchSelect(Context context) {
         activity = (Activity) context;
@@ -111,6 +130,20 @@ public final class ProfilePicture {
         if (intent.resolveActivity(activity.getPackageManager()) != null) {
             // Bring up gallery to select a photo
             activity.startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
+        }
+    }
+
+
+    public static void onLaunchSelectFragment(Fragment fragment) {
+        activity = (Activity) fragment.getContext();
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(activity.getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            fragment.startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
         }
     }
 

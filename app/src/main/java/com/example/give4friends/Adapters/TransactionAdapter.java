@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +64,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // get data according to position.
         final Transaction transaction = transactions.get(position);
 
+
         //check if user is in likes list
         List<String> array = transaction.getKeyLikesUsers();
+
 
         // if user is in likesUsers - start red
         if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {

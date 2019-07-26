@@ -107,7 +107,7 @@ public class User_Profile_Fragment extends Fragment {
         context = getContext();
         btEditBio = view.findViewById(R.id.btEditProfile);
 
-        Fragment fragment = getFragmentManager().getFragments().get(0);
+        final Fragment fragment = getFragmentManager().getFragments().get(0);
         if(fragment!=null){
             //TODO -- test this fragment to activity thing to ge the camera requests
 //            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
@@ -133,7 +133,7 @@ public class User_Profile_Fragment extends Fragment {
             public void onClick(View view) {
 
 
-                ProfilePicture.changePhoto(getContext());
+                ProfilePicture.changePhotoFragment(fragment);
             }
         });
 
@@ -297,7 +297,7 @@ public class User_Profile_Fragment extends Fragment {
             if (resultCode == RESULT_OK) {
                 photo = (Bitmap) data.getExtras().get("data");
                 Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
-                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,270);
+                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
                 Glide.with(context)
                         .load(selectedImageRotate)
                         .apply(new RequestOptions()
@@ -313,6 +313,7 @@ public class User_Profile_Fragment extends Fragment {
         } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Uri photoUri = data.getData();
+                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
                     photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);

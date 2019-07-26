@@ -135,6 +135,8 @@ public class Transaction extends ParseObject{
     public Date getKeyCreatedAt(){
         return getDate(KEY_CREATED_AT);
     }
-
+    public void setKeyCreatedAt(Date time){
+        put(KEY_CREATED_AT, time);
+    }
 
 }

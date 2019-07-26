@@ -76,6 +76,7 @@
         android:background="@drawable/constraint_border"
         android:paddingLeft="5dp"
         android:scrollbars="vertical"
+        android:focusableInTouchMode="true"
         android:text="Mission"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#B0292222"
