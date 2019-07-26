@@ -102,13 +102,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //populate the views according to this data
         // if user is current user
+        if(history && (((transaction.getKeyDonorId().getObjectId()).equals((ParseUser.getCurrentUser().getObjectId()))) || (transaction.getKeyFriendId().getObjectId()).equals( ParseUser.getCurrentUser().getObjectId())) ){
+            holder.amount.setText(transaction.getKeyAmountDonated().toString());
+        }
         if(history){
             if(transaction.getKeyAmountDonated() != null) {
                 holder.amount.setText(transaction.getKeyAmountDonated().toString());
             }else{
                 holder.amount.setText(((Integer)0).toString());
             }
-        }
+
 
         holder.message.setText(transaction.getKeyMessage());
 
@@ -184,8 +187,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop())
                             .into(holder.friendPhoto);
-
-
                 }
             }
         });
@@ -210,8 +211,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop())
                             .into(holder.donorPhoto);
-
-
                 }
             }
         });
