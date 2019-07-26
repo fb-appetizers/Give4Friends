@@ -27,8 +27,8 @@
 
             <ImageView
                 android:id="@+id/ivDonor"
-                android:layout_width="53dp"
-                android:layout_height="53dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="8dp"
@@ -50,9 +50,9 @@
 
             <TextView
                 android:id="@+id/tvDonor"
-                android:layout_width="232dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="sans-serif-light"
                 android:text="TextView"
@@ -64,9 +64,9 @@
 
             <TextView
                 android:id="@+id/tvMessage"
-                android:layout_width="232dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
@@ -83,12 +83,12 @@
 
             <ImageView
                 android:id="@+id/ivFriend"
-                android:layout_width="50dp"
-                android:layout_height="51dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentBottom="false"
                 android:layout_marginEnd="25dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 android:scaleType="centerCrop"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent" />
@@ -97,7 +97,7 @@
                 android:id="@+id/ivPin"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:background="#00FFFFFF"
                 android:clickable="true"
                 card_view:layout_constraintBottom_toTopOf="@+id/tvFriend"
@@ -107,21 +107,22 @@
 
             <TextView
                 android:id="@+id/tvCharity"
-                android:layout_width="209dp"
+                android:layout_width="227dp"
                 android:layout_height="0dp"
                 android:clickable="true"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 card_view:layout_constraintEnd_toEndOf="@+id/tvDonor"
+                card_view:layout_constraintHorizontal_bias="0.052"
                 card_view:layout_constraintStart_toEndOf="@+id/ivPin"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
 
             <TextView
                 android:id="@+id/tvFriend"
-                android:layout_width="232dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:fontFamily="sans-serif-light"
                 android:text="TextView"
                 android:textAlignment="textEnd"

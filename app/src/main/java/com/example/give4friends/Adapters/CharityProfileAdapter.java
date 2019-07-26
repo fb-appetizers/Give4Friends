@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -222,7 +224,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPMission;
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
-        TextView tvDonateNow;
+        Button tvDonateNow;
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
@@ -233,6 +235,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
+
+            tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override

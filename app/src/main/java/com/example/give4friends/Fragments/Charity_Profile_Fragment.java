@@ -66,7 +66,6 @@ public class Charity_Profile_Fragment extends Fragment {
     private void populateProfile(){
         items.add(charity);
         itemsAdapter.notifyItemInserted(items.size() - 1);
-
     }
 
 
