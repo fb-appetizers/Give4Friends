@@ -144,6 +144,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         currentUser.increment("totalDonated", amountInt);
         currentUser.saveInBackground();
         //update relation
+        
         ParseRelation<ParseObject> relation = ParseUser.getCurrentUser().getRelation("friendsRecent");
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
