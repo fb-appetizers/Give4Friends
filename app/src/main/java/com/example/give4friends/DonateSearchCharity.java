@@ -81,7 +81,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         //Added another field to check if this is in the Donate Search charity.
         miActionProgressItem = findViewById(R.id.progressBar);
 
-        topResult.setVisibility(View.INVISIBLE);
+        topResult.setVisibility(View.GONE);
 
         etCharity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,7 +96,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     //items.clear();
                     //charityAdapter.notifyDataSetChanged();
                     getFavs();
-                    topResult.setVisibility(View.INVISIBLE);
+                    topResult.setVisibility(View.GONE);
                     //hideProgressBar();
                 }
                 if(count > 0 ){
@@ -129,8 +129,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
             }
         });
-
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
