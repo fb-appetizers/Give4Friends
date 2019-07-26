@@ -1,7 +1,9 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,24 +16,36 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Cutom_Classes.CustomDialog;
+import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.User;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.currentCharity;
+import static com.example.give4friends.DonateActivity.currentFriend;
+
 public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Object> items;
     private Context context;
+    private boolean skip;
+    private Charity newCharity;
 
-    public CharitySuggAdapter(ArrayList<Object> items) {
+    public CharitySuggAdapter(ArrayList<Object> items, boolean skip) {
         this.items = items;
+        this.skip = skip;
     }
 
     private final int TEXT = 0, CHARITY = 1;
@@ -95,16 +109,50 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @Override
         public void onClick(View view) {
-            int position = getAdapterPosition();
-            CharityAPI charity = (CharityAPI) items.get(position);
-            Fragment fragment1 = new Charity_Profile_Fragment(charity);
-            FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-            fragmentManager.beginTransaction().
-                    replace(R.id.flContainer, fragment1)
-                    .addToBackStack(null).commit();
+            if (skip) {
+                int position = getAdapterPosition(); // gets item position
+                if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                    final CharityAPI selectedCharity = (CharityAPI) items.get(position);
+
+                    ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+                    charityParseQuery.include(Charity.KEY_CHARITY_ID);
+                    charityParseQuery.whereEqualTo("charityName", selectedCharity.getEin());
+
+                    charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+                        @Override
+                        public void done(Charity object, ParseException e) {
+                            if (e != null) {
+                                if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+                                    addNewCharity(selectedCharity);
+                                    return;
+                                } else {
+                                    Log.e("CharitySearchAdapter", "Error with query of charity");
+                                }
+                            } else {
+                                currentCharity = object;
+                            }
+                        }
+                    });
+
+                    charityName2 = selectedCharity.getName();
+
+                    Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                    view.getContext().startActivity(intent);
+                }
+            } else {
+
+                int position = getAdapterPosition();
+                CharityAPI charity = (CharityAPI) items.get(position);
+                //TODO Check if skip --> send to final donate activity TODO
+
+                Fragment fragment1 = new Charity_Profile_Fragment(charity);
+                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.flContainer, fragment1)
+                        .addToBackStack(null).commit();
 
 
-            // Send an intent to the Charity Profile
+                // Send an intent to the Charity Profile
 //            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
 //
 //            Intent intent = new Intent(context, CharityProfile.class);
@@ -112,6 +160,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 //            intent.putExtra("Charity", Parcels.wrap(charity));
 //
 //            context.startActivity(intent);
+            }
         }
     }
 
@@ -125,6 +174,30 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         return -1;
 
+    }
+
+    private void addNewCharity(CharityAPI selectedCharity) {
+        newCharity = new Charity();
+        newCharity.setKeyCategoryName(selectedCharity.getCategoryName());
+        newCharity.setKeyCauseName(selectedCharity.getCauseName());
+        newCharity.setKeyCharityID(selectedCharity.getEin());
+        newCharity.setKeyMission(selectedCharity.getMission());
+        newCharity.setKeyName(selectedCharity.getName());
+        newCharity.setKeyRatingURL(selectedCharity.getRatingsUrl());
+        newCharity.setKeyUrl(selectedCharity.getWebsiteUrl());
+
+        newCharity.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.d("CharitySearchAdapter", "Created new charity");
+                    currentCharity = newCharity;
+                } else {
+                    Log.d("CharitySearchAdapter", "Invalid charity");
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
