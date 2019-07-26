@@ -18,15 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Main_Transaction_Fragment extends Fragment {
@@ -38,6 +42,7 @@ public class Main_Transaction_Fragment extends Fragment {
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
     boolean friend;
 
     @Nullable
