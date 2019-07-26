@@ -180,7 +180,7 @@ public class Main_Transaction_Fragment extends Fragment {
                     }else {
 
                         Date createdAt = object.getDate("createdAt");
-                        Toast.makeText(getContext(), createdAt.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), createdAt.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
