@@ -228,7 +228,7 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setTextSize(24);
         toolbarTitle.setText(myUser.getUsername());
 
-        toolbar.setNavigationIcon(R.drawable.ic_cancel_2);
+        toolbar.setNavigationIcon(R.drawable.ic_x);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,9 +251,10 @@ public class User_Profile_Fragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.reportUser:
+            case R.id.transactionHistory:
                 Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("user", ParseUser.getCurrentUser());
                 startActivity(intent);
                 return true;
             case R.id.useOffline:

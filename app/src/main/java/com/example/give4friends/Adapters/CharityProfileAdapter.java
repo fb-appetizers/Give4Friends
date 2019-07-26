@@ -72,7 +72,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position){
 
 
         if (viewHolder.getItemViewType() == CHARITY) {
@@ -120,7 +120,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
                     List<User> array = parseCharity.getList("likesUsers");
 
-
                     if (array == null || !(array.contains(myUser.getObjectId()))) {
 
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
@@ -141,20 +140,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             e.printStackTrace();
                         }
                         vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
-
-
-
                     } else {
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
-
-                        //update parse
-
                         //update user
                         relation.remove(parseCharity);
                         myUser.saveInBackground();
-
                         //update charity
                         parseCharity.incrementLikes(-1);
                         //add user to array

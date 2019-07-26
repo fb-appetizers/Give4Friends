@@ -19,6 +19,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.models.Transaction;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -138,5 +140,9 @@ public class DonateFinalActivity extends AppCompatActivity {
         //update user totals
         currentUser.increment("totalDonated", amountInt);
         currentUser.saveInBackground();
+        //update relation
+        ParseRelation<ParseObject> relation = ParseUser.getCurrentUser().getRelation("friendsRecent");
+        relation.add(currentFriend);
+        ParseUser.getCurrentUser().saveInBackground();
     }
 }

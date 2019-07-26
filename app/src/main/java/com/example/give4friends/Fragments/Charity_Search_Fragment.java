@@ -58,7 +58,6 @@ import okhttp3.Response;
 
 public class Charity_Search_Fragment extends Fragment {
 
-
     private TextInputEditText etCharity;
     private TextInputLayout tiCharity;
     private Button btnCancel;
@@ -73,11 +72,9 @@ public class Charity_Search_Fragment extends Fragment {
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.activity_charity_search, container, false);
     }
 
@@ -96,13 +93,11 @@ public class Charity_Search_Fragment extends Fragment {
         etCharity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (count == 0){
-
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
@@ -158,12 +153,8 @@ public class Charity_Search_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
-
-
             }
         });
-
-
 
     }
 
