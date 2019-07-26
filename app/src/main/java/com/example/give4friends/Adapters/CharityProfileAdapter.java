@@ -118,12 +118,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+
             } else {
 
                 ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
                 ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+
             }
 
             ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
@@ -136,8 +136,9 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     if (array == null || !(array.contains(myUser.getObjectId()))) {
 
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(1);
+
                         //update parse
                         //updateUser
                         relation.add(parseCharity);
@@ -156,7 +157,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     } else {
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setRotation(2);
+
                         //update user
                         relation.remove(parseCharity);
                         myUser.saveInBackground();
