@@ -59,8 +59,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return viewHolder;
     }
 
-
-
     public class ViewHolderText extends RecyclerView.ViewHolder{
         public TextView tvHeader;
 
