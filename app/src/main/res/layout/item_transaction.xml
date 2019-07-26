@@ -87,7 +87,7 @@
                 android:layout_height="45dp"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentBottom="false"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="20dp"
                 android:scaleType="centerCrop"
                 card_view:layout_constraintBottom_toBottomOf="parent"

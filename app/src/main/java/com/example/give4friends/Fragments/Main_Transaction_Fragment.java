@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,6 +96,8 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onRefresh() {
 
+                //Resets the scroll listener so even during refreshes you can still scroll
+                scrollListener.resetState();
                 //Clear the old set when reloading
                 transactions.clear();
                 populate();
@@ -119,10 +123,14 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
 
-//                populate();
+                populate();
 
             }
+
+
         };
+
+        scrollListener.resetState();
 
         rvTransactions.addOnScrollListener(scrollListener);
 
@@ -158,31 +166,23 @@ public class Main_Transaction_Fragment extends Fragment {
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         //Used to set a limit to the number of transactions
+
         postQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
-//        postQuery.addDescendingOrder(Transaction.KEY_CREATED_AT);
         postQuery.orderByDescending(Transaction.KEY_CREATED_AT);
 
         if(transactions.size() > 0 ){
 
 
 
-            transactions.get(0).fetchInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
+            Date createdAt = transactions.get(transactions.size() - 1).getCreatedAt();
 
-                    if(e!=null){
+            postQuery.whereLessThan(Transaction.KEY_CREATED_AT, createdAt);
+//            Toast.makeText(getContext(),createdAt.toString() , Toast.LENGTH_SHORT).show();
 
-                        e.printStackTrace();
-                    }else {
 
-                        Date createdAt = object.getDate("createdAt");
-//                        Toast.makeText(getContext(), createdAt.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
 
-//            postQuery.whereLessThan("createdAt",);
         }
+
 
         postQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
@@ -191,14 +191,19 @@ public class Main_Transaction_Fragment extends Fragment {
                 if (e == null){
 
 //                    //Clear the old set when reloading
-//                    transactions.clear();
+
+//                    Date createdAt = transactionList.get(0).getCreatedAt();
 
 
                     for(Transaction transaction : transactionList){
 
-
                         transactions.add(transaction);
 
+                        try {
+                            transaction.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
 
                     }
                     transactionAdapter.notifyDataSetChanged();
