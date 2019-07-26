@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -40,10 +39,10 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
-    private boolean history;
-    public TransactionAdapter(List<Transaction> transactions, boolean history) {
+    private boolean friend;
+    public TransactionAdapter(List<Transaction> transactions, boolean friend) {
         this.transactions = transactions;
-        this.history = history;
+        this.friend = friend;
     }
 
     Context context;
@@ -64,50 +63,46 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // get data according to position.
         final Transaction transaction = transactions.get(position);
 
-
         //check if user is in likes list
         List<String> array = transaction.getKeyLikesUsers();
 
         // if user is in likesUsers - start red
-        if (array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+        if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
             holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-        } else {
+        }else{
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
             holder.ibEmptyHeart.setColorFilter(Color.RED);
         }
-        holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<String> array = transaction.getKeyLikesUsers();
-                if (array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
-                    holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
-                    holder.ibEmptyHeart.setColorFilter(Color.RED);
-                    //update transaction
-                    //increment likes for transaction
-                    transaction.incrementLikes(1);
-                    //add user to array
-                    transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
-                    transaction.saveInBackground();
-                } else {
-                    holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
-                    holder.ibEmptyHeart.setColorFilter(Color.BLACK);
-                    //update transaction
-                    transaction.incrementLikes(-1);
-                    //add user to array
-                    array.remove(ParseUser.getCurrentUser().getObjectId());
-                    transaction.setKeyLikesUsers(array);
-                    transaction.saveInBackground();
+            holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    List<String> array = transaction.getKeyLikesUsers();
+                    if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+                        holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+                        holder.ibEmptyHeart.setColorFilter(Color.RED);
+                        //update transaction
+                        //increment likes for transaction
+                        transaction.incrementLikes(1);
+                        //add user to array
+                        transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
+                        transaction.saveInBackground();
+                    }else{
+                        holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
+                        holder.ibEmptyHeart.setColorFilter(Color.BLACK);
+                        //update transaction
+                        transaction.incrementLikes(-1);
+                        //add user to array
+                        array.remove(ParseUser.getCurrentUser().getObjectId());
+                        transaction.setKeyLikesUsers(array);
+                        transaction.saveInBackground();
+                    }
                 }
-            }
-        });
+            });
 
         //populate the views according to this data
         // if user is current user
-        if (history && (((transaction.getKeyDonorId().getObjectId()).equals((ParseUser.getCurrentUser().getObjectId()))) || (transaction.getKeyFriendId().getObjectId()).equals(ParseUser.getCurrentUser().getObjectId()))) {
-            holder.amount.setText(transaction.getKeyAmountDonated().toString());
-        }
-        if (history) {
+        if(!friend ){
             if (transaction.getKeyAmountDonated() != null) {
                 holder.amount.setText(transaction.getKeyAmountDonated().toString());
             } else {
@@ -116,184 +111,173 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
 
-            holder.message.setText(transaction.getKeyMessage());
+        holder.message.setText(transaction.getKeyMessage());
 
-            transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
-                    holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                    holder.donor.append(" donated to");
-                }
-            });
-
-            if (transaction.getKeyCharityId() != null) {
-                transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                    @Override
-                    public void done(final ParseObject object, ParseException e) {
-                        if (object != null) {
-                            holder.charity.setText(Html.fromHtml("<font color=\"#2196F3\"><b>" + object.getString("name") + "</b></font>"));
-                            holder.charity.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
-                                    Fragment fragment = new Charity_Profile_Fragment(charity);
-                                    FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().
-                                            replace(R.id.flContainer, fragment)
-                                            .addToBackStack(null).commit();
-                                }
-                            });
-                            holder.pin.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
-
-                                    Fragment fragment = new Charity_Profile_Fragment(charity);
-                                    FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().
-                                            replace(R.id.flContainer, fragment)
-                                            .addToBackStack(null).commit();
-                                }
-                            });
-                        }
-                    }
-                });
+        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+                holder.donor.append(" donated to");
             }
+        });
 
-            transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+        if (transaction.getKeyCharityId() != null) {
+            transaction.getKeyCharityId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                 @Override
-                public void done(ParseObject object, ParseException e) {
-                    holder.friend.setText("on behalf of ");
-                    holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                }
-            });
+                public void done(final ParseObject object, ParseException e) {
+                    if(object != null){
+                        holder.charity.setText(Html.fromHtml("<font color=\"#2196F3\"><b>" + object.getString("name") + "</b></font>"));
+                        holder.charity.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
+                                Fragment fragment = new Charity_Profile_Fragment(charity);
+                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                fragmentManager.beginTransaction().
+                                        replace(R.id.flContainer, fragment)
+                                        .addToBackStack(null).commit();
+                            }
+                        });
+                        holder.pin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                CharityAPI charity = CharityAPI.fromParse(transaction.getKeyCharityId());
 
-            transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
-                    ParseFile image = object.getParseFile("profileImage");
-                    if (image != null) {
-                        Glide.with(context)
-                                .load(image.getUrl())
-                                .apply(new RequestOptions()
-                                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                                        .circleCrop()
-                                )
-
-                                .into(holder.friendPhoto);
-                    } else {
-                        Glide.with(context)
-                                .load(R.drawable.instagram_user_outline_24)
-
-                                .apply(new RequestOptions()
-                                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                                        .circleCrop())
-                                .into(holder.friendPhoto);
+                                Fragment fragment = new Charity_Profile_Fragment(charity);
+                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                fragmentManager.beginTransaction().
+                                        replace(R.id.flContainer, fragment)
+                                        .addToBackStack(null).commit();
+                            }
+                        });
                     }
                 }
             });
-            transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
+        }
 
-                    ParseFile image = object.getParseFile("profileImage");
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                holder.friend.setText("on behalf of ");
+                holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+            }
+        });
 
-                    if (image != null) {
-                        Glide.with(context)
-                                .load(image.getUrl())
-                                .apply(new RequestOptions()
-                                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                                        .circleCrop()
-                                )
-                                .into(holder.donorPhoto);
-                    } else {
-                        Glide.with(context)
-                                .load(R.drawable.instagram_user_outline_24)
-                                .apply(new RequestOptions()
-                                        .transforms(new CenterCrop(), new RoundedCorners(20))
-                                        .circleCrop())
-                                .into(holder.donorPhoto);
-                    }
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                ParseFile image = object.getParseFile("profileImage");
+                if(image != null){
+                    Glide.with(context)
+                            .load(image.getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop()
+                                    )
+
+                            .into(holder.friendPhoto);
                 }
-            });
-            transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                @Override
-                public void done(ParseObject object, ParseException e) {
+                else{
+                    Glide.with(context)
+                            .load(R.drawable.instagram_user_outline_24)
+
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop())
+                            .into(holder.friendPhoto);
+                }
+            }
+        });
+        transaction.getKeyDonorId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                ParseFile image = object.getParseFile("profileImage");
+
+                if(image != null){
+                    Glide.with(context)
+                            .load(image.getUrl())
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop()
+                                    )
+                            .into(holder.donorPhoto);
+                }else{
+                    Glide.with(context)
+                            .load(R.drawable.instagram_user_outline_24)
+                            .apply(new RequestOptions()
+                                    .transforms(new CenterCrop(), new RoundedCorners(20))
+                                    .circleCrop())
+                            .into(holder.donorPhoto);
+                }
+            }
+        });
+        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
 //                holder.friend.setText(object.getString("firstName"));
+            }
+        });
+
+        holder.friendPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
-            });
+                else{
 
-            holder.friendPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())) {
-                        // Create a new fragment instead of an activity
-                        Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
-                        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                        fragmentManager.beginTransaction().
-                                replace(R.id.flContainer, fragment)
-                                .addToBackStack(null).commit();
-                    } else {
-
-                        // Create a new fragment instead of an activity
-                        Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
-                        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                        fragmentManager.beginTransaction().
-                                replace(R.id.flContainer, fragment)
-                                .addToBackStack(null).commit();
-                    }
-
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
-            });
 
-            // if yourself send to your profile
-            holder.donorPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())) {
-                        // Create a new fragment instead of an activity
+            }
+        });
 
-                        Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
-                        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                        fragmentManager.beginTransaction().
-                                replace(R.id.flContainer, fragment)
-                                .addToBackStack(null).commit();
-                    } else {
+        // if yourself send to your profile
+        holder.donorPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
+   // Create a new fragment instead of an activity
 
-                        // Create a new fragment instead of an activity
-                        Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyDonorId());
-                        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                        fragmentManager.beginTransaction().
-                                replace(R.id.flContainer, fragment)
-                                .addToBackStack(null).commit();
-                    }
-
-
+                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
                 }
-            });
-        }
+                else{
+
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyDonorId());
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
+                }
 
 
 
-        @Override
-        public int getItemCount() {
-            return transactions.size();
-        }
 
-    // Clean all elements of the recycler
-    public void clear() {
-        transactions.clear();
-        notifyDataSetChanged();
+
+            }
+        });
     }
 
-    // Add a list of items -- change to type used
-    public void addAll(List<Transaction> list) {
-        transactions.addAll(list);
-        notifyDataSetChanged();
+    @Override
+    public int getItemCount() {
+        return transactions.size();
     }
-
-
-
 
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -330,5 +314,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        transactions.clear();
+        notifyDataSetChanged();
+    }
 
+    // Add a list of items -- change to type used
+    public void addAll(List<Transaction> list) {
+        transactions.addAll(list);
+        notifyDataSetChanged();
+    }
 }

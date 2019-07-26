@@ -266,6 +266,7 @@ public class User_Profile_Fragment extends Fragment {
                 Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
                 intent.putExtra("user", ParseUser.getCurrentUser());
+                intent.putExtra("friend", false);
                 startActivity(intent);
                 return true;
             case R.id.useOffline:

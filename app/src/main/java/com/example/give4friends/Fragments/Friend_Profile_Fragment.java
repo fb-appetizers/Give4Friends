@@ -185,6 +185,7 @@ public class Friend_Profile_Fragment extends Fragment {
                 Toast.makeText(context, "Transaction History selected", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, HistoryActivity.class);
                 intent.putExtra("user", myUser);
+                intent.putExtra("friend", true);
                 startActivity(intent);
                 return true;
             default:
