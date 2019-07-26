@@ -102,7 +102,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //populate the views according to this data
         // if user is current user
-        if(history){
+        if(history && (((transaction.getKeyDonorId().getObjectId()).equals((ParseUser.getCurrentUser().getObjectId()))) || (transaction.getKeyFriendId().getObjectId()).equals( ParseUser.getCurrentUser().getObjectId())) ){
             holder.amount.setText(transaction.getKeyAmountDonated().toString());
         }
 
