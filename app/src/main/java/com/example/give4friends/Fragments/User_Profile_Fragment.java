@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.ProfileActivity;
@@ -52,7 +55,9 @@ import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,12 +86,12 @@ public class User_Profile_Fragment extends Fragment {
     //for changing picture
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
-    private File photoFile;
     private Bitmap photo;
 
     ParseUser myUser;
     boolean from_fragment;
     Context context;
+    private File photoFile;
 
     public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
         this.myUser = myUser;
@@ -104,6 +109,11 @@ public class User_Profile_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         context = getContext();
         btEditBio = view.findViewById(R.id.btEditProfile);
+
+        Fragment fragment = getFragmentManager().getFragments().get(0);
+        if(fragment!=null){
+            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
+        }
         btChangePic = view.findViewById(R.id.btChangePic);
 
         if(!from_fragment) {
@@ -392,7 +402,7 @@ public class User_Profile_Fragment extends Fragment {
 
     // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
-        total = 0;
+
         //get query
         total = 0;
         ParseQuery<Transaction> postQueryFriend = new ParseQuery<Transaction>(Transaction.class)
@@ -406,7 +416,10 @@ public class User_Profile_Fragment extends Fragment {
                                        public void done(List<Transaction> objects, ParseException e) {
                                            if (e == null){
                                                for (int i = 0; i < objects.size(); ++i){
-                                                   total = (total + (int) (objects.get(i)).getKeyAmountDonated());
+                                                   if(objects.get(i).getKeyAmountDonated() != null) {
+                                                       total = (total + (int) (objects.get(i).getKeyAmountDonated()));
+                                                   }
+
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                                                }
                                                tvTotalRaised.setText("Total Raised: $" + total);

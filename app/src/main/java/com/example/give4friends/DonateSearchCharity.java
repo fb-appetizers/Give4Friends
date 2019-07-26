@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,11 @@ import com.example.give4friends.Adapters.DonateSearchAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +36,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -110,6 +116,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     }
                     acharities.clear();
                     charityAdapter.notifyDataSetChanged();
+                    hideProgressBar();
 
                 }
                 if(count > 0 ){
@@ -157,6 +164,8 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             client.getClient().dispatcher().cancelAll();
         }
 
+
+
         client = new CharityClient();
         showProgressBar();
         client.getCharities(search, false, new Callback() {
@@ -201,6 +210,45 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             }
         });
     }
+
+    public void getEffective(final String search, final boolean search_by_name){
+
+        //TODO -- do the and operator
+        ParseQuery<Charity> query1 = new ParseQuery<Charity>(Charity.class);
+        ParseQuery<Charity> q1 = query1.whereMatches("name", "("+search+")", "i");
+
+
+        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
+                .whereEqualTo("highlyEffective", true);
+
+        ParseQuery<Charity> q2 = postQuery.whereMatchesQuery("name",q1);
+
+
+        q2.findInBackground(new FindCallback<Charity>() {
+            //iterate through query
+            @Override
+            public void done(List<Charity> objects, ParseException e) {
+
+                acharities.clear() ;
+                if (e == null) {
+                    for (int i = 0; i < objects.size(); i++) {
+                        acharities.add(CharityAPI.fromParse(objects.get(i)));
+                    }
+                    charityAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e("MainActivity", "Can't get transaction");
+                    e.printStackTrace();
+                }
+                getResponse(search, search_by_name);
+
+            }
+        });
+
+    }
+
+
+
+
 
     public void showProgressBar() {
         // Show progress item
