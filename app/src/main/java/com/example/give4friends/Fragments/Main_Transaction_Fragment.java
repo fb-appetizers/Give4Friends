@@ -1,12 +1,9 @@
 package com.example.give4friends.Fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,7 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.DonateActivity;
-import com.example.give4friends.MainActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
@@ -42,6 +38,7 @@ public class Main_Transaction_Fragment extends Fragment {
     protected List<Transaction> transactions;
     protected TransactionAdapter transactionAdapter;
     private SwipeRefreshLayout swipeContainer;
+    boolean friend;
 
     @Nullable
     @Override
@@ -49,14 +46,15 @@ public class Main_Transaction_Fragment extends Fragment {
 
         return inflater.inflate(R.layout.activity_main, container, false);
 
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
+
         configureToolbar();
         suggBtn = view.findViewById(R.id.suggBtn);
+
 
         suggBtn.setBackgroundDrawable(null);
 
@@ -74,7 +72,7 @@ public class Main_Transaction_Fragment extends Fragment {
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
-        transactionAdapter = new TransactionAdapter(transactions, false);
+        transactionAdapter = new TransactionAdapter(transactions, true);
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -132,7 +130,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
 
-    protected void populate(){
+    protected boolean populate(){
         //get query
         ParseQuery<Transaction> postQuery = new ParseQuery<Transaction>(Transaction.class);
         //Used to set a limit to the number of transactions
@@ -160,7 +158,9 @@ public class Main_Transaction_Fragment extends Fragment {
             }
 
 
-        });}
+        });
+        return false;
+    }
 
 
 }

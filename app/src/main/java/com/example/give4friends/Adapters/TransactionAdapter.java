@@ -39,10 +39,10 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
-    private boolean history;
-    public TransactionAdapter(List<Transaction> transactions, boolean history) {
+    private boolean friend;
+    public TransactionAdapter(List<Transaction> transactions, boolean friend) {
         this.transactions = transactions;
-        this.history = history;
+        this.friend = friend;
     }
 
     Context context;
@@ -102,15 +102,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //populate the views according to this data
         // if user is current user
-        if(history && (((transaction.getKeyDonorId().getObjectId()).equals((ParseUser.getCurrentUser().getObjectId()))) || (transaction.getKeyFriendId().getObjectId()).equals( ParseUser.getCurrentUser().getObjectId())) ){
-            holder.amount.setText(transaction.getKeyAmountDonated().toString());
-        }
-        if(history){
-            if(transaction.getKeyAmountDonated() != null) {
+        if(!friend ){
+            if (transaction.getKeyAmountDonated() != null) {
                 holder.amount.setText(transaction.getKeyAmountDonated().toString());
-            }else{
-                holder.amount.setText(((Integer)0).toString());
+            } else {
+                holder.amount.setText(((Integer) 0).toString());
             }
+        }
 
 
         holder.message.setText(transaction.getKeyMessage());
