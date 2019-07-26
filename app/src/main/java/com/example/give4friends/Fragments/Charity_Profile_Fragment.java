@@ -57,6 +57,7 @@ public class Charity_Profile_Fragment extends Fragment {
         // Set layout manager to position the items
         rvCPProfile.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         populateProfile();
 
     }
