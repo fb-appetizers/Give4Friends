@@ -209,22 +209,32 @@ public class Main_Transaction_Fragment extends Fragment {
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
-//                    //Clear the old set when reloading
-
-//                    Date createdAt = transactionList.get(0).getCreatedAt();
 
 
-                    for(Transaction transaction : transactionList){
-
+                    for(int i=0;i<transactionList.size();i++){
+                        Transaction transaction = transactionList.get(i);
                         transactions.add(transaction);
 
-                        try {
-                            transaction.save();
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
+                        if(i == (transactionList.size()-1)){
+                            try {
+                                transaction.save();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
                         }
-
                     }
+
+//                    for(Transaction transaction : transactionList){
+//
+//                        transactions.add(transaction);
+//
+//                        try {
+//                            transaction.save();
+//                        } catch (ParseException e1) {
+//                            e1.printStackTrace();
+//                        }
+//
+//                    }
                     transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
