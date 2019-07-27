@@ -9,50 +9,64 @@
     tools:context=".CharitySearch">
 
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiCharity"
-        android:layout_width="290dp"
+    <SearchView
+        android:id="@+id/sbCharity"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-        android:clickable="true"
-        android:focusable="true"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCharity"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:clickable="true"
-
-
-
-            android:foregroundGravity="left|center"
-            android:freezesText="false"
-            android:hint="Search for charities ..."
-            android:isScrollContainer="false"
-            android:keepScreenOn="false"
-            android:keyboardNavigationCluster="false"
-            android:singleLine="false"
-   />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="88dp"
-        android:layout_height="56dp"
-        android:background="@color/colorAccent"
-        android:text="Cancel"
-        android:textColor="@color/colorPrimary"
+        android:defaultFocusHighlightEnabled="true"
+        android:focusedByDefault="false"
+        android:gravity="right"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search for Charities"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tiCharity"
-        app:layout_constraintTop_toTopOf="@+id/tiCharity" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<com.google.android.material.textfield.TextInputLayout-->
+    <!--android:id="@+id/tiCharity"-->
+    <!--android:layout_width="290dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="12dp"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:background="#FFFFFF"-->
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--<com.google.android.material.textfield.TextInputEditText-->
+    <!--android:id="@+id/etCharity"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:focusableInTouchMode="true"-->
+    <!--android:clickable="true"-->
+
+
+
+    <!--android:foregroundGravity="left|center"-->
+    <!--android:freezesText="false"-->
+    <!--android:hint="Search for charities ..."-->
+    <!--android:isScrollContainer="false"-->
+    <!--android:keepScreenOn="false"-->
+    <!--android:keyboardNavigationCluster="false"-->
+    <!--android:singleLine="false"-->
+    <!--/>-->
+    <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/btnCancel"-->
+    <!--android:layout_width="88dp"-->
+    <!--android:layout_height="56dp"-->
+    <!--android:background="@color/colorAccent"-->
+    <!--android:text="Cancel"-->
+    <!--android:textColor="@color/colorPrimary"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/sbCharity"-->
+    <!--app:layout_constraintTop_toTopOf="@+id/sbCharity" />-->
 
     <androidx.cardview.widget.CardView
 
@@ -72,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiCharity">
+        app:layout_constraintTop_toBottomOf="@+id/sbCharity">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -87,6 +101,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.cardview.widget.CardView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

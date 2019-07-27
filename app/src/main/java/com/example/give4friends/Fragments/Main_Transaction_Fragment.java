@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -21,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
+import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
@@ -29,6 +33,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -61,7 +66,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
         configureToolbar();
         suggBtn = view.findViewById(R.id.suggBtn);
-
+        setHasOptionsMenu(true);
 
         suggBtn.setBackgroundDrawable(null);
 
@@ -158,6 +163,33 @@ public class Main_Transaction_Fragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuInflater main_activity_inflater = getActivity().getMenuInflater();
+
+        main_activity_inflater.inflate(R.menu.main_menu, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.searchPeople:
+                Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("user", ParseUser.getCurrentUser());
+                intent.putExtra("friend", false);
+                startActivity(intent);
+                return true;
+            case R.id.transactionHistory:
+                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+//                Log.e()
+        }
+        return true;
     }
 
 

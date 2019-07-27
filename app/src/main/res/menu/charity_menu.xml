@@ -7,6 +7,12 @@
     <item
         android:id="@+id/transactionHistory"
         android:title="Transaction History" />
+
+    <item
+        android:id="@+id/searchFriend"
+        android:title="Friends" />
+
+
     <item
         android:id="@+id/useOffline"
         android:title="Use Offline" />

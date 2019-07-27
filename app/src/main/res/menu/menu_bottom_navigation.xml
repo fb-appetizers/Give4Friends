@@ -14,6 +14,11 @@
         android:title="Search"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_transaction"
+        android:icon="@drawable/ic_transaction"
+        android:title="History"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_profile"

@@ -28,7 +28,7 @@ import static com.parse.ParseUser.getCurrentUser;
 public class CreditCardInfo extends AppCompatActivity {
     private CardForm cardForm;
     private Button submit;
-    private ParseObject parseObject;
+    private Button skip;
     AlertDialog.Builder alertBuilder;
 
     @Override
@@ -38,6 +38,8 @@ public class CreditCardInfo extends AppCompatActivity {
 
         cardForm = findViewById(R.id.card_form);
         submit = findViewById(R.id.submitBtn);
+        skip = findViewById(R.id.skipBtn);
+
         cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
         cardForm.cardRequired(true)
@@ -89,45 +91,23 @@ public class CreditCardInfo extends AppCompatActivity {
                 }
             }
         });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CreditCardInfo.this, Main_Fragment_Branch.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void creditCardInfo(String cardNum, String expDate, String cvv, String zip, String phoneNum){
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-//        Date date = null;
-//        try {
-//            date = format.parse(expDate);
-//        } catch (java.text.ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//        newUserCC = new FinancialInfo();
-//
-//        newUserCC.setKeyCreditCardNum(Integer.parseInt(cardNum));
-//        newUserCC.setKeyCvc(Integer.parseInt(cvv));
-//        newUserCC.setKeyEmail(getCurrentUser().getEmail());
-//        newUserCC.setKeyExpDate(date);
-//        newUserCC.setKeyZipcode(Integer.parseInt(zip));
-//        newUserCC.setKeyPhoneNum(Integer.parseInt(phoneNum));
-//
-//        newUserCC.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void done(ParseException e) {
-//                if(e == null){
-//                    getCurrentUser().put("financialInfo", newUserCC);
-//                    Log.d("CreditCardInfo", "Credit Card Info Updated");
-//                }
-//                else{
-//                    Log.d("CreditCardInfo", "Unable to update Credit Card Info");
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
         final ParseObject parseObject = new ParseObject("financialInfo");
 
         parseObject.put("credit_card_num", Integer.parseInt(cardNum));
         parseObject.put("expDate", Integer.parseInt(expDate));
-        parseObject.put("cvc", 000);
+        parseObject.put("cvc", Integer.parseInt(cvv));
         parseObject.put("zipCode", Integer.parseInt(zip));
         parseObject.put("email", getCurrentUser().getEmail());
         parseObject.put("phoneNumber", Integer.parseInt(phoneNum));

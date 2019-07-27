@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +61,7 @@ import okhttp3.Response;
 public class Charity_Search_Fragment extends Fragment {
 
     private TextInputEditText etCharity;
-    private TextInputLayout tiCharity;
+    private SearchView sbCharity;
     private Button btnCancel;
     private RecyclerView rvCharitySugg;
 
@@ -80,38 +82,73 @@ public class Charity_Search_Fragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        etCharity = view.findViewById(R.id.etCharity);
-
+//        etCharity = view.findViewById(R.id.etCharity);
+        sbCharity = view.findViewById(R.id.sbCharity);
         rvCharitySugg = view.findViewById(R.id.rvCharitySugg);
         etCharity = view.findViewById(R.id.etCharity);
         btnCancel = view.findViewById(R.id.btnCancel);
-        tiCharity = view.findViewById(R.id.tiCharity);
+
         progressBarHome = getActivity().findViewById(R.id.progressBarHome);
 
         configureToolbar();
 
-        etCharity.addTextChangedListener(new TextWatcher() {
+        //        sbCharity.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+//                if (count == 0){
+//                    if(client!=null) {
+//                        client.getClient().dispatcher().cancelAll();
+//                    }
+//                    getEffective();
+//                }
+//                if(count > 0 ){
+//                    getResponseSearch(charSequence.toString(),false);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+        //When you hit submit the recycler view updates
+//        btnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                etCharity.clearFocus();
+//                etCharity.getText().clear();
+//            }
+//        });
+
+
+        sbCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String s) {
+                return false;
             }
+
             @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                if (count == 0){
+            public boolean onQueryTextChange(String s) {
+                if (s.equals("")){
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
                     getEffective();
                 }
-                if(count > 0 ){
-                    getResponseSearch(charSequence.toString(),false);
+                else{
+                    getResponseSearch(s.toString(),false);
                 }
-            }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
 
+                return false;
             }
         });
+
 
         constraintLayoutMain = view.findViewById(R.id.clCharitySearch);
 
@@ -127,23 +164,14 @@ public class Charity_Search_Fragment extends Fragment {
 
         getEffective();
 
-        //When you hit submit the recycler view updates
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-                etCharity.clearFocus();
-                etCharity.getText().clear();
-            }
-        });
     }
     protected void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("Search");
+        toolbarTitle.setText("Charity Search");
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
