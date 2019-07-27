@@ -65,19 +65,9 @@ public class Main_Transaction_Fragment extends Fragment {
 //        super.onViewCreated(view, savedInstanceState);
 
         configureToolbar();
-        suggBtn = view.findViewById(R.id.suggBtn);
         setHasOptionsMenu(true);
 
-        suggBtn.setBackgroundDrawable(null);
 
-        suggBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), DonateActivity.class);
-                intent.putExtra("donateNow", false);
-                startActivity(intent);
-            }
-        });
 
         // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
