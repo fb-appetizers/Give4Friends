@@ -153,7 +153,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
+                        vh1.tvCPLikedNum.setText("Favorited by " + parseCharity.getKeyNumLikes() + " users");
                     } else {
                         ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
                         ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);

@@ -89,7 +89,7 @@
         android:id="@+id/topResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#00E6E6FA"
+        android:background="@color/colorAccent"
         android:text=" Top Results"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
