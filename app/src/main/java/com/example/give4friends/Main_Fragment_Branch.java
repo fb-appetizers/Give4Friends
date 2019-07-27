@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ import com.parse.ParseUser;
 public class Main_Fragment_Branch extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-
+    private ImageButton suggBtn;
 
     //        // define your fragments here
     final Fragment fragment1 = new Main_Transaction_Fragment();
@@ -39,7 +40,19 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         // Testing the Fragment manager
 
         setContentView(R.layout.activity_fragment_home);
+        suggBtn = findViewById(R.id.suggBtn);
 
+
+        suggBtn.setBackgroundDrawable(null);
+
+        suggBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DonateActivity.class);
+                intent.putExtra("donateNow", false);
+                startActivity(intent);
+            }
+        });
 
         configureToolbar();
         final FragmentManager fragmentManager = getSupportFragmentManager();

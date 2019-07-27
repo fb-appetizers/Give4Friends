@@ -261,17 +261,17 @@ public class User_Profile_Fragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.transactionHistory:
-                Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
                 intent.putExtra("user", ParseUser.getCurrentUser());
                 intent.putExtra("friend", false);
                 startActivity(intent);
                 return true;
             case R.id.useOffline:
-                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.logOut:
-                Toast.makeText(getContext(), "logging out...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "logging out...", Toast.LENGTH_SHORT).show();
                 logOut();
             default:
 //                Log.e()
