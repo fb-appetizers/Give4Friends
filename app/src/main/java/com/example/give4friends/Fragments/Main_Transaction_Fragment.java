@@ -177,14 +177,11 @@ public class Main_Transaction_Fragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.searchPeople:
-                Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getContext(), HistoryActivity.class);
-                intent.putExtra("user", ParseUser.getCurrentUser());
-                intent.putExtra("friend", false);
-                startActivity(intent);
+                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_LONG).show();
+
                 return true;
-            case R.id.transactionHistory:
-                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_LONG).show();
+            case R.id.likedTransactions:
+                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_LONG).show();
                 return true;
             default:
 //                Log.e()
