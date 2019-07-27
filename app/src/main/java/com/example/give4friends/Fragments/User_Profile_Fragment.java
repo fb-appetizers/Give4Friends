@@ -137,8 +137,6 @@ public class User_Profile_Fragment extends Fragment {
             }
         });
 
-
-
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
         // initialize the array list of charities
