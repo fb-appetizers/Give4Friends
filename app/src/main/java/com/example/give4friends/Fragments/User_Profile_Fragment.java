@@ -57,6 +57,8 @@ import com.parse.SaveCallback;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +91,7 @@ public class User_Profile_Fragment extends Fragment {
     boolean from_fragment;
     Context context;
     private File photoFile;
+    private String photoFileName = "image.png";
 
     public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
         this.myUser = myUser;
@@ -132,8 +135,7 @@ public class User_Profile_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-                ProfilePicture.changePhotoFragment(fragment);
+                changePhoto();
             }
         });
 
@@ -289,9 +291,10 @@ public class User_Profile_Fragment extends Fragment {
     @Override
     public void onActivityResult ( int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
+
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 photo = (Bitmap) data.getExtras().get("data");
                 Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
@@ -434,4 +437,50 @@ public class User_Profile_Fragment extends Fragment {
         );
 
     }
+
+
+
+    public void changePhoto(){
+        String[] options = {"Take photo", "Choose from gallery"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setTitle("Change Profile Picture");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    onLaunchCamera(); }
+                else {
+//                    onLaunchSelect();
+                }
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void onLaunchCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        photoFile = ProfilePicture.getPhotoFileUri(photoFileName, getContext());
+
+        Uri buildUri = Uri.parse(photoFile.toURI().toString())
+                        .buildUpon()
+                        .path("search")
+                        .appendQueryParameter("id","123")
+                        .build();
+
+//        try {
+
+//            URL url = new URL(buildUri.toString());
+            Log.e("UserProfileFragment",buildUri.toString());
+
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
 }

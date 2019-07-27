@@ -176,6 +176,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             else{
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
                 holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setRotation(0);
                 holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.mainBlue)));
             }
         }
