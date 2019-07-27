@@ -167,11 +167,11 @@ public class Main_Transaction_Fragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.searchPeople:
-                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_SHORT).show();
 
                 return true;
             case R.id.likedTransactions:
-                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
                 return true;
             default:
 //                Log.e()

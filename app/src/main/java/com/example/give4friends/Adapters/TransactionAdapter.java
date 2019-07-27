@@ -33,6 +33,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -64,9 +65,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // get data according to position.
         final Transaction transaction = transactions.get(position);
 
+        // Sets the like counter
+        if(transaction.getKeyLikesCount()!=null){
+
+            Integer likesCount = (Integer) transaction.getKeyLikesCount();
+            if(likesCount !=0) {
+                holder.tvLikesCount.setVisibility(View.VISIBLE);
+                holder.tvLikesCount.setText(likesCount.toString());
+            }else{
+                holder.tvLikesCount.setVisibility(View.INVISIBLE);
+            }
+
+        }else{
+            holder.tvLikesCount.setVisibility(View.INVISIBLE);
+        }
 
         //check if user is in likes list
         List<String> array = transaction.getKeyLikesUsers();
+
 
 
         // if user is in likesUsers - start red
@@ -89,7 +105,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         transaction.incrementLikes(1);
                         //add user to array
                         transaction.addLikesUser(ParseUser.getCurrentUser().getObjectId());
-                        transaction.saveInBackground();
+
+                        transaction.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e==null){
+                                    Integer likesCount = (Integer) transaction.getKeyLikesCount();
+                                    if(likesCount !=0) {
+                                        holder.tvLikesCount.setVisibility(View.VISIBLE);
+                                        holder.tvLikesCount.setText(likesCount.toString());
+                                    }else{
+                                        holder.tvLikesCount.setVisibility(View.INVISIBLE);
+                                    }
+                                }else{
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
                     }else{
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
                         holder.ibEmptyHeart.setColorFilter(Color.BLACK);
@@ -98,7 +131,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         //add user to array
                         array.remove(ParseUser.getCurrentUser().getObjectId());
                         transaction.setKeyLikesUsers(array);
-                        transaction.saveInBackground();
+                        transaction.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e==null){
+                                    Integer likesCount = (Integer) transaction.getKeyLikesCount();
+                                    if(likesCount !=0) {
+                                        holder.tvLikesCount.setVisibility(View.VISIBLE);
+                                        holder.tvLikesCount.setText(likesCount.toString());
+                                    }else{
+                                        holder.tvLikesCount.setVisibility(View.INVISIBLE);
+                                    }
+                                }else{
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 }
             });
@@ -118,6 +166,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
             }
         }
+
+
 
 
         holder.message.setText(transaction.getKeyMessage());
@@ -300,6 +350,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public TextView message;
         public ImageView pin;
         public TextView amount;
+        public TextView tvLikesCount;
+
 
         //like button
         public ImageButton ibEmptyHeart;
@@ -320,6 +372,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
             pin = itemView.findViewById(R.id.ivPin);
             amount = itemView.findViewById(R.id.tvAmount);
+            tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
         }
     }
 
