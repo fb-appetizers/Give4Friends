@@ -15,12 +15,6 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_null"
-        android:enabled="false"
-        android:title="null"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_transaction"
         android:icon="@drawable/ic_transaction"
         android:title="History"

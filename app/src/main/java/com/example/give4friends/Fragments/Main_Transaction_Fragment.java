@@ -65,9 +65,19 @@ public class Main_Transaction_Fragment extends Fragment {
 //        super.onViewCreated(view, savedInstanceState);
 
         configureToolbar();
+        suggBtn = view.findViewById(R.id.suggBtn);
         setHasOptionsMenu(true);
 
+        suggBtn.setBackgroundDrawable(null);
 
+        suggBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DonateActivity.class);
+                intent.putExtra("donateNow", false);
+                startActivity(intent);
+            }
+        });
 
         // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
@@ -167,11 +177,11 @@ public class Main_Transaction_Fragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.searchPeople:
-                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_LONG).show();
 
                 return true;
             case R.id.likedTransactions:
-                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_LONG).show();
                 return true;
             default:
 //                Log.e()
@@ -209,32 +219,22 @@ public class Main_Transaction_Fragment extends Fragment {
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
 
+//                    //Clear the old set when reloading
+
+//                    Date createdAt = transactionList.get(0).getCreatedAt();
 
 
-                    for(int i=0;i<transactionList.size();i++){
-                        Transaction transaction = transactionList.get(i);
+                    for(Transaction transaction : transactionList){
+
                         transactions.add(transaction);
 
-                        if(i == (transactionList.size()-1)){
-                            try {
-                                transaction.save();
-                            } catch (ParseException e1) {
-                                e1.printStackTrace();
-                            }
+                        try {
+                            transaction.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
                         }
-                    }
 
-//                    for(Transaction transaction : transactionList){
-//
-//                        transactions.add(transaction);
-//
-//                        try {
-//                            transaction.save();
-//                        } catch (ParseException e1) {
-//                            e1.printStackTrace();
-//                        }
-//
-//                    }
+                    }
                     transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");

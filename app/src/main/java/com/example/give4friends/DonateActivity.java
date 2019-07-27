@@ -29,16 +29,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DonateActivity extends AppCompatActivity implements Serializable {
+public class DonateActivity extends AppCompatActivity implements Serializable {
     private EditText searchFriend;
     private Button cancelSearchBtn;
-    protected RecyclerView rvFriends;
+    private RecyclerView rvFriends;
     public static ParseUser currentFriend;
     public static Charity currentCharity;
     public static boolean donateNow;
     public static String charityName2;
     private ImageButton cancel;
-    private ImageButton addFriend;
     Context context;
 
     ArrayList<ParseUser> friends;
@@ -57,7 +56,6 @@ public abstract class DonateActivity extends AppCompatActivity implements Serial
         cancelSearchBtn = findViewById(R.id.cancelSearchBtn);
         rvFriends = findViewById(R.id.rvFriends);
         cancel = findViewById(R.id.ibcancelFinal);
-        addFriend = findViewById(R.id.ibAddFriend);
 
         friends = new ArrayList<ParseUser>();
 
@@ -162,12 +160,11 @@ public abstract class DonateActivity extends AppCompatActivity implements Serial
         });
     }
 
-    protected void recyclerSetUp(){
+    private void recyclerSetUp(){
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         rvFriends.setLayoutManager(linearLayoutManager);
-        adapter = new DonateAdapter(friends, false);
+        adapter = new DonateAdapter(friends);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(this));
     }
-
 }
