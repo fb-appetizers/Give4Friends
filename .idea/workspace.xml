@@ -93,7 +93,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
+            <state relative-caret-position="290">
               <caret line="173" selection-start-line="173" selection-end-line="173" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -589,13 +589,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00042" summary="Donation UI update">
-      <created>1563905748403</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1563905748403</updated>
-    </task>
     <task id="LOCAL-00043" summary="Most recent CharityProfileAdapter - allows likes">
       <created>1563916058254</created>
       <option name="number" value="00043" />
@@ -932,7 +925,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564195187846</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Started friend search implementation">
+      <created>1564195350254</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1564195350254</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView">
@@ -946,7 +946,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="190" width="1194" height="730" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.22916667" />
@@ -960,8 +959,8 @@
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" weight="0.35893416" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.3275862" />
-      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.498779" weight="0.3260188" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.26800978" side_tool="true" weight="0.32748538" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" sideWeight="0.6493056" visible="true" weight="0.3260188" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.35069445" side_tool="true" visible="true" weight="0.3260188" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.7319902" weight="0.3263158" />
       <window_info anchor="bottom" id="Build" order="6" sideWeight="0.7930403" weight="0.35893416" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
@@ -1597,7 +1596,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
+        <state relative-caret-position="290">
           <caret line="173" selection-start-line="173" selection-end-line="173" />
           <folding>
             <element signature="imports" expanded="true" />
