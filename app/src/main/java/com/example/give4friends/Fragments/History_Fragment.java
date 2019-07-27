@@ -12,9 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
+import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -25,11 +27,14 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class History_Fragment extends Main_Transaction_Fragment {
     ParseUser myUser;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
+    public static Integer MAX_NUMBER_OF_TRANSACTIONS = 20;
     Boolean friend;
 
     public History_Fragment(ParseUser myUser, boolean friend) {
@@ -70,8 +75,11 @@ public class History_Fragment extends Main_Transaction_Fragment {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                transactions.clear();
                 populate();
                 swipeContainer.setRefreshing(false);
+                scrollListener.resetState();
             }
 
         });
@@ -80,7 +88,28 @@ public class History_Fragment extends Main_Transaction_Fragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+
+        transactions.clear();
         populate();
+
+
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+                populate();
+
+            }
+
+
+        };
+
+        scrollListener.resetState();
+
+        rvTransactions.addOnScrollListener(scrollListener);
     }
 
     @Override
@@ -98,20 +127,38 @@ public class History_Fragment extends Main_Transaction_Fragment {
         queries.add(postQueryMe);
 
 
-
         ParseQuery<Transaction> mainQuery = ParseQuery.or(queries);
-        mainQuery.setLimit(20);
+        mainQuery.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
         mainQuery.addDescendingOrder(Transaction.KEY_CREATED_AT);
+
+
+        if(transactions.size() > 0 ){
+
+            Date createdAt = transactions.get(transactions.size() - 1).getCreatedAt();
+            mainQuery.whereLessThan(Transaction.KEY_CREATED_AT, createdAt);
+
+        }
         mainQuery.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
-            public void done(List<Transaction> objects, ParseException e) {
+            public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-                    transactions.clear();
-                    for (int i = 0; i < objects.size(); ++i){
 
-                        transactions.add(objects.get(i));
-//                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+                    for (int i = 0; i < transactionList.size(); ++i){
+                        Transaction transaction = transactionList.get(i);
+
+                        transactions.add(transaction);
+
+                        if(i == (transactionList.size()-1)){
+                            try {
+                                transaction.save();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+
+
+
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }else {

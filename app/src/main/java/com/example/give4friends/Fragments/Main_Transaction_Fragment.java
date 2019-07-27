@@ -188,14 +188,9 @@ public class Main_Transaction_Fragment extends Fragment {
 
         if(transactions.size() > 0 ){
 
-
-
             Date createdAt = transactions.get(transactions.size() - 1).getCreatedAt();
 
             postQuery.whereLessThan(Transaction.KEY_CREATED_AT, createdAt);
-//            Toast.makeText(getContext(),createdAt.toString() , Toast.LENGTH_SHORT).show();
-
-
 
         }
 
