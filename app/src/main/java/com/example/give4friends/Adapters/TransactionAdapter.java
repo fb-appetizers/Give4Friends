@@ -164,11 +164,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             } else {
                 holder.amount.setText(((Integer) 0).toString());
             }
+
             if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())){
                 holder.amount.setTextColor( context.getResources().getColor(R.color.colorPrimaryDark));
+
+                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setRotation(180);
+                holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.colorPrimaryDark)));
+
             }
             else{
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
+                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.mainBlue)));
             }
         }
 
@@ -356,6 +364,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ImageView pin;
         public TextView amount;
         public TextView tvLikesCount;
+        public ImageView ivarrow;
 
 
         //like button
@@ -378,6 +387,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             pin = itemView.findViewById(R.id.ivPin);
             amount = itemView.findViewById(R.id.tvAmount);
             tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
+            ivarrow = itemView.findViewById(R.id.ivarrow);
         }
     }
 

@@ -157,6 +157,16 @@
                 card_view:layout_constraintHorizontal_bias="0.63"
                 card_view:layout_constraintStart_toStartOf="@+id/ib_empty_heart"
                 card_view:layout_constraintTop_toTopOf="@+id/ib_empty_heart" />
+
+            <ImageView
+                android:id="@+id/ivarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="4dp"
+                card_view:layout_constraintEnd_toStartOf="@+id/tvAmount"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:srcCompat="@android:color/transparent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

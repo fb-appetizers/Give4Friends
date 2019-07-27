@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
+import com.example.give4friends.Fragments.History_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +33,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
     final Fragment fragment1 = new Main_Transaction_Fragment();
     final Fragment fragment2 = new Charity_Search_Fragment();
     final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
+    final Fragment fragment4 = new History_Fragment(ParseUser.getCurrentUser(), false);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,8 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
+
                         break;
 
                     default:

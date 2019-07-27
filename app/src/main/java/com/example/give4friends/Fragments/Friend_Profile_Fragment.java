@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -183,10 +184,12 @@ public class Friend_Profile_Fragment extends Fragment {
                 return true;
             case R.id.TransactionHistory:
                 Toast.makeText(context, "Transaction History selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, HistoryActivity.class);
-                intent.putExtra("user", myUser);
-                intent.putExtra("friend", true);
-                startActivity(intent);
+
+                Fragment fragment = new History_Fragment(myUser, true);
+                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.flContainer, fragment)
+                        .addToBackStack(null).commit();
                 return true;
             default:
 //                Log.e()

@@ -224,17 +224,7 @@ public class Main_Transaction_Fragment extends Fragment {
                         }
                     }
 
-//                    for(Transaction transaction : transactionList){
-//
-//                        transactions.add(transaction);
-//
-//                        try {
-//                            transaction.save();
-//                        } catch (ParseException e1) {
-//                            e1.printStackTrace();
-//                        }
-//
-//                    }
+
                     transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
