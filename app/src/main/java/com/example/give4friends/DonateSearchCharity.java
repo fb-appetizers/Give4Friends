@@ -260,7 +260,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
     private void getFavs() {
         items.clear();
-        items.add(currentFriend.get("firstName").toString() + "'s Favorite Charities");
         //Get relation
         final ParseRelation<Charity> favCharities = currentFriend.getRelation("favCharities");
         //Get all charities in relation
@@ -272,6 +271,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 } else {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
+                    if(objects.size() != 0){
+                        items.add(currentFriend.get("firstName").toString() + "'s Favorite Charities");
+                    }
                     for (int i = 0; i < objects.size(); i++) {
                         items.add(CharityAPI.fromParse((Charity) objects.get(i)));
                     }
