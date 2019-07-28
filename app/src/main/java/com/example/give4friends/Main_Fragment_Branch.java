@@ -1,6 +1,7 @@
 package com.example.give4friends;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.History_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
@@ -64,6 +66,12 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                //This thread clears the Glide cache every time you switch fragments. In order make the images display faster
+                // while also allowing you to change the image profiles if you want.
+                clearGlideCache();
+
+
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
@@ -141,16 +149,12 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.charity_menu, menu);
-//        return true;
-////        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        return true;
-//    }
+    public void clearGlideCache(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(getApplicationContext()).clearDiskCache();
+            }
+        }).start();
+    }
 }

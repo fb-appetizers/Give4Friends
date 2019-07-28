@@ -248,9 +248,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
-                                    .placeholder(R.drawable.instagram_user_outline_24)
-                                            .skipMemoryCache(true)
-                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                    .placeholder(R.drawable.instagram_user_outline_24)
+//                                            .skipMemoryCache(true)
+//                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     )
 
                             .into(holder.friendPhoto);
@@ -278,10 +278,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
-                                            .placeholder(R.drawable.instagram_user_outline_24)
+//                                            .placeholder(R.drawable.instagram_user_outline_24)
 
-                                            .skipMemoryCache(true)
-                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                            .skipMemoryCache(true)
+//                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     )
                             .into(holder.donorPhoto);
                 }else{

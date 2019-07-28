@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
@@ -97,6 +98,9 @@ public class Main_Transaction_Fragment extends Fragment {
                 transactions.clear();
                 populate();
                 swipeContainer.setRefreshing(false);
+
+
+                //You might also want to clear the glide cache data here??
             }
 
         });
@@ -227,6 +231,15 @@ public class Main_Transaction_Fragment extends Fragment {
 
         });
         return false;
+    }
+
+    public void clearGlideCache(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(getContext()).clearDiskCache();
+            }
+        }).start();
     }
 
 
