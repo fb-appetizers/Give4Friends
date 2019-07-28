@@ -404,7 +404,7 @@ public class User_Profile_Fragment extends Fragment {
                 } else {
                     // results have all the charities the current user liked.
                     if(objects.size() == 0){
-                        Toast.makeText(context,"You do not have any favorites yet", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"You do not have any favorites yet", Toast.LENGTH_SHORT).show();
                     }
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
