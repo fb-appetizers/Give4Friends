@@ -52,11 +52,11 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         holder.friendsName.setText(user.get("firstName") + " " + user.get("lastName"));
         holder.friendsUserName.setText("@" + user.getUsername());
 
-        ParseFile image = user.getParseFile("profileImage");
 
-        if(image != null){
+        String imageURL = user.getString("profileImageURL");
+        if(imageURL != null){
             Glide.with(context)
-                    .load(image.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCrop())
@@ -98,7 +98,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 currentFriend = friends.get(position);
-                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_SHORT).show();
 
                 if(donateNow == false){
                     Intent intent = new Intent(context, DonateSearchCharity.class);
