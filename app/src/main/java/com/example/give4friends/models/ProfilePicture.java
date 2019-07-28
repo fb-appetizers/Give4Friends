@@ -11,7 +11,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -33,11 +35,21 @@ import com.parse.SaveCallback;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
 
 import static android.app.Activity.RESULT_OK;
 
 public final class ProfilePicture {
     public static final String APP_TAG = "SignUpActivity";
+    private static final String SERVER_ADDRESS = "https://give4friends.000webhostapp.com/";
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
@@ -230,17 +242,21 @@ public final class ProfilePicture {
         });
 
 
-
-
-
     }
 
+    public static void updatePhotoURL(ParseUser parseUser, String url) {
 
+        parseUser.put("profileImageURL", url);
 
-    public static void updatePhotoinTransactions(ParseUser parseUser){
+        parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!=null){
+                    e.printStackTrace();
+                }
 
-
-
+            }
+        });
 
 
     }
@@ -255,5 +271,9 @@ public final class ProfilePicture {
 
         return parseFile;
     }
+
+
+
+
 }
 

@@ -1,14 +1,18 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -54,6 +59,8 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.apache.http.params.HttpConnectionParams;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -62,12 +69,24 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
+import cz.msebera.android.httpclient.params.HttpParams;
+import cz.msebera.android.httpclient.params.HttpParamsNames;
+
 import static android.app.Activity.RESULT_OK;
 
 
 public class User_Profile_Fragment extends Fragment {
     int total = 0;
 
+    private static final String SERVER_ADDRESS = "https://give4friends.000webhostapp.com/";
+    private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
     RecyclerView rvCharities;
@@ -192,16 +211,22 @@ public class User_Profile_Fragment extends Fragment {
         getRaised();
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
         //Handles images
-        ParseFile file = myUser.getParseFile("profileImage");
 
-        if (file!=null) {
+        String imageURL = myUser.getString("profileImageURL");
+
+        if (imageURL!=null) {
             Glide.with(context)
-                    .load(file.getUrl())
+                    .load(imageURL)
+
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
                             .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24))
+                            .error(R.drawable.user_outline_24)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    )
+
                     .into(ivProfileImage);
         }
         else{
@@ -294,20 +319,24 @@ public class User_Profile_Fragment extends Fragment {
 
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
-                photo = (Bitmap) data.getExtras().get("data");
-                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
-                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+
+                photo = ProfilePicture.rotateBitmapOrientation(photoFile.getAbsolutePath());
+
                 Glide.with(context)
-                        .load(selectedImageRotate)
+                        .load(photo)
                         .apply(new RequestOptions()
                                 .transforms(new CenterCrop(), new RoundedCorners(20))
                                 .circleCropTransform()
                                 .placeholder(R.drawable.user_outline_24)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
-                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
+
+                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+                new UploadImage(photo, imagePath).execute();
+                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
+
             } else { // Result was a failure
+
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
@@ -316,29 +345,31 @@ public class User_Profile_Fragment extends Fragment {
                 Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
-                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+//                    photo = ProfilePicture.rotateBitmapOrientation(photoUri.getEncodedPath());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-                // Do something with the photo based on Uri
-                try {
-                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-                    Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
+//                // Do something with the photo based on Uri
+                photo = ProfilePicture.rotateBitmapOrientation(photoUri.getEncodedPath());
+//
+//
+//
+                Glide.with(context)
+                        .load(photo)
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCropTransform()
+                                .placeholder(R.drawable.user_outline_24)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .error(R.drawable.user_outline_24))
+                        .into(ivProfileImage);
+//                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+//                new UploadImage(photo, imagePath).execute();
+//                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
-                    Glide.with(context)
-                            .load(selectedImageRotate)
-                            .apply(new RequestOptions()
-                                    .transforms(new CenterCrop(), new RoundedCorners(20))
-                                    .circleCropTransform()
-                                    .placeholder(R.drawable.user_outline_24)
-                                    .error(R.drawable.user_outline_24))
-                            .into(ivProfileImage);
-                    ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
 
@@ -450,7 +481,7 @@ public class User_Profile_Fragment extends Fragment {
                 if(i == 0) {
                     onLaunchCamera(); }
                 else {
-//                    onLaunchSelect();
+                    onLaunchSelect();
                 }
             }
         });
@@ -462,25 +493,85 @@ public class User_Profile_Fragment extends Fragment {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         photoFile = ProfilePicture.getPhotoFileUri(photoFileName, getContext());
 
-        Uri buildUri = Uri.parse(photoFile.toURI().toString())
-                        .buildUpon()
-                        .path("search")
-                        .appendQueryParameter("id","123")
-                        .build();
 
-//        try {
+        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.example.give4friends", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
-//            URL url = new URL(buildUri.toString());
-            Log.e("UserProfileFragment",buildUri.toString());
-
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
 
         if (intent.resolveActivity(getContext().getPackageManager()) != null) {
 
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
+    }
+
+    public void onLaunchSelect() {
+
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
+        }
+    }
+
+
+    private class UploadImage extends AsyncTask<Void,Void,Void>{
+
+
+        Bitmap image;
+        String name;
+
+        public UploadImage(Bitmap image, String name) {
+            this.image = image;
+            this.name = name;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+
+            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("image", encodedImage));
+            dataToSend.add(new BasicNameValuePair("name",name));
+
+
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(SERVER_ADDRESS + "SavePicture.php");
+
+            try {
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            Toast.makeText(getContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private cz.msebera.android.httpclient.params.HttpParams getHttpRequestParams(){
+
+        cz.msebera.android.httpclient.params.HttpParams httpRequestParams = new BasicHttpParams();
+
+
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setConnectionTimeout(httpRequestParams,1000*30);
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setSoTimeout(httpRequestParams, 100*30);
+
+        return httpRequestParams;
     }
 
 }
