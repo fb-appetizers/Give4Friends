@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,8 +70,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 //This thread clears the Glide cache every time you switch fragments. In order make the images display faster
                 // while also allowing you to change the image profiles if you want.
-                clearGlideCache();
-
 
 
                 switch (menuItem.getItemId()) {
@@ -83,14 +82,17 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
+
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
+
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
 
                         break;
 
                     default:
+
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
                         break;
@@ -98,6 +100,9 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 return true;
             }
+
+
+
         });
 
 
@@ -149,12 +154,5 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     }
 
-    public void clearGlideCache(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Glide.get(getApplicationContext()).clearDiskCache();
-            }
-        }).start();
-    }
+
 }

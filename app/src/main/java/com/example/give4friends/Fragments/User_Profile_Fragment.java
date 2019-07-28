@@ -42,6 +42,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
@@ -59,6 +60,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cz.msebera.android.httpclient.NameValuePair;
@@ -201,7 +203,9 @@ public class User_Profile_Fragment extends Fragment {
 
         String imageURL = myUser.getString("profileImageURL");
 
+
         if (imageURL!=null) {
+            Date imageDate = myUser.getDate("profileImageCreatedAt");
             Glide.with(context)
                     .load(imageURL)
 
@@ -210,8 +214,7 @@ public class User_Profile_Fragment extends Fragment {
                             .circleCropTransform()
                             .placeholder(R.drawable.user_outline_24)
                             .error(R.drawable.user_outline_24)
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .signature(new ObjectKey(imageDate))
                     )
 
                     .into(ivProfileImage);
@@ -510,14 +513,6 @@ public class User_Profile_Fragment extends Fragment {
         }
     }
 
-    public void showProgressBar() {
-        // Show progress item
-        progressBarHome.setVisibility(View.VISIBLE);
-    }
 
-    public void hideProgressBar() {
-        // Hide progress item
-        progressBarHome.setVisibility(View.INVISIBLE);
-    }
 
 }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.util.Calendar;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -182,6 +183,7 @@ public class SignUpActivity extends AppCompatActivity {
                         String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
                         new ProfilePicture.UploadImage(photo, imagePath, getApplicationContext()).execute();
                         currentUser.put("profileImageURL", URL_HEADER + imagePath + ".JPG");
+                        currentUser.put("profileImageCreatedAt", Calendar.getInstance().getTime());
                     }
 
                     currentUser.saveInBackground(new SaveCallback() {

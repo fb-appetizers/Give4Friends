@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.util.Calendar;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -248,6 +249,8 @@ public final class ProfilePicture {
     public static void updatePhotoURL(ParseUser parseUser, String url) {
 
         parseUser.put("profileImageURL", url);
+
+        parseUser.put("profileImageCreatedAt", Calendar.getInstance().getTime());
 
         parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
             @Override

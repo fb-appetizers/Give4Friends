@@ -70,6 +70,8 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
 
+
+
         // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
@@ -233,14 +235,7 @@ public class Main_Transaction_Fragment extends Fragment {
         return false;
     }
 
-    public void clearGlideCache(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Glide.get(getContext()).clearDiskCache();
-            }
-        }).start();
-    }
+
 
 
 }
