@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.ProfileActivity;
+import com.example.give4friends.R;
 import com.example.give4friends.SignUpActivity;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -280,6 +281,8 @@ public final class ProfilePicture {
         Bitmap image;
         String name;
         Context context;
+        ProgressBar progressBarHome;
+
 
         public UploadImage(Bitmap image, String name, Context context) {
             this.image = image;
@@ -289,6 +292,10 @@ public final class ProfilePicture {
 
         @Override
         protected Void doInBackground(Void... voids) {
+
+
+            progressBarHome = ((Activity)context).findViewById(R.id.progressBarHome);
+            showProgressBar();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
             String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
@@ -317,7 +324,18 @@ public final class ProfilePicture {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            hideProgressBar();
             Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
+        }
+
+        public void showProgressBar() {
+            // Show progress item
+            progressBarHome.setVisibility(View.VISIBLE);
+        }
+
+        public void hideProgressBar() {
+            // Hide progress item
+            progressBarHome.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -331,6 +349,7 @@ public final class ProfilePicture {
 
         return httpRequestParams;
     }
+
 
 
 

@@ -92,38 +92,7 @@ public class Charity_Search_Fragment extends Fragment {
 
         configureToolbar();
 
-        //        sbCharity.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-//                if (count == 0){
-//                    if(client!=null) {
-//                        client.getClient().dispatcher().cancelAll();
-//                    }
-//                    getEffective();
-//                }
-//                if(count > 0 ){
-//                    getResponseSearch(charSequence.toString(),false);
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-        //When you hit submit the recycler view updates
-//        btnCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                etCharity.clearFocus();
-//                etCharity.getText().clear();
-//            }
-//        });
+
 
 
         sbCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +93,7 @@ public class User_Profile_Fragment extends Fragment {
     //for changing picture
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
+    ProgressBar progressBarHome;
     private Bitmap photo;
 
     ParseUser myUser;
@@ -117,11 +119,8 @@ public class User_Profile_Fragment extends Fragment {
         context = getContext();
         btEditBio = view.findViewById(R.id.btEditProfile);
 
-        final Fragment fragment = getFragmentManager().getFragments().get(0);
-        if(fragment!=null){
-            //TODO -- test this fragment to activity thing to ge the camera requests
-//            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
-        }
+//        progressBarHome = getActivity().findViewById(R.id.progressBarHome);
+
         btChangePic = view.findViewById(R.id.btChangePic);
 
         if(!from_fragment) {
@@ -237,6 +236,8 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Profile");
 
+
+
         toolbar.setNavigationIcon(R.drawable.ic_settings);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +250,7 @@ public class User_Profile_Fragment extends Fragment {
 
     protected void configureToolbarStripped() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextSize(24);
@@ -272,10 +274,14 @@ public class User_Profile_Fragment extends Fragment {
         if(!from_fragment) {
             main_activity_inflater.inflate(R.menu.charity_menu, menu);
         }
+
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
@@ -504,6 +510,14 @@ public class User_Profile_Fragment extends Fragment {
         }
     }
 
+    public void showProgressBar() {
+        // Show progress item
+        progressBarHome.setVisibility(View.VISIBLE);
+    }
 
+    public void hideProgressBar() {
+        // Hide progress item
+        progressBarHome.setVisibility(View.INVISIBLE);
+    }
 
 }
