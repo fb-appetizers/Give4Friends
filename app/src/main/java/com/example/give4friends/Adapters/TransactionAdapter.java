@@ -240,9 +240,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                ParseFile image = object.getParseFile("profileImage");
+
                 String imageURL = object.getString("profileImageURL");
-                if(image != null){
+                if(imageURL != null){
                     Glide.with(context)
                             .load(imageURL)
                             .apply(new RequestOptions()
