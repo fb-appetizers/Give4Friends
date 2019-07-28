@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
@@ -23,6 +24,7 @@ import com.example.give4friends.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.currentCharity;
@@ -55,11 +57,14 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
         String imageURL = user.getString("profileImageURL");
         if(imageURL != null){
+            Date imageDate = user.getDate("profileImageCreatedAt");
             Glide.with(context)
                     .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
-                            .circleCrop())
+                            .circleCrop()
+                            .signature(new ObjectKey(imageDate))
+                    )
                     .into(holder.friendImage);
         }else{
 
