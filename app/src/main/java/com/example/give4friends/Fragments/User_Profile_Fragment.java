@@ -1,16 +1,15 @@
 package com.example.give4friends.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -43,8 +42,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
-import com.example.give4friends.Cutom_Classes.BitmapScaler;
-import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -53,19 +50,13 @@ import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
-import org.apache.http.params.HttpConnectionParams;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +67,6 @@ import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.message.BasicNameValuePair;
 import cz.msebera.android.httpclient.params.BasicHttpParams;
-import cz.msebera.android.httpclient.params.HttpParams;
-import cz.msebera.android.httpclient.params.HttpParamsNames;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -85,7 +74,6 @@ import static android.app.Activity.RESULT_OK;
 public class User_Profile_Fragment extends Fragment {
     int total = 0;
 
-    private static final String SERVER_ADDRESS = "https://give4friends.000webhostapp.com/";
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
@@ -332,7 +320,7 @@ public class User_Profile_Fragment extends Fragment {
                         .into(ivProfileImage);
 
                 String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
-                new UploadImage(photo, imagePath).execute();
+                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
                 ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
             } else { // Result was a failure
@@ -345,16 +333,12 @@ public class User_Profile_Fragment extends Fragment {
                 Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
-//                    photo = ProfilePicture.rotateBitmapOrientation(photoUri.getEncodedPath());
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-//                // Do something with the photo based on Uri
-                photo = ProfilePicture.rotateBitmapOrientation(photoUri.getEncodedPath());
-//
-//
-//
+
                 Glide.with(context)
                         .load(photo)
                         .apply(new RequestOptions()
@@ -365,9 +349,10 @@ public class User_Profile_Fragment extends Fragment {
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
-//                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
-//                new UploadImage(photo, imagePath).execute();
-//                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
+
+                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
+                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
 
             }
@@ -509,6 +494,8 @@ public class User_Profile_Fragment extends Fragment {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getContext().getPackageManager()) != null) {
@@ -518,60 +505,5 @@ public class User_Profile_Fragment extends Fragment {
     }
 
 
-    private class UploadImage extends AsyncTask<Void,Void,Void>{
-
-
-        Bitmap image;
-        String name;
-
-        public UploadImage(Bitmap image, String name) {
-            this.image = image;
-            this.name = name;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-
-            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-            dataToSend.add(new BasicNameValuePair("image", encodedImage));
-            dataToSend.add(new BasicNameValuePair("name",name));
-
-
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(SERVER_ADDRESS + "SavePicture.php");
-
-            try {
-                post.setEntity(new UrlEncodedFormEntity(dataToSend));
-                client.execute(post);
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            Toast.makeText(getContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private cz.msebera.android.httpclient.params.HttpParams getHttpRequestParams(){
-
-        cz.msebera.android.httpclient.params.HttpParams httpRequestParams = new BasicHttpParams();
-
-
-        cz.msebera.android.httpclient.params.HttpConnectionParams.setConnectionTimeout(httpRequestParams,1000*30);
-        cz.msebera.android.httpclient.params.HttpConnectionParams.setSoTimeout(httpRequestParams, 100*30);
-
-        return httpRequestParams;
-    }
 
 }

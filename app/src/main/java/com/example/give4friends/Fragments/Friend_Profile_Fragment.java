@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -119,16 +120,19 @@ public class Friend_Profile_Fragment extends Fragment {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
         //Handles images
-        ParseFile file = myUser.getParseFile("profileImage");
 
-        if (file!=null) {
+        String imageURL = myUser.getString("profileImageURL");
+        if (imageURL!=null) {
             Glide.with(context)
-                    .load(file.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
                             .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24))
+                            .error(R.drawable.user_outline_24)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    )
                     .into(ivProfileImage);
         }
         else{

@@ -55,7 +55,7 @@ public final class ProfilePicture {
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
     private static Bitmap photo;
     public static String photoFileName = "photo.jpg";
-    static File photoFile;
+    public static File photoFile;
     static Activity activity;
 
 
@@ -270,6 +270,66 @@ public final class ProfilePicture {
         ParseFile parseFile = new ParseFile("image_file.png",imageByte);
 
         return parseFile;
+    }
+
+
+
+    public static class UploadImage extends AsyncTask<Void,Void,Void>{
+
+
+        Bitmap image;
+        String name;
+        Context context;
+
+        public UploadImage(Bitmap image, String name, Context context) {
+            this.image = image;
+            this.name = name;
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+
+            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("image", encodedImage));
+            dataToSend.add(new BasicNameValuePair("name",name));
+
+
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(SERVER_ADDRESS + "SavePicture.php");
+
+            try {
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private cz.msebera.android.httpclient.params.HttpParams getHttpRequestParams(){
+
+        cz.msebera.android.httpclient.params.HttpParams httpRequestParams = new BasicHttpParams();
+
+
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setConnectionTimeout(httpRequestParams,1000*30);
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setSoTimeout(httpRequestParams, 100*30);
+
+        return httpRequestParams;
     }
 
 

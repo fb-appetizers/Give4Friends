@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -240,12 +241,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void done(ParseObject object, ParseException e) {
                 ParseFile image = object.getParseFile("profileImage");
+                String imageURL = object.getString("profileImageURL");
                 if(image != null){
                     Glide.with(context)
-                            .load(image.getUrl())
+                            .load(imageURL)
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
+                                    .placeholder(R.drawable.instagram_user_outline_24)
+                                            .skipMemoryCache(true)
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     )
 
                             .into(holder.friendPhoto);
@@ -265,14 +270,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void done(ParseObject object, ParseException e) {
 
-                ParseFile image = object.getParseFile("profileImage");
 
-                if(image != null){
+                String imageURL = object.getString("profileImageURL");
+                if(imageURL != null){
                     Glide.with(context)
-                            .load(image.getUrl())
+                            .load(imageURL)
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
+                                            .placeholder(R.drawable.instagram_user_outline_24)
+
+                                            .skipMemoryCache(true)
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     )
                             .into(holder.donorPhoto);
                 }else{
