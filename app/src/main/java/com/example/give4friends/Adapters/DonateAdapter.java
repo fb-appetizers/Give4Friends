@@ -83,6 +83,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         public TextView friendsUserName;
         public ImageView friendImage;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

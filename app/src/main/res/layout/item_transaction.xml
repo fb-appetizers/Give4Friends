@@ -142,6 +142,21 @@
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvLikesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                card_view:layout_constraintBottom_toBottomOf="@+id/ib_empty_heart"
+                card_view:layout_constraintEnd_toStartOf="@+id/tvMessage"
+                card_view:layout_constraintHorizontal_bias="0.63"
+                card_view:layout_constraintStart_toStartOf="@+id/ib_empty_heart"
+                card_view:layout_constraintTop_toTopOf="@+id/ib_empty_heart" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
