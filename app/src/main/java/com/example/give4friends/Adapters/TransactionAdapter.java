@@ -105,11 +105,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
                         //update transaction
                         //increment likes for transaction
-                        Integer likesCount = ((Integer) transaction.getKeyLikesCount())+1;
 
-                        if(likesCount !=0) {
+                        Number likesCountNum = transaction.getKeyLikesCount();
+                        Integer likesCountInt;
+                        if( likesCountNum != null){
+                            likesCountInt = ((Integer) likesCountNum)+1;
+                        }else{
+                            likesCountInt = 1;
+                        }
+
+
+                        if(likesCountInt !=0) {
                             holder.tvLikesCount.setVisibility(View.VISIBLE);
-                            holder.tvLikesCount.setText((likesCount).toString());
+                            holder.tvLikesCount.setText((likesCountInt).toString());
                         }else{
                             holder.tvLikesCount.setVisibility(View.INVISIBLE);
                         }
