@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DonateActivity">
 
-    <ImageButton
-        android:id="@+id/ibcancelFinal"
-        android:layout_width="34dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_down_arrow"
-        tools:layout_editor_absoluteX="8dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"
         android:layout_width="398dp"
@@ -40,32 +30,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchFriend" />
 
-    <EditText
+
+    <SearchView
         android:id="@+id/searchFriend"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="enter friend's name or username"
-        android:inputType="textPersonName"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/cancelSearchBtn"
+        android:layout_marginTop="16dp"
+        android:defaultFocusHighlightEnabled="true"
+        android:focusedByDefault="false"
+        android:gravity="right"
+        android:iconifiedByDefault="false"
+        android:queryHint="enter friend's name or username"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="56dp" />
-
-    <Button
-        android:id="@+id/cancelSearchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginEnd="4dp"
-        android:background="@color/colorAccent"
-        android:text="Clear"
-        android:textColor="@color/colorPrimary"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/searchFriend"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

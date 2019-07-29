@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.give4friends.Adapters.DonateAdapter;
@@ -36,14 +37,13 @@ import java.util.List;
 
 
 public class Search_User_Fragment extends Fragment implements Serializable {
-    private EditText searchFriend;
-    private Button cancelSearchBtn;
+    private SearchView searchFriend;
     private RecyclerView rvFriends;
     public static ParseUser currentFriend;
     public static Charity currentCharity;
     public static boolean donateNow;
     public static String charityName2;
-    private ImageButton cancel;
+
 
 
     ArrayList<ParseUser> users;
@@ -62,9 +62,8 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         searchFriend = view.findViewById(R.id.searchFriend);
-        cancelSearchBtn = view.findViewById(R.id.cancelSearchBtn);
         rvFriends = view.findViewById(R.id.rvFriends);
-        cancel = view.findViewById(R.id.ibcancelFinal);
+
 
         users = new ArrayList<ParseUser>();
         localFriends = new ArrayList<String>();
@@ -74,45 +73,36 @@ public class Search_User_Fragment extends Fragment implements Serializable {
 
         configureToolbar();
 
-        cancelSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFriend.clearFocus();
-                searchFriend.getText().clear();
-            }
-        });
 
-        searchFriend.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+        searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-                if (count == 0) {
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.equals("")){
                     users.clear();
                     adapter.notifyDataSetChanged();
                     populateRelations();
                 }
-                if (count > 0) {
-                    queryFriends(searchFriend.getText().toString());
+                else{
+                    queryFriends(s.toString());
                 }
-            }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
 
+                return false;
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                users.clear();
-                adapter.notifyDataSetChanged();
 
-            }
-        });
+
+
+
     }
 
     protected void configureToolbar() {
