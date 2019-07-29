@@ -59,8 +59,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Search_User_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Search_User_Fragment.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -130,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Search_User_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="79">
-              <caret line="213" column="37" lean-forward="true" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
+              <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -177,10 +175,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
+            <state relative-caret-position="479">
+              <caret line="135" column="9" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
               <folding>
-                <element signature="e#5686#5687#0" expanded="true" />
+                <element signature="e#5649#5650#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -655,13 +653,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00067" summary="Fixed an error. Just rechecked if the client was not null before cancelling the calls">
-      <created>1564077537558</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1564077537558</updated>
-    </task>
     <task id="LOCAL-00068" summary="Updated the transaction logic to make it easier to read">
       <created>1564078383963</created>
       <option name="number" value="00068" />
@@ -998,7 +989,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564420415187</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="friend and unfriend once">
+      <created>1564436674764</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1564436674764</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1012,7 +1010,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="30" width="1343" height="889" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.20292082" />
@@ -1117,7 +1114,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a search icon" />
     <MESSAGE value="Updated the bottom navigation view icon" />
     <MESSAGE value="Finished the bottom navigation view" />
     <MESSAGE value="Improved the speed of the add counter on the transactions" />
@@ -1142,7 +1138,8 @@
     <MESSAGE value="Makes the charity dialog MoreInfo and DonateNow button invisible when accessed from the Donate Search Charity Page." />
     <MESSAGE value="Fixed a small null error bug" />
     <MESSAGE value="Made the search bars all consistant" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the search bars all consistant" />
+    <MESSAGE value="friend and unfriend once" />
+    <option name="LAST_COMMIT_MESSAGE" value="friend and unfriend once" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1257,7 +1254,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java</url>
-          <line>195</line>
+          <line>198</line>
           <properties />
           <option name="timeStamp" value="140" />
         </line-breakpoint>
@@ -1721,16 +1718,16 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Search_User_Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
-          <caret line="213" column="37" lean-forward="true" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
+          <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
+        <state relative-caret-position="479">
+          <caret line="135" column="9" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
           <folding>
-            <element signature="e#5686#5687#0" expanded="true" />
+            <element signature="e#5649#5650#0" expanded="true" />
           </folding>
         </state>
       </provider>

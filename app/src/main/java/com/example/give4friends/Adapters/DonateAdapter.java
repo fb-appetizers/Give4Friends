@@ -95,43 +95,46 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
         }
 
+        //check if this is for the search user page where you can add friends
         if(donate) {
             holder.addFriend.setVisibility(View.INVISIBLE);
             holder.addFriend.setClickable(false);
             holder.friendImage.setClickable(false);
         }
-        else{
+        else {
             holder.addFriend.setVisibility(View.VISIBLE);
             holder.addFriend.setClickable(true);
 
-            //check if already friend
-            if(localFriends != null && localFriends.contains(user.getObjectId())){
+            //if already a friend make gray
+            if (localFriends != null && localFriends.contains(user.getObjectId())) {
                 holder.addFriend.setColorFilter(Color.GRAY);
-                // TODO add a onClick listener that brings up a popup asking to confirm unfriending - remove from local and relation
-                holder.addFriend.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        removeFriend(user,holder);
-
-                    }
-                });
-
             }
-            else{
+            //if not yet a friend make blue
+            else {
                 holder.addFriend.setColorFilter(Color.BLUE);
-                holder.addFriend.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // new friends
+            }
+
+            holder.addFriend.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //check if already friend -> remove
+                    if (localFriends != null && localFriends.contains(user.getObjectId())) {
+                        removeFriend(user, holder);
+
+                    } else {
+                        // new friend -> add
                         holder.addFriend.setColorFilter(Color.GRAY);
                         localFriends.add(user.getObjectId());
                         friends.add(user);
                         ParseUser.getCurrentUser().saveInBackground();
 
-
                     }
-                });
-            }
+
+
+                }
+            });
+        }
+
 
 
             holder.friendImage.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +150,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             });
 
         }
-    }
+
 
     @Override
     public int getItemCount() {
