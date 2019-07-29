@@ -45,8 +45,6 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
 
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
