@@ -48,15 +48,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"
-        android:layout_width="398dp"
-        android:layout_height="573dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topResult"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/topResult" />
 
     <TextView
         android:id="@+id/topResult"
@@ -70,32 +69,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchFriend" />
 
-    <EditText
-        android:id="@+id/searchFriend"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="enter friend's name or username"
-        android:inputType="textPersonName"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/cancelSearchBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
 
-    <Button
-        android:id="@+id/cancelSearchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginEnd="4dp"
-        android:background="@color/colorAccent"
-        android:text="Clear"
-        android:textColor="@color/colorPrimary"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/searchFriend"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        tools:visibility="visible" />
+    <SearchView
+        android:id="@+id/searchFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:defaultFocusHighlightEnabled="true"
+        android:focusedByDefault="false"
+        android:gravity="right"
+        android:iconifiedByDefault="false"
+        android:queryHint="enter friend's name or username"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar3" />
+
+
 
 
 

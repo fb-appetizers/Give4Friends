@@ -292,22 +292,27 @@ public class Charity_Search_Fragment extends Fragment {
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
                 .whereEqualTo("highlyEffective", true);
 
+
         postQuery.findInBackground(new FindCallback<Charity>() {
             //iterate through query
             @Override
             public void done(List<Charity> objects, ParseException e) {
 
-                if (e == null) {
-                    for (int i = 0; i < objects.size(); ++i) {
-                        items.add(CharityAPI.fromParse(objects.get(i)));
+                // DO this to prevent duplication during parallel threads
+                if (items.size() <= 1) {
+                    if (e == null) {
+                        for (int i = 0; i < objects.size(); ++i) {
+                            items.add(CharityAPI.fromParse(objects.get(i)));
+                        }
+                    } else {
+                        Log.e("MainActivity", "Can't get transaction");
+                        e.printStackTrace();
                     }
-                } else {
-                    Log.e("MainActivity", "Can't get transaction");
-                    e.printStackTrace();
+                    getResponseSuggested(objects.size() + 1);
                 }
-                getResponseSuggested(objects.size() + 1);
             }
         });
+
 
     }
 

@@ -58,7 +58,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -92,37 +96,48 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+            <state relative-caret-position="569">
+              <caret line="92" selection-start-line="92" selection-end-line="92" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Main_Fragment_Branch.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="212">
+              <caret line="73" selection-start-line="73" selection-end-line="85" selection-end-column="61" />
             </state>
           </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
+            <state relative-caret-position="137">
+              <caret line="103" selection-start-line="103" selection-end-line="128" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_search.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+            <state relative-caret-position="270">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="20" selection-end-column="48" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,15 +146,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="119" column="70" selection-start-line="119" selection-start-column="70" selection-end-line="119" selection-end-column="70" />
+            <state relative-caret-position="70">
+              <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5232#5233#0" expanded="true" />
+                <element signature="e#5272#5273#0" expanded="true" />
+                <element signature="method#setUpFriend#0;class#DonateSearchCharity#0" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="87" column="59" selection-start-line="87" selection-start-column="59" selection-end-line="87" selection-end-column="59" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -150,27 +177,6 @@
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="113" column="65" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
-              <folding>
-                <element signature="method#setUpFriend#0;class#DonateSearchCharity#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -204,9 +210,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>quer</find>
-      <find>ada</find>
-      <find>relatio</find>
       <find>adap</find>
       <find>yo</find>
       <find>hide</find>
@@ -234,6 +237,9 @@
       <find>getresponsesuggested</find>
       <find>rec</find>
       <find>dia</find>
+      <find>likescount</find>
+      <find>btnCancel</find>
+      <find>tiChari</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -256,8 +262,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_photo.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_charity_sugg.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_charity_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" />
@@ -290,14 +294,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Friend_Profile_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateFinalActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/DonateAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/CharitySearch.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Cutom_Classes/CustomDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java" />
       </list>
     </option>
   </component>
@@ -587,13 +593,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Updated the client calls to cancel whenever you search something new">
-      <created>1564076022303</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1564076022303</updated>
     </task>
     <task id="LOCAL-00066" summary="Changed the padding for the dialog fragment when you do a long click on the search page">
       <created>1564076661840</created>
@@ -931,7 +930,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564379425150</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Fixed a small null error bug">
+      <created>1564410981305</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1564410981305</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TodoView">
@@ -948,7 +954,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.1947497" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.1947497" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="4" sideWeight="0.5017422" side_tool="true" weight="0.19750719" />
@@ -957,7 +963,7 @@
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="TODO" order="0" weight="0.32982457" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.33979592" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.8095238" visible="true" weight="0.33979592" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4992722" weight="0.32857144" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.498779" weight="0.32748538" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.26800978" side_tool="true" weight="0.32748538" />
@@ -1050,7 +1056,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added endless scrolling" />
     <MESSAGE value="Added a search view for the charity search" />
     <MESSAGE value="Added a search icon" />
     <MESSAGE value="Updated the bottom navigation view icon" />
@@ -1075,7 +1080,8 @@
     <MESSAGE value="Added the imageURL to the donateadapter and the donate final activity." />
     <MESSAGE value="Fixed a bug that had to do with threading" />
     <MESSAGE value="Makes the charity dialog MoreInfo and DonateNow button invisible when accessed from the Donate Search Charity Page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Makes the charity dialog MoreInfo and DonateNow button invisible when accessed from the Donate Search Charity Page." />
+    <MESSAGE value="Fixed a small null error bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a small null error bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1235,35 +1241,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_search.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
-          <folding>
-            <element signature="e#2756#2757#0" expanded="true" />
-            <element signature="e#2805#2806#0" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2901#2902#0" expanded="true" />
-            <element signature="e#3127#3128#0" expanded="true" />
-            <element signature="e#3169#3170#0" expanded="true" />
-            <element signature="e#3209#3210#0" expanded="true" />
-            <element signature="e#3272#3273#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_bottom_navigation.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1519,13 +1496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="82" column="40" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.8.0/ffc2684f1c6436d3942d82d29a5344942792594/glide-4.8.0-sources.jar!/com/bumptech/glide/load/MultiTransformation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1561,29 +1531,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
           <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="113" column="65" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
-          <folding>
-            <element signature="method#setUpFriend#0;class#DonateSearchCharity#0" />
           </folding>
         </state>
       </provider>
@@ -1619,10 +1572,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/TransactionAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="119" column="70" selection-start-line="119" selection-start-column="70" selection-end-line="119" selection-end-column="70" />
+        <state relative-caret-position="215">
+          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_charity_search.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="20" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="73" selection-start-line="73" selection-end-line="85" selection-end-column="61" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_donate_search_charity.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="87" column="59" selection-start-line="87" selection-start-column="59" selection-end-line="87" selection-end-column="59" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="103" selection-start-line="103" selection-end-line="128" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/DonateSearchCharity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+          <folding>
+            <element signature="e#5232#5233#0" expanded="true" />
+            <element signature="e#5272#5273#0" expanded="true" />
+            <element signature="method#setUpFriend#0;class#DonateSearchCharity#0" />
           </folding>
         </state>
       </provider>
