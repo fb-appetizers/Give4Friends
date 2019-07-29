@@ -80,14 +80,14 @@ public class HistoryActivity extends MainActivity{
         friend =  getIntent().getBooleanExtra("friend", false);
         setContentView(R.layout.activity_transaction_history);
 
-        cancelBtn = findViewById(R.id.cancelTrans);
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        cancelBtn = findViewById(R.id.cancelTrans);
+//
+//        cancelBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         // Implement Recycler View
         rvTransactions = findViewById(R.id.rvTransactionsTrans);

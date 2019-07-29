@@ -111,7 +111,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         items = new ArrayList<>();
 
-        charityAdapter = new CharitySuggAdapter(items, true);
+        charityAdapter = new CharitySuggAdapter(items, true, true);
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
         // Set layout manager to position the items
@@ -142,11 +142,12 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         friendsUserName.setText("@" + currentFriend.getUsername());
         friendsName.setText(currentFriend.get("firstName").toString() + " " + currentFriend.get("lastName"));
 
-        ParseFile image = currentFriend.getParseFile("profileImage");
 
-        if(image != null){
+        String imageURL = currentFriend.getString("profileImageURL");
+
+        if(imageURL != null){
             Glide.with(getApplicationContext())
-                    .load(image.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCrop())

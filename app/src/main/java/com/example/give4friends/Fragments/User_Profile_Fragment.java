@@ -4,11 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,12 +38,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
-import com.example.give4friends.Cutom_Classes.BitmapScaler;
-import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -48,17 +52,24 @@ import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -66,6 +77,7 @@ import static android.app.Activity.RESULT_OK;
 public class User_Profile_Fragment extends Fragment {
     int total = 0;
 
+    private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
     com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
     ArrayList<Charity> charities;
     RecyclerView rvCharities;
@@ -83,12 +95,14 @@ public class User_Profile_Fragment extends Fragment {
     //for changing picture
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
+    ProgressBar progressBarHome;
     private Bitmap photo;
 
     ParseUser myUser;
     boolean from_fragment;
     Context context;
     private File photoFile;
+    private String photoFileName = "image.png";
 
     public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
         this.myUser = myUser;
@@ -107,11 +121,8 @@ public class User_Profile_Fragment extends Fragment {
         context = getContext();
         btEditBio = view.findViewById(R.id.btEditProfile);
 
-        final Fragment fragment = getFragmentManager().getFragments().get(0);
-        if(fragment!=null){
-            //TODO -- test this fragment to activity thing to ge the camera requests
-//            Toast.makeText(context,"Yo", Toast.LENGTH_LONG).show();
-        }
+//        progressBarHome = getActivity().findViewById(R.id.progressBarHome);
+
         btChangePic = view.findViewById(R.id.btChangePic);
 
         if(!from_fragment) {
@@ -132,8 +143,7 @@ public class User_Profile_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-                ProfilePicture.changePhotoFragment(fragment);
+                changePhoto();
             }
         });
 
@@ -188,16 +198,23 @@ public class User_Profile_Fragment extends Fragment {
         getRaised();
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
         //Handles images
-        ParseFile file = myUser.getParseFile("profileImage");
 
-        if (file!=null) {
+        String imageURL = myUser.getString("profileImageURL");
+
+
+        if (imageURL!=null) {
+            Date imageDate = myUser.getDate("profileImageCreatedAt");
             Glide.with(context)
-                    .load(file.getUrl())
+                    .load(imageURL)
+
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
                             .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24))
+                            .error(R.drawable.user_outline_24)
+                            .signature(new ObjectKey(imageDate))
+                    )
+
                     .into(ivProfileImage);
         }
         else{
@@ -220,6 +237,8 @@ public class User_Profile_Fragment extends Fragment {
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Profile");
 
+
+
         toolbar.setNavigationIcon(R.drawable.ic_settings);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,6 +251,7 @@ public class User_Profile_Fragment extends Fragment {
 
     protected void configureToolbarStripped() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextSize(24);
@@ -255,17 +275,18 @@ public class User_Profile_Fragment extends Fragment {
         if(!from_fragment) {
             main_activity_inflater.inflate(R.menu.charity_menu, menu);
         }
+
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()){
-            case R.id.transactionHistory:
-                Toast.makeText(getContext(), "Transaction History selected", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), HistoryActivity.class);
-                intent.putExtra("user", ParseUser.getCurrentUser());
-                intent.putExtra("friend", false);
-                startActivity(intent);
+            case R.id.likedTransactionsProfile:
+                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
+
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
@@ -290,22 +311,27 @@ public class User_Profile_Fragment extends Fragment {
     @Override
     public void onActivityResult ( int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
+
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                photo = (Bitmap) data.getExtras().get("data");
-                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
-                Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+
+                photo = ProfilePicture.rotateBitmapOrientation(photoFile.getAbsolutePath());
+
                 Glide.with(context)
-                        .load(selectedImageRotate)
+                        .load(photo)
                         .apply(new RequestOptions()
                                 .transforms(new CenterCrop(), new RoundedCorners(20))
                                 .circleCropTransform()
                                 .placeholder(R.drawable.user_outline_24)
                                 .error(R.drawable.user_outline_24))
                         .into(ivProfileImage);
-                ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), selectedImageRotate);
+
+                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
+                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
+
             } else { // Result was a failure
+
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
@@ -314,29 +340,28 @@ public class User_Profile_Fragment extends Fragment {
                 Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
-                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-                // Do something with the photo based on Uri
-                try {
-                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-                    Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
 
-                    Glide.with(context)
-                            .load(selectedImageRotate)
-                            .apply(new RequestOptions()
-                                    .transforms(new CenterCrop(), new RoundedCorners(20))
-                                    .circleCropTransform()
-                                    .placeholder(R.drawable.user_outline_24)
-                                    .error(R.drawable.user_outline_24))
-                            .into(ivProfileImage);
-                    ProfilePicture.updatePhoto(ParseUser.getCurrentUser(), photo);
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                Glide.with(context)
+                        .load(photo)
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCropTransform()
+                                .placeholder(R.drawable.user_outline_24)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .error(R.drawable.user_outline_24))
+                        .into(ivProfileImage);
+
+                String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
+                ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
+
+
             }
         }
 
@@ -380,7 +405,7 @@ public class User_Profile_Fragment extends Fragment {
                 } else {
                     // results have all the charities the current user liked.
                     if(objects.size() == 0){
-                        Toast.makeText(context,"You do not have any favorites yet", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"You do not have any favorites yet", Toast.LENGTH_SHORT).show();
                     }
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
@@ -435,4 +460,57 @@ public class User_Profile_Fragment extends Fragment {
         );
 
     }
+
+
+
+    public void changePhoto(){
+        String[] options = {"Take photo", "Choose from gallery"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setTitle("Change Profile Picture");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    onLaunchCamera(); }
+                else {
+                    onLaunchSelect();
+                }
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void onLaunchCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        photoFile = ProfilePicture.getPhotoFileUri(photoFileName, getContext());
+
+
+        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.example.give4friends", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+
+
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
+    public void onLaunchSelect() {
+
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
+        }
+    }
+
+
+
 }

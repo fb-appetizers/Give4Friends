@@ -49,13 +49,19 @@ public class CustomDialog extends DialogFragment {
     public TextView tvDonateNow;
 
     public TextView tvMoreInfo;
+    private boolean from_charity_search;
 
 
-    public CustomDialog(CharityAPI charity) {
+    public CustomDialog(CharityAPI charity, boolean from_charity_search) {
         this.charity = charity;
+        this.from_charity_search = from_charity_search;
     }
 
-    public CustomDialog(Charity charity){this.newCharity = charity;}
+    public CustomDialog(Charity charity,boolean from_charity_search){
+        this.newCharity = charity;
+        this.from_charity_search = from_charity_search;
+
+    }
 
     @Nullable
     @Override
@@ -75,17 +81,23 @@ public class CustomDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
         tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
 
-        tvDonateNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setCurrentCharity();
 
-                charityName2 = charity.getName();
-                Intent intent = new Intent(view.getContext(), DonateActivity.class);
-                intent.putExtra("donateNow", true);
-                view.getContext().startActivity(intent);
-            }
-        });
+        if(!from_charity_search) {
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setCurrentCharity();
+
+                    charityName2 = charity.getName();
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }else{
+            tvDonateNow.setVisibility(View.INVISIBLE);
+            tvMoreInfo.setVisibility(View.INVISIBLE);
+        }
 
 
 

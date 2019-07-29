@@ -87,7 +87,7 @@ public class CharitySearch extends AppCompatActivity {
         acharitiesUpper = new ArrayList<CharityAPI>();
         items = new ArrayList<>();
         //charityAdapterUpper = new CharitySuggAdapter(acharitiesUpper);
-        charityAdapterUpper = new CharitySuggAdapter(items, false);
+        charityAdapterUpper = new CharitySuggAdapter(items, false, false);
 
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);

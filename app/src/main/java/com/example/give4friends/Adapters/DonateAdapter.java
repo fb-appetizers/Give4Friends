@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.R;
@@ -23,6 +25,7 @@ import com.example.give4friends.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.currentCharity;
@@ -52,14 +55,18 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         holder.friendsName.setText(user.get("firstName") + " " + user.get("lastName"));
         holder.friendsUserName.setText("@" + user.getUsername());
 
-        ParseFile image = user.getParseFile("profileImage");
 
-        if(image != null){
+        String imageURL = user.getString("profileImageURL");
+        if(imageURL != null){
+            Date imageDate2 = user.getDate("profileImageCreatedAt");
             Glide.with(context)
-                    .load(image.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
-                            .circleCrop())
+                            .signature(new ObjectKey(imageDate2))
+                            .circleCrop()
+
+                    )
                     .into(holder.friendImage);
         }else{
 
@@ -99,7 +106,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 currentFriend = friends.get(position);
-                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_SHORT).show();
 
                 if(donateNow == false){
                     Intent intent = new Intent(context, DonateSearchCharity.class);

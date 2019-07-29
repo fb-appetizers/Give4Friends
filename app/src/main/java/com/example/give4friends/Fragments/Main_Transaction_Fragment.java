@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
 import com.example.give4friends.DonateActivity;
@@ -69,6 +70,8 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
 
+
+
         // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
@@ -97,6 +100,9 @@ public class Main_Transaction_Fragment extends Fragment {
                 transactions.clear();
                 populate();
                 swipeContainer.setRefreshing(false);
+
+
+                //You might also want to clear the glide cache data here??
             }
 
         });
@@ -170,9 +176,6 @@ public class Main_Transaction_Fragment extends Fragment {
                 Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_SHORT).show();
 
                 return true;
-            case R.id.likedTransactions:
-                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
-                return true;
             default:
 //                Log.e()
         }
@@ -191,14 +194,9 @@ public class Main_Transaction_Fragment extends Fragment {
 
         if(transactions.size() > 0 ){
 
-
-
             Date createdAt = transactions.get(transactions.size() - 1).getCreatedAt();
 
             postQuery.whereLessThan(Transaction.KEY_CREATED_AT, createdAt);
-//            Toast.makeText(getContext(),createdAt.toString() , Toast.LENGTH_SHORT).show();
-
-
 
         }
 
@@ -224,17 +222,7 @@ public class Main_Transaction_Fragment extends Fragment {
                         }
                     }
 
-//                    for(Transaction transaction : transactionList){
-//
-//                        transactions.add(transaction);
-//
-//                        try {
-//                            transaction.save();
-//                        } catch (ParseException e1) {
-//                            e1.printStackTrace();
-//                        }
-//
-//                    }
+
                     transactionAdapter.notifyDataSetChanged();
                 }else {
                     Log.e("MainActivity", "Can't get transaction");
@@ -246,6 +234,8 @@ public class Main_Transaction_Fragment extends Fragment {
         });
         return false;
     }
+
+
 
 
 }

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.models.Transaction;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -25,6 +26,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
@@ -60,14 +62,16 @@ public class DonateFinalActivity extends AppCompatActivity {
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
 
-        ParseFile profilePic = currentFriend.getParseFile("profileImage");
+        String imageURL = currentFriend.getString("profileImageURL");
 
-        if(profilePic != null){
+        if(imageURL != null){
+            Date imageDate = currentFriend.getDate("profileImageCreatedAt");
             Glide.with(this)
-                    .load(profilePic.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
-                            .circleCrop())
+                            .circleCrop()
+                            .signature(new ObjectKey(imageDate)))
                     .into(friendsImage);
         }
 

@@ -1,12 +1,14 @@
 package com.example.give4friends;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.util.Calendar;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,8 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 //import com.braintreepayments.cardform.view.CardForm;
 import com.bumptech.glide.Glide;
@@ -60,8 +62,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
-    private Bitmap photo;
+    private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
     private File photoFile;
+    private String photoFileName = "image.png";
+    private Bitmap photo;
 
 
     @Override
@@ -86,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //onLaunchCamera();
-                ProfilePicture.changePhoto(context);
+                changePhoto();
             }
         });
 
@@ -109,8 +113,34 @@ public class SignUpActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                photo = (Bitmap) data.getExtras().get("data");
-                photo = ProfilePicture.RotateBitmapFromBitmap(photo,270);
+
+                photo = ProfilePicture.rotateBitmapOrientation(photoFile.getAbsolutePath());
+
+                Glide.with(context)
+                        .load(photo)
+                        .apply(new RequestOptions()
+                                .transforms(new CenterCrop(), new RoundedCorners(20))
+                                .circleCropTransform()
+                                .placeholder(R.drawable.user_outline_24)
+                                .error(R.drawable.user_outline_24))
+                        .into(profilePic);
+
+
+            } else { // Result was a failure
+                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri photoUri = data.getData();
+                try {
+                    photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+//                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //photoFile = new File(photoUri.getPath());
+                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+
 
                 Glide.with(context)
                         .load(photo)
@@ -124,38 +154,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-            } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri photoUri = data.getData();
-                try {
-                    photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
-                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //photoFile = new File(photoUri.getPath());
-                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
-
-                try {
-                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), photoUri);
-                    Bitmap selectedImageRotate = ProfilePicture.RotateBitmapFromBitmap(selectedImage,90);
-
-                    Glide.with(context)
-                            .load(selectedImageRotate)
-                            .apply(new RequestOptions()
-                                    .transforms(new CenterCrop(), new RoundedCorners(20))
-                                    .circleCropTransform()
-                                    .placeholder(R.drawable.user_outline_24)
-                                    .error(R.drawable.user_outline_24))
-                            .into(profilePic);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
         }
 
@@ -165,7 +163,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(String firstName, String lastName, String email, String username, String password) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
-//        User user = new User();
 
 
         user.setEmail(email);
@@ -180,31 +177,16 @@ public class SignUpActivity extends AppCompatActivity {
                 if (e == null) {
                     Toast.makeText(context,"Success sign-up", Toast.LENGTH_SHORT).show();
                     Log.d("signUp", "Sign Up Successful");
-                    ParseUser user2 = ParseUser.getCurrentUser();
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+
                     if(photo!=null) {
-                        ParseFile parseFile = ProfilePicture.conversionBitmapParseFile(photo);
-                        try {
-                            parseFile.save();
-                            user2.put("profileImage", parseFile);
-                            parseFile.cancel();
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
+                        String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+                        new ProfilePicture.UploadImage(photo, imagePath, getApplicationContext()).execute();
+                        currentUser.put("profileImageURL", URL_HEADER + imagePath + ".JPG");
+                        currentUser.put("profileImageCreatedAt", Calendar.getInstance().getTime());
                     }
 
-
-////                    user2.put("profileImage", ProfilePicture.conversionBitmapParseFile(photo));
-////
-////
-////                    user2.saveInBackground(new SaveCallback() {
-////                        @Override
-////                        public void done(ParseException e) {
-////                            if (e == null) {
-//                                Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
-
-
-
-                    user2.saveInBackground(new SaveCallback() {
+                    currentUser.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
@@ -225,6 +207,56 @@ public class SignUpActivity extends AppCompatActivity {
 
         });
 
+    }
+
+
+
+    public void changePhoto(){
+        String[] options = {"Take photo", "Choose from gallery"};
+        android.app.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Change Profile Picture");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    onLaunchCamera(); }
+                else {
+                    onLaunchSelect();
+                }
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void onLaunchCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        photoFile = ProfilePicture.getPhotoFileUri(photoFileName, this);
+
+
+        Uri fileProvider = FileProvider.getUriForFile(this, "com.example.give4friends", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
+    public void onLaunchSelect() {
+
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE);
+        }
     }
 
 }

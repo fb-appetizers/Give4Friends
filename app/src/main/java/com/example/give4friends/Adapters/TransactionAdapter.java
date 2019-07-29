@@ -18,9 +18,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
@@ -35,6 +37,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -102,11 +105,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
                         //update transaction
                         //increment likes for transaction
-                        Integer likesCount = ((Integer) transaction.getKeyLikesCount())+1;
 
-                        if(likesCount !=0) {
+                        Number likesCountNum = transaction.getKeyLikesCount();
+                        Integer likesCountInt;
+                        if( likesCountNum != null){
+                            likesCountInt = ((Integer) likesCountNum)+1;
+                        }else{
+                            likesCountInt = 1;
+                        }
+
+
+                        if(likesCountInt !=0) {
                             holder.tvLikesCount.setVisibility(View.VISIBLE);
-                            holder.tvLikesCount.setText((likesCount).toString());
+                            holder.tvLikesCount.setText((likesCountInt).toString());
                         }else{
                             holder.tvLikesCount.setVisibility(View.INVISIBLE);
                         }
@@ -164,11 +175,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             } else {
                 holder.amount.setText(((Integer) 0).toString());
             }
+
             if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())){
                 holder.amount.setTextColor( context.getResources().getColor(R.color.colorPrimaryDark));
+
+                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setRotation(180);
+                holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.colorPrimaryDark)));
+
             }
             else{
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
+                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setRotation(0);
+                holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.mainBlue)));
             }
         }
 
@@ -230,13 +250,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
-                ParseFile image = object.getParseFile("profileImage");
-                if(image != null){
+
+                String imageURL = object.getString("profileImageURL");
+
+                if(imageURL != null){
+                    Date imageDate = object.getDate("profileImageCreatedAt");
                     Glide.with(context)
-                            .load(image.getUrl())
+                            .load(imageURL)
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
+                                            .signature(new ObjectKey(imageDate))
+//                                    .placeholder(R.drawable.instagram_user_outline_24)
+
                                     )
 
                             .into(holder.friendPhoto);
@@ -256,14 +282,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void done(ParseObject object, ParseException e) {
 
-                ParseFile image = object.getParseFile("profileImage");
 
-                if(image != null){
+                String imageURL = object.getString("profileImageURL");
+                if(imageURL != null){
+                    Date imageDate = object.getDate("profileImageCreatedAt");
+
                     Glide.with(context)
-                            .load(image.getUrl())
+                            .load(imageURL)
+
                             .apply(new RequestOptions()
                                     .transforms(new CenterCrop(), new RoundedCorners(20))
                                     .circleCrop()
+                                    .signature(new ObjectKey(imageDate))
+//                                            .placeholder(R.drawable.instagram_user_outline_24)
+
                                     )
                             .into(holder.donorPhoto);
                 }else{
@@ -356,6 +388,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ImageView pin;
         public TextView amount;
         public TextView tvLikesCount;
+        public ImageView ivarrow;
 
 
         //like button
@@ -378,6 +411,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             pin = itemView.findViewById(R.id.ivPin);
             amount = itemView.findViewById(R.id.tvAmount);
             tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
+            ivarrow = itemView.findViewById(R.id.ivarrow);
         }
     }
 

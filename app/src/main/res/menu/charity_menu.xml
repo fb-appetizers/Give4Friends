@@ -5,8 +5,8 @@
 
 
     <item
-        android:id="@+id/transactionHistory"
-        android:title="Transaction History" />
+        android:id="@+id/likedTransactionsProfile"
+        android:title="Liked Transactions" />
 
     <item
         android:id="@+id/searchFriend"

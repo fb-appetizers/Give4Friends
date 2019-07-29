@@ -9,9 +9,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.util.Calendar;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -22,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.give4friends.Cutom_Classes.BitmapScaler;
 import com.example.give4friends.ProfileActivity;
+import com.example.give4friends.R;
 import com.example.give4friends.SignUpActivity;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -33,17 +37,27 @@ import com.parse.SaveCallback;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
 
 import static android.app.Activity.RESULT_OK;
 
 public final class ProfilePicture {
     public static final String APP_TAG = "SignUpActivity";
+    private static final String SERVER_ADDRESS = "https://give4friends.000webhostapp.com/";
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
     private static Bitmap photo;
     public static String photoFileName = "photo.jpg";
-    static File photoFile;
+    public static File photoFile;
     static Activity activity;
 
 
@@ -230,17 +244,23 @@ public final class ProfilePicture {
         });
 
 
-
-
-
     }
 
+    public static void updatePhotoURL(ParseUser parseUser, String url) {
 
+        parseUser.put("profileImageURL", url);
 
-    public static void updatePhotoinTransactions(ParseUser parseUser){
+        parseUser.put("profileImageCreatedAt", Calendar.getInstance().getTime());
 
+        parseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!=null){
+                    e.printStackTrace();
+                }
 
-
+            }
+        });
 
 
     }
@@ -255,5 +275,87 @@ public final class ProfilePicture {
 
         return parseFile;
     }
+
+
+
+    public static class UploadImage extends AsyncTask<Void,Void,Void>{
+
+
+        Bitmap image;
+        String name;
+        Context context;
+        ProgressBar progressBarHome;
+
+
+        public UploadImage(Bitmap image, String name, Context context) {
+            this.image = image;
+            this.name = name;
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            progressBarHome = ((Activity)context).findViewById(R.id.progressBarHome);
+            showProgressBar();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+
+            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("image", encodedImage));
+            dataToSend.add(new BasicNameValuePair("name",name));
+
+
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost(SERVER_ADDRESS + "SavePicture.php");
+
+            try {
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            hideProgressBar();
+            Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
+        }
+
+        public void showProgressBar() {
+            // Show progress item
+            progressBarHome.setVisibility(View.VISIBLE);
+        }
+
+        public void hideProgressBar() {
+            // Hide progress item
+            progressBarHome.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private cz.msebera.android.httpclient.params.HttpParams getHttpRequestParams(){
+
+        cz.msebera.android.httpclient.params.HttpParams httpRequestParams = new BasicHttpParams();
+
+
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setConnectionTimeout(httpRequestParams,1000*30);
+        cz.msebera.android.httpclient.params.HttpConnectionParams.setSoTimeout(httpRequestParams, 100*30);
+
+        return httpRequestParams;
+    }
+
+
+
+
+
 }
 

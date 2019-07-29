@@ -80,6 +80,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 if (count == 0) {
                     friends.clear();
                     adapter.notifyDataSetChanged();
+                    populateRelations();
                 }
                 if (count > 0) {
                     queryFriends(searchFriend.getText().toString());

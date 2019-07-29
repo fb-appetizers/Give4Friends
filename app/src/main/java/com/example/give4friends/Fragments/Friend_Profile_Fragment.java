@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,9 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
@@ -37,6 +40,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Friend_Profile_Fragment extends Fragment {
@@ -118,16 +122,20 @@ public class Friend_Profile_Fragment extends Fragment {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
 
         //Handles images
-        ParseFile file = myUser.getParseFile("profileImage");
 
-        if (file!=null) {
+        String imageURL = myUser.getString("profileImageURL");
+        if (imageURL!=null) {
+            Date imageDate = myUser.getDate("profileImageCreatedAt");
             Glide.with(context)
-                    .load(file.getUrl())
+                    .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
                             .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24))
+                            .error(R.drawable.user_outline_24)
+                            .signature(new ObjectKey(imageDate))
+
+                    )
                     .into(ivProfileImage);
         }
         else{
@@ -183,10 +191,12 @@ public class Friend_Profile_Fragment extends Fragment {
                 return true;
             case R.id.TransactionHistory:
                 Toast.makeText(context, "Transaction History selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, HistoryActivity.class);
-                intent.putExtra("user", myUser);
-                intent.putExtra("friend", true);
-                startActivity(intent);
+
+                Fragment fragment = new History_Fragment(myUser, true);
+                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.flContainer, fragment)
+                        .addToBackStack(null).commit();
                 return true;
             default:
 //                Log.e()
@@ -208,7 +218,7 @@ public class Friend_Profile_Fragment extends Fragment {
                     // There was an error
                 } else {
                     if(objects.size() == 0) {
-                        Toast.makeText(context, myUser.getString("firstName") + " does not have any favorites yet", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, myUser.getString("firstName") + " does not have any favorites yet", Toast.LENGTH_SHORT).show();
                     }
                     // results have all the charities the current user liked.
                     // go through relation adding charities

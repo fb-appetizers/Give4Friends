@@ -67,4 +67,5 @@ dependencies {
 
 
     implementation 'com.github.scottyab:showhidepasswordedittext:0.6'
+
 }

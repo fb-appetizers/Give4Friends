@@ -1,6 +1,7 @@
 package com.example.give4friends;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +19,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
+import com.example.give4friends.Fragments.History_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +36,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
     final Fragment fragment1 = new Main_Transaction_Fragment();
     final Fragment fragment2 = new Charity_Search_Fragment();
     final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
+    final Fragment fragment4 = new History_Fragment(ParseUser.getCurrentUser(), false);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,10 @@ public class Main_Fragment_Branch extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+                //This thread clears the Glide cache every time you switch fragments. In order make the images display faster
+                // while also allowing you to change the image profiles if you want.
+
+
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
 
@@ -73,12 +82,17 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
+
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
+
                         break;
 
                     default:
+
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
                         break;
@@ -86,6 +100,9 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 return true;
             }
+
+
+
         });
 
 
@@ -137,16 +154,5 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.charity_menu, menu);
-//        return true;
-////        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        return true;
-//    }
+
 }

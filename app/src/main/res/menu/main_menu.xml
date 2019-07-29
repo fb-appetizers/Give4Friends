@@ -8,10 +8,7 @@
         android:id="@+id/searchPeople"
         android:enabled="true"
         android:title="Search People" />
-    <item
-        android:id="@+id/likedTransactions"
-        android:enabled="true"
-        android:title="Liked Transactions" />
+
 
 
 </menu>
