@@ -41,11 +41,14 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<Object> items;
     private Context context;
     private boolean skip;
+    private boolean from_charity_search;
     private Charity newCharity;
 
-    public CharitySuggAdapter(ArrayList<Object> items, boolean skip) {
+    public CharitySuggAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search) {
         this.items = items;
         this.skip = skip;
+        // If the class is called from charity search then disable the buttons on the dialog fragment that pops up
+        this.from_charity_search = from_charity_search;
     }
 
     private final int TEXT = 0, CHARITY = 1;
@@ -102,7 +105,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public boolean onLongClick(View view) {
             int position = getAdapterPosition();
             CharityAPI charity = (CharityAPI) items.get(position);
-            CustomDialog dialog = new CustomDialog(charity);
+            CustomDialog dialog = new CustomDialog(charity, from_charity_search);
             dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialog");
             return false;
         }
