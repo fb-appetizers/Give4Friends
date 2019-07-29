@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 
 import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DonateActivity extends AppCompatActivity implements Serializable {
-    private EditText searchFriend;
+    private SearchView searchFriend;
     private Button cancelSearchBtn;
     private RecyclerView rvFriends;
     public static ParseUser currentFriend;
@@ -53,7 +54,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         donateNow = intent.getBooleanExtra("donateNow", false);
 
         searchFriend = findViewById(R.id.searchFriend);
-        cancelSearchBtn = findViewById(R.id.cancelSearchBtn);
         rvFriends = findViewById(R.id.rvFriends);
         cancel = findViewById(R.id.ibcancelFinal);
 
@@ -62,36 +62,34 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         //recyclerSetUp();
         populateRelations();
 
-        cancelSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchFriend.clearFocus();
-                searchFriend.getText().clear();
-            }
-        });
+        searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-        searchFriend.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-                if (count == 0) {
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.equals("")){
                     friends.clear();
                     adapter.notifyDataSetChanged();
                     populateRelations();
-                }
-                if (count > 0) {
-                    queryFriends(searchFriend.getText().toString());
-                }
-            }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
 
+                }
+                else{
+                    queryFriends(s.toString());
+                }
+
+
+                return false;
             }
         });
+
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

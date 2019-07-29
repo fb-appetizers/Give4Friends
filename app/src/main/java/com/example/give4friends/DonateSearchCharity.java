@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -52,7 +53,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     private TextView topResult;
     private ImageView friendsImage;
     public static Charity charity;
-    private EditText etCharity;
+    private SearchView svCharity;
     private RecyclerView rvCharitySearch;
     private Button btnCancel;
     private ImageButton cancel;
@@ -72,9 +73,8 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         setUpFriend();
 
-        etCharity = findViewById(R.id.etCharity);
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
-        etCharity = findViewById(R.id.etCharity);
+        svCharity = findViewById(R.id.svCharity);
         btnCancel = findViewById(R.id.btnCancel);
         cancel = findViewById(R.id.ibcancelFinal);
         topResult = findViewById(R.id.topResult);
@@ -83,13 +83,18 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         topResult.setVisibility(View.GONE);
 
-        etCharity.addTextChangedListener(new TextWatcher() {
+        svCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String s) {
+                return false;
             }
+
+
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
-                if (count == 0 ){
+            public boolean onQueryTextChange(String s) {
+                if (s.equals("")){
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
@@ -99,15 +104,22 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     topResult.setVisibility(View.GONE);
                     //hideProgressBar();
                 }
-                if(count > 0 ){
-                    getResponse(etCharity.getText().toString(),false);
+                else{
+                    getResponse(s.toString(),false);
                 }
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {
 
+
+                return false;
             }
         });
+
+
+
+
+
+
+
+
 
         items = new ArrayList<>();
 
@@ -119,16 +131,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         getFavs();
 
-        //When you hit submit the recycler view updates
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                etCharity.getText().clear();
-                etCharity.clearFocus();
-
-            }
-        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
