@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
 import com.example.give4friends.Fragments.History_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
+import com.example.give4friends.Fragments.Search_User_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
@@ -37,16 +38,14 @@ public class Main_Fragment_Branch extends AppCompatActivity {
     final Fragment fragment2 = new Charity_Search_Fragment();
     final Fragment fragment3 = new User_Profile_Fragment(ParseUser.getCurrentUser(), false);
     final Fragment fragment4 = new History_Fragment(ParseUser.getCurrentUser(), false);
+    //final Fragment fragment5 = new Search_User_Fragment();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         // Testing the Fragment manager
 
         setContentView(R.layout.activity_fragment_home);
         suggBtn = findViewById(R.id.suggBtn);
-
 
         suggBtn.setBackgroundDrawable(null);
 
@@ -70,7 +69,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 //This thread clears the Glide cache every time you switch fragments. In order make the images display faster
                 // while also allowing you to change the image profiles if you want.
-
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
@@ -146,8 +144,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
-
-
 
             }
         });

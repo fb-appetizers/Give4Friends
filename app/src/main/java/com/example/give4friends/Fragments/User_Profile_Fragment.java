@@ -286,7 +286,6 @@ public class User_Profile_Fragment extends Fragment {
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
-
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();

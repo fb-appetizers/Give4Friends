@@ -133,6 +133,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     return;
                 }
                 friends.clear();
+                adapter.notifyDataSetChanged();
                 friends.addAll(objects);
                 adapter.notifyDataSetChanged();
             }
@@ -164,7 +165,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     private void recyclerSetUp(){
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         rvFriends.setLayoutManager(linearLayoutManager);
-        adapter = new DonateAdapter(friends);
+        adapter = new DonateAdapter(friends, true);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -117,6 +117,7 @@ public class Charity_Search_Fragment extends Fragment {
                         client.getClient().dispatcher().cancelAll();
                     }
 
+
                     getEffective();
                 }
                 else{
