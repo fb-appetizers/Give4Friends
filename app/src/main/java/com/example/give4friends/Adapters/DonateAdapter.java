@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,13 +58,14 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
         String imageURL = user.getString("profileImageURL");
         if(imageURL != null){
-            Date imageDate = user.getDate("profileImageCreatedAt");
+            Date imageDate2 = user.getDate("profileImageCreatedAt");
             Glide.with(context)
                     .load(imageURL)
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .signature(new ObjectKey(imageDate2))
                             .circleCrop()
-                            .signature(new ObjectKey(imageDate))
+
                     )
                     .into(holder.friendImage);
         }else{

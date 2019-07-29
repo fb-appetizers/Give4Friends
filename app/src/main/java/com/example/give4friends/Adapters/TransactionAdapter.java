@@ -278,6 +278,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 String imageURL = object.getString("profileImageURL");
                 if(imageURL != null){
                     Date imageDate = object.getDate("profileImageCreatedAt");
+
                     Glide.with(context)
                             .load(imageURL)
 
