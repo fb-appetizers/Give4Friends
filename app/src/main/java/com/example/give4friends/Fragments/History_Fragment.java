@@ -40,7 +40,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
     public History_Fragment(ParseUser myUser, boolean friend) {
         // This sets the value of myUser using a constructor
         this.myUser = myUser;
-        this.friend =friend;
+        this.friend = friend;
     }
 
 
@@ -172,7 +172,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
 
 
-    private void configureToolbarStripped() {
+    protected void configureToolbarStripped() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
@@ -218,6 +218,15 @@ public class History_Fragment extends Main_Transaction_Fragment {
             }
         });
 
+    }
+
+    private void setUp(){
+        if(!friend){
+            configureToolbar();
+        }else {
+            configureToolbarStripped();
+        }
+        setHasOptionsMenu(false);
     }
 
 

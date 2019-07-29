@@ -4,14 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -45,7 +41,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
-import com.example.give4friends.LikedTransactions;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -58,20 +53,11 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
-import cz.msebera.android.httpclient.client.methods.HttpPost;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
-import cz.msebera.android.httpclient.params.BasicHttpParams;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -287,15 +273,18 @@ public class User_Profile_Fragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
-                Intent intent = new Intent(getContext(), LikedTransactions.class);
-                startActivity(intent);
+                Fragment fragment1 = new Liked_Transactions_Fragment(ParseUser.getCurrentUser(), true);
+                FragmentManager fragmentManager1 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager1.beginTransaction().
+                        replace(R.id.flContainer, fragment1)
+                        .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.friends:
-                Fragment fragment = new Friend_List_Fragment();
-                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-                fragmentManager.beginTransaction().
-                        replace(R.id.flContainer, fragment)
+                Fragment fragment2 = new Friend_List_Fragment();
+                FragmentManager fragmentManager2 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager2.beginTransaction().
+                        replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;
