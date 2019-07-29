@@ -1,8 +1,10 @@
 package com.example.give4friends.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,25 +28,31 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
-import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
 
-import com.parse.ParseFile;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
 import static com.example.give4friends.DonateActivity.donateNow;
 
 public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder>{
     Context context;
-    private List<ParseUser> friends;
+    private List<ParseUser> users;
+    private ParseRelation<ParseUser> friends;
+    private List<String> localFriends;
     boolean donate;
 
-    public DonateAdapter(List<ParseUser> friends, boolean donate){ this.friends = friends; this.donate = donate; }
+    public DonateAdapter(List<ParseUser> users, boolean donate, @Nullable ParseRelation<ParseUser> friends, @Nullable ArrayList<String> localFriends){
+        this.users = users;
+        this.donate = donate;
+        this.friends = friends;
+        this.localFriends = localFriends;
+    }
 
     @NonNull
     @Override
@@ -57,7 +66,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ParseUser user = friends.get(position);
+        ParseUser user = users.get(position);
 
         holder.friendsName.setText(user.get("firstName") + " " + user.get("lastName"));
         holder.friendsUserName.setText("@" + user.getUsername());
@@ -94,11 +103,41 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         else{
             holder.addFriend.setVisibility(View.VISIBLE);
             holder.addFriend.setClickable(true);
-            //TODO gotta fix this - in the process of setting picture as clickable to go to proifile
+
+            //check if already friend
+            if(localFriends != null && localFriends.contains(user.getObjectId())){
+                holder.addFriend.setColorFilter(Color.GRAY);
+                // TODO add a onClick listener that brings up a popup asking to confirm unfriending - remove from local and relation
+                holder.addFriend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        removeFriend(user,holder);
+
+                    }
+                });
+
+            }
+            else{
+                holder.addFriend.setColorFilter(Color.BLUE);
+                holder.addFriend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // new friends
+                        holder.addFriend.setColorFilter(Color.GRAY);
+                        localFriends.add(user.getObjectId());
+                        friends.add(user);
+                        ParseUser.getCurrentUser().saveInBackground();
+
+
+                    }
+                });
+            }
+
+
             holder.friendImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    friends.clear();
+                    users.clear();
                     Fragment fragment = new Friend_Profile_Fragment(user);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
@@ -107,13 +146,12 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                 }
             });
 
-
         }
     }
 
     @Override
     public int getItemCount() {
-        return this.friends.size();
+        return this.users.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -139,7 +177,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         public void onClick(View view) {
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                currentFriend = friends.get(position);
+                currentFriend = users.get(position);
                 Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_SHORT).show();
 
                 if(donateNow == false){
@@ -153,4 +191,26 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             }
         }
     }
+
+    public void removeFriend(ParseUser user, @NonNull ViewHolder holder){
+        String[] options = {"Yes", "Cancel"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("Are you sure you want to unfriend?");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    // remove friend
+                    localFriends.remove(user.getObjectId());
+                    friends.remove(user);
+                    ParseUser.getCurrentUser().saveInBackground();
+                    holder.addFriend.setColorFilter(Color.BLUE);
+                }
+
+            }
+        });
+        dialog.show();
+
+    }
+
 }

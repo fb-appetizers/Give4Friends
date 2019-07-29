@@ -1,8 +1,5 @@
 package com.example.give4friends.Fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +23,6 @@ import android.widget.TextView;
 
 import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.R;
-import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -50,7 +46,9 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     private ImageButton cancel;
 
 
-    ArrayList<ParseUser> friends;
+    ArrayList<ParseUser> users;
+    ParseRelation<ParseUser> friends;
+    ArrayList<String> localFriends;
     DonateAdapter adapter;
 
 
@@ -68,7 +66,8 @@ public class Search_User_Fragment extends Fragment implements Serializable {
         rvFriends = view.findViewById(R.id.rvFriends);
         cancel = view.findViewById(R.id.ibcancelFinal);
 
-        friends = new ArrayList<ParseUser>();
+        users = new ArrayList<ParseUser>();
+        localFriends = new ArrayList<String>();
 
         //recyclerSetUp();
         populateRelations();
@@ -91,7 +90,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
                 if (count == 0) {
-                    friends.clear();
+                    users.clear();
                     adapter.notifyDataSetChanged();
                     populateRelations();
                 }
@@ -109,7 +108,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                friends.clear();
+                users.clear();
                 adapter.notifyDataSetChanged();
 
             }
@@ -167,44 +166,68 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                     e.printStackTrace();
                     return;
                 }
-                friends.clear();
-                friends.addAll(objects);
+                users.clear();
+                users.addAll(objects);
                 adapter.notifyDataSetChanged();
             }
         });
     }
 
     private void populateRelations() {
-        //Get relation
+        //Get relation for recents
         final ParseRelation<ParseUser> recentFriends = ParseUser.getCurrentUser().getRelation("friendsRecent");
         //Get all charities in relation
         recentFriends.getQuery().findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-                friends.clear();
+                users.clear();
                 if (e != null) {
                     // There was an error
                 } else {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
-                        friends.add((ParseUser) objects.get(i));
+                        users.add((ParseUser) objects.get(i));
                     }
                 }
-
-                recyclerSetUp();
+                getFriends();
 
             }
 
         });
     }
 
-    private void recyclerSetUp(){
+    private void recyclerSetUp() {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvFriends.setLayoutManager(linearLayoutManager);
-        adapter = new DonateAdapter(friends, false);
+        adapter = new DonateAdapter(users, false, friends, localFriends);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+
+    private void getFriends() {
+        friends = ParseUser.getCurrentUser().getRelation("friends");
+        friends.getQuery().findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                localFriends.clear();
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseUser tempFriend = (ParseUser) objects.get(i);
+                        localFriends.add(tempFriend.getObjectId());
+                    }
+                }
+                recyclerSetUp();
+
+            }
+
+
+        });
     }
 }
 
