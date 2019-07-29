@@ -61,10 +61,11 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        searchFriend = view.findViewById(R.id.searchFriend);
+        searchFriend = view.findViewById(R.id.friends);
         cancelSearchBtn = view.findViewById(R.id.cancelSearchBtn);
         rvFriends = view.findViewById(R.id.rvFriends);
-        cancel = view.findViewById(R.id.ibcancelFinal);
+        cancel = view.findViewById(R.id.ibcancelFinal
+        );
 
         users = new ArrayList<ParseUser>();
         localFriends = new ArrayList<String>();
@@ -225,7 +226,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                 recyclerSetUp();
 
             }
-
 
         });
     }

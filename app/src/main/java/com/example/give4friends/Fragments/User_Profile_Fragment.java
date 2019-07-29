@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.LikedTransactions;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -285,7 +287,17 @@ public class User_Profile_Fragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
+                Intent intent = new Intent(getContext(), LikedTransactions.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.friends:
+                Fragment fragment = new Friend_List_Fragment();
+                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.flContainer, fragment)
+                        .addToBackStack(null).commit();
+                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();

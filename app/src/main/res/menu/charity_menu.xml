@@ -9,7 +9,7 @@
         android:title="Liked Transactions" />
 
     <item
-        android:id="@+id/searchFriend"
+        android:id="@+id/friends"
         android:title="Friends" />
 
 
