@@ -356,6 +356,7 @@ public class User_Profile_Fragment extends Fragment {
                         .into(ivProfileImage);
 
                 String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
+
                 new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
                 ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
