@@ -81,9 +81,6 @@ public class Charity_Profile_Fragment extends Fragment {
         rvCPProfile.setLayoutManager(linearLayoutManager);
 
 
-        populateProfile();
-        populateComments();
-
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerCharityProfile);
 
@@ -118,7 +115,9 @@ public class Charity_Profile_Fragment extends Fragment {
 
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                populateComments();
+                if(totalItemsCount > MAX_NUMBER_OF_PROFILES) {
+                    populateComments();
+                }
 
 
             }
@@ -129,14 +128,19 @@ public class Charity_Profile_Fragment extends Fragment {
         rvCPProfile.addOnScrollListener(scrollListener);
 
 
+        items.clear();
+        itemsAdapter.notifyDataSetChanged();
+        populateProfile();
+        populateComments();
+
 
     }
 
 
     private void populateProfile(){
-
         items.add(charity);
         itemsAdapter.notifyItemInserted(items.size() - 1);
+
     }
 
 
@@ -146,8 +150,6 @@ public class Charity_Profile_Fragment extends Fragment {
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
-
-
 
 
 
@@ -170,7 +172,6 @@ public class Charity_Profile_Fragment extends Fragment {
 
                     // If there are items that aren't the regular
                     if(items.size() > MAX_NUMBER_OF_PROFILES ){
-
 
                         commentQuery.whereLessThan("createdAt",  LastCommentCreatedAt);
 
