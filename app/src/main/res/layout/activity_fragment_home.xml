@@ -59,7 +59,7 @@
         android:id="@+id/progressBarHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="316dp"
         android:layout_marginEnd="180dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"

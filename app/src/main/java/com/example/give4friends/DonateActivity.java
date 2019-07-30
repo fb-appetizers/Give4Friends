@@ -7,19 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import com.example.give4friends.Adapters.DonateAdapter;
-import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
-import com.example.give4friends.models.User;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -53,7 +48,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);
 
-        searchFriend = findViewById(R.id.searchFriend);
+        searchFriend = findViewById(R.id.friends);
         rvFriends = findViewById(R.id.rvFriends);
         cancel = findViewById(R.id.ibcancelFinal);
 
@@ -77,14 +72,10 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     friends.clear();
                     adapter.notifyDataSetChanged();
                     populateRelations();
-
-
                 }
                 else{
                     queryFriends(s.toString());
                 }
-
-
                 return false;
             }
         });
@@ -131,6 +122,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     return;
                 }
                 friends.clear();
+                adapter.notifyDataSetChanged();
                 friends.addAll(objects);
                 adapter.notifyDataSetChanged();
             }
@@ -162,7 +154,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     private void recyclerSetUp(){
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         rvFriends.setLayoutManager(linearLayoutManager);
-        adapter = new DonateAdapter(friends);
+        adapter = new DonateAdapter(friends, true, null, null);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(this));
     }

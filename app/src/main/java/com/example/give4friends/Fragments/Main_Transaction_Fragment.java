@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -68,17 +70,12 @@ public class Main_Transaction_Fragment extends Fragment {
         configureToolbar();
         setHasOptionsMenu(true);
 
-
-
-
-
         // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();
         // Construct Adapter
         transactionAdapter = new TransactionAdapter(transactions, true);
-
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -98,9 +95,10 @@ public class Main_Transaction_Fragment extends Fragment {
                 scrollListener.resetState();
                 //Clear the old set when reloading
                 transactions.clear();
+                transactionAdapter.notifyDataSetChanged();
+
                 populate();
                 swipeContainer.setRefreshing(false);
-
 
                 //You might also want to clear the glide cache data here??
             }
@@ -116,6 +114,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
         //Clear the old set when reloading
         transactions.clear();
+        transactionAdapter.notifyDataSetChanged();
         populate();
 
 
@@ -123,18 +122,14 @@ public class Main_Transaction_Fragment extends Fragment {
 
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-
                 populate();
 
             }
-
-
         };
 
         scrollListener.resetState();
 
         rvTransactions.addOnScrollListener(scrollListener);
-
 
     }
 
@@ -143,10 +138,8 @@ public class Main_Transaction_Fragment extends Fragment {
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
-
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Give4Friends");
-
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
@@ -156,7 +149,6 @@ public class Main_Transaction_Fragment extends Fragment {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
 
-
             }
         });
     }
@@ -164,7 +156,6 @@ public class Main_Transaction_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
-
         main_activity_inflater.inflate(R.menu.main_menu, menu);
 
     }
@@ -173,7 +164,16 @@ public class Main_Transaction_Fragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.searchPeople:
+                // Create a new fragment instead of an activity
+                Fragment fragment = new Search_User_Fragment();
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.flContainer, fragment)
+                        .addToBackStack(null).commit();
+
+
                 Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_SHORT).show();
+
 
                 return true;
             default:
@@ -206,9 +206,6 @@ public class Main_Transaction_Fragment extends Fragment {
             @Override
             public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-
-
-
                     for(int i=0;i<transactionList.size();i++){
                         Transaction transaction = transactionList.get(i);
                         transactions.add(transaction);
@@ -221,7 +218,6 @@ public class Main_Transaction_Fragment extends Fragment {
                             }
                         }
                     }
-
 
                     transactionAdapter.notifyDataSetChanged();
                 }else {

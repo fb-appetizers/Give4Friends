@@ -15,26 +15,22 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Cutom_Classes.CustomDialog;
+import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
-import com.example.give4friends.models.User;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
-import static com.example.give4friends.DonateActivity.currentFriend;
 
 public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -105,8 +101,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public boolean onLongClick(View view) {
             int position = getAdapterPosition();
             CharityAPI charity = (CharityAPI) items.get(position);
-            CustomDialog dialog = new CustomDialog(charity, from_charity_search);
-            dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialog");
+            CustomDialogCharity dialog = new CustomDialogCharity(charity, from_charity_search);
+            dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
             return false;
         }
 

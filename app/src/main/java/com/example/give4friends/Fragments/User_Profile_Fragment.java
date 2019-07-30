@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
+import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
+
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -147,8 +151,6 @@ public class User_Profile_Fragment extends Fragment {
             }
         });
 
-
-
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
         // initialize the array list of charities
@@ -201,7 +203,7 @@ public class User_Profile_Fragment extends Fragment {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
         //Handles images
 
-        String imageURL = myUser.getString("profileImageURL");
+        final String imageURL = myUser.getString("profileImageURL");
 
 
         if (imageURL!=null) {
@@ -229,6 +231,19 @@ public class User_Profile_Fragment extends Fragment {
                             .error(R.drawable.user_outline_24))
                     .into(ivProfileImage);
         }
+
+
+        ivProfileImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Date imageDate = myUser.getDate("profileImageCreatedAt");
+                CustomDialogProfileImage dialog = new CustomDialogProfileImage(imageURL, imageDate);
+                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                return false;
+            }
+        });
     }
 
     //add tool bar
@@ -287,8 +302,20 @@ public class User_Profile_Fragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
+                Fragment fragment1 = new Liked_Transactions_Fragment(ParseUser.getCurrentUser(), true);
+                FragmentManager fragmentManager1 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager1.beginTransaction().
+                        replace(R.id.flContainer, fragment1)
+                        .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
-
+                return true;
+            case R.id.friends:
+                Fragment fragment2 = new Friend_List_Fragment();
+                FragmentManager fragmentManager2 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager2.beginTransaction().
+                        replace(R.id.flContainer, fragment2)
+                        .addToBackStack(null).commit();
+                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
