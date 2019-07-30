@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tvCPComment1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvCPComment"
+        android:id="@+id/tvComment"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,11 +16,11 @@
         android:text="Comment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/ivCommentProfile"
+        app:layout_constraintTop_toBottomOf="@+id/tvCommentUsername" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivCommentProfile"
         android:layout_width="101dp"
         android:layout_height="87dp"
         android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
         tools:srcCompat="@tools:sample/avatars[4]" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvCommentUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,6 +38,6 @@
         android:layout_marginEnd="39dp"
         android:text="@string/prompt_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/ivCommentProfile"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

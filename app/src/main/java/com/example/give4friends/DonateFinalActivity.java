@@ -19,13 +19,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.models.Transaction;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import static com.example.give4friends.DonateActivity.charityName2;
@@ -53,12 +51,12 @@ public class DonateFinalActivity extends AppCompatActivity {
         friendsName = findViewById(R.id.friendsName);
         friendsUserName = findViewById(R.id.friendsUserName);
         friendsImage = findViewById(R.id.friendsImage);
-        charityName = findViewById(R.id.charityName);
+        charityName = findViewById(R.id.tvCommentsCharityName);
 
         amount = findViewById(R.id.amount);
         //amountEntered = findViewById(R.id.amountEntered);
-        message = findViewById(R.id.donationMessage);
-        charityName = findViewById(R.id.charityName);
+        message = findViewById(R.id.etcommentMessage);
+        charityName = findViewById(R.id.tvCommentsCharityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
 

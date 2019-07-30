@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/etcommentMessage"
+        android:layout_width="0dp"
+        android:layout_height="445dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/constraint_border"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Comment..."
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/commentSubmitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorAccent"
+        android:gravity="clip_horizontal|center|clip_vertical|center_horizontal|center_vertical"
+        android:text="Comment"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivCommentProfile"
+        android:layout_width="93dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/charity_temp_profile" />
+
+
+    <TextView
+        android:id="@+id/tvCommentsCharityName"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center|left|center_vertical"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/commentSubmitBtn"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/ivCommentProfile" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

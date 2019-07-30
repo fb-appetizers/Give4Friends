@@ -3,6 +3,7 @@ package com.example.give4friends;
 import android.app.Application;
 
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.Comments;
 import com.example.give4friends.models.Transaction;
 import com.example.give4friends.models.User;
 import com.parse.Parse;
@@ -41,7 +42,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Charity.class);
         ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(Transaction.class);
-
+        ParseObject.registerSubclass(Comments.class);
 
         final Parse.Configuration configuration = new Parse.Configuration.Builder(this)
                 .applicationId("give4friends") // should correspond to APP_ID env variable
