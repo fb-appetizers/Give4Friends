@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/tvDonor"
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="20dp"
@@ -156,6 +156,20 @@
                 card_view:layout_constraintEnd_toStartOf="@+id/tvAmount"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/tvFriendTransaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/tvDonor"
+                card_view:layout_constraintTop_toTopOf="@+id/tvDonor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
