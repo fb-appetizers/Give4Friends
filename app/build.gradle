@@ -68,4 +68,7 @@ dependencies {
 
     implementation 'com.github.scottyab:showhidepasswordedittext:0.6'
 
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+    implementation 'com.github.parse-community:ParseFacebookUtils-Android:1.14.0'
+
 }

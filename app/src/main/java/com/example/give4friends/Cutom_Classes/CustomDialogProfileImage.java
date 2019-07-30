@@ -56,7 +56,7 @@ public class CustomDialogProfileImage extends DialogFragment {
             Glide.with(getContext())
                     .load(imageURL)
                     .apply(new RequestOptions()
-                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .transforms(new RoundedCorners(20))
 
 //                        .placeholder(R.drawable.user_outline_24)
                             .signature(new ObjectKey(imageDate))

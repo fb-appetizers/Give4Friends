@@ -27,8 +27,8 @@
 
             <ImageView
                 android:id="@+id/ivDonor"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="8dp"
@@ -75,23 +75,23 @@
                 android:paddingLeft="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#090808"
-                android:textSize="18sp"
+                android:textColor="#70090808"
+                android:textSize="14sp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvFriend" />
 
             <ImageView
                 android:id="@+id/ivFriend"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentBottom="false"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
                 android:scaleType="centerCrop"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="@+id/tvCharity" />
+                card_view:layout_constraintStart_toStartOf="@+id/ivDonor"
+                card_view:layout_constraintTop_toTopOf="@+id/ivDonor" />
 
             <ImageView
                 android:id="@+id/ivPin"
