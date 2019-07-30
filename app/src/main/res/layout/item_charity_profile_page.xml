@@ -125,5 +125,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvCPLikedNum"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageButton
+        android:id="@+id/ibComments"
+        android:layout_width="32dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/ibCPLike"
+        app:layout_constraintTop_toBottomOf="@+id/tvCPMission"
+        app:srcCompat="@drawable/ufi_comment" />
+
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

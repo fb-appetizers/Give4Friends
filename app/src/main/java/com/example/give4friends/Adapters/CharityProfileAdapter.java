@@ -16,9 +16,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.DonateActivity;
+import com.example.give4friends.Fragments.Create_Comments_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -93,6 +97,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
             });
+
 
 
 
@@ -219,6 +224,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
         Button tvDonateNow;
+        ImageButton ibComments;
 
 
         public ViewHolderCharity(@NonNull View itemView) {
@@ -230,8 +236,27 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
+            ibComments = itemView.findViewById(R.id.ibComments);
 
             tvCPMission.setMovementMethod(new ScrollingMovementMethod());
+
+            ibComments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int position = getAdapterPosition(); // gets item position
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        currentCharity = parseCharity;
+                        charityName2 = currentCharity.getKeyName();
+                    }
+                    // Create a new fragment instead of an activity
+                    Fragment fragment = new Create_Comments_Fragment(charityName2,myUser,currentCharity);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
+                }
+            });
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -257,8 +282,13 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+
+
         public ViewHolderComment(@NonNull View itemView) {
             super(itemView);
+
+
+
 
         }
 

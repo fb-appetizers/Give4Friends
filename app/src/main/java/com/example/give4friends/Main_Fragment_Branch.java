@@ -132,6 +132,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setText("Give4Friends");
+        toolbarTitle.setTextSize(30);
         setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();

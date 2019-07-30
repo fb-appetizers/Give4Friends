@@ -78,7 +78,7 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            charityName = itemView.findViewById(R.id.charityName);
+            charityName = itemView.findViewById(R.id.tvCommentsCharityName);
             charityCause = itemView.findViewById(R.id.charityCause);
             charityImage = itemView.findViewById(R.id.charityImage);
 

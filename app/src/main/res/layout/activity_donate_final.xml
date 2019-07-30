@@ -107,7 +107,7 @@
         android:hint="$0"
         android:inputType="textPersonName"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/donationMessage"
+        app:layout_constraintBottom_toTopOf="@+id/etcommentMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout3"
@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <EditText
-        android:id="@+id/donationMessage"
+        android:id="@+id/etcommentMessage"
         android:layout_width="0dp"
         android:layout_height="445dp"
         android:layout_marginStart="8dp"
@@ -147,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/charityName"
+        android:id="@+id/tvCommentsCharityName"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
