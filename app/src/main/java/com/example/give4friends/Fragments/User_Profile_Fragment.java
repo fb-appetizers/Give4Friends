@@ -358,7 +358,7 @@ public class User_Profile_Fragment extends Fragment {
 
                 String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
 
-                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
+                new ProfilePicture.UploadImage(photo, imagePath, getContext(), false).execute();
                 ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
             } else { // Result was a failure
@@ -389,7 +389,7 @@ public class User_Profile_Fragment extends Fragment {
                         .into(ivProfileImage);
 
                 String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
-                new ProfilePicture.UploadImage(photo, imagePath, getContext()).execute();
+                new ProfilePicture.UploadImage(photo, imagePath, getContext(), false).execute();
                 ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
 
