@@ -13,6 +13,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:longClickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />

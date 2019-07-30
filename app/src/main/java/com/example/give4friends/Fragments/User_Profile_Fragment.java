@@ -45,6 +45,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
+import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 import com.example.give4friends.LikedTransactions;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
@@ -201,7 +203,7 @@ public class User_Profile_Fragment extends Fragment {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
         //Handles images
 
-        String imageURL = myUser.getString("profileImageURL");
+        final String imageURL = myUser.getString("profileImageURL");
 
 
         if (imageURL!=null) {
@@ -229,6 +231,19 @@ public class User_Profile_Fragment extends Fragment {
                             .error(R.drawable.user_outline_24))
                     .into(ivProfileImage);
         }
+
+
+        ivProfileImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Date imageDate = myUser.getDate("profileImageCreatedAt");
+                CustomDialogProfileImage dialog = new CustomDialogProfileImage(imageURL, imageDate);
+                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                return false;
+            }
+        });
     }
 
     //add tool bar
