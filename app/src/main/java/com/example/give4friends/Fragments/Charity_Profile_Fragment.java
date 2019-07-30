@@ -1,6 +1,7 @@
 package com.example.give4friends.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Adapters.CharityProfileAdapter;
 import com.example.give4friends.R;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.Comments;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class Charity_Profile_Fragment extends Fragment {
 
@@ -60,6 +72,9 @@ public class Charity_Profile_Fragment extends Fragment {
 
         populateProfile();
 
+
+        populateComments();
+
     }
 
 
@@ -70,14 +85,58 @@ public class Charity_Profile_Fragment extends Fragment {
 
 
     private void populateComments(){
+        //First find the charity with the ID in parse
+
+        ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+        charityParseQuery.include(Charity.KEY_CHARITY_ID);
+
+        charityParseQuery.whereEqualTo("charityName", charity.getEin());
+
+        charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+            @Override
+            public void done(Charity charity, ParseException e) {
+                if (e != null) {
+                    if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+
+                        return;
+                    } else {
+                        Log.e("CharitySearchAdapter", "Error with query of charity");
+                    }
+                } else {
+                    ParseRelation<Comments>  comments= charity.getRelation("UserComments");
+
+                    comments.getQuery().findInBackground(new FindCallback<Comments>() {
+                        @Override
+                        public void done(List<Comments> comment_obj, ParseException e) {
+
+                            if (e != null) {
+                                // There was an error
+                            } else {
+                                // results have all the charities the current user liked.
+                                // go through relation adding charities
+                                for (int i = 0; i < comment_obj.size(); i++) {
+                                    items.add(comment_obj.get(i));
+                                }
+                                itemsAdapter.notifyDataSetChanged();
+                            }
+
+                        }
+
+
+                    });
 
 
 
 
 
 
+                }
+            }
+        });
 
     }
+
+
 
 
     protected void configureToolbar() {

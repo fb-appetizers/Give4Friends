@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,18 +22,27 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.Fragments.Create_Comments_Fragment;
+import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.Comments;
 import com.example.give4friends.models.User;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
@@ -193,8 +203,59 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         } else if (viewHolder.getItemViewType() == COMMENT) {
 
-
             ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
+            Comments comments = (Comments) items.get(position);
+
+            vh2.tvComment.setText(comments.getMessage());
+
+            vh2.tvCommentUsername.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    // Create a new fragment instead of an activity
+//                    Fragment fragment = new Friend_Profile_Fragment();
+//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+//                    fragmentManager.beginTransaction().
+//                            replace(R.id.flContainer, fragment)
+//                            .addToBackStack(null).commit();
+                }
+            });
+            comments.getUser().fetchIfNeededInBackground(new GetCallback<ParseUser>() {
+                @Override
+                public void done(ParseUser myUser, ParseException e) {
+                    if (myUser != null) {
+                        vh2.tvCommentUsername.setText(myUser.getUsername());
+
+
+                        String imageURL = myUser.getString("profileImageURL");
+
+                        if (imageURL != null) {
+                            Date imageDate = myUser.getDate("profileImageCreatedAt");
+                            Glide.with(context)
+                                    .load(imageURL)
+                                    .apply(new RequestOptions()
+                                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCropTransform()
+                                            .placeholder(R.drawable.user_outline_24)
+                                            .error(R.drawable.user_outline_24)
+                                            .signature(new ObjectKey(imageDate))
+                                    )
+
+                                    .into(vh2.ivCommentProfile);
+                        } else {
+                            Glide.with(context)
+                                    .load(R.drawable.user_outline_24)
+                                    .apply(new RequestOptions()
+                                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCropTransform()
+                                            .placeholder(R.drawable.user_outline_24)
+                                            .error(R.drawable.user_outline_24))
+                                    .into(vh2.ivCommentProfile);
+                        }
+
+                    }
+                }
+            });
+
 
 
         }
@@ -284,10 +345,15 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
 
+        ImageView ivCommentProfile;
+        TextView tvCommentUsername;
+        TextView tvComment;
         public ViewHolderComment(@NonNull View itemView) {
+
             super(itemView);
-
-
+            ivCommentProfile = itemView.findViewById(R.id.ivCommentProfile);
+            tvCommentUsername = itemView.findViewById(R.id.tvCommentUsername);
+            tvComment = itemView.findViewById(R.id.tvComment);
 
 
         }
