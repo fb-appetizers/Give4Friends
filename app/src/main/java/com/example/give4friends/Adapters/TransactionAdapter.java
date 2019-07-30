@@ -311,7 +311,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             }
         });
 
-        holder.friendPhoto.setOnClickListener(new View.OnClickListener() {
+        holder.friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
@@ -336,7 +336,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         });
 
         // if yourself send to your profile
-        holder.donorPhoto.setOnClickListener(new View.OnClickListener() {
+        holder.donor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){

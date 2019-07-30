@@ -113,17 +113,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             }
         });
 
-
-
-
-
-
-
-
-
         items = new ArrayList<>();
 
-        charityAdapter = new CharitySuggAdapter(items, true, true);
+        charityAdapter = new CharitySuggAdapter(items, true, true, false);
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
         // Set layout manager to position the items

@@ -82,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.deprecated_activity_profile);
         context = this;
         btEditBio = findViewById(R.id.btEditProfile);
         btChangePic = findViewById(R.id.btChangePic);
@@ -114,8 +114,8 @@ public class ProfileActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                feedAdapter.clear();
-                feedAdapter.addAll(charities);
+                //feedAdapter.clear();
+                //feedAdapter.addAll(charities);
                 populateRelations();
                 swipeContainer.setRefreshing(false);
             }

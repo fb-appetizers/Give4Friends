@@ -134,7 +134,7 @@ public class Charity_Search_Fragment extends Fragment {
 
         items = new ArrayList<>();
 
-        charityAdapterUpper = new CharitySuggAdapter(items, false, false);
+        charityAdapterUpper = new CharitySuggAdapter(items, false, false, false);
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
 

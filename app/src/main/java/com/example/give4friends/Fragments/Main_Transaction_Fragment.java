@@ -81,7 +81,6 @@ public class Main_Transaction_Fragment extends Fragment {
 
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
-        rvTransactions.scrollToPosition(0);
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
