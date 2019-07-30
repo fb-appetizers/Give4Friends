@@ -61,6 +61,7 @@
         android:id="@+id/topResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         android:text=" Top Results"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
