@@ -302,15 +302,18 @@ public class User_Profile_Fragment extends Fragment {
 
         switch (item.getItemId()){
             case R.id.likedTransactionsProfile:
-                Intent intent = new Intent(getContext(), LikedTransactions.class);
-                startActivity(intent);
+                Fragment fragment1 = new Liked_Transactions_Fragment(ParseUser.getCurrentUser(), true);
+                FragmentManager fragmentManager1 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager1.beginTransaction().
+                        replace(R.id.flContainer, fragment1)
+                        .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.friends:
-                Fragment fragment = new Friend_List_Fragment();
-                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-                fragmentManager.beginTransaction().
-                        replace(R.id.flContainer, fragment)
+                Fragment fragment2 = new Friend_List_Fragment();
+                FragmentManager fragmentManager2 = ((AppCompatActivity)context).getSupportFragmentManager();
+                fragmentManager2.beginTransaction().
+                        replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;
