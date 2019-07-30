@@ -91,6 +91,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:scaleType="centerCrop"
+                android:background="@drawable/circle"
                 card_view:layout_constraintStart_toStartOf="@+id/ivDonor"
                 card_view:layout_constraintTop_toTopOf="@+id/ivDonor" />
 

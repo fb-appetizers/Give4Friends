@@ -90,7 +90,12 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                     return true;
                 }
+
+
             });
+
+
+
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
@@ -214,6 +219,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
         Button tvDonateNow;
+
 
         public ViewHolderCharity(@NonNull View itemView) {
             super(itemView);
