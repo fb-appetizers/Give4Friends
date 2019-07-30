@@ -1,10 +1,8 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +25,10 @@ import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;

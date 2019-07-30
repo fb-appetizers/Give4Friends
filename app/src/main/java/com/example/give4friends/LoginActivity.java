@@ -10,19 +10,43 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.give4friends.models.Transaction;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.facebook.ParseFacebookUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button login;
     private Button signUp;
+    private Button loginButton;
+    private static final String EMAIL = "email";
 
     ProgressBar loadingProgressBar;
+    CallbackManager callbackManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +57,39 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         signUp = findViewById(R.id.createAccount);
         loadingProgressBar = findViewById(R.id.loading);
+
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseFacebookUtils.initialize(getApplicationContext());
+
+                fbLogin();
+            }
+        });
+
+//        ((LoginButton) loginButton).setReadPermissions(Arrays.asList(EMAIL));
+
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        // Callback registration
+//        ((LoginButton) loginButton).registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                // App code
+//            }
+//
+//            @Override
+//            public void onError(FacebookException exception) {
+//                Toast.makeText(getApplicationContext(), "Login failure. Please try again.", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
@@ -57,6 +114,76 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void fbLogin(){
+        List<String> permissions = Arrays.asList("first_name", "last_name", "email", "id");
+
+        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException err) {
+                if (user == null) {
+                    Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                } else if (user.isNew()) {
+                    Log.d("MyApp", "User signed up and logged in through Facebook!");
+                } else {
+                    Log.d("MyApp", "User logged in through Facebook!");
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+    }
+
+//    AccessTokenTracker tokenTracker = new AccessTokenTracker() {
+//        @Override
+//        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+//
+//        }
+//    };
+//
+//    private void loadUserProfile(AccessToken newAccessToken){
+//        GraphRequest request = GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+//            @Override
+//            public void onCompleted(JSONObject object, GraphResponse response) {
+//                try {
+//                    String firstName = object.getString("first_name");
+//                    String lastName = object.getString("lastName");
+//                    String id = object.getString("id");
+//                    String email = object.getString("email");
+//                    String imageUrl = "https://graph.facebook.com/"+id+"/picture?type=normal";
+//
+//                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+//                    query.whereEqualTo("email", email);
+//
+//                    query.findInBackground(new FindCallback<ParseUser>() {
+//                        @Override
+//                        public void done(List<ParseUser> objects, ParseException e) {
+//                            if(e == null){
+//                                login()
+//                            }
+//                            else{
+//                                ParseUser newUser = new ParseUser();
+//
+//                                new
+//                            }
+//                        }
+//                    });
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
+//
+//        Bundle parameters = new Bundle();
+//        parameters.putString("fields", "first_name,last_name,email,id");
+//        request.setParameters(parameters);
+//        request.executeAsync();
+//    }
 
     @Override
     protected void onResume() {
