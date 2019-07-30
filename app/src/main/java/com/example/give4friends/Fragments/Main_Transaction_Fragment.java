@@ -95,6 +95,8 @@ public class Main_Transaction_Fragment extends Fragment {
                 scrollListener.resetState();
                 //Clear the old set when reloading
                 transactions.clear();
+                transactionAdapter.notifyDataSetChanged();
+
                 populate();
                 swipeContainer.setRefreshing(false);
 
@@ -112,6 +114,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
         //Clear the old set when reloading
         transactions.clear();
+        transactionAdapter.notifyDataSetChanged();
         populate();
 
 

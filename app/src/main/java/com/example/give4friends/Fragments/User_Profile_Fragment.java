@@ -47,7 +47,7 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
-import com.example.give4friends.LikedTransactions;
+
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
