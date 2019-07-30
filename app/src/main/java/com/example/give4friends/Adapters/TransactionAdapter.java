@@ -321,29 +321,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             }
         });
 
-//        holder.friend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-//                    // Create a new fragment instead of an activity
-//                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
-//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                    fragmentManager.beginTransaction().
-//                            replace(R.id.flContainer, fragment)
-//                            .addToBackStack(null).commit();
-//                }
-//                else{
-//
-//                    // Create a new fragment instead of an activity
-//                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
-//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                    fragmentManager.beginTransaction().
-//                            replace(R.id.flContainer, fragment)
-//                            .addToBackStack(null).commit();
-//                }
-//
-//            }
-//        });
 
         // if yourself send to your profile
         holder.donor.setOnClickListener(new View.OnClickListener() {
@@ -418,6 +395,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             amount = itemView.findViewById(R.id.tvAmount);
             tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
             ivarrow = itemView.findViewById(R.id.ivarrow);
+
         }
     }
 

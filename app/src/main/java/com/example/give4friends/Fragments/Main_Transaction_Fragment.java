@@ -127,7 +127,6 @@ public class Main_Transaction_Fragment extends Fragment {
         };
 
         scrollListener.resetState();
-
         rvTransactions.addOnScrollListener(scrollListener);
 
     }
