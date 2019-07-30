@@ -37,6 +37,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -46,6 +48,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Adapters.ProfilePagerAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 
@@ -55,6 +58,7 @@ import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.Transaction;
+import com.google.android.material.tabs.TabLayout;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -79,14 +83,11 @@ import cz.msebera.android.httpclient.params.BasicHttpParams;
 import static android.app.Activity.RESULT_OK;
 
 
-public class User_Profile_Fragment extends Fragment {
+public class User_Profile_Fragment extends Fragment{
     int total = 0;
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
-    CharitySuggAdapter feedAdapter;
-    ArrayList<Object> charities;
-    RecyclerView rvCharities;
-    private SwipeRefreshLayout swipeContainer;
+
     private Button btEditBio;
     private ImageButton btChangePic;
 
@@ -108,11 +109,15 @@ public class User_Profile_Fragment extends Fragment {
     Context context;
     private File photoFile;
     private String photoFileName = "image.png";
+    TabLayout FavMileToolbar;
+    ViewPager viewPager;
+    PagerAdapter pagerAdapter;
 
     public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
         this.myUser = myUser;
         this.from_fragment = from_another_fragment;
     }
+
 
     @Nullable
     @Override
@@ -125,8 +130,41 @@ public class User_Profile_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         context = getContext();
         btEditBio = view.findViewById(R.id.btEditProfile);
+        FavMileToolbar = view.findViewById(R.id.FavMileToolbar);
+        viewPager = view.findViewById(R.id.viewPager);
 
-//        progressBarHome = getActivity().findViewById(R.id.progressBarHome);
+
+        FavMileToolbar.addTab(FavMileToolbar.newTab().setText("Favorites"));
+        FavMileToolbar.addTab(FavMileToolbar.newTab().setText("Milestones"));
+
+
+        FavMileToolbar.setTabGravity(FavMileToolbar.GRAVITY_FILL);
+
+        pagerAdapter = new ProfilePagerAdapter(getChildFragmentManager(), FavMileToolbar.getTabCount(), myUser);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(FavMileToolbar));
+
+        FavMileToolbar.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
+
+
 
         btChangePic = view.findViewById(R.id.btChangePic);
 
@@ -152,30 +190,9 @@ public class User_Profile_Fragment extends Fragment {
             }
         });
 
-        //Below for recycler view of charities
-        rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
-        // initialize the array list of charities
-        charities = new ArrayList<Object>();
-        populateRelations();
-        // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                feedAdapter.clear();
-                feedAdapter.addAll(charities);
-                populateRelations();
-                swipeContainer.setRefreshing(false);
-            }
 
-        });
 
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+
 
         // Below for static elements of profile
         ivProfileImage = (ImageView) view.findViewById((R.id.ivProfileImage));
@@ -424,40 +441,7 @@ public class User_Profile_Fragment extends Fragment {
         dialog.show();
     }
 
-    private void populateRelations() {
-        charities.add("Favorite Charities");
-        //Get relation
-        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
-        //Get all charities in relation
-        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
-            @Override
-            public void done(List<Charity> objects, ParseException e) {
-                if (e != null) {
-                    // There was an error
-                } else {
-                    // results have all the charities the current user liked.
-                    if(objects.size() == 0){
-                        Toast.makeText(context,"You do not have any favorites yet", Toast.LENGTH_SHORT).show();
-                    }
-                    // go through relation adding charities
-                    for (int i = 0; i < objects.size(); i++) {
-                        charities.add((Charity) objects.get(i));
 
-                    }
-                    final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-                    rvCharities.setLayoutManager(linearLayoutManager);
-
-                    //construct the adapter from this datasource
-                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
-                    //RecyclerView setup (layout manager, use adapter)
-                    rvCharities.setAdapter(feedAdapter);
-                    rvCharities.scrollToPosition(0);
-                }
-            }
-        });
-
-
-    }
 
     // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){

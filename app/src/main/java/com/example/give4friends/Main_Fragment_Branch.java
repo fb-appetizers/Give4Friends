@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
+import com.example.give4friends.Fragments.Favorite_Charity_Fragment;
 import com.example.give4friends.Fragments.History_Fragment;
 import com.example.give4friends.Fragments.Main_Transaction_Fragment;
 import com.example.give4friends.Fragments.Search_User_Fragment;
