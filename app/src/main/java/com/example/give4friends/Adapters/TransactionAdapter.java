@@ -198,7 +198,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void done(ParseObject object, ParseException e) {
                 holder.donor.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-                holder.donor.append(" donated to");
+                holder.donor.append(" donated on behalf of ");
+
+                transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        holder.donor.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+//                        holder.friend.setText("on behalf of ");
+//                        holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+                    }
+                });
             }
         });
 
@@ -236,13 +245,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
         }
 
-        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                holder.friend.setText("on behalf of ");
-                holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-            }
-        });
+//        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+//            @Override
+//            public void done(ParseObject object, ParseException e) {
+//                holder.friend.setText("on behalf of ");
+//                holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+//            }
+//        });
 
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
@@ -312,29 +321,29 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             }
         });
 
-        holder.friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
-                    // Create a new fragment instead of an activity
-                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
-                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-                    fragmentManager.beginTransaction().
-                            replace(R.id.flContainer, fragment)
-                            .addToBackStack(null).commit();
-                }
-                else{
-
-                    // Create a new fragment instead of an activity
-                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
-                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-                    fragmentManager.beginTransaction().
-                            replace(R.id.flContainer, fragment)
-                            .addToBackStack(null).commit();
-                }
-
-            }
-        });
+//        holder.friend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(transaction.getKeyFriendId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())   ){
+//                    // Create a new fragment instead of an activity
+//                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+//                    fragmentManager.beginTransaction().
+//                            replace(R.id.flContainer, fragment)
+//                            .addToBackStack(null).commit();
+//                }
+//                else{
+//
+//                    // Create a new fragment instead of an activity
+//                    Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
+//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+//                    fragmentManager.beginTransaction().
+//                            replace(R.id.flContainer, fragment)
+//                            .addToBackStack(null).commit();
+//                }
+//
+//            }
+//        });
 
         // if yourself send to your profile
         holder.donor.setOnClickListener(new View.OnClickListener() {
@@ -396,7 +405,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // perform findViewById lookups
             donor = itemView.findViewById(R.id.tvDonor);
-            friend= itemView.findViewById(R.id.tvFriend);
+//            friend= itemView.findViewById(R.id.tvFriend);
             charity = itemView.findViewById(R.id.tvCharity);
             donorPhoto= itemView.findViewById(R.id.ivDonor);
             donorPhoto.setClickable(true);
