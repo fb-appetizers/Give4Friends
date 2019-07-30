@@ -60,12 +60,12 @@
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+        app:layout_constraintTop_toBottomOf="@+id/btEditProfile">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavCharities"
@@ -74,38 +74,22 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="56dp"
+            android:background="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="133dp"
-        android:text="Favorite Charities"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#070707"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEditProfile" />
-
     <Button
         android:id="@+id/btEditProfile"
-        android:layout_width="0dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="53dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
         android:text="Edit Bio"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
     <TextView
@@ -146,7 +130,7 @@
         android:tint="@color/design_default_color_primary_dark"
         app:layout_constraintStart_toStartOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="@+id/ivProfileImage" />
- />
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

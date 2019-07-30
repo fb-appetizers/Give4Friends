@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
@@ -73,8 +74,8 @@ public class FriendProfileActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                feedAdapter.clear();
-                feedAdapter.addAll(charities);
+                //feedAdapter.clear();
+                //feedAdapter.addAll(charities);
                 populateRelations();
                 swipeContainer.setRefreshing(false);
             }
@@ -195,7 +196,7 @@ public class FriendProfileActivity extends AppCompatActivity {
                     rvCharities.setLayoutManager(linearLayoutManager);
 
                     //construct the adapter from this datasource
-                    feedAdapter = new FavCharitiesAdapter(charities);
+                    //feedAdapter = new CharitySuggAdapter(charities, false, false,true);
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);

@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,21 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.DonateActivity;
-import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseRelation;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,17 +64,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         return charities.size();
     }
 
-    // Clean all elements of the recycler
-    public void clear() {
-        charities.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Charity> list) {
-        charities.addAll(list);
-        notifyDataSetChanged();
-    }
 
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -111,8 +88,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                         currentCharity = charities.get(position);
                         charityName2 = currentCharity.getKeyName();
                     }
-
-
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);

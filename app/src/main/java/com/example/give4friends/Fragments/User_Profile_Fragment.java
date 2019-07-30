@@ -44,6 +44,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
@@ -82,8 +83,8 @@ public class User_Profile_Fragment extends Fragment {
     int total = 0;
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
-    com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
-    ArrayList<Charity> charities;
+    CharitySuggAdapter feedAdapter;
+    ArrayList<Object> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
     private Button btEditBio;
@@ -154,7 +155,7 @@ public class User_Profile_Fragment extends Fragment {
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
         // initialize the array list of charities
-        charities = new ArrayList<Charity>();
+        charities = new ArrayList<Object>();
         populateRelations();
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -424,6 +425,7 @@ public class User_Profile_Fragment extends Fragment {
     }
 
     private void populateRelations() {
+        charities.add("Favorite Charities");
         //Get relation
         final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
         //Get all charities in relation
@@ -446,7 +448,7 @@ public class User_Profile_Fragment extends Fragment {
                     rvCharities.setLayoutManager(linearLayoutManager);
 
                     //construct the adapter from this datasource
-                    feedAdapter = new FavCharitiesAdapter(charities);
+                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);

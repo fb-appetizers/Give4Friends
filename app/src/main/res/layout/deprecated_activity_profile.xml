@@ -88,32 +88,30 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="133dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="133dp"
+        android:background="@color/colorAccent"
         android:text="Favorite Charities"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#070707"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/swipeContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btEditProfile" />
 
     <Button
         android:id="@+id/btEditProfile"
-        android:layout_width="0dp"
+        android:layout_width="68dp"
         android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
         android:background="@color/colorAccent"
         android:text="Edit Bio"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBio" />
+        tools:layout_editor_absoluteY="238dp" />
 
     <TextView
         android:id="@+id/tvTotalDonated"

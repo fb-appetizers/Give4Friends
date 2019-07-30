@@ -29,6 +29,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 import com.example.give4friends.HistoryActivity;
@@ -46,8 +47,8 @@ import java.util.List;
 
 public class Friend_Profile_Fragment extends Fragment {
 
-    com.example.give4friends.Adapters.FavCharitiesAdapter feedAdapter;
-    ArrayList<Charity> charities;
+    com.example.give4friends.Adapters.CharitySuggAdapter feedAdapter;
+    ArrayList<Object> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
 
@@ -67,8 +68,6 @@ public class Friend_Profile_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
         return inflater.inflate(R.layout.activity_friend_profile, container, false);
     }
 
@@ -77,14 +76,13 @@ public class Friend_Profile_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         context = getContext();
 
-
         configureToolbarStripped();
         setHasOptionsMenu(true);
 
         //Below for recycler view of charities
         rvCharities = (RecyclerView) view.findViewById(R.id.rvFavCharities);
         // initialize the array list of charities
-        charities = new ArrayList<Charity>();
+        charities = new ArrayList<Object>();
         populateRelations();
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -221,6 +219,7 @@ public class Friend_Profile_Fragment extends Fragment {
 
 
     private void populateRelations() {
+        charities.add("Favorite Charities");
         //Get relation
         final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
 
@@ -244,7 +243,7 @@ public class Friend_Profile_Fragment extends Fragment {
                     rvCharities.setLayoutManager(linearLayoutManager);
 
                     //construct the adapter from this datasource
-                    feedAdapter = new FavCharitiesAdapter(charities);
+                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);

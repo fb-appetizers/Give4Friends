@@ -3,6 +3,7 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
+import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
@@ -38,13 +40,15 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     private boolean skip;
     private boolean from_charity_search;
+    private boolean favorites;
     private Charity newCharity;
 
-    public CharitySuggAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search) {
+    public CharitySuggAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search, boolean favorites) {
         this.items = items;
         this.skip = skip;
         // If the class is called from charity search then disable the buttons on the dialog fragment that pops up
         this.from_charity_search = from_charity_search;
+        this.favorites = favorites;
     }
 
     private final int TEXT = 0, CHARITY = 1;
@@ -56,10 +60,16 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         context = parent.getContext();
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(context);
-
+        View v1;
         if (viewType == CHARITY) {
-            View v1 = inflater.inflate(R.layout.item_charity_sugg, parent, false);
-            viewHolder = new CharitySuggAdapter.ViewHolderSuggested(v1);
+            if(favorites){
+                 v1 = inflater.inflate(R.layout.item_charity_favorites, parent, false);
+                viewHolder = new CharitySuggAdapter.ViewHolderFavorites(v1);
+            }
+            else {
+                 v1 = inflater.inflate(R.layout.item_charity_sugg, parent, false);
+                viewHolder = new CharitySuggAdapter.ViewHolderSuggested(v1);
+            }
             return viewHolder;
 
         } else if (viewType == TEXT) {
@@ -79,6 +89,51 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemView);
             tvHeader = itemView.findViewById(R.id.tvHeader);
         }
+    }
+
+    public class ViewHolderFavorites extends RecyclerView.ViewHolder{
+        public TextView name;
+        public TextView causeName;
+        public TextView tvDonateNow;
+        public TextView tvMoreInfo;
+
+        public ViewHolderFavorites(View itemView) {
+            super(itemView);
+            // perform findViewById lookups
+            name = (TextView) itemView.findViewById(R.id.tvCharityName);
+            causeName = (TextView) itemView.findViewById(R.id.tvCause);
+            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+
+            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition(); // gets item position
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        currentCharity = (Charity) items.get(position);
+                        charityName2 = currentCharity.getKeyName();
+                    }
+                    Intent intent = new Intent(view.getContext(), DonateActivity.class);
+                    intent.putExtra("donateNow", true);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
+            tvMoreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    CharityAPI charity = CharityAPI.fromParse((Charity) (items.get(position)));
+
+                    Fragment fragment = new Charity_Profile_Fragment(charity);
+                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
+                }
+            });
+        }
+
     }
 
     public class ViewHolderSuggested extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -168,7 +223,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         //More to come
         if (items.get(position) instanceof String) {
             return TEXT;
-        }else if (items.get(position) instanceof CharityAPI){
+        }else if ((items.get(position) instanceof CharityAPI)|| items.get(position) instanceof Charity) {
             return CHARITY;
         }
         return -1;
@@ -199,17 +254,29 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         });
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
 
         if (holder.getItemViewType() == CHARITY) {
-            CharityAPI charity = (CharityAPI) items.get(position);
-            final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
-            vh1.tvCharityNameSugg.setText(charity.getName());
+            if (favorites) {
+                // get data according to position.
+                // Charity charity = (Charity) charities.get(position);
+                final ViewHolderFavorites vh3 = (ViewHolderFavorites) holder;
+                Charity charity = (Charity) items.get(position);
+                vh3.name.setMovementMethod(LinkMovementMethod.getInstance());
+                vh3.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
+                        +charity.getKeyName() + " ("
+                        + charity.getKeyCategoryName() + ")"+ "</a>"));
+                vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
 
-            vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
-            vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+            }else {
+                CharityAPI charity = (CharityAPI) items.get(position);
+                final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
+                vh1.tvCharityNameSugg.setText(charity.getName());
+
+                vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
+                vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+            }
         }
         else if (holder.getItemViewType() == TEXT){
             String header = (String) items.get(position);
@@ -223,5 +290,17 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return items.size();
     }
 
+
+    // Clean all elements of the recycler
+    public void clear() {
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(ArrayList<Object> list) {
+        items.addAll(list);
+        notifyDataSetChanged();
+    }
 
 }
