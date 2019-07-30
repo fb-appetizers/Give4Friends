@@ -73,8 +73,7 @@
     <SearchView
         android:id="@+id/friends"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_height="55dp"
         android:defaultFocusHighlightEnabled="true"
         android:focusedByDefault="false"
         android:gravity="right"
