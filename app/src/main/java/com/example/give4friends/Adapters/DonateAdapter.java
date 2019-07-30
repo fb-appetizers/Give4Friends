@@ -73,7 +73,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
 
         String imageURL = user.getString("profileImageURL");
-        if(imageURL != null){
+        if (imageURL != null) {
             Date imageDate2 = user.getDate("profileImageCreatedAt");
             Glide.with(context)
                     .load(imageURL)
@@ -84,7 +84,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
                     )
                     .into(holder.friendImage);
-        }else{
+        } else {
 
             Glide.with(context)
                     .load(R.drawable.instagram_user_outline_24)
@@ -96,12 +96,12 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         }
 
         //check if this is for the search user page where you can add friends
-        if(donate) {
+        if (donate) {
             holder.addFriend.setVisibility(View.INVISIBLE);
             holder.addFriend.setClickable(false);
-            holder.friendImage.setClickable(false);
-        }
-        else {
+            holder.friendImage.setOnClickListener(null);
+
+        } else {
             holder.addFriend.setVisibility(View.VISIBLE);
             holder.addFriend.setClickable(true);
 
@@ -133,8 +133,6 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
 
                 }
             });
-        }
-
 
 
             holder.friendImage.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +140,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                 public void onClick(View view) {
                     users.clear();
                     Fragment fragment = new Friend_Profile_Fragment(user);
-                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
                             replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
@@ -150,6 +148,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             });
 
         }
+    }
 
 
     @Override
