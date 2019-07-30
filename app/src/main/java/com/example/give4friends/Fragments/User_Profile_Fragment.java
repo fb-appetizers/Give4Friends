@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,6 +45,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
+import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
+
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -53,11 +60,20 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -187,7 +203,7 @@ public class User_Profile_Fragment extends Fragment {
         tvFullName.setText(myUser.getString("firstName") + " " + myUser.getString("lastName"));
         //Handles images
 
-        String imageURL = myUser.getString("profileImageURL");
+        final String imageURL = myUser.getString("profileImageURL");
 
 
         if (imageURL!=null) {
@@ -215,6 +231,19 @@ public class User_Profile_Fragment extends Fragment {
                             .error(R.drawable.user_outline_24))
                     .into(ivProfileImage);
         }
+
+
+        ivProfileImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Date imageDate = myUser.getDate("profileImageCreatedAt");
+                CustomDialogProfileImage dialog = new CustomDialogProfileImage(imageURL, imageDate);
+                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                return false;
+            }
+        });
     }
 
     //add tool bar

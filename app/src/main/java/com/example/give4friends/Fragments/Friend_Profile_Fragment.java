@@ -30,6 +30,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
@@ -148,6 +149,19 @@ public class Friend_Profile_Fragment extends Fragment {
                             .error(R.drawable.user_outline_24))
                     .into(ivProfileImage);
         }
+
+
+        ivProfileImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Date imageDate = myUser.getDate("profileImageCreatedAt");
+                CustomDialogProfileImage dialog = new CustomDialogProfileImage(imageURL, imageDate);
+                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                return false;
+            }
+        });
     }
 
 
