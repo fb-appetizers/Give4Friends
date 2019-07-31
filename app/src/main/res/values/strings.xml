@@ -23,6 +23,9 @@
     <string name="password">Password</string>
     <string name="email">Email Address</string>
     <string name="visibility">Visibility</string>
+    <string name="Public">Public</string>
+    <string name="OnlyFriends">Only Friends</string>
+    <string name="Private">Private</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">filler</string>
@@ -33,10 +36,12 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- URLs -->
+    <string name="giveWell"><a href="https://www.givewell.org">GiveWell</a></string>
 
     <!-- Facebook Authentication -->
     <string name="facebook_app_id">334417654174890</string>
     <string name="fb_login_protocol_scheme">fb334417654174890</string>
+
+
 </resources>

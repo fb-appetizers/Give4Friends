@@ -18,9 +18,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.give4friends.Cutom_Classes.CustomDialogCharity;
+import com.example.give4friends.Cutom_Classes.InfoDialog;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
+import com.example.give4friends.InformationActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -88,10 +90,12 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class ViewHolderText extends RecyclerView.ViewHolder{
         public TextView tvHeader;
+        public ImageButton ibQuestion;
 
         public ViewHolderText(@NonNull View itemView) {
             super(itemView);
             tvHeader = itemView.findViewById(R.id.tvHeader);
+            ibQuestion = itemView.findViewById(R.id.ibQuestion);
         }
     }
 
@@ -321,6 +325,23 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             String header = (String) items.get(position);
             ViewHolderText vh2 = (ViewHolderText) holder;
             vh2.tvHeader.setText(header);
+            if(header != "Recommended Effective Charities"){
+                vh2.ibQuestion.setVisibility(View.INVISIBLE);
+                vh2.ibQuestion.setClickable(false);
+            }
+            else{
+                vh2.ibQuestion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //TODO change to dialog
+                        InfoDialog infoDialog = new InfoDialog();
+                        infoDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "InfoDialog");
+
+                        //Intent intent = new Intent(view.getContext(), InformationActivity.class);
+                       // view.getContext().startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
