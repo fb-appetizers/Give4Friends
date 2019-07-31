@@ -312,7 +312,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     int diff = (tvCPMission.getBottom() - (scrollView.getHeight() + scrollY + offset));
 
                     if(diff == 0){
-                        Toast.makeText(context, "Hit the bottom", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Hit the bottom", Toast.LENGTH_SHORT).show();
 
 
                     }else{
