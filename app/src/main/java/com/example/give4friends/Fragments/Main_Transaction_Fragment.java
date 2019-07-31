@@ -161,12 +161,26 @@ public class Main_Transaction_Fragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.impactCalculator:
+                // Create a new fragment instead of an activity
+                Fragment fragment1 = new ImpactCalculatorFragment();
+                FragmentManager fragmentManager1 = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager1.beginTransaction().
+                        replace(R.id.flContainer, fragment1)
+                        .addToBackStack(null).commit();
+
+
+                Toast.makeText(getContext(), "Impact Calculator selected", Toast.LENGTH_SHORT).show();
+
+
+                return true;
+
             case R.id.searchPeople:
                 // Create a new fragment instead of an activity
-                Fragment fragment = new Search_User_Fragment();
-                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fragmentManager.beginTransaction().
-                        replace(R.id.flContainer, fragment)
+                Fragment fragment2 = new Search_User_Fragment();
+                FragmentManager fragmentManager2 = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                fragmentManager2.beginTransaction().
+                        replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
 
 

@@ -116,19 +116,6 @@ public class Friend_Profile_Fragment extends Fragment {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Below for static elements of profile
         ivProfileImage = (ImageView) view.findViewById((R.id.ivProfileImage));
         tvUserName = (TextView) view.findViewById(R.id.tvName);

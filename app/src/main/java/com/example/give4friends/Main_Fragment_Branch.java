@@ -152,5 +152,25 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     }
 
+    public interface OnBackClickListener {
+        boolean onBackClick();
+    }
+
+    private OnBackClickListener onBackClickListener;
+
+    public void setOnBackClickListener(OnBackClickListener onBackClickListener) {
+        this.onBackClickListener = onBackClickListener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (onBackClickListener != null && onBackClickListener.onBackClick()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
+
 
 }

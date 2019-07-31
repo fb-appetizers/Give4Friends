@@ -25,11 +25,8 @@ public final class FavoriteCharities {
         public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
 
     {
-        //pass in this for view holder (ViewHolderCharity) viewHolder
         //check if user is in likes list
-        //final List<Charity> array = myUser.getList("favCharities" );
         List<User> array = parseCharity.getList("likesUsers");
-
 
         if (array == null || !(array.contains(myUser.getObjectId()))) {
 
@@ -53,7 +50,6 @@ public final class FavoriteCharities {
                 if (array == null || !(array.contains(myUser.getObjectId()))) {
 
                     ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-
                     ibCPLike.setColorFilter(Color.YELLOW);
 
                     //update parse
