@@ -22,7 +22,6 @@ import com.example.give4friends.Cutom_Classes.InfoDialog;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
-import com.example.give4friends.InformationActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;

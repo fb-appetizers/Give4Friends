@@ -35,7 +35,7 @@ public final class FavoriteCharities {
 
         } else {
 
-             ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+             ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
              ibCPLike.setColorFilter(Color.YELLOW);
 
         }
@@ -49,7 +49,7 @@ public final class FavoriteCharities {
 
                 if (array == null || !(array.contains(myUser.getObjectId()))) {
 
-                    ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
+                    ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
                     ibCPLike.setColorFilter(Color.YELLOW);
 
                     //update parse
