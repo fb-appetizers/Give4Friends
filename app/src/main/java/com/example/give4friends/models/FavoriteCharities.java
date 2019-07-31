@@ -22,7 +22,7 @@ import java.util.List;
 public final class FavoriteCharities {
 
 
-        public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
+    public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
 
     {
         //check if user is in likes list
@@ -57,17 +57,20 @@ public final class FavoriteCharities {
                     relation.add(parseCharity);
                     myUser.saveInBackground();
 
+                    Integer num_likes = ((Integer)parseCharity.getKeyNumLikes()) + 1;
+                    tvCPLikedNum.setText(num_likes.toString());
+
+
                     //increment likes for charity
                     parseCharity.incrementLikes(1);
                     //add user to array
                     parseCharity.addLikesUser(myUser.getObjectId());
-                    try {
-                        parseCharity.save();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    tvCPLikedNum.setText("" + parseCharity.getKeyNumLikes());
-                    //tvCPLikedNum.setText("Favorited by " + parseCharity.getKeyNumLikes() + " users");
+
+
+                    parseCharity.saveInBackground();
+
+
+
                 } else {
                     ibCPLike.setImageResource(R.drawable.ic_like_icon);
                     ibCPLike.setColorFilter(Color.BLACK);
@@ -75,18 +78,20 @@ public final class FavoriteCharities {
                     //update user
                     relation.remove(parseCharity);
                     myUser.saveInBackground();
+
+                    Integer num_likes = ((Integer)parseCharity.getKeyNumLikes()) - 1;
+                    tvCPLikedNum.setText(num_likes.toString());
+
+
+
                     //update charity
                     parseCharity.incrementLikes(-1);
                     //add user to array
                     array.remove(myUser.getObjectId());
                     parseCharity.setKeyLikesUsers(array);
-                    try {
-                        parseCharity.save();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    tvCPLikedNum.setText("" + parseCharity.getKeyNumLikes());
-                    //tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
+
+                    parseCharity.saveInBackground();
+
 
                 }
 

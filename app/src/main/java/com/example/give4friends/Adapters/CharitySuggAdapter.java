@@ -96,6 +96,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemView);
             tvHeader = itemView.findViewById(R.id.tvHeader);
             ibQuestion = itemView.findViewById(R.id.ibQuestion);
+
         }
     }
 
@@ -313,8 +314,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             currentCharity = object;
                         }
                         if(currentCharity != null){
-                            vh1.tvCPLikedNum.setText("" + currentCharity.getKeyNumLikes());
-                        FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
+                            vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
+                            FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
                     }
                     }
 
