@@ -57,14 +57,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comments.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -151,8 +146,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+            <state relative-caret-position="285">
+              <caret line="34" selection-start-line="34" selection-end-line="35" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -583,13 +578,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00082" summary="Change profile picture icon changed, padding added to bottom of search charity items">
-      <created>1564166074679</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1564166074680</updated>
-    </task>
     <task id="LOCAL-00083" summary="Changed to select friend">
       <created>1564168637257</created>
       <option name="number" value="00083" />
@@ -926,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564540870298</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Updated the favorites logic">
+      <created>1564594925289</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1564594925289</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TodoView">
@@ -940,6 +935,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.15445666" />
@@ -1044,7 +1040,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified the credit card layout" />
     <MESSAGE value="Fixed a small typo" />
     <MESSAGE value="Cleared the glide cache to make transactions run smoother." />
     <MESSAGE value="Cleared some comments" />
@@ -1069,7 +1064,8 @@
     <MESSAGE value="Added a spot for the milestones" />
     <MESSAGE value="Fixed the button clicks" />
     <MESSAGE value="Can favorite and unfavorite from profile pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can favorite and unfavorite from profile pages" />
+    <MESSAGE value="Updated the favorites logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the favorites logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1594,8 +1590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+        <state relative-caret-position="285">
+          <caret line="34" selection-start-line="34" selection-end-line="35" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
