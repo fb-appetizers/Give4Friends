@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,18 +96,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             CharityAPI charity = (CharityAPI) items.get(position);
             final ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
 
-            vh1.tvCPMission.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    view.onTouchEvent(motionEvent);
-
-                    return true;
-                }
-
-
-            });
 
 
 
@@ -300,6 +289,43 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ibComments = itemView.findViewById(R.id.ibComments);
 
             tvCPMission.setMovementMethod(new ScrollingMovementMethod());
+
+            tvCPMission.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    view.onTouchEvent(motionEvent);
+
+                    return true;
+                }
+
+
+            });
+
+
+
+            tvCPMission.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View scrollView, int scrollX, int scrollY, int i2, int i3) {
+                    Integer offset = 774;
+                    int diff = (tvCPMission.getBottom() - (scrollView.getHeight() + scrollY + offset));
+
+                    if(diff == 0){
+                        Toast.makeText(context, "Hit the bottom", Toast.LENGTH_SHORT).show();
+
+
+                    }else{
+
+
+
+                    }
+
+                }
+            });
+
+
+
 
             ibComments.setOnClickListener(new View.OnClickListener() {
                 @Override
