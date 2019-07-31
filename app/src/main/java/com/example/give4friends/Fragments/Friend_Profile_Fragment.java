@@ -231,7 +231,7 @@ public class Friend_Profile_Fragment extends Fragment {
                     // There was an error
                 } else {
                     if(objects.size() == 0) {
-                        Toast.makeText(context, myUser.getString("firstName") + " does not have any favorites yet", Toast.LENGTH_SHORT).show();
+                        charities.add(myUser.getString("firstName") + " does not have any favorites yet");
                     }
                     // results have all the charities the current user liked.
                     // go through relation adding charities

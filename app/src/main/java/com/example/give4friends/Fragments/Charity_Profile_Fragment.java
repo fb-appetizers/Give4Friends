@@ -45,18 +45,12 @@ public class Charity_Profile_Fragment extends Fragment {
 
         configureToolbar();
         rvCPProfile = view.findViewById(R.id.rvCPProfile);
-
         items = new ArrayList<Object>();
-
-
         itemsAdapter = new CharityProfileAdapter(items);
-
         // attach the adapter to the RecyclerView
         rvCPProfile.setAdapter(itemsAdapter);
-
         // Set layout manager to position the items
         rvCPProfile.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         populateProfile();
 
@@ -70,12 +64,6 @@ public class Charity_Profile_Fragment extends Fragment {
 
 
     private void populateComments(){
-
-
-
-
-
-
 
     }
 

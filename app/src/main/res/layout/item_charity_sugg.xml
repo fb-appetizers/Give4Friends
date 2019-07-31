@@ -26,6 +26,21 @@
         android:background="@drawable/constraint_border"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/ibCPLike"
+            android:layout_width="55dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="#FFFFFF"
+            android:outlineAmbientShadowColor="#00181717"
+            android:outlineSpotShadowColor="#00131111"
+            android:paddingLeft="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCPMission"
+            app:srcCompat="@drawable/ic_like_icon" />
+
         <TextView
             android:id="@+id/tvCharityNameSugg"
             android:layout_width="wrap_content"
@@ -65,6 +80,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvCategorySugg"
             app:layout_constraintTop_toBottomOf="@+id/tvCharityNameSugg" />
+
+        <TextView
+            android:id="@+id/tvCPLikedNum"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="4dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibCPLike" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

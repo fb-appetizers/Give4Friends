@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,9 +24,11 @@ import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.FavoriteCharities;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private boolean from_charity_search;
     private boolean favorites;
     private Charity newCharity;
+
 
     public CharitySuggAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search, boolean favorites) {
         this.items = items;
@@ -142,6 +146,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView tvCategorySugg;
         public TextView tvCauseSugg;
         public TextView tvMoreInfo;
+        public ImageButton ibCPLike;
+        public TextView tvCPLikedNum;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -151,6 +157,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            ibCPLike = itemView.findViewById(R.id.ibCPLike);
+            tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
         }
 
         public boolean onLongClick(View view) {
@@ -269,6 +277,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         + charity.getKeyCategoryName() + ")"+ "</a>"));
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
 
+
             }else {
                 CharityAPI charity = (CharityAPI) items.get(position);
                 final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
@@ -276,6 +285,44 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+
+                ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+                charityParseQuery.include(Charity.KEY_CHARITY_ID);
+                charityParseQuery.whereEqualTo("charityName", charity.getEin());
+
+                charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+                    @Override
+                    public void done(Charity object, ParseException e) {
+                        if (e != null) {
+                            if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+                                addNewCharity(charity);
+                            } else {
+                                Log.e("CharitySearchAdapter", "Error with query of charity");
+                            }
+                        } else {
+                            currentCharity = object;
+                        }
+                        if(currentCharity != null){
+                            vh1.tvCPLikedNum.setText("" + currentCharity.getKeyNumLikes());
+                        FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
+                    }
+                    }
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         }
         else if (holder.getItemViewType() == TEXT){
@@ -302,5 +349,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         items.addAll(list);
         notifyDataSetChanged();
     }
+
+
+
 
 }
