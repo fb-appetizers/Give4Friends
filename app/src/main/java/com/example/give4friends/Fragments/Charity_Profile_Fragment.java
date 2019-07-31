@@ -66,12 +66,8 @@ public class Charity_Profile_Fragment extends Fragment {
 
         configureToolbar();
         rvCPProfile = view.findViewById(R.id.rvCPProfile);
-
         items = new ArrayList<Object>();
-
-
         itemsAdapter = new CharityProfileAdapter(items);
-
         // attach the adapter to the RecyclerView
         rvCPProfile.setAdapter(itemsAdapter);
 
@@ -209,8 +205,6 @@ public class Charity_Profile_Fragment extends Fragment {
         });
 
     }
-
-
 
 
     protected void configureToolbar() {

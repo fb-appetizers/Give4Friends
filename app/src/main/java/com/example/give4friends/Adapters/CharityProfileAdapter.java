@@ -34,6 +34,7 @@ import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
+import com.example.give4friends.models.FavoriteCharities;
 import com.example.give4friends.models.Comments;
 import com.example.give4friends.models.User;
 import com.parse.GetCallback;
@@ -98,9 +99,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
 
-
-
-
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
@@ -123,70 +121,10 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
 
-            if (array == null || !(array.contains(myUser.getObjectId()))) {
 
-                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-
-            } else {
-
-                ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-                ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-
-            }
-
-            ((ViewHolderCharity) viewHolder).ibCPLike.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
-                    List<User> array = parseCharity.getList("likesUsers");
-
-                    if (array == null || !(array.contains(myUser.getObjectId()))) {
-
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_filled_con);
-
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.YELLOW);
-
-                        //update parse
-                        //updateUser
-                        relation.add(parseCharity);
-                        myUser.saveInBackground();
-
-                        //increment likes for charity
-                        parseCharity.incrementLikes(1);
-                        //add user to array
-                        parseCharity.addLikesUser(myUser.getObjectId());
-                        try {
-                            parseCharity.save();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        vh1.tvCPLikedNum.setText("Favorited by " + parseCharity.getKeyNumLikes() + " users");
-                    } else {
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setImageResource(R.drawable.ic_like_icon);
-                        ((ViewHolderCharity) viewHolder).ibCPLike.setColorFilter(Color.BLACK);
-
-                        //update user
-                        relation.remove(parseCharity);
-                        myUser.saveInBackground();
-                        //update charity
-                        parseCharity.incrementLikes(-1);
-                        //add user to array
-                        array.remove(myUser.getObjectId());
-                        parseCharity.setKeyLikesUsers(array);
-                        try {
-                            parseCharity.save();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
-
-                    }
-
-
-                }
-            });
+//check if user is in likes list
+            //final List<Charity> array = myUser.getList("favCharities" );
+            FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum );
 
 
 
