@@ -62,6 +62,7 @@ public final class ProfilePicture {
 
 
 
+
     public static void changePhoto(final Context context){
         String[] options = {"Take photo", "Choose from gallery"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
@@ -285,20 +286,26 @@ public final class ProfilePicture {
         String name;
         Context context;
         ProgressBar progressBarHome;
+        boolean from_sign_up;
 
 
-        public UploadImage(Bitmap image, String name, Context context) {
+        public UploadImage(Bitmap image, String name, Context context, boolean from_sign_up) {
             this.image = image;
             this.name = name;
             this.context = context;
+            this.from_sign_up = from_sign_up;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
 
-            progressBarHome = ((Activity)context).findViewById(R.id.progressBarHome);
-            showProgressBar();
+            if(!from_sign_up) {
+                progressBarHome = ((Activity) context).findViewById(R.id.progressBarHome);
+                showProgressBar();
+            }
+
+
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
             String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
@@ -327,7 +334,10 @@ public final class ProfilePicture {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            hideProgressBar();
+            if(!from_sign_up) {
+                hideProgressBar();
+            }
+
             Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
         }
 

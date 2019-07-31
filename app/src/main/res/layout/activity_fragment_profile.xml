@@ -7,6 +7,20 @@
     tools:context=".ProfileActivity">
 
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/FavMileToolbar"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/constraint_border"
+        android:minHeight="?actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btEditProfile">
+
+
+    </com.google.android.material.tabs.TabLayout>
+
     <TextView
         android:id="@+id/tvTotalRaised"
         android:layout_width="wrap_content"
@@ -56,35 +70,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalDonated" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipeContainer"
-        android:layout_width="match_parent"
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEditProfile">
+        app:layout_constraintTop_toBottomOf="@+id/FavMileToolbar"></androidx.viewpager.widget.ViewPager>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFavCharities"
-            android:layout_width="363dp"
-            android:layout_height="283dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="56dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <Button
         android:id="@+id/btEditProfile"
         android:layout_width="53dp"
         android:layout_height="26dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
         android:text="Edit Bio"

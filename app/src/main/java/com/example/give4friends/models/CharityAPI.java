@@ -124,6 +124,8 @@ public class CharityAPI {
         return charityAPI;
     }
 
+
+
     public static CharityAPI fromJSON(JSONObject object) {
         CharityAPI charityAPI = new CharityAPI();
 

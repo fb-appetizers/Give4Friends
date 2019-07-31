@@ -171,6 +171,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.put("firstName", firstName);
         user.put("lastName", lastName);
 
+        Context context = getApplicationContext();
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
@@ -181,7 +182,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if(photo!=null) {
                         String imagePath = ParseUser.getCurrentUser().getUsername() + "_profileImage";
-                        new ProfilePicture.UploadImage(photo, imagePath, getApplicationContext()).execute();
+                        new ProfilePicture.UploadImage(photo, imagePath, context, true).execute();
                         currentUser.put("profileImageURL", URL_HEADER + imagePath + ".JPG");
                         currentUser.put("profileImageCreatedAt", Calendar.getInstance().getTime());
                     }
