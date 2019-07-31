@@ -58,8 +58,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -112,8 +110,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="318" selection-start-line="318" selection-end-line="318" />
+            <state relative-caret-position="203">
+              <caret line="315" selection-start-line="315" selection-end-line="315" />
             </state>
           </provider>
         </entry>
@@ -601,20 +599,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00081" summary="Added a white arrow to the donate search charity view">
-      <created>1564110606414</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1564110606414</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Change profile picture icon changed, padding added to bottom of search charity items">
-      <created>1564166074679</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1564166074680</updated>
-    </task>
     <task id="LOCAL-00083" summary="Changed to select friend">
       <created>1564168637257</created>
       <option name="number" value="00083" />
@@ -944,7 +928,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564531139896</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Fixed the button clicks">
+      <created>1564534308677</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1564534308677</updated>
+    </task>
+    <task id="LOCAL-00131" summary="Added a toast for the message scroll listener">
+      <created>1564534383904</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1564534383904</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TodoView">
@@ -958,6 +956,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.1947497" />
@@ -1062,7 +1061,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added profile image capability" />
     <MESSAGE value="Modified the credit card layout" />
     <MESSAGE value="Fixed a small typo" />
     <MESSAGE value="Cleared the glide cache to make transactions run smoother." />
@@ -1087,7 +1085,8 @@
     <MESSAGE value="Sign-up update" />
     <MESSAGE value="Added a spot for the milestones" />
     <MESSAGE value="Fixed the button clicks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the button clicks" />
+    <MESSAGE value="Added a toast for the message scroll listener" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a toast for the message scroll listener" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1719,8 +1718,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharityProfileAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="318" selection-start-line="318" selection-end-line="318" />
+        <state relative-caret-position="203">
+          <caret line="315" selection-start-line="315" selection-end-line="315" />
         </state>
       </provider>
     </entry>
