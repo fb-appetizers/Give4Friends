@@ -100,6 +100,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView causeName;
         public TextView tvDonateNow;
         public TextView tvMoreInfo;
+        public ImageButton ibCPLike;
+        public TextView tvCPLikedNum;
 
         public ViewHolderFavorites(View itemView) {
             super(itemView);
@@ -108,6 +110,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            ibCPLike = itemView.findViewById(R.id.ibCPLike);
+            tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -276,6 +280,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         +charity.getKeyName() + " ("
                         + charity.getKeyCategoryName() + ")"+ "</a>"));
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
+                vh3.tvCPLikedNum.setText("" + charity.getKeyNumLikes());
+                FavoriteCharities.setUpFavorites(charity, ParseUser.getCurrentUser(), vh3.ibCPLike, vh3.tvCPLikedNum);
 
 
             }else {
@@ -309,20 +315,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     }
 
                 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         }
         else if (holder.getItemViewType() == TEXT){
