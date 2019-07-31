@@ -23,21 +23,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.bumptech.glide.Glide;
 import com.example.give4friends.Adapters.TransactionAdapter;
 import com.example.give4friends.Cutom_Classes.EndlessRecyclerViewScrollListener;
-import com.example.give4friends.DonateActivity;
-import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -163,7 +156,7 @@ public class Main_Transaction_Fragment extends Fragment {
         switch (item.getItemId()){
             case R.id.impactCalculator:
                 // Create a new fragment instead of an activity
-                Fragment fragment1 = new ImpactCalculatorFragment();
+                Fragment fragment1 = new Impact_Calculator_Fragment();
                 FragmentManager fragmentManager1 = ((AppCompatActivity)getContext()).getSupportFragmentManager();
                 fragmentManager1.beginTransaction().
                         replace(R.id.flContainer, fragment1)

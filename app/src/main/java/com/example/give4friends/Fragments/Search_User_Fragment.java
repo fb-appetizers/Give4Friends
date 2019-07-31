@@ -44,13 +44,10 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     public static boolean donateNow;
     public static String charityName2;
 
-
-
     ArrayList<ParseUser> users;
     ParseRelation<ParseUser> friends;
     ArrayList<String> localFriends;
     DonateAdapter adapter;
-
 
     @Nullable
     @Override
@@ -63,26 +60,16 @@ public class Search_User_Fragment extends Fragment implements Serializable {
 
         searchFriend = view.findViewById(R.id.searchFriend);
         rvFriends = view.findViewById(R.id.rvFriends);
-
-
         users = new ArrayList<ParseUser>();
         localFriends = new ArrayList<String>();
 
-        //recyclerSetUp();
         populateRelations();
-
         configureToolbar();
-
-
         searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
-
-
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.equals("")){
@@ -93,15 +80,9 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                 else{
                     queryFriends(s.toString());
                 }
-
-
                 return false;
             }
         });
-
-
-
-
 
     }
 
