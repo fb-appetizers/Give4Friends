@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -92,6 +94,55 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setSelection(0);
                 }
             }
+
+        });
+
+
+        amount.addTextChangedListener(new TextWatcher() {
+
+            String previous;
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                previous = charSequence.toString();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                if (count == 0){
+                    amount.setText("$");
+                    amount.setSelection(amount.getText().length());
+                }
+
+
+
+
+                if (count == 1){
+                    amount.setSelection(amount.getText().length());
+                }
+
+                String temp = amount.getText().subSequence(1,amount.getText().length()).toString();
+
+                if(temp.contains("$")){
+                    amount.setSelection(amount.getText().length());
+                    amount.setText(temp);
+                }
+
+                if(!temp.matches("[$0-9.]*")) {
+
+                    amount.setText(previous);
+                    amount.setSelection(amount.getText().length());
+                }
+
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
         });
 
         submitDonation.setOnClickListener(new View.OnClickListener() {
@@ -134,13 +185,18 @@ public class DonateFinalActivity extends AppCompatActivity {
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
         String amountHere = amount.getText().toString();
+//
+//        for(int i = 0; i < amountHere.length(); i++){
+//            if(amountHere.charAt(i) == '$'){
+//
+//            }
+//        }
 
-        for(int i = 0; i < amountHere.length(); i++){
-            if(amountHere.charAt(i) == '$'){
-
-            }
+        if(amountHere.length() == 1){
+            amountHere = "0";
         }
-        int amountInt = Integer.parseInt(amount.getText().toString().substring(1));
+
+        int amountInt = Integer.parseInt(amountHere.substring(1));
 
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
@@ -149,7 +205,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         newTransaction.setKeyAmountDonated(amountInt);
 
 
-        String amountEntered = amount.getText().toString();
+        String amountEntered = amountHere;
         newTransaction.setKeyAmountDonated(Integer.parseInt(amountEntered.substring(1)));
 
         newTransaction.saveInBackground(new SaveCallback() {
