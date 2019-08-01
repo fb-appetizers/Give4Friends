@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 
 
-public class ImpactCalculatorFragment extends Fragment {
+public class Impact_Calculator_Fragment extends Fragment {
 
     WebView webView;
 
@@ -66,22 +67,15 @@ public class ImpactCalculatorFragment extends Fragment {
 
     private void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-
-
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Impact Calculator");
-
-
-
-        toolbar.setNavigationIcon(R.drawable.ic_settings);
-
+        toolbar.setNavigationIcon(R.drawable.ic_x);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SettingsActivity.class);
-                startActivity(intent);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
 
             }
         });
