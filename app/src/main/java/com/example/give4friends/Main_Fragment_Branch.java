@@ -35,6 +35,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ImageButton suggBtn;
     private CardView cardView2;
+    private TextView title;
     private TextView a;
     private TextView b;
 
@@ -55,6 +56,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         cardView2 = findViewById(R.id.cardView2);
         a = findViewById(R.id.a);
         b = findViewById(R.id.b);
+        title = findViewById(R.id.tvtoolbar_title);
 
         suggBtn.setBackgroundDrawable(null);
 
@@ -82,6 +84,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         cardView2.setVisibility(View.VISIBLE);
+                        title.setVisibility(View.GONE);
                         a.setVisibility(View.VISIBLE);
                         a.setText("Hello,");
                         b.setVisibility(View.VISIBLE);
@@ -89,18 +92,23 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         cardView2.setVisibility(View.GONE);
+                        title.setVisibility(View.VISIBLE);
+                        title.setText("Chairty Search");
                         a.setVisibility(View.GONE);
                         b.setVisibility(View.INVISIBLE);
                         fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment2).commit();
                         break;
                     case R.id.action_profile:
                         cardView2.setVisibility(View.GONE);
+                        title.setVisibility(View.VISIBLE);
+                        title.setText("Profile");
                         a.setVisibility(View.GONE);
                         b.setVisibility(View.INVISIBLE);
                         fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment3).commit();
                         break;
                     case R.id.action_transaction:
                         cardView2.setVisibility(View.GONE);
+                        title.setVisibility(View.GONE);
                         a.setVisibility(View.VISIBLE);
                         a.setText("Transactions");
                         b.setVisibility(View.GONE);
