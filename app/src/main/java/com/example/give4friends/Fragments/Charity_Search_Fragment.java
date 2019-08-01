@@ -151,7 +151,7 @@ public class Charity_Search_Fragment extends Fragment {
     protected void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Charity Search");
 

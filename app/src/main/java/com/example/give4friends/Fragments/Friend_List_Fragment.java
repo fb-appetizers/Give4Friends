@@ -71,7 +71,7 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
         toolbarTitle.setTextSize(24);
         toolbarTitle.setText("Friends");
 

@@ -247,7 +247,7 @@ public class User_Profile_Fragment extends Fragment{
     private void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Profile");
 
@@ -264,10 +264,10 @@ public class User_Profile_Fragment extends Fragment{
     }
 
     protected void configureToolbarStripped() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
         toolbarTitle.setTextSize(24);
         toolbarTitle.setText(myUser.getUsername());
 

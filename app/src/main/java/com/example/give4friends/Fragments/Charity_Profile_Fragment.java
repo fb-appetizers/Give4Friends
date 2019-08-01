@@ -211,7 +211,7 @@ public class Charity_Profile_Fragment extends Fragment {
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
         toolbarTitle.setText(charity.getName());
         toolbarTitle.setTextSize(17);
 
