@@ -28,7 +28,7 @@ public class PayPalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pay_pal);
         //configureToolbar();
 
-       //amount = (int) getIntent().getIntExtra("amount");
+        amount = (int) getIntent().getIntExtra("amount", 0);
         charityCode = getIntent().getStringExtra("code");
         String url = "https://www.paypal.com/fundraiser/charity/" + charityCode;
 
@@ -39,7 +39,7 @@ public class PayPalActivity extends AppCompatActivity {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
-        webView.loadUrl("javascript:(function() { document.getElementById('last_name').value = '" + amount + "'; ;})()");
+        webView.loadUrl("javascript:(function() { document.getElementById('required value').value = '" + amount + "'; ;})()");
 
         webView.canGoBack();
         webView.setOnKeyListener(new View.OnKeyListener() {
