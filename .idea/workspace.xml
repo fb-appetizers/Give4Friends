@@ -138,7 +138,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="317" column="54" selection-start-line="317" selection-start-column="54" selection-end-line="317" selection-end-column="54" />
+              <caret line="316" column="54" selection-start-line="316" selection-start-column="54" selection-end-line="316" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -146,8 +146,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="34" selection-start-line="34" selection-end-line="35" selection-end-column="49" />
+            <state relative-caret-position="210">
+              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -578,13 +578,6 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
-    <task id="LOCAL-00083" summary="Changed to select friend">
-      <created>1564168637257</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1564168637257</updated>
-    </task>
     <task id="LOCAL-00084" summary="Now able to scroll when in a recycler view">
       <created>1564169945879</created>
       <option name="number" value="00084" />
@@ -921,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564594925289</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Updated the favorites logic">
+      <created>1564595299329</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1564595299329</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1192,31 +1192,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>66</line>
+          <line>65</line>
           <properties />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>272</line>
+          <line>271</line>
           <properties />
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>296</line>
+          <line>295</line>
           <properties />
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>289</line>
+          <line>288</line>
           <properties />
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>160</line>
+          <line>159</line>
           <properties />
           <option name="timeStamp" value="156" />
         </line-breakpoint>
@@ -1234,7 +1234,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java</url>
-          <line>153</line>
+          <line>152</line>
           <properties field="tvCharityNameSugg" class="com.example.give4friends.Adapters.CharitySuggAdapter.ViewHolderSuggested" />
           <option name="timeStamp" value="151" />
         </line-breakpoint>
@@ -1584,14 +1584,14 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="317" column="54" selection-start-line="317" selection-start-column="54" selection-end-line="317" selection-end-column="54" />
+          <caret line="316" column="54" selection-start-line="316" selection-start-column="54" selection-end-line="316" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="34" selection-start-line="34" selection-end-line="35" selection-end-column="49" />
+        <state relative-caret-position="210">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
