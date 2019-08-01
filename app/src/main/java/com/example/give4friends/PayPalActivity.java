@@ -28,7 +28,7 @@ public class PayPalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pay_pal);
         //configureToolbar();
 
-       //amount = (int) getIntent().getIntExtra("amount");
+       amount = (int) getIntent().getIntExtra("amount");
         charityCode = getIntent().getStringExtra("code");
         String url = "https://www.paypal.com/fundraiser/charity/" + charityCode;
 
