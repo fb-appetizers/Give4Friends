@@ -125,9 +125,9 @@ public class Main_Transaction_Fragment extends Fragment {
     }
 
     private void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Give4Friends");
@@ -159,7 +159,7 @@ public class Main_Transaction_Fragment extends Fragment {
                 Fragment fragment1 = new Impact_Calculator_Fragment();
                 FragmentManager fragmentManager1 = ((AppCompatActivity)getContext()).getSupportFragmentManager();
                 fragmentManager1.beginTransaction().
-                        replace(R.id.flContainer2, fragment1)
+                        replace(R.id.flContainer, fragment1)
                         .addToBackStack(null).commit();
 
 
@@ -173,7 +173,7 @@ public class Main_Transaction_Fragment extends Fragment {
                 Fragment fragment2 = new Search_User_Fragment();
                 FragmentManager fragmentManager2 = ((AppCompatActivity)getContext()).getSupportFragmentManager();
                 fragmentManager2.beginTransaction().
-                        replace(R.id.flContainer2, fragment2)
+                        replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
 
 

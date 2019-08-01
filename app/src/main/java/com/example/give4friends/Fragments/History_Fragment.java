@@ -173,9 +173,9 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
 
     protected void configureToolbarStripped() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
 
         toolbarTitle.setTextSize(30);
@@ -197,9 +197,9 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
     }
     private void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
 
         toolbarTitle.setTextSize(30);

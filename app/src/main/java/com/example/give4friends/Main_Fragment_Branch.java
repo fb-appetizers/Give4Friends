@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -34,10 +33,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private ImageButton suggBtn;
-    private CardView cardView2;
-    private TextView title;
-    private TextView a;
-    private TextView b;
 
     //        // define your fragments here
     final Fragment fragment1 = new Main_Transaction_Fragment();
@@ -52,11 +47,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         setContentView(R.layout.activity_fragment_home);
         suggBtn = findViewById(R.id.suggBtn);
-
-        cardView2 = findViewById(R.id.cardView2);
-        a = findViewById(R.id.a);
-        b = findViewById(R.id.b);
-        title = findViewById(R.id.tvtoolbar_title);
 
         suggBtn.setBackgroundDrawable(null);
 
@@ -83,42 +73,26 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        cardView2.setVisibility(View.VISIBLE);
-                        title.setVisibility(View.GONE);
-                        a.setVisibility(View.VISIBLE);
-                        a.setText("Hello,");
-                        b.setVisibility(View.VISIBLE);
-                        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment1).commit();
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
                         break;
                     case R.id.action_search:
-                        cardView2.setVisibility(View.GONE);
-                        title.setVisibility(View.VISIBLE);
-                        title.setText("Chairty Search");
-                        a.setVisibility(View.GONE);
-                        b.setVisibility(View.INVISIBLE);
-                        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment2).commit();
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
-                        cardView2.setVisibility(View.GONE);
-                        title.setVisibility(View.VISIBLE);
-                        title.setText("Profile");
-                        a.setVisibility(View.GONE);
-                        b.setVisibility(View.INVISIBLE);
-                        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment3).commit();
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
-                        cardView2.setVisibility(View.GONE);
-                        title.setVisibility(View.GONE);
-                        a.setVisibility(View.VISIBLE);
-                        a.setText("Transactions");
-                        b.setVisibility(View.GONE);
-                        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment4).commit();
+
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
 
                         break;
 
                     default:
 
-                        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment1).commit();
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
                         break;
                 }
@@ -132,7 +106,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
 
 
-        fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment1).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
@@ -145,7 +119,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         if(resultCode == 0) {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContainer2, fragment1).commit();
+            fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
             bottomNavigationView.setSelectedItemId(R.id.action_home);
 
         }
@@ -155,15 +129,15 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
 
     protected void configureToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-//        toolbarTitle.setText("Give4Friends");
-//        toolbarTitle.setTextSize(30);
-//        setSupportActionBar(toolbar);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("Give4Friends");
+        toolbarTitle.setTextSize(30);
+        setSupportActionBar(toolbar);
 
         ActionBar actionbar = getSupportActionBar();
-//        actionbar.setDisplayShowTitleEnabled(false);
+        actionbar.setDisplayShowTitleEnabled(false);
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 

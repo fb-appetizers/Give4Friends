@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.List;
 
 
+
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
     private boolean friend;
@@ -223,7 +224,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                 Fragment fragment = new Charity_Profile_Fragment(charity);
                                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                                 fragmentManager.beginTransaction().
-                                        replace(R.id.flContainer2, fragment)
+                                        replace(R.id.flContainer, fragment)
                                         .addToBackStack(null).commit();
                             }
                         });
@@ -235,7 +236,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                 Fragment fragment = new Charity_Profile_Fragment(charity);
                                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                                 fragmentManager.beginTransaction().
-                                        replace(R.id.flContainer2, fragment)
+                                        replace(R.id.flContainer, fragment)
                                         .addToBackStack(null).commit();
                             }
                         });
@@ -331,7 +332,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer2, fragment)
+                            replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
                 else{
@@ -340,7 +341,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyDonorId());
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer2, fragment)
+                            replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
 
@@ -357,7 +358,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer2, fragment)
+                            replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
                 else{
@@ -366,7 +367,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     Fragment fragment = new Friend_Profile_Fragment(transaction.getKeyFriendId());
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer2, fragment)
+                            replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
 

@@ -55,9 +55,9 @@ public class Liked_Transactions_Fragment extends History_Fragment {
 
     @Override
     protected void configureToolbarStripped() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
 
         toolbarTitle.setTextSize(30);

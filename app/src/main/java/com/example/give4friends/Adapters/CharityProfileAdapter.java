@@ -278,7 +278,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     Fragment fragment = new Create_Comments_Fragment(charityName2,myUser,currentCharity);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer2, fragment)
+                            replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
             });

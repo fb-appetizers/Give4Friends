@@ -7,28 +7,24 @@
     tools:context=".MainActivity">
 
 
+
+
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="8dp"></androidx.viewpager.widget.ViewPager>
-    <include
-        android:id="@+id/toolbar2"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/container">
+    </androidx.viewpager.widget.ViewPager>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainerTrans"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+        app:layout_constraintTop_toBottomOf="@+id/tvTransactionTrans">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTransactionsTrans"
