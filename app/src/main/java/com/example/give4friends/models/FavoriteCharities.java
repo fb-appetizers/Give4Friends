@@ -30,7 +30,7 @@ public final class FavoriteCharities {
 
         //check if user is in likes list
         List<User> array = parseCharity.getList("likesUsers");
-
+        
 
 
 

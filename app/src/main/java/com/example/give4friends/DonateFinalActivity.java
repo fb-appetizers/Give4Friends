@@ -18,13 +18,17 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.models.Transaction;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
@@ -92,8 +96,15 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setNewTransaction();
-                Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
+                String code = currentCharity.getKeyCode();
+                //Int amountEntered = (amount.getText().toString()).;
+                // query for code from charity when done do this
+                Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
+                intent.putExtra("code", code);
+               // intent.putExtra("amount", amountEntered);
                 startActivity(intent);
+                //Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
+                //startActivity(intent);
             }
         });
 
@@ -104,6 +115,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     private void setNewTransaction(){
@@ -150,5 +162,8 @@ public class DonateFinalActivity extends AppCompatActivity {
         ParseRelation<ParseObject> relation = ParseUser.getCurrentUser().getRelation("friendsRecent");
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
+
+
+
     }
 }

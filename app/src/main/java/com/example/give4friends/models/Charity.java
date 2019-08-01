@@ -22,6 +22,7 @@ public class Charity extends ParseObject {
     public static final String KEY_LIKES_USERS  = "likesUsers";
     public static final String KEY_WEBSITE = "websiteUrl";
     public static final String KEY_NUM_LIKES = "likesCount";
+    public static final String KEY_CODE = "payPal";
 
     public Charity(){}
 
@@ -40,6 +41,13 @@ public class Charity extends ParseObject {
     public String getKeyObjectId() {
         return getString(KEY_ID);
     }
+
+    public void setKeyCode(String code){ put(KEY_CODE, code); }
+
+    public String getKeyCode() {
+        return getString(KEY_CODE);
+    }
+
 
     public String getKeyCharityID(){return getString(KEY_CHARITY_ID);}
 
