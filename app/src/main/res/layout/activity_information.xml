@@ -28,11 +28,11 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="These charities have been reviewed by the evidence and value based charity evaluator"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -60,10 +60,10 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="They are considered the top most effective charities meaning you will get the most "
         android:textAlignment="center"
         android:textSize="18sp"
@@ -89,10 +89,10 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="and we can all do as much good as possible!"
         android:textAlignment="center"
         android:textSize="18sp"
