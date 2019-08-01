@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.FavoriteCharities;
+import com.example.give4friends.models.User;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -274,6 +276,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
 
         if (holder.getItemViewType() == CHARITY) {
+
+
             if (favorites) {
                 // get data according to position.
                 // Charity charity = (Charity) charities.get(position);
@@ -291,6 +295,12 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }else {
                 CharityAPI charity = (CharityAPI) items.get(position);
                 final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
+
+
+                vh1.ibCPLike.setImageResource(R.drawable.ic_like_icon);
+                vh1.ibCPLike.setColorFilter(Color.BLACK);
+
+
                 vh1.tvCharityNameSugg.setText(charity.getName());
 
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
@@ -314,6 +324,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                         if(currentCharity != null){
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
+
+
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
                     }
                     }

@@ -17,6 +17,7 @@ import com.parse.ParseObject;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class FavoriteCharities {
@@ -25,12 +26,15 @@ public final class FavoriteCharities {
     public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
 
     {
+
+
         //check if user is in likes list
         List<User> array = parseCharity.getList("likesUsers");
-        
 
 
-        if (array == null || !(array.contains(myUser.getObjectId()))) {
+
+
+        if (array == null || !(array.contains(myUser.getObjectId())) || array.size() == 0) {
 
             ibCPLike.setImageResource(R.drawable.ic_like_icon);
             ibCPLike.setColorFilter(Color.BLACK);
