@@ -97,9 +97,11 @@ public class DonateFinalActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setNewTransaction();
                 String code = currentCharity.getKeyCode();
+               // Int amountEntered = (Integer) (amount.getText().toString());
                 // query for code from charity when done do this
                 Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
                 intent.putExtra("code", code);
+               // intent.putExtra("amount", amountEntered);
                 startActivity(intent);
                 //Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
                 //startActivity(intent);

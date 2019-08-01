@@ -48,6 +48,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);
 
+
         searchFriend = findViewById(R.id.friends);
         rvFriends = findViewById(R.id.rvFriends);
         cancel = findViewById(R.id.ibcancelFinal);
