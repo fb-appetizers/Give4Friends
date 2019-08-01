@@ -97,7 +97,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 @Override
                 public void onClick(View view) {
                     List<String> array = transaction.getKeyLikesUsers();
-                    if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
+                    if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId())) || array.size() ==0) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
                         holder.ibEmptyHeart.setColorFilter(Color.RED);
                         //update transaction
