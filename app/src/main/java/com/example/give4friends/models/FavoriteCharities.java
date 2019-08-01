@@ -27,8 +27,11 @@ public final class FavoriteCharities {
     {
         //check if user is in likes list
         List<User> array = parseCharity.getList("likesUsers");
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> parent of e1484f4... Updated the favorites logic
 
         if (array == null || !(array.contains(myUser.getObjectId()))) {
 

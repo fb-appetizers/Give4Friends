@@ -55,8 +55,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+>>>>>>> parent of e1484f4... Updated the favorites logic
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Profile_Fragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Charity_Search_Fragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Create_Comments_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Create_Comments_Fragment.java" afterDir="false" />
@@ -65,6 +74,11 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Liked_Transactions_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Liked_Transactions_Fragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/Main_Transaction_Fragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Adapters/CharitySuggAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/give4friends/models/FavoriteCharities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comments.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comments.xml" afterDir="false" />
+>>>>>>> parent of e1484f4... Updated the favorites logic
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/" />
@@ -109,8 +123,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="473">
               <caret line="266" column="66" selection-start-line="266" selection-start-column="66" selection-end-line="266" selection-end-column="66" />
+=======
+            <state relative-caret-position="239">
+              <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+>>>>>>> parent of e1484f4... Updated the favorites logic
               <folding>
                 <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
                 <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
@@ -550,6 +569,23 @@
       <option name="presentableId" value="Default" />
       <updated>1563306249265</updated>
     </task>
+<<<<<<< HEAD
+=======
+    <task id="LOCAL-00082" summary="Change profile picture icon changed, padding added to bottom of search charity items">
+      <created>1564166074679</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1564166074680</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Changed to select friend">
+      <created>1564168637257</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1564168637257</updated>
+    </task>
+>>>>>>> parent of e1484f4... Updated the favorites logic
     <task id="LOCAL-00084" summary="Now able to scroll when in a recycler view">
       <created>1564169945879</created>
       <option name="number" value="00084" />
@@ -879,6 +915,7 @@
       <option name="project" value="LOCAL" />
       <updated>1564540870298</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00131" summary="Updated the favorites logic">
       <created>1564594925289</created>
       <option name="number" value="00131" />
@@ -894,6 +931,9 @@
       <updated>1564595299329</updated>
     </task>
     <option name="localTasksCounter" value="133" />
+=======
+    <option name="localTasksCounter" value="131" />
+>>>>>>> parent of e1484f4... Updated the favorites logic
     <servers />
   </component>
   <component name="TodoView">
@@ -907,7 +947,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49825785" visible="true" weight="0.15445666" />
@@ -1012,6 +1051,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Modified the credit card layout" />
     <MESSAGE value="Fixed a small typo" />
     <MESSAGE value="Cleared the glide cache to make transactions run smoother." />
     <MESSAGE value="Cleared some comments" />
@@ -1036,8 +1076,7 @@
     <MESSAGE value="Added a spot for the milestones" />
     <MESSAGE value="Fixed the button clicks" />
     <MESSAGE value="Can favorite and unfavorite from profile pages" />
-    <MESSAGE value="Updated the favorites logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the favorites logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can favorite and unfavorite from profile pages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1524,8 +1563,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/give4friends/Fragments/User_Profile_Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="473">
           <caret line="266" column="66" selection-start-line="266" selection-start-column="66" selection-end-line="266" selection-end-column="66" />
+=======
+        <state relative-caret-position="239">
+          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+>>>>>>> parent of e1484f4... Updated the favorites logic
           <folding>
             <element signature="method#logOut#0;class#User_Profile_Fragment#0" />
             <element signature="method#updateBio#0;class#User_Profile_Fragment#0" />
