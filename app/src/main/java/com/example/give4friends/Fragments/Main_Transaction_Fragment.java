@@ -127,10 +127,10 @@ public class Main_Transaction_Fragment extends Fragment {
     private void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-//
-//        toolbarTitle.setTextSize(30);
-//        toolbarTitle.setText("Give4Friends");
+        TextView toolbarTitle = toolbar.findViewById(R.id.tvtoolbar_title_main);
+
+        toolbarTitle.setTextSize(30);
+        toolbarTitle.setText("Give4Friends");
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
