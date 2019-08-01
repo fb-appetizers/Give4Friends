@@ -177,11 +177,11 @@ public class Friend_Profile_Fragment extends Fragment {
 
     // A stripped down version of the toolbar
     protected void configureToolbarStripped() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(24);
-        toolbarTitle.setText(myUser.getUsername());
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(24);
+//        toolbarTitle.setText(myUser.getUsername());
 
         toolbar.setNavigationIcon(R.drawable.ic_x);
 
@@ -219,7 +219,7 @@ public class Friend_Profile_Fragment extends Fragment {
                 Fragment fragment = new History_Fragment(myUser, true);
                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().
-                        replace(R.id.flContainer, fragment)
+                        replace(R.id.flContainer2, fragment)
                         .addToBackStack(null).commit();
                 return true;
             default:

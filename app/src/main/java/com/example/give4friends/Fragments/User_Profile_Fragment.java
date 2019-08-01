@@ -245,11 +245,11 @@ public class User_Profile_Fragment extends Fragment{
 
     //add tool bar
     private void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("Profile");
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(30);
+//        toolbarTitle.setText("Profile");
 
 
 
@@ -264,12 +264,12 @@ public class User_Profile_Fragment extends Fragment{
     }
 
     protected void configureToolbarStripped() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(24);
-        toolbarTitle.setText(myUser.getUsername());
+//
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(24);
+//        toolbarTitle.setText(myUser.getUsername());
 
         toolbar.setNavigationIcon(R.drawable.ic_x);
 
@@ -302,7 +302,7 @@ public class User_Profile_Fragment extends Fragment{
                 Fragment fragment1 = new Liked_Transactions_Fragment(ParseUser.getCurrentUser(), true);
                 FragmentManager fragmentManager1 = ((AppCompatActivity)context).getSupportFragmentManager();
                 fragmentManager1.beginTransaction().
-                        replace(R.id.flContainer, fragment1)
+                        replace(R.id.flContainer2, fragment1)
                         .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
                 return true;
@@ -310,7 +310,7 @@ public class User_Profile_Fragment extends Fragment{
                 Fragment fragment2 = new Friend_List_Fragment();
                 FragmentManager fragmentManager2 = ((AppCompatActivity)context).getSupportFragmentManager();
                 fragmentManager2.beginTransaction().
-                        replace(R.id.flContainer, fragment2)
+                        replace(R.id.flContainer2, fragment2)
                         .addToBackStack(null).commit();
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
                 return true;

@@ -137,11 +137,11 @@ public class Create_Comments_Fragment extends Fragment {
 
 
     protected void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(24);
-        toolbarTitle.setText("Comment");
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(24);
+//        toolbarTitle.setText("Comment");
 
         toolbar.setNavigationIcon(R.drawable.ic_x);
 

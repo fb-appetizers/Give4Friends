@@ -149,11 +149,11 @@ public class Charity_Search_Fragment extends Fragment {
 
 
     protected void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("Charity Search");
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(30);
+//        toolbarTitle.setText("Charity Search");
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 

@@ -142,7 +142,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                     Fragment fragment = new Friend_Profile_Fragment(user);
                     FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer, fragment)
+                            replace(R.id.flContainer2, fragment)
                             .addToBackStack(null).commit();
                 }
             });

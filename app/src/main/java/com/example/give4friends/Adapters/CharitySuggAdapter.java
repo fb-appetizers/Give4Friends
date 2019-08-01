@@ -142,7 +142,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     Fragment fragment = new Charity_Profile_Fragment(charity);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer, fragment)
+                            replace(R.id.flContainer2, fragment)
                             .addToBackStack(null).commit();
                 }
             });
@@ -220,7 +220,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 Fragment fragment1 = new Charity_Profile_Fragment(charity);
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().
-                        replace(R.id.flContainer, fragment1)
+                        replace(R.id.flContainer2, fragment1)
                         .addToBackStack(null).commit();
 
 
@@ -326,7 +326,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                         if(currentCharity != null){
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
-
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
                     }
                     }

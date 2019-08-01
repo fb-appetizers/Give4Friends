@@ -104,7 +104,7 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
                     Fragment fragment = new Charity_Profile_Fragment(charity);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     fragmentManager.beginTransaction().
-                            replace(R.id.flContainer, fragment)
+                            replace(R.id.flContainer2, fragment)
                             .addToBackStack(null).commit();
                 }
             });

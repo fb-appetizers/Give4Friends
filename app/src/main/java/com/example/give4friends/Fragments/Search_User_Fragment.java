@@ -87,12 +87,12 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     }
 
     protected void configureToolbar() {
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar2);
 
 
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(24);
-        toolbarTitle.setText("Search User");
+//        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextSize(24);
+//        toolbarTitle.setText("Search User");
 
         toolbar.setNavigationIcon(R.drawable.ic_x);
 
