@@ -8,11 +8,14 @@ import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @ParseClassName("User")
+
 public class User extends ParseUser {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ID = "objectId";
