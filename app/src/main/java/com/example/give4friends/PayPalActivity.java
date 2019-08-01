@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,20 +16,22 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class PayPalActivity extends AppCompatActivity {
     WebView webView;
     String charityCode;
+    ImageButton cancel;
     int amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_pal);
-        //configureToolbar();
 
-       //amount = (int) getIntent().getIntExtra("amount");
+        cancel = findViewById(R.id.ibcancelFinal2);
+        amount = (int) getIntent().getIntExtra("amount", 0);
         charityCode = getIntent().getStringExtra("code");
         String url = "https://www.paypal.com/fundraiser/charity/" + charityCode;
 
@@ -39,7 +42,7 @@ public class PayPalActivity extends AppCompatActivity {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
-        webView.loadUrl("javascript:(function() { document.getElementById('last_name').value = '" + amount + "'; ;})()");
+        webView.loadUrl("javascript:(function() { document.getElementById('required value').value = '" + amount + "'; ;})()");
 
         webView.canGoBack();
         webView.setOnKeyListener(new View.OnKeyListener() {
@@ -52,6 +55,15 @@ public class PayPalActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PayPalActivity.this, Main_Fragment_Branch.class);
+                startActivity(intent);
             }
         });
 
