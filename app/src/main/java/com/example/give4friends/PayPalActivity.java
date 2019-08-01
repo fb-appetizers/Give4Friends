@@ -29,7 +29,7 @@ public class PayPalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_pal);
-        //configureToolbar();
+
         cancel = findViewById(R.id.ibcancelFinal2);
         amount = (int) getIntent().getIntExtra("amount", 0);
         charityCode = getIntent().getStringExtra("code");
