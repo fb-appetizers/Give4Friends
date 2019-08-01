@@ -297,8 +297,10 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
 
 
+                // Initialize the values before you begin the thread process
                 vh1.ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 vh1.ibCPLike.setColorFilter(Color.BLACK);
+                vh1.tvCPLikedNum.setText("0");
 
 
                 vh1.tvCharityNameSugg.setText(charity.getName());
@@ -324,7 +326,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                         if(currentCharity != null){
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
-
 
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
                     }
