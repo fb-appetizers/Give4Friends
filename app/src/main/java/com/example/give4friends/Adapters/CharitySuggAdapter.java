@@ -317,7 +317,17 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     public void done(Charity object, ParseException e) {
                         if (e != null) {
                             if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+
+                                // TODO this might occur after you setup the favorites
                                 addNewCharity(charity);
+
+
+
+
+
+
+
+
                             } else {
                                 Log.e("CharitySearchAdapter", "Error with query of charity");
                             }
