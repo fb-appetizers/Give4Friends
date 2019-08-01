@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,11 +16,13 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class PayPalActivity extends AppCompatActivity {
     WebView webView;
     String charityCode;
+    ImageButton cancel;
     int amount;
 
     @Override
@@ -27,7 +30,7 @@ public class PayPalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_pal);
         //configureToolbar();
-
+        cancel = findViewById(R.id.ibcancelFinal2);
         amount = (int) getIntent().getIntExtra("amount", 0);
         charityCode = getIntent().getStringExtra("code");
         String url = "https://www.paypal.com/fundraiser/charity/" + charityCode;
@@ -52,6 +55,15 @@ public class PayPalActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PayPalActivity.this, Main_Fragment_Branch.class);
+                startActivity(intent);
             }
         });
 
