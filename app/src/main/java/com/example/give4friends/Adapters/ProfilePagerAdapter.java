@@ -33,7 +33,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
                 return fragment0;
 
             case 1:
-                Milestone_Fragment fragment1 = new Milestone_Fragment();
+                Milestone_Fragment fragment1 = new Milestone_Fragment(user);
                 return fragment1;
 
             default:
