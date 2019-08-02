@@ -91,14 +91,9 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position){
 
-
         if (viewHolder.getItemViewType() == CHARITY) {
-
             CharityAPI charity = (CharityAPI) items.get(position);
             final ViewHolderCharity vh1 = (ViewHolderCharity) viewHolder;
-
-
-
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
@@ -113,8 +108,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             parseCharity = convertCharity(charity);
 
             vh1.tvCPLikedNum.setText(((Integer)parseCharity.getKeyNumLikes()).toString());
-
-
             vh1.tvCommentsNum.setText(((Integer)parseCharity.getInt("CommentsNum")).toString());
 
 
@@ -125,20 +118,14 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
 
-
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
             FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 
-
-
         } else if (viewHolder.getItemViewType() == COMMENT) {
-
             ViewHolderComment vh2 = (ViewHolderComment) viewHolder;
             Comments comments = (Comments) items.get(position);
-
             vh2.tvComment.setText(comments.getMessage());
-
             vh2.tvCommentUsername.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -155,7 +142,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void done(ParseUser myUser, ParseException e) {
                     if (myUser != null) {
                         vh2.tvCommentUsername.setText(myUser.getUsername());
-
 
                         String imageURL = myUser.getString("profileImageURL");
 
@@ -186,9 +172,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     }
                 }
             });
-
-
-
         }
     }
 
@@ -237,16 +220,11 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvCPMission.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     view.onTouchEvent(motionEvent);
-
                     return true;
                 }
-
-
             });
-
 
 
             tvCPMission.setOnScrollChangeListener(new View.OnScrollChangeListener() {
@@ -254,22 +232,14 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void onScrollChange(View scrollView, int scrollX, int scrollY, int i2, int i3) {
                     Integer offset = 774;
                     int diff = (tvCPMission.getBottom() - (scrollView.getHeight() + scrollY + offset));
-
                     if(diff == 0){
 //                        Toast.makeText(context, "Hit the bottom", Toast.LENGTH_SHORT).show();
-
-
                     }else{
-
-
 
                     }
 
                 }
             });
-
-
-
 
             ibComments.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -313,8 +283,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
-
         ImageView ivCommentProfile;
         TextView tvCommentUsername;
         TextView tvComment;
@@ -324,7 +292,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ivCommentProfile = itemView.findViewById(R.id.ivCommentProfile);
             tvCommentUsername = itemView.findViewById(R.id.tvCommentUsername);
             tvComment = itemView.findViewById(R.id.tvComment);
-
 
         }
 
