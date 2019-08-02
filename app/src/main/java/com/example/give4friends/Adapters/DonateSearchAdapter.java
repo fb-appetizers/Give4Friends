@@ -38,7 +38,6 @@ public class DonateSearchAdapter extends RecyclerView.Adapter<DonateSearchAdapte
         this.mCharity = mCharity;
     }
 
-
     @Override
     public DonateSearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();

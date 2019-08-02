@@ -26,36 +26,24 @@ import java.util.List;
 public final class FavoriteCharities {
 
     public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
-
     {
-
         //check if user is in likes list
         List<User> array = parseCharity.getList("likesUsers");
-        
 
         if (array == null || !(array.contains(myUser.getObjectId())) || array.size() == 0) {
-
             ibCPLike.setImageResource(R.drawable.ic_like_icon);
             ibCPLike.setColorFilter(Color.BLACK);
-
         } else {
-
             ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
-
-
             ibCPLike.setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
-
         }
 
         ibCPLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
                 List<User> array = parseCharity.getList("likesUsers");
-
                 if (array == null || !(array.contains(myUser.getObjectId()))) {
-
                     ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
                     ibCPLike.setColorFilter(Color.YELLOW);
 
@@ -66,18 +54,11 @@ public final class FavoriteCharities {
 
                     Integer num_likes = ((Integer)parseCharity.getKeyNumLikes()) + 1;
                     tvCPLikedNum.setText(num_likes.toString());
-
-
                     //increment likes for charity
                     parseCharity.incrementLikes(1);
                     //add user to array
                     parseCharity.addLikesUser(myUser.getObjectId());
-
-
                     parseCharity.saveInBackground();
-
-
-
                 } else {
                     ibCPLike.setImageResource(R.drawable.ic_like_icon);
                     ibCPLike.setColorFilter(Color.BLACK);
@@ -89,20 +70,13 @@ public final class FavoriteCharities {
                     Integer num_likes = ((Integer)parseCharity.getKeyNumLikes()) - 1;
                     tvCPLikedNum.setText(num_likes.toString());
 
-
-
                     //update charity
                     parseCharity.incrementLikes(-1);
                     //add user to array
                     array.remove(myUser.getObjectId());
                     parseCharity.setKeyLikesUsers(array);
-
                     parseCharity.saveInBackground();
-
-
                 }
-
-
             }
         });
     }

@@ -71,41 +71,30 @@ public class Charity_Profile_Fragment extends Fragment {
         // attach the adapter to the RecyclerView
         rvCPProfile.setAdapter(itemsAdapter);
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         // Set layout manager to position the items
         rvCPProfile.setLayoutManager(linearLayoutManager);
-
-
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerCharityProfile);
-
-
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 //Resets the scroll listener so even during refreshes you can still scroll
                 scrollListener.resetState();
-
                 items.clear();
                 itemsAdapter.notifyDataSetChanged();
                 populateProfile();
                 populateComments();
                 swipeContainer.setRefreshing(false);
-
             }
-
         });
-
 
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
 
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
 
@@ -114,22 +103,15 @@ public class Charity_Profile_Fragment extends Fragment {
                 if(totalItemsCount > MAX_NUMBER_OF_PROFILES) {
                     populateComments();
                 }
-
-
             }
         };
 
-
         scrollListener.resetState();
         rvCPProfile.addOnScrollListener(scrollListener);
-
-
         items.clear();
         itemsAdapter.notifyDataSetChanged();
         populateProfile();
         populateComments();
-
-
     }
 
 
@@ -142,13 +124,9 @@ public class Charity_Profile_Fragment extends Fragment {
 
     private void populateComments(){
         //First find the charity with the ID in parse
-
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
-
-
-
 
         charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
             @Override
@@ -169,15 +147,11 @@ public class Charity_Profile_Fragment extends Fragment {
 
                     // If there are items that aren't the regular
                     if(items.size() > MAX_NUMBER_OF_PROFILES ){
-
                         commentQuery.whereLessThan("createdAt",  LastCommentCreatedAt);
-
                     }
-
                     commentQuery.findInBackground(new FindCallback<Comments>() {
                         @Override
                         public void done(List<Comments> comment_obj, ParseException e) {
-
                             if (e != null) {
                                 // There was an error
                             } else {
@@ -192,17 +166,8 @@ public class Charity_Profile_Fragment extends Fragment {
                                 }
                                 itemsAdapter.notifyDataSetChanged();
                             }
-
                         }
-
-
                     });
-
-
-
-
-
-
                 }
             }
         });

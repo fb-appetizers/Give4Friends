@@ -65,7 +65,6 @@ public class CharityProfile extends AppCompatActivity {
 
     }
 
-
     public void logOut(){
         ParseUser.logOut();
         Intent intent = new Intent(this, LoginActivity.class);

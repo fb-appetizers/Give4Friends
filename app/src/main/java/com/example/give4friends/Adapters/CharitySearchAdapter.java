@@ -32,21 +32,17 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
     public CharitySearchAdapter(List<CharityAPI> mCharity, boolean is_in_donate_charity_search) {
         this.mCharity = mCharity;
-
         //This field is to tell whether the donate charity search page called this class. If so then
         //hide the more information text field along with the Donate Now page
         this.remove_links = is_in_donate_charity_search;
     }
 
-
     @Override
     public CharitySearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         // Inflate the custom layout
         View charityView = inflater.inflate(R.layout.item_charity_search, parent, false);
-
         // Return a new holder instance
         CharitySearchAdapter.ViewHolder viewHolder = new CharitySearchAdapter.ViewHolder(charityView);
         return viewHolder;
