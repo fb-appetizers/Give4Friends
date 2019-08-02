@@ -169,13 +169,10 @@ public class DonateFinalActivity extends AppCompatActivity {
                     Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
                     startActivity(intent);
                 }
-                NumberFormat format = NumberFormat.getCurrencyInstance();
-                Number number = 0;
-                try {
-                    number = format.parse(amount.getText().toString());
-                } catch (java.text.ParseException e) {
-                    e.printStackTrace();
-                }
+
+
+                Double number = Double.parseDouble(amount.getText().toString().substring(1));
+
                 // query for code from charity when done do this
                 Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
                 intent.putExtra("code", code);
