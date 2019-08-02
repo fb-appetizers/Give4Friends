@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCharityName" />
 
     <ImageButton
-        android:id="@+id/tvMoreInfo"
+        android:id="@+id/ibMoreInfo"
         android:layout_width="98dp"
         android:layout_height="40dp"
         android:layout_marginStart="11dp"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvMission" />
 
     <ImageButton
-        android:id="@+id/tvDonateNow"
+        android:id="@+id/ibDonateNow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="6dp"
@@ -130,16 +130,16 @@
         app:srcCompat="@drawable/charity_temp_profile" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tvMoreInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="More Info"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMoreInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/ibMoreInfo" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tvDonateNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -148,5 +148,5 @@
         android:text="Donate Now"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDonateNow" />
+        app:layout_constraintTop_toBottomOf="@+id/ibDonateNow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

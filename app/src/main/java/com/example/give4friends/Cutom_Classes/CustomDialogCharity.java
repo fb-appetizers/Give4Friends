@@ -3,7 +3,6 @@ package com.example.give4friends.Cutom_Classes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.DonateActivity;
-import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
@@ -45,11 +43,14 @@ public class CustomDialogCharity extends DialogFragment {
     public TextView tvCharityName;
     public TextView tvMission;
 
+    public TextView tvDonateNow;
+    public TextView tvMoreInfo;
+
     public TextView tvCause;
     public ImageView ivRating;
-    public ImageButton tvDonateNow;
+    public ImageButton ibDonateNow;
 
-    public ImageButton tvMoreInfo;
+    public ImageButton ibMoreInfo;
     private boolean from_charity_donate_search;
 
 
@@ -75,8 +76,13 @@ public class CustomDialogCharity extends DialogFragment {
         tvCharityName = view.findViewById(R.id.tvCharityName);
         tvMission = view.findViewById(R.id.tvMission);
 
+
         tvCause = view.findViewById(R.id.tvCause);
         ivRating = view.findViewById(R.id.ivRating);
+        ibDonateNow = view.findViewById(R.id.ibDonateNow);
+        ibMoreInfo = view.findViewById(R.id.ibMoreInfo);
+
+
         tvDonateNow = view.findViewById(R.id.tvDonateNow);
         tvMoreInfo = view.findViewById(R.id.tvMoreInfo);
 
@@ -86,7 +92,7 @@ public class CustomDialogCharity extends DialogFragment {
 
 
         if(!from_charity_donate_search) {
-            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+            ibDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setCurrentCharity();
@@ -98,7 +104,7 @@ public class CustomDialogCharity extends DialogFragment {
                 }
             });
 
-            tvMoreInfo.setOnClickListener(new View.OnClickListener() {
+            ibMoreInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -109,17 +115,19 @@ public class CustomDialogCharity extends DialogFragment {
                             replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
 
-
-
-
                 }
             });
 
 
 
         }else{
-            tvDonateNow.setVisibility(View.INVISIBLE);
+            ibDonateNow.setVisibility(View.INVISIBLE);
+            ibMoreInfo.setVisibility(View.INVISIBLE);
+
             tvMoreInfo.setVisibility(View.INVISIBLE);
+            tvDonateNow.setVisibility(View.INVISIBLE);
+
+
         }
 
 

@@ -154,6 +154,7 @@ public class Charity_Search_Fragment extends Fragment {
         super.onSaveInstanceState(outState);
 
 
+
     }
 
     protected void configureToolbar() {

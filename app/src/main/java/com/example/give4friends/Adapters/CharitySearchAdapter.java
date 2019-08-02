@@ -89,8 +89,8 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<CharitySearchAdap
 
             tvCause = itemView.findViewById(R.id.tvCause);
             ivRating = itemView.findViewById(R.id.ivRating);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
-            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
+            tvDonateNow = itemView.findViewById(R.id.ibDonateNow);
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override

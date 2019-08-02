@@ -3,9 +3,7 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +27,6 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.FavoriteCharities;
-import com.example.give4friends.models.User;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -117,8 +114,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             // perform findViewById lookups
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
-            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvDonateNow = itemView.findViewById(R.id.ibDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ivcheckmarkfav = itemView.findViewById(R.id.ivcheckmarkfav);
@@ -170,7 +167,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ivcheckmarksugg = itemView.findViewById(R.id.ivcheckmarksugg);
