@@ -48,6 +48,7 @@
         android:background="#00FFFFFF"
         android:outlineAmbientShadowColor="#00181717"
         android:outlineSpotShadowColor="#00131111"
+
         android:paddingLeft="8dp"
         android:scaleType="fitCenter"
         card_view:layout_constraintStart_toStartOf="parent"

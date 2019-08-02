@@ -1,7 +1,10 @@
 package com.example.give4friends.models;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,12 +30,9 @@ public final class FavoriteCharities {
 
     {
 
-
         //check if user is in likes list
         List<User> array = parseCharity.getList("likesUsers");
         
-
-
 
         if (array == null || !(array.contains(myUser.getObjectId())) || array.size() == 0) {
 
@@ -41,8 +41,10 @@ public final class FavoriteCharities {
 
         } else {
 
-             ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
-             ibCPLike.setColorFilter(Color.YELLOW);
+            ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
+
+
+            ibCPLike.setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
 
         }
 

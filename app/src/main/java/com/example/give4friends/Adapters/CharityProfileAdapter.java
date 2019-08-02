@@ -124,7 +124,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
-            FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum );
+            FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 
 
 

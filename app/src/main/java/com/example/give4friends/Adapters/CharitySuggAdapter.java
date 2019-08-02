@@ -321,12 +321,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 addNewCharity(charity);
 
 
-
-
-
-
-
-
                             } else {
                                 Log.e("CharitySearchAdapter", "Error with query of charity");
                             }
