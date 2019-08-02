@@ -46,8 +46,6 @@ public class InfoDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
 
         giveWell.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "<a href='https://www.givewell.org'> GiveWell </a>";
-        giveWell.setText(Html.fromHtml(text));
 
         return view;
     }

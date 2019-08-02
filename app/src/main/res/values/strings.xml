@@ -37,7 +37,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
     <!-- URLs -->
-    <string name="giveWell"><a href="https://www.givewell.org">GiveWell</a></string>
+    <string name="giveWell"><a href="https://www.givewell.org">GiveWell.</a></string>
 
     <!-- Facebook Authentication -->
     <string name="facebook_app_id">334417654174890</string>
