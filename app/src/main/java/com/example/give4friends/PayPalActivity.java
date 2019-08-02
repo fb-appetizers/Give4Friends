@@ -23,7 +23,7 @@ public class PayPalActivity extends AppCompatActivity {
     WebView webView;
     String charityCode;
     ImageButton cancel;
-    int amount;
+    Double amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +31,25 @@ public class PayPalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pay_pal);
 
         cancel = findViewById(R.id.ibcancelFinal2);
-        amount = (int) getIntent().getIntExtra("amount", 0);
+        amount = getIntent().getDoubleExtra("amount", 0);
         charityCode = getIntent().getStringExtra("code");
         String url = "https://www.paypal.com/fundraiser/charity/" + charityCode;
 
         webView = (WebView) findViewById(R.id.wvPayPal);
-        webView.setWebViewClient(new WebViewClient());
+
         webView.getSettings().setDomStorageEnabled(true);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(url);
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
-        webView.loadUrl("javascript:(function() { document.getElementById('nemo_inputAmount').value = 'amount'; null})()");
 
 
-
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                webView.loadUrl("javascript:(function() { document.getElementById('nemo_inputAmount').value = '"+amount.toString()+"'; ;})()");
+            }
+        });
 
         webView.canGoBack();
         webView.setOnKeyListener(new View.OnKeyListener() {
