@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,9 @@ public class Create_Comments_Fragment extends Fragment {
         tvCharityName.setText(charityName);
 
 
+
+
+
         String imageURL = user.getString("profileImageURL");
 
         if(imageURL != null){
@@ -114,6 +118,7 @@ public class Create_Comments_Fragment extends Fragment {
                         ParseRelation<Comments> CurrentComment;
                         CurrentComment = charity.getRelation("UserComments");
                         CurrentComment.add(comments);
+                        charity.increment("CommentsNum", 1);
                         charity.saveInBackground();
 
                     }

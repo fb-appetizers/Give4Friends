@@ -102,15 +102,12 @@
 
     <TextView
         android:id="@+id/tvCPLikedNum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="liked by"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibCPLike" />
+        android:layout_width="44dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/ibCPLike"
+        app:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
     <Button
         android:id="@+id/tvDonateNowProfile"
@@ -136,6 +133,15 @@
         app:layout_constraintStart_toEndOf="@+id/ibCPLike"
         app:layout_constraintTop_toBottomOf="@+id/tvCPMission"
         app:srcCompat="@drawable/ufi_comment" />
+
+    <TextView
+        android:id="@+id/tvCommentsNum"
+        android:layout_width="44dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/ibComments"
+        app:layout_constraintTop_toTopOf="@+id/ibComments" />
 
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

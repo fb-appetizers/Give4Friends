@@ -47,7 +47,7 @@ public class Charity_Profile_Fragment extends Fragment {
     CharityProfileAdapter itemsAdapter;
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
-    public static Integer MAX_NUMBER_OF_COMMENTS = 2;
+    public static Integer MAX_NUMBER_OF_COMMENTS = 20;
     public static Integer MAX_NUMBER_OF_PROFILES = 1;
     public Date LastCommentCreatedAt = null;
 
@@ -146,8 +146,6 @@ public class Charity_Profile_Fragment extends Fragment {
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
-
-
 
 
 

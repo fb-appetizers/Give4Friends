@@ -99,6 +99,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
 
+
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
@@ -111,7 +112,10 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             final boolean is_empty;
             parseCharity = convertCharity(charity);
 
-            vh1.tvCPLikedNum.setText("Liked by " + parseCharity.getKeyNumLikes() + " users");
+            vh1.tvCPLikedNum.setText(((Integer)parseCharity.getKeyNumLikes()).toString());
+
+
+            vh1.tvCommentsNum.setText(((Integer)parseCharity.getInt("CommentsNum")).toString());
 
 
 //check if user is in likes list
@@ -124,7 +128,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 //check if user is in likes list
             //final List<Charity> array = myUser.getList("favCharities" );
-            FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum );
+            FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 
 
 
@@ -213,6 +217,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ImageButton ibCPLike;
         Button tvDonateNow;
         ImageButton ibComments;
+        TextView tvCommentsNum;
 
 
         public ViewHolderCharity(@NonNull View itemView) {
@@ -225,6 +230,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
             ibComments = itemView.findViewById(R.id.ibComments);
+            tvCommentsNum = itemView.findViewById(R.id.tvCommentsNum);
 
             tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 
