@@ -197,7 +197,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView tvCPMission;
         TextView tvCPLikedNum;
         ImageButton ibCPLike;
-        Button tvDonateNow;
+        ImageButton tvDonateNow;
         ImageButton ibComments;
         TextView tvCommentsNum;
 
