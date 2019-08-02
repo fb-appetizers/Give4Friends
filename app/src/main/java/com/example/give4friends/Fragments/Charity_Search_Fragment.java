@@ -77,6 +77,8 @@ public class Charity_Search_Fragment extends Fragment {
     CharityClient client;
     CharitySuggAdapter charityAdapterUpper;
     private ArrayList<Object> items;
+    private ArrayList <CharityAPI> itemCharity;
+
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
@@ -147,6 +149,12 @@ public class Charity_Search_Fragment extends Fragment {
     }
 
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+
+    }
 
     protected void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);

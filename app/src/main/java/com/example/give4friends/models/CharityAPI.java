@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -278,4 +279,6 @@ public class CharityAPI {
         return charities;
 
     }
+
+
 }

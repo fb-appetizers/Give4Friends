@@ -45,6 +45,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Testing the Fragment manager
 
+
         setContentView(R.layout.activity_fragment_home);
         suggBtn = findViewById(R.id.suggBtn);
 

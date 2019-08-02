@@ -22,16 +22,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-
-        android:background="@drawable/constraint_border"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivcheckmarksugg"
+            android:layout_width="18dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="fitXY"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/tvCharityNameSugg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blue_check_mark" />
 
         <ImageButton
             android:id="@+id/ibCPLike"
             android:layout_width="55dp"
             android:layout_height="47dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             android:background="#FFFFFF"
             android:outlineAmbientShadowColor="#00181717"
             android:outlineSpotShadowColor="#00131111"
@@ -53,7 +62,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/tvCategorySugg"

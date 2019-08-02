@@ -111,15 +111,23 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCommentsNum.setText(((Integer)parseCharity.getInt("CommentsNum")).toString());
 
 
-//check if user is in likes list
-            //final List<Charity> array = myUser.getList("favCharities" );
             List<User> array = parseCharity.getList("likesUsers");
 
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
 
-//check if user is in likes list
-            //final List<Charity> array = myUser.getList("favCharities" );
+
+
+            String payPalnum = parseCharity.getString("payPal");
+            if(payPalnum == null || payPalnum.equals("")){
+                vh1.ivcheckmarkprofile.setVisibility(View.INVISIBLE);
+            }else{
+                vh1.ivcheckmarkprofile.setVisibility(View.VISIBLE);
+            }
+
+
+
+
             FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 
         } else if (viewHolder.getItemViewType() == COMMENT) {
@@ -128,7 +136,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh2.tvComment.setText(comments.getMessage());
             vh2.tvCommentUsername.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view){
 //                    // Create a new fragment instead of an activity
 //                    Fragment fragment = new Friend_Profile_Fragment();
 //                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
@@ -200,6 +208,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ImageButton tvDonateNow;
         ImageButton ibComments;
         TextView tvCommentsNum;
+        ImageView ivcheckmarkprofile;
 
 
         public ViewHolderCharity(@NonNull View itemView) {
@@ -213,6 +222,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
             ibComments = itemView.findViewById(R.id.ibComments);
             tvCommentsNum = itemView.findViewById(R.id.tvCommentsNum);
+            ivcheckmarkprofile = itemView.findViewById(R.id.ivcheckmarkprofile);
 
             tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 

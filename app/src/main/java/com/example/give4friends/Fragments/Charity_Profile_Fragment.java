@@ -44,6 +44,7 @@ public class Charity_Profile_Fragment extends Fragment {
     RecyclerView rvCPProfile;
     ArrayList<Object> items;
     CharityAPI charity;
+
     CharityProfileAdapter itemsAdapter;
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -53,6 +54,7 @@ public class Charity_Profile_Fragment extends Fragment {
 
     public Charity_Profile_Fragment(CharityAPI charity) {
         this.charity = charity;
+
     }
 
     @Nullable
@@ -190,6 +192,8 @@ public class Charity_Profile_Fragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+
                 fragmentManager.popBackStack();
 
             }

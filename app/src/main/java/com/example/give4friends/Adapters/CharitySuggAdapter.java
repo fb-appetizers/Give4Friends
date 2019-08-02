@@ -3,6 +3,7 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -108,6 +110,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public ImageButton tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
+        public ImageView ivcheckmarkfav;
 
         public ViewHolderFavorites(View itemView) {
             super(itemView);
@@ -118,6 +121,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
+            ivcheckmarkfav = itemView.findViewById(R.id.ivcheckmarkfav);
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -157,6 +161,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
+        public ImageView  ivcheckmarksugg;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -168,6 +173,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
+            ivcheckmarksugg = itemView.findViewById(R.id.ivcheckmarksugg);
         }
 
         public boolean onLongClick(View view) {
@@ -220,20 +226,17 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().
                         replace(R.id.flContainer, fragment1)
-                        .addToBackStack(null).commit();
+                        .addToBackStack(null)
+                        .commit();
 
 
-                // Send an intent to the Charity Profile
-//            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
-//
-//            Intent intent = new Intent(context, CharityProfile.class);
-//
-//            intent.putExtra("Charity", Parcels.wrap(charity));
-//
-//            context.startActivity(intent);
+
             }
         }
     }
+
+
+
 
     @Override
     public int getItemViewType(int position) {
@@ -289,6 +292,14 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 // + charity.getKeyCategoryName() + ")"+ "</a>"));
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
                 vh3.tvCPLikedNum.setText("" + charity.getKeyNumLikes());
+
+
+                String payPalnum = charity.getString("payPal");
+                if(payPalnum == null || payPalnum.equals("")){
+                    vh3.ivcheckmarkfav.setVisibility(View.INVISIBLE);
+                }else{
+                    vh3.ivcheckmarkfav.setVisibility(View.VISIBLE);
+                }
                 FavoriteCharities.setUpFavorites(charity, ParseUser.getCurrentUser(), vh3.ibCPLike, vh3.tvCPLikedNum);
 
 
@@ -307,6 +318,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+
+
+
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
@@ -329,6 +343,23 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             currentCharity = object;
                         }
                         if(currentCharity != null){
+
+
+
+                            String payPalnum = currentCharity.getString("payPal");
+
+
+
+                            if(payPalnum == null || payPalnum.equals("")){
+                                vh1.ivcheckmarksugg.setVisibility(View.INVISIBLE);
+                            }else{
+
+
+
+                                vh1.ivcheckmarksugg.setVisibility(View.VISIBLE);
+                            }
+
+
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
 
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);

@@ -36,6 +36,18 @@
             card_view:layout_constraintStart_toStartOf="@+id/ibCPLike"
             card_view:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
+        <ImageView
+            android:id="@+id/ivcheckmarkfav"
+            android:layout_width="18dp"
+            android:layout_height="14dp"
+
+            android:layout_marginTop="4dp"
+            android:scaleType="fitXY"
+            android:visibility="invisible"
+            card_view:layout_constraintStart_toEndOf="@+id/tvCharityName"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/blue_check_mark" />
+
         <ImageButton
             android:id="@+id/ibCPLike"
             android:layout_width="50dp"
@@ -53,7 +65,7 @@
 
         <TextView
             android:id="@+id/tvCharityName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
