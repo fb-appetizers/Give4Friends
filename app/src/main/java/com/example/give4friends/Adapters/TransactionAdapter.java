@@ -114,7 +114,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             List<String> array = transaction.getKeyLikesUsers();
 
 
-
             // if user is in likesUsers - start red
             if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
                 holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
@@ -467,9 +466,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public class ViewHolderGreeting extends RecyclerView.ViewHolder{
+        public TextView person;
+        public TextView totalDonated;
+        public TextView totalRaised;
 
         public ViewHolderGreeting(@NonNull View itemView) {
             super(itemView);
+
+            person = itemView.findViewById(R.id.b);
+            totalDonated = itemView.findViewById(R.id.totalDonated);
+            totalRaised = itemView.findViewById(R.id.totalRaised);
+
+            ParseUser currUser = ParseUser.getCurrentUser();
+
+            person.setText(currUser.get("firstName").toString());
+            totalDonated.setText("Total Donated: $" + currUser.get("totalDonated").toString());
+            totalRaised.setText("Total Raised: $" + User_Profile_Fragment.total);
         }
     }
 

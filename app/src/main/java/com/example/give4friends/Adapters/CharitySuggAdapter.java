@@ -69,7 +69,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (viewType == CHARITY) {
             if(favorites){
                  v1 = inflater.inflate(R.layout.item_charity_favorites, parent, false);
-                viewHolder = new CharitySuggAdapter.ViewHolderFavorites(v1);
+                 viewHolder = new CharitySuggAdapter.ViewHolderFavorites(v1);
             }
             else {
                  v1 = inflater.inflate(R.layout.item_charity_sugg, parent, false);
@@ -102,8 +102,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class ViewHolderFavorites extends RecyclerView.ViewHolder{
         public TextView name;
         public TextView causeName;
-        public TextView tvDonateNow;
-        public TextView tvMoreInfo;
+        public ImageButton tvDonateNow;
+        public ImageButton tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
 

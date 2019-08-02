@@ -63,11 +63,11 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class User_Profile_Fragment extends Fragment{
-    int total = 0;
+    public static int total = 0;
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
 
-    private Button btEditBio;
+    private ImageButton btEditBio;
     private ImageButton btChangePic;
 
     public ImageView ivProfileImage;
@@ -139,11 +139,6 @@ public class User_Profile_Fragment extends Fragment{
 
             }
         });
-
-
-
-
-
 
         btChangePic = view.findViewById(R.id.btChangePic);
 
@@ -445,6 +440,7 @@ public class User_Profile_Fragment extends Fragment{
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                                                }
                                                tvTotalRaised.setText("Total Raised: $" + total);
+                                               ParseUser.getCurrentUser().put("totalRaised", total);
                                            }else {
                                                Log.e("MainActivity", "Can't get transaction");
                                                e.printStackTrace();

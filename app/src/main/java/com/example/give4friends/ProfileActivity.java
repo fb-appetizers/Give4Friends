@@ -137,6 +137,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvFullName = (TextView) findViewById(R.id.tvFullName);
 
         tvUserName.setText("@" + myUser.getUsername());
+
         if(myUser.getString("bio") == null){
             tvBio.setText("Looks like you don't have a bio yet! Edit your bio to let your friends know what you are passionate about.");
         }

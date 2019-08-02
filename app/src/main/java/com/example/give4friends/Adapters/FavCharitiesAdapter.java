@@ -52,10 +52,11 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
         // get data according to position.
        // Charity charity = (Charity) charities.get(position);
         Charity charity = charities.get(position);
-        holder.name.setMovementMethod(LinkMovementMethod.getInstance());
-        holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
-                +charity.getKeyName() + " ("
-                + charity.getKeyCategoryName() + ")"+ "</a>"));
+        holder.name.setText(charity.getKeyName());
+//        holder.name.setMovementMethod(LinkMovementMethod.getInstance());
+//        holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
+//                +charity.getKeyName() + " ("
+//                + charity.getKeyCategoryName() + ")"+ "</a>"));
         holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
         }
 
