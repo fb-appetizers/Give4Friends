@@ -79,4 +79,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars[4]" />
 
+    <TextView
+        android:id="@+id/tvhandlerComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileCreateComments"
+        app:layout_constraintTop_toTopOf="@+id/ivProfileCreateComments" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

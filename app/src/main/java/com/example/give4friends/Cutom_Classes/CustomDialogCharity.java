@@ -3,7 +3,6 @@ package com.example.give4friends.Cutom_Classes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.DonateActivity;
-import com.example.give4friends.DonateFinalActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
@@ -45,22 +43,27 @@ public class CustomDialogCharity extends DialogFragment {
     public TextView tvCharityName;
     public TextView tvMission;
 
+    public TextView tvDonateNow;
+    public TextView tvMoreInfo;
+
     public TextView tvCause;
     public ImageView ivRating;
-    public ImageButton tvDonateNow;
+    public ImageButton ibDonateNow;
 
-    public ImageButton tvMoreInfo;
-    private boolean from_charity_search;
+    public ImageButton ibMoreInfo;
+    private boolean from_charity_donate_search;
+
+
 
 
     public CustomDialogCharity(CharityAPI charity, boolean from_charity_search) {
         this.charity = charity;
-        this.from_charity_search = from_charity_search;
+        this.from_charity_donate_search = from_charity_search;
     }
 
     public CustomDialogCharity(Charity charity, boolean from_charity_search){
         this.newCharity = charity;
-        this.from_charity_search = from_charity_search;
+        this.from_charity_donate_search = from_charity_search;
 
     }
 
@@ -73,8 +76,13 @@ public class CustomDialogCharity extends DialogFragment {
         tvCharityName = view.findViewById(R.id.tvCharityName);
         tvMission = view.findViewById(R.id.tvMission);
 
+
         tvCause = view.findViewById(R.id.tvCause);
         ivRating = view.findViewById(R.id.ivRating);
+        ibDonateNow = view.findViewById(R.id.ibDonateNow);
+        ibMoreInfo = view.findViewById(R.id.ibMoreInfo);
+
+
         tvDonateNow = view.findViewById(R.id.tvDonateNow);
         tvMoreInfo = view.findViewById(R.id.tvMoreInfo);
 
@@ -83,8 +91,8 @@ public class CustomDialogCharity extends DialogFragment {
         tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
 
 
-        if(!from_charity_search) {
-            tvDonateNow.setOnClickListener(new View.OnClickListener() {
+        if(!from_charity_donate_search) {
+            ibDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setCurrentCharity();
@@ -95,9 +103,31 @@ public class CustomDialogCharity extends DialogFragment {
                     view.getContext().startActivity(intent);
                 }
             });
+
+            ibMoreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    getDialog().dismiss();
+                    Fragment fragment = new Charity_Profile_Fragment(charity);
+                    FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
+
+                }
+            });
+
+
+
         }else{
-            tvDonateNow.setVisibility(View.INVISIBLE);
+            ibDonateNow.setVisibility(View.INVISIBLE);
+            ibMoreInfo.setVisibility(View.INVISIBLE);
+
             tvMoreInfo.setVisibility(View.INVISIBLE);
+            tvDonateNow.setVisibility(View.INVISIBLE);
+
+
         }
 
 

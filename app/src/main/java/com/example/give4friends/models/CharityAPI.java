@@ -1,6 +1,7 @@
 package com.example.give4friends.models;
 
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 @Parcel
 
-public class CharityAPI {
+public class CharityAPI{
 
     public String name;
     public String mission;
@@ -278,4 +279,7 @@ public class CharityAPI {
         return charities;
 
     }
+
+
+
 }

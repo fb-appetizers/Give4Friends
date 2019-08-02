@@ -44,6 +44,8 @@ public class Create_Comments_Fragment extends Fragment {
     Button commentSubmitBtn;
     ImageView ivProfileCreateComments;
 
+    TextView tvhandlerComments;
+
     public Create_Comments_Fragment(String charityName, ParseUser user, Charity charity) {
         this.charityName = charityName;
         this.user = user;
@@ -67,8 +69,10 @@ public class Create_Comments_Fragment extends Fragment {
         tvCharityName = view.findViewById(R.id.tvCommentsCharityName);
         commentSubmitBtn = view.findViewById(R.id.commentSubmitBtn);
         ivProfileCreateComments = view.findViewById(R.id.ivProfileCreateComments);
+        tvhandlerComments = view.findViewById(R.id.tvhandlerComments);
 
         tvCharityName.setText(charityName);
+        tvhandlerComments.setText("@"+user.getUsername());
 
 
 
@@ -93,7 +97,6 @@ public class Create_Comments_Fragment extends Fragment {
         else{
             Glide.with(getContext())
                     .load(R.drawable.instagram_user_outline_24)
-
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCrop())

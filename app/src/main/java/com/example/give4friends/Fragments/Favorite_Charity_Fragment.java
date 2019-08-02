@@ -18,6 +18,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
@@ -79,8 +80,12 @@ public class Favorite_Charity_Fragment extends Fragment {
         charities.add("Favorite Charities");
         //Get relation
         final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+
+        ParseQuery postQuery = favCharities.getQuery();
+
+        postQuery.orderByDescending("updatedAt");
         //Get all charities in relation
-        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+        postQuery.findInBackground(new FindCallback<Charity>() {
             @Override
             public void done(List<Charity> objects, ParseException e) {
                 if (e != null) {

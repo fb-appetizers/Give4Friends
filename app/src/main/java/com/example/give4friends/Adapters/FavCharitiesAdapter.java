@@ -3,7 +3,6 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +77,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
             // perform findViewById lookups
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
-            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvDonateNow = itemView.findViewById(R.id.ibDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
 
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override

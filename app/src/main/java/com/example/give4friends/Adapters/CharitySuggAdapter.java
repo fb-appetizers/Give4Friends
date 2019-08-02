@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -106,16 +107,18 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public ImageButton tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
+        public ImageView ivcheckmarkfav;
 
         public ViewHolderFavorites(View itemView) {
             super(itemView);
             // perform findViewById lookups
             name = (TextView) itemView.findViewById(R.id.tvCharityName);
             causeName = (TextView) itemView.findViewById(R.id.tvCause);
-            tvDonateNow = itemView.findViewById(R.id.tvDonateNow);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvDonateNow = itemView.findViewById(R.id.ibDonateNow);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
+            ivcheckmarkfav = itemView.findViewById(R.id.ivcheckmarkfav);
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -155,6 +158,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
+        public ImageView  ivcheckmarksugg;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -163,9 +167,10 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvCharityNameSugg = itemView.findViewById(R.id.tvCharityNameSugg);
             tvCategorySugg = itemView.findViewById(R.id.tvCategorySugg);
             tvCauseSugg = itemView.findViewById(R.id.tvCauseSugg);
-            tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo);
+            tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
+            ivcheckmarksugg = itemView.findViewById(R.id.ivcheckmarksugg);
         }
 
         public boolean onLongClick(View view) {
@@ -218,20 +223,17 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().
                         replace(R.id.flContainer, fragment1)
-                        .addToBackStack(null).commit();
+                        .addToBackStack(null)
+                        .commit();
 
 
-                // Send an intent to the Charity Profile
-//            Toast.makeText(context,"This is a click",Toast.LENGTH_SHORT).show();
-//
-//            Intent intent = new Intent(context, CharityProfile.class);
-//
-//            intent.putExtra("Charity", Parcels.wrap(charity));
-//
-//            context.startActivity(intent);
+
             }
         }
     }
+
+
+
 
     @Override
     public int getItemViewType(int position) {
@@ -281,12 +283,17 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 final ViewHolderFavorites vh3 = (ViewHolderFavorites) holder;
                 Charity charity = (Charity) items.get(position);
                 vh3.name.setText(charity.getKeyName());
-                //holder.name.setMovementMethod(LinkMovementMethod.getInstance());
-                //holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
-                // +charity.getKeyName() + " ("
-                // + charity.getKeyCategoryName() + ")"+ "</a>"));
+
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
-                vh3.tvCPLikedNum.setText("" + charity.getKeyNumLikes());
+                vh3.tvCPLikedNum.setText(((Integer)charity.getKeyNumLikes()).toString());
+
+
+                String payPalnum = charity.getString("payPal");
+                if(payPalnum == null || payPalnum.equals("")){
+                    vh3.ivcheckmarkfav.setVisibility(View.INVISIBLE);
+                }else{
+                    vh3.ivcheckmarkfav.setVisibility(View.VISIBLE);
+                }
                 FavoriteCharities.setUpFavorites(charity, ParseUser.getCurrentUser(), vh3.ibCPLike, vh3.tvCPLikedNum);
 
 
@@ -305,6 +312,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+
+
+
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
@@ -327,6 +337,23 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             currentCharity = object;
                         }
                         if(currentCharity != null){
+
+
+
+                            String payPalnum = currentCharity.getString("payPal");
+
+
+
+                            if(payPalnum == null || payPalnum.equals("")){
+                                vh1.ivcheckmarksugg.setVisibility(View.INVISIBLE);
+                            }else{
+
+
+
+                                vh1.ivcheckmarksugg.setVisibility(View.VISIBLE);
+                            }
+
+
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
 
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);

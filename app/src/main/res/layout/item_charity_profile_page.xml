@@ -27,17 +27,16 @@
 
     <TextView
         android:id="@+id/tvCPname"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
 
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:linksClickable="true"
         android:text="Name"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCPImage" />
 
@@ -155,6 +154,15 @@
         android:text="Donate Now"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvDonateNowProfile" />
+
+    <ImageView
+        android:id="@+id/ivcheckmarkprofile"
+        android:layout_width="18dp"
+        android:layout_height="14dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/tvCPname"
+        app:layout_constraintTop_toBottomOf="@+id/ivCPImage"
+        app:srcCompat="@drawable/blue_check_mark" />
 
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
