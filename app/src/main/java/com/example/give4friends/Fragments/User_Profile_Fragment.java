@@ -67,7 +67,7 @@ public class User_Profile_Fragment extends Fragment{
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
 
-    private Button btEditBio;
+    private ImageButton btEditBio;
     private ImageButton btChangePic;
 
     public ImageView ivProfileImage;
@@ -112,10 +112,8 @@ public class User_Profile_Fragment extends Fragment{
         FavMileToolbar = view.findViewById(R.id.FavMileToolbar);
         viewPager = view.findViewById(R.id.viewPager);
 
-
         FavMileToolbar.addTab(FavMileToolbar.newTab().setText("Favorites"));
         FavMileToolbar.addTab(FavMileToolbar.newTab().setText("Milestones"));
-
 
         FavMileToolbar.setTabGravity(FavMileToolbar.GRAVITY_FILL);
 
@@ -139,11 +137,6 @@ public class User_Profile_Fragment extends Fragment{
 
             }
         });
-
-
-
-
-
 
         btChangePic = view.findViewById(R.id.btChangePic);
 

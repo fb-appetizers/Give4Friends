@@ -83,16 +83,17 @@
         app:layout_constraintTop_toBottomOf="@+id/FavMileToolbar"></androidx.viewpager.widget.ViewPager>
 
 
-
-    <Button
+    <ImageButton
         android:id="@+id/btEditProfile"
         android:layout_width="53dp"
         android:layout_height="26dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
+        android:background="#00E6E6FA"
+        android:src="@drawable/ic_edit_24px"
         android:text="Edit Bio"
         android:textSize="12sp"
+        android:tint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 

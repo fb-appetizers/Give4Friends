@@ -156,7 +156,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                             .error(R.drawable.user_outline_24)
                                             .signature(new ObjectKey(imageDate))
                                     )
-
                                     .into(vh2.ivCommentProfile);
                         } else {
                             Glide.with(context)
@@ -237,7 +236,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     }else{
 
                     }
-
                 }
             });
 
@@ -292,7 +290,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ivCommentProfile = itemView.findViewById(R.id.ivCommentProfile);
             tvCommentUsername = itemView.findViewById(R.id.tvCommentUsername);
             tvComment = itemView.findViewById(R.id.tvComment);
-
         }
 
         @Override

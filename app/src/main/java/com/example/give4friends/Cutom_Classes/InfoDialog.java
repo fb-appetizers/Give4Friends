@@ -30,15 +30,10 @@ import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class InfoDialog extends DialogFragment {
 
-
     private static final String TAG = "InfoDialog";
-
     public TextView giveWell;
 
-
-    public InfoDialog() {
-    }
-
+    public InfoDialog() {}
 
     @Nullable
     @Override
@@ -46,7 +41,6 @@ public class InfoDialog extends DialogFragment {
 
         View view = inflater.inflate(R.layout.activity_information, container, false);
         giveWell = view.findViewById(R.id.giveWell);
-
 
         // The name in the dialog isn't clickable but we can change this later
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
