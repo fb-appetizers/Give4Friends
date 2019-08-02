@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/TransactionHistory"
+        android:enabled="true"
+        android:title="Transaction History" />
+    <item
+        android:id="@+id/reportUser"
+        android:enabled="true"
+        android:title="Report User" />
+
+
+</menu>

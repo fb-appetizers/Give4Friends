@@ -1,0 +1,122 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/grid_margin"
+    android:layout_marginTop="@dimen/cell_margin"
+    android:layout_marginRight="@dimen/grid_margin"
+    android:background="@drawable/constraint_border"
+    android:clickable="true"
+    android:longClickable="true"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="@dimen/card_elevation">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+
+    tools:background="#FFFFFF">
+
+
+    <TextView
+        android:id="@+id/tvCPLikedNum"
+        android:layout_width="44dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="88dp"
+        android:text="TextView"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toStartOf="@+id/ibCPLike"
+        card_view:layout_constraintTop_toTopOf="@+id/ibCPLike"
+        card_view:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ibCPLike"
+        android:layout_width="50dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="315dp"
+        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
+        android:outlineAmbientShadowColor="#00181717"
+        android:outlineSpotShadowColor="#00131111"
+        android:paddingLeft="8dp"
+        android:scaleType="fitCenter"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/tvCPMission"
+        card_view:srcCompat="@drawable/ic_like_icon" />
+
+    <TextView
+        android:id="@+id/tvCharityName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="textMultiLine|text"
+        android:linksClickable="true"
+        android:paddingRight="5dp"
+
+        android:text="CharityName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColorLink="#2196F3"
+        android:textStyle="bold"
+        card_view:layout_constraintEnd_toEndOf="@+id/ibCPLike"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:paddingRight="5dp"
+        android:text="Cause"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/tvCharityName" />
+
+    <Button
+        android:id="@+id/tvMoreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="More Information"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        android:visibility="visible"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/tvDonateNow"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:clickable="false"
+        android:text="Donate Now"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
