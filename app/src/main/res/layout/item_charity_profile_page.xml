@@ -109,18 +109,21 @@
         app:layout_constraintStart_toStartOf="@+id/ibCPLike"
         app:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
-    <Button
+    <ImageButton
         android:id="@+id/tvDonateNowProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
+        android:background="#00E6E6FA"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:src="@drawable/ic_payment_40"
         android:text="Donate Now"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCPLikedNum"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:tint="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
     <ImageButton
         android:id="@+id/ibComments"
@@ -142,6 +145,16 @@
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@+id/ibComments"
         app:layout_constraintTop_toTopOf="@+id/ibComments" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:text="Donate Now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDonateNowProfile" />
 
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

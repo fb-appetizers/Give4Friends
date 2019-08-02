@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,9 +47,9 @@ public class CustomDialogCharity extends DialogFragment {
 
     public TextView tvCause;
     public ImageView ivRating;
-    public TextView tvDonateNow;
+    public ImageButton tvDonateNow;
 
-    public TextView tvMoreInfo;
+    public ImageButton tvMoreInfo;
     private boolean from_charity_search;
 
 
