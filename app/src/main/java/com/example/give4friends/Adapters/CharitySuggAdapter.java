@@ -104,8 +104,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class ViewHolderFavorites extends RecyclerView.ViewHolder{
         public TextView name;
         public TextView causeName;
-        public TextView tvDonateNow;
-        public TextView tvMoreInfo;
+        public ImageButton tvDonateNow;
+        public ImageButton tvMoreInfo;
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
 
@@ -282,10 +282,11 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 // Charity charity = (Charity) charities.get(position);
                 final ViewHolderFavorites vh3 = (ViewHolderFavorites) holder;
                 Charity charity = (Charity) items.get(position);
-                vh3.name.setMovementMethod(LinkMovementMethod.getInstance());
-                vh3.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
-                        +charity.getKeyName() + " ("
-                        + charity.getKeyCategoryName() + ")"+ "</a>"));
+                vh3.name.setText(charity.getKeyName());
+                //holder.name.setMovementMethod(LinkMovementMethod.getInstance());
+                //holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
+                // +charity.getKeyName() + " ("
+                // + charity.getKeyCategoryName() + ")"+ "</a>"));
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
                 vh3.tvCPLikedNum.setText("" + charity.getKeyNumLikes());
                 FavoriteCharities.setUpFavorites(charity, ParseUser.getCurrentUser(), vh3.ibCPLike, vh3.tvCPLikedNum);

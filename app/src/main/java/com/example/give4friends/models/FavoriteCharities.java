@@ -25,7 +25,6 @@ import java.util.List;
 
 public final class FavoriteCharities {
 
-
     public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
 
     {

@@ -441,7 +441,6 @@ public class User_Profile_Fragment extends Fragment{
                                                    if(objects.get(i).getKeyAmountDonated() != null) {
                                                        total = (total + (int) (objects.get(i).getKeyAmountDonated()));
                                                    }
-
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                                                }
                                                tvTotalRaised.setText("Total Raised: $" + total);
@@ -450,13 +449,10 @@ public class User_Profile_Fragment extends Fragment{
                                                e.printStackTrace();
                                            }
                                        }
-
                                    }
         );
 
     }
-
-
 
     public void changePhoto(){
         String[] options = {"Take photo", "Choose from gallery"};
