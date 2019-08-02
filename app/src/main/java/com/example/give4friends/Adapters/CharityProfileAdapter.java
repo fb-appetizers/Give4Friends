@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +45,8 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +54,7 @@ import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+
 
 
     private Context context;
@@ -62,6 +66,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public CharityProfileAdapter(List<Object> mObjects) {
         this.items = mObjects;
+
+
 
     }
 

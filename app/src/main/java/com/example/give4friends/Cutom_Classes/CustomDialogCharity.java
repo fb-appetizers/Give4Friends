@@ -50,17 +50,19 @@ public class CustomDialogCharity extends DialogFragment {
     public ImageButton tvDonateNow;
 
     public ImageButton tvMoreInfo;
-    private boolean from_charity_search;
+    private boolean from_charity_donate_search;
+
+
 
 
     public CustomDialogCharity(CharityAPI charity, boolean from_charity_search) {
         this.charity = charity;
-        this.from_charity_search = from_charity_search;
+        this.from_charity_donate_search = from_charity_search;
     }
 
     public CustomDialogCharity(Charity charity, boolean from_charity_search){
         this.newCharity = charity;
-        this.from_charity_search = from_charity_search;
+        this.from_charity_donate_search = from_charity_search;
 
     }
 
@@ -83,7 +85,7 @@ public class CustomDialogCharity extends DialogFragment {
         tvCharityName.setText(charity.getName() + " (" + charity.getCategoryName() + ")");
 
 
-        if(!from_charity_search) {
+        if(!from_charity_donate_search) {
             tvDonateNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -95,6 +97,26 @@ public class CustomDialogCharity extends DialogFragment {
                     view.getContext().startActivity(intent);
                 }
             });
+
+            tvMoreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    getDialog().dismiss();
+                    Fragment fragment = new Charity_Profile_Fragment(charity);
+                    FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.flContainer, fragment)
+                            .addToBackStack(null).commit();
+
+
+
+
+                }
+            });
+
+
+
         }else{
             tvDonateNow.setVisibility(View.INVISIBLE);
             tvMoreInfo.setVisibility(View.INVISIBLE);

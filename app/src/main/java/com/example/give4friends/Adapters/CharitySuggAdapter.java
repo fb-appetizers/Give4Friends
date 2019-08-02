@@ -286,12 +286,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 final ViewHolderFavorites vh3 = (ViewHolderFavorites) holder;
                 Charity charity = (Charity) items.get(position);
                 vh3.name.setText(charity.getKeyName());
-                //holder.name.setMovementMethod(LinkMovementMethod.getInstance());
-                //holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
-                // +charity.getKeyName() + " ("
-                // + charity.getKeyCategoryName() + ")"+ "</a>"));
+
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
-                vh3.tvCPLikedNum.setText("" + charity.getKeyNumLikes());
+                vh3.tvCPLikedNum.setText(((Integer)charity.getKeyNumLikes()).toString());
 
 
                 String payPalnum = charity.getString("payPal");
