@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -27,6 +28,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import org.parceler.Parcels;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -51,6 +55,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private TextView charityName;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,8 @@ public class DonateFinalActivity extends AppCompatActivity {
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
 
+
+
         String imageURL = currentFriend.getString("profileImageURL");
 
         if(imageURL != null){
@@ -83,8 +90,11 @@ public class DonateFinalActivity extends AppCompatActivity {
 
         charityName.setText(charityName2);
 
+
+
         friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
         friendsUserName.setText("@" + currentFriend.getUsername());
+
 
         amount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -113,8 +123,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText("$");
                     amount.setSelection(amount.getText().length());
                 }
-
-
 
 
                 if (count == 1){
@@ -148,7 +156,14 @@ public class DonateFinalActivity extends AppCompatActivity {
         submitDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 setNewTransaction();
+
+
+
+
                 String code = currentCharity.getKeyCode();
                 if(code == null){
                     Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
@@ -192,8 +207,13 @@ public class DonateFinalActivity extends AppCompatActivity {
 //            }
 //        }
 
+
+
+
+
+
         if(amountHere.length() == 1){
-            amountHere = "0";
+            amountHere = "$0";
         }
 
         int amountInt = Integer.parseInt(amountHere.substring(1));

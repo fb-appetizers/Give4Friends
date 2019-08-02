@@ -33,6 +33,8 @@ import com.example.give4friends.R;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -160,6 +162,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         public TextView friendsName;
         public TextView friendsUserName;
         public ImageView friendImage;
+
         public ImageButton addFriend;
 
 
@@ -180,14 +183,17 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             int position = getAdapterPosition(); // gets item position
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 currentFriend = users.get(position);
+
                 Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_SHORT).show();
 
                 if(donateNow == false){
                     Intent intent = new Intent(context, DonateSearchCharity.class);
+
                     context.startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(context, DonateFinalActivity.class);
+
                     context.startActivity(intent);
                 }
             }
