@@ -22,6 +22,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.Cutom_Classes.ExpandableTextView;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
@@ -390,7 +391,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ImageView donorPhoto;
         public ImageView friendPhoto;
         public TextView charity;
-        public TextView message;
+        public ExpandableTextView message;
         public ImageView pin;
         public TextView amount;
         public TextView tvLikesCount;

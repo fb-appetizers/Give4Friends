@@ -159,7 +159,6 @@
         android:id="@+id/ivcheckmarkprofile"
         android:layout_width="18dp"
         android:layout_height="14dp"
-        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/tvCPname"
         app:layout_constraintTop_toBottomOf="@+id/ivCPImage"
         app:srcCompat="@drawable/blue_check_mark" />
