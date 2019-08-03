@@ -62,7 +62,7 @@
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.example.give4friends.Cutom_Classes.ExpandableTextView
                 android:id="@+id/tvMessage"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
