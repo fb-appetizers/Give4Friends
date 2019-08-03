@@ -24,7 +24,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/ivDonor"
@@ -68,18 +69,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"
+                android:autoLink="web"
                 android:fontFamily="sans-serif-light"
+                android:linksClickable="true"
                 android:outlineAmbientShadowColor="#A103A9F4"
                 android:outlineSpotShadowColor="#03A9F4"
                 android:paddingLeft="5dp"
-                android:autoLink="web"
-                android:linksClickable="true"
-                android:textColorLink="@color/colorPrimary"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#99090808"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="16sp"
-                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintBottom_toTopOf="@+id/tvAmount"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
@@ -125,11 +125,10 @@
                 android:id="@+id/tvAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_marginEnd="11dp"
                 android:textSize="16sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
             <TextView
@@ -151,10 +150,9 @@
                 android:id="@+id/ivarrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_marginEnd="4dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toStartOf="@+id/tvAmount"
-                card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@android:color/transparent" />
 
             <TextView
