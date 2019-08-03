@@ -35,12 +35,7 @@ public class ExpandableTextView extends TextView {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                if(!trim){
-//                    clearFocus();
-//                }else{
-//                    requestFocusFromTouch();
-//                }
+                
                 trim = !trim;
                 setText();
 

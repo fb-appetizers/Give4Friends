@@ -111,6 +111,7 @@
                 android:id="@+id/tvCharity"
                 android:layout_width="265dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:textAlignment="textStart"
