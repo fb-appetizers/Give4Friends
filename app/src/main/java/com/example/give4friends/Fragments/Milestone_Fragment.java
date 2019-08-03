@@ -22,6 +22,7 @@ import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Milestone;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -36,6 +37,7 @@ public class Milestone_Fragment extends Fragment {
 
     MilestoneAdapter feedAdapter;
     ArrayList<Object> milestones;
+    ArrayList<Object> milestonesCompleted;
     RecyclerView rvMilestones;
     private SwipeRefreshLayout swipeContainer;
     ParseUser myUser;
@@ -84,6 +86,7 @@ public class Milestone_Fragment extends Fragment {
 
 
     private void populateRelations() {
+        /*
         String name = "Unnamed";
         if (myUser.getObjectId() == ParseUser.getCurrentUser().getObjectId()) {
             milestones.add("Your Milestones");
@@ -91,17 +94,38 @@ public class Milestone_Fragment extends Fragment {
             name = myUser.getString("firstName");
             milestones.add(name + "'s Milestones");
         }
+        */
 
         milestones.addAll(Milestone.getAllMilestones());
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
         rvMilestones.setLayoutManager(gridLayoutManager);
+        milestonesCompleted = new ArrayList<Object>();
 
-        ArrayList<Object> milestonesCompleted = (ArrayList<Object>) myUser.getList("milestones_completed");
+        try {
+            myUser = myUser.fetch();
+            milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
+            feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //(new GetCallback<ParseObject>() {
+            /*
+                 @Override
+                 public void done(ParseObject object, ParseException e) {
+                     if (e == null) {
+                         milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
+                     } else {
+                         milestonesCompleted = null;
+                     }
+
+                 }
+             });
+          */
+
 
         //construct the adapter from this datasource
         //TODO add to the parameters of Milestone adapter
-        feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
         //RecyclerView setup (layout manager, use adapter)
         rvMilestones.setAdapter(feedAdapter);
         rvMilestones.scrollToPosition(0);
