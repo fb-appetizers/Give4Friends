@@ -170,8 +170,16 @@ public class DonateFinalActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                String num_string = amount.getText().toString();
+                Double number;
+                if(num_string.equals("")){
+                    number = 0.0;
+                }else if(num_string.equals("$")){
+                    number = 0.0;
+                }else{
+                    number = Double.parseDouble(amount.getText().toString().substring(1));
+                }
 
-                Double number = Double.parseDouble(amount.getText().toString().substring(1));
 
                 // query for code from charity when done do this
                 Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
@@ -204,16 +212,18 @@ public class DonateFinalActivity extends AppCompatActivity {
 //            }
 //        }
 
-
-
-
-
-
-        if(amountHere.length() == 1){
+        int amountInt = 0;
+        if(amountHere.length() <= 1){
             amountHere = "$0";
+        }else{
+            amountInt = Integer.parseInt(amountHere.substring(1));
         }
 
-        int amountInt = Integer.parseInt(amountHere.substring(1));
+
+
+
+
+
 
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
