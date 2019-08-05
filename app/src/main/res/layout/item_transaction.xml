@@ -1,0 +1,174 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginRight="0dp"
+    android:background="@drawable/constraint_border"
+    android:clickable="true"
+    android:longClickable="true"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="0dp">
+
+    <!--android:foreground="?android:attr/selectableItemBackground"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/constraint_border"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/ivDonor"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ib_empty_heart"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="#FFFFFF"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+            <TextView
+                android:id="@+id/tvDonor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="88dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#050505"
+                android:textSize="16sp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.give4friends.Cutom_Classes.ExpandableTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="88dp"
+                android:layout_marginTop="24dp"
+                android:autoLink="web"
+                android:fontFamily="sans-serif-light"
+                android:linksClickable="true"
+                android:outlineAmbientShadowColor="#A103A9F4"
+                android:outlineSpotShadowColor="#03A9F4"
+                android:paddingLeft="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#99090808"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="16sp"
+                card_view:layout_constraintBottom_toTopOf="@+id/tvAmount"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
+
+            <ImageView
+                android:id="@+id/ivFriend"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentBottom="false"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerCrop"
+                card_view:layout_constraintStart_toStartOf="@+id/ivDonor"
+                card_view:layout_constraintTop_toTopOf="@+id/ivDonor" />
+
+            <ImageView
+                android:id="@+id/ivPin"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="82dp"
+                android:layout_marginTop="10dp"
+                android:background="#00FFFFFF"
+                android:clickable="true"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/tvDonor"
+                card_view:srcCompat="@drawable/pin" />
+
+            <TextView
+                android:id="@+id/tvCharity"
+                android:layout_width="265dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:textAlignment="textStart"
+                android:textSize="18sp"
+                card_view:layout_constraintEnd_toEndOf="@+id/tvDonor"
+                card_view:layout_constraintHorizontal_bias="0.052"
+                card_view:layout_constraintStart_toEndOf="@+id/ivPin"
+                card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="16sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvLikesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                card_view:layout_constraintBottom_toBottomOf="@+id/ib_empty_heart"
+                card_view:layout_constraintEnd_toStartOf="@+id/tvMessage"
+                card_view:layout_constraintHorizontal_bias="0.63"
+                card_view:layout_constraintStart_toStartOf="@+id/ib_empty_heart"
+                card_view:layout_constraintTop_toTopOf="@+id/ib_empty_heart" />
+
+            <ImageView
+                android:id="@+id/ivarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toStartOf="@+id/tvAmount"
+                card_view:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/tvFriendTransaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/tvDonor"
+                card_view:layout_constraintTop_toTopOf="@+id/tvDonor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
