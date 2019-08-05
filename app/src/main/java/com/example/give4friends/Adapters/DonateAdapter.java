@@ -73,7 +73,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Milestone.milestoneAchieved("First", holder, context);
+
 
         ParseUser user = users.get(position);
 
@@ -135,7 +135,23 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                         holder.addFriend.setColorFilter(Color.GRAY);
                         localFriends.add(user.getObjectId());
                         friends.add(user);
+
+                        List <String> milestones = ParseUser.getCurrentUser().getList("milestonesCompleted");
+
+
+
+                        if(milestones == null){
+                            milestones = new ArrayList<>();
+                        }
+
+                        if(!milestones.contains("First Friend")){
+                            Milestone.milestoneAchieved("First Friend", context);
+                            Milestone.addMilestone("First Friend");
+                        }
+
                         ParseUser.getCurrentUser().saveInBackground();
+
+
 
                     }
 

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.R;
+import com.parse.ParseUser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +45,19 @@ public final class Milestone {
     }
 
 
-    public static void milestoneAchieved(String milestone, @NonNull DonateAdapter.ViewHolder holder, Context context){
+    public static void addMilestone(String milestone){
+        ParseUser parseUser = ParseUser.getCurrentUser();
+
+        parseUser.add("milestonesCompleted", milestone);
+        parseUser.saveInBackground();
+
+
+    }
+
+
+
+
+    public static void milestoneAchieved(String milestone, Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Congrats!!! You have achieved the " + milestone + " milestone");
         builder.setMessage("After 2 seconds, this dialog will be closed automatically!");
