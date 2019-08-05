@@ -124,7 +124,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setSelection(amount.getText().length());
                 }
 
-
                 if (count == 1){
                     amount.setSelection(amount.getText().length());
                 }
@@ -141,10 +140,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText(previous);
                     amount.setSelection(amount.getText().length());
                 }
-
-
-
-
             }
 
             @Override
@@ -157,12 +152,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 setNewTransaction();
-
-
-
 
                 String code = currentCharity.getKeyCode();
                 if(code == null){
@@ -222,11 +212,6 @@ public class DonateFinalActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
@@ -259,6 +244,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         ParseRelation<ParseObject> relation = ParseUser.getCurrentUser().getRelation("friendsRecent");
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
+
 
 
 
