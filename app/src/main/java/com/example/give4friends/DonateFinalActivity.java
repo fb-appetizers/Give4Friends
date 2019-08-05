@@ -20,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.models.Milestone;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -245,7 +246,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
 
-
+        //Milestone.addMilestone("First Raised", getApplicationContext() );
 
 
     }
