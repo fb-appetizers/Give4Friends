@@ -44,7 +44,9 @@ import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class SignUpActivity extends AppCompatActivity {
     public final String APP_TAG = "SignUpActivity";
@@ -134,12 +136,22 @@ public class SignUpActivity extends AppCompatActivity {
                 Uri photoUri = data.getData();
                 try {
                     photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
-//                    photo = ProfilePicture.RotateBitmapFromBitmap(photo,90);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 //photoFile = new File(photoUri.getPath());
-                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+//                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
+
+                ExifInterface exifInterface = null;
+                try {
+                    InputStream inputStream = context.getContentResolver().openInputStream(photoUri);
+                    photo = ProfilePicture.rotateBitmapOrientation(photo, inputStream);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
                 Glide.with(context)

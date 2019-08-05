@@ -136,8 +136,8 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText(temp);
                 }
 
-                if(!temp.matches("[$0-9.]*")) {
-
+                if(!temp.matches("^[$0-9]*+([.][0-9]{0,2})?$")) {
+                    //[$0-9.]*
                     amount.setText(previous);
                     amount.setSelection(amount.getText().length());
                 }

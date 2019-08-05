@@ -1,10 +1,13 @@
 package com.example.give4friends.Fragments;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -56,7 +59,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -342,6 +347,7 @@ public class User_Profile_Fragment extends Fragment{
 
                 photo = ProfilePicture.rotateBitmapOrientation(photoFile.getAbsolutePath());
 
+
                 Glide.with(context)
                         .load(photo)
                         .apply(new RequestOptions()
@@ -367,10 +373,24 @@ public class User_Profile_Fragment extends Fragment{
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
 
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+
+
+                ExifInterface exifInterface = null;
+                try {
+                    InputStream inputStream = context.getContentResolver().openInputStream(photoUri);
+                    photo = ProfilePicture.rotateBitmapOrientation(photo, inputStream);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
 
                 Glide.with(context)
                         .load(photo)
@@ -393,6 +413,14 @@ public class User_Profile_Fragment extends Fragment{
 
     };
 
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
 
     public void updateBio(String bio){
         ParseUser user = ParseUser.getCurrentUser();
