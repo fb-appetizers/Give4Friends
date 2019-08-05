@@ -303,7 +303,7 @@ public class User_Profile_Fragment extends Fragment{
                 fragmentManager1.beginTransaction().
                         replace(R.id.flContainer, fragment1)
                         .addToBackStack(null).commit();
-                Toast.makeText(getContext(), "Liked Transactions selected", Toast.LENGTH_SHORT).show();
+
                 return true;
             case R.id.friends:
                 Fragment fragment2 = new Friend_List_Fragment();
@@ -311,7 +311,7 @@ public class User_Profile_Fragment extends Fragment{
                 fragmentManager2.beginTransaction().
                         replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
-                Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
+
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();

@@ -214,8 +214,6 @@ public class Friend_Profile_Fragment extends Fragment {
                 Toast.makeText(getContext(), "Report User Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.TransactionHistory:
-                Toast.makeText(context, "Transaction History selected", Toast.LENGTH_LONG).show();
-
                 Fragment fragment = new History_Fragment(myUser, true);
                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().
@@ -223,7 +221,7 @@ public class Friend_Profile_Fragment extends Fragment {
                         .addToBackStack(null).commit();
                 return true;
             default:
-//                Log.e()
+
         }
         return true;
     }
