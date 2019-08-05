@@ -136,19 +136,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                         localFriends.add(user.getObjectId());
                         friends.add(user);
 
-                        List <String> milestones = ParseUser.getCurrentUser().getList("milestonesCompleted");
-
-
-
-                        if(milestones == null){
-                            milestones = new ArrayList<>();
-                        }
-
-                        if(!milestones.contains("First Friend")){
-                            Milestone.milestoneAchieved("First Friend", context);
-                            Milestone.addMilestone("First Friend");
-                        }
-
+                        Milestone.addMilestone("First Friend", context);
                         ParseUser.getCurrentUser().saveInBackground();
 
 

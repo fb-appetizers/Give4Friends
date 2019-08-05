@@ -10,6 +10,7 @@ import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.R;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
@@ -50,11 +51,25 @@ public final class Milestone {
     }
 
 
-    public static void addMilestone(String milestone){
+    public static void addMilestone(String milestone, Context context){
         ParseUser parseUser = ParseUser.getCurrentUser();
 
-        parseUser.add("milestonesCompleted", milestone);
-        parseUser.saveInBackground();
+
+        List <String> milestones = parseUser.getList("milestonesCompleted");
+
+
+        if(milestones == null){
+            milestones = new ArrayList<>();
+        }
+
+        if(!milestones.contains(milestone)){
+            Milestone.milestoneAchieved("First Friend", context);
+            parseUser.add("milestonesCompleted", milestone);
+            parseUser.saveInBackground();
+
+        }
+
+
 
 
     }
