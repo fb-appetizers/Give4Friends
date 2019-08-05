@@ -1,5 +1,7 @@
 package com.example.give4friends.Adapters;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -61,13 +63,17 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View view = inflater.inflate(R.layout.item_donate, parent, false);
+
+
         return new DonateAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        milestoneAchieved("First", holder);
+
         ParseUser user = users.get(position);
 
         holder.friendsName.setText(user.get("firstName") + " " + user.get("lastName"));
@@ -218,6 +224,25 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             }
         });
         dialog.show();
+
+    }
+
+
+    public void milestoneAchieved(String milestone, @NonNull ViewHolder holder){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Congrats!!! You have achieved the " + milestone + " milestone");
+        builder.setMessage("After 3 seconds, this dialog will be closed automatically!");
+        builder.setCancelable(true);
+
+        final AlertDialog dlg = builder.create();
+        dlg.show();
+        final Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                dlg.dismiss(); // when the task active then close the dialog
+                t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
+            }
+        }, 3000); // after 2 second (or 2000 miliseconds), the task will be active
 
     }
 
