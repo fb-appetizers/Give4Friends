@@ -38,8 +38,6 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
-
-
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
     private boolean friend;
@@ -345,11 +343,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                             replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
                 }
-
-
             }
         });
-
 
         holder.friend.setOnClickListener(new View.OnClickListener() {
             @Override

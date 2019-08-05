@@ -89,7 +89,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     protected void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
-
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextSize(30);
         toolbarTitle.setText("Search User");
@@ -186,7 +185,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                 if (e != null) {
                     // There was an error
                 } else {
-                    // results have all the charities the current user liked.
+                    // results have all the friends the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
                         ParseUser tempFriend = (ParseUser) objects.get(i);
