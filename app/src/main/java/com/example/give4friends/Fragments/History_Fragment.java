@@ -34,7 +34,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
     private EndlessRecyclerViewScrollListener scrollListener;
     public static Integer MAX_NUMBER_OF_TRANSACTIONS = 20;
     Boolean friend;
-    private List<Object> items;
+    protected List<Object> items;
 
     public History_Fragment(ParseUser myUser, boolean friend) {
         // This sets the value of myUser using a constructor
@@ -142,6 +142,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
                         Transaction transaction = transactionList.get(i);
 
                         items.add(transaction);
+                        transactions.add(transaction);
 
                         if(i == (transactionList.size()-1)){
                             try {
@@ -197,7 +198,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
 
         toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("History");
+        toolbarTitle.setText("");
 
 
 

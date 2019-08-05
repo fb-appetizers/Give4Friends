@@ -36,10 +36,13 @@ import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.example.give4friends.Adapters.TransactionAdapter.changeTB;
 
 public class Main_Transaction_Fragment extends Fragment {
 
@@ -52,7 +55,7 @@ public class Main_Transaction_Fragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
     boolean friend;
-    private List<Object> items;
+    protected List<Object> items;
 
 
     @Nullable
@@ -140,8 +143,15 @@ public class Main_Transaction_Fragment extends Fragment {
 
         TextView toolbarTitle = toolbar.findViewById(R.id.homeToolbar);
 
-        toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("Give4Friends");
+//        if(changeTB){
+            toolbarTitle.setTextSize(30);
+            toolbarTitle.setText("Give4Friends");
+
+//        }
+//        else {
+//            toolbarTitle.setTextSize(30);
+//            toolbarTitle.setText(ParseUser.getCurrentUser().getString("firstName"));
+//        }
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
@@ -153,6 +163,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
             }
         });
+
     }
 
     @Override
@@ -223,7 +234,9 @@ public class Main_Transaction_Fragment extends Fragment {
                 if (e == null){
                     for(int i=0;i<transactionList.size();i++){
                         Transaction transaction = transactionList.get(i);
+
                         items.add(transaction);
+                        transactions.add(transaction);
 
                         if(i == (transactionList.size()-1)){
                             try {
@@ -240,15 +253,9 @@ public class Main_Transaction_Fragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-
-
         });
         return false;
     }
-
-
-
-
 }
 
 

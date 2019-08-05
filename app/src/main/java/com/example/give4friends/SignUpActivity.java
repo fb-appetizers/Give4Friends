@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email;
     private EditText userName;
     private TextView addProfilePic;
-    private ImageButton signUp;
+    private Button signUp;
     private ImageView profilePic;
     private ShowHidePasswordEditText passWord;
     Context context;
@@ -84,6 +84,14 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Make sure to logout before you sign up !!
         ParseUser.logOut();
+
+        Glide.with(this)
+                .load(R.drawable.com_facebook_profile_picture_blank_portrait)
+                .apply(new RequestOptions()
+                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                        .circleCropTransform()
+                        .error(R.drawable.user_outline_24))
+                .into(profilePic);
 
         context = this;
         addProfilePic.setOnClickListener(new View.OnClickListener() {

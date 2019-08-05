@@ -67,7 +67,7 @@ public class User_Profile_Fragment extends Fragment{
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
 
-    private ImageButton btEditBio;
+    private Button btEditBio;
     private ImageButton btChangePic;
 
     public ImageView ivProfileImage;

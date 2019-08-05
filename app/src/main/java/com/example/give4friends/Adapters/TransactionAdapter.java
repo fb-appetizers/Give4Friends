@@ -2,6 +2,7 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +27,11 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
+import com.example.give4friends.Cutom_Classes.DialougFragment2;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.Fragments.User_Profile_Fragment;
+import com.example.give4friends.Main_Fragment_Branch;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.Transaction;
 import com.parse.GetCallback;
@@ -47,6 +49,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<Object> transactions;
     private boolean friend;
     private boolean history;
+    public static boolean changeTB;
 
     private final int GREETINGS = 0, TRANSACTIONS = 1;
 
@@ -90,6 +93,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder1, int position) {
         if(holder1.getItemViewType() != GREETINGS){
             // get data according to position.
+
+            changeTB = true;
 
             final Transaction transaction = (Transaction) transactions.get(position);
 
@@ -235,6 +240,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 //                        holder.donor.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
 //                        holder.friend.setText("on behalf of ");
                             holder.friend.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
+
                         }
                     });
                 }
@@ -317,8 +323,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void done(ParseObject object, ParseException e) {
 
-
                     String imageURL = object.getString("profileImageURL");
+
                     if(imageURL != null){
                         Date imageDate = object.getDate("profileImageCreatedAt");
 
@@ -424,7 +430,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     // create ViewHolder Class
-    public class ViewHolderTransactions extends RecyclerView.ViewHolder{
+    public class ViewHolderTransactions extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //public TextView charityName;
         public TextView donor;
@@ -432,7 +438,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public ImageView donorPhoto;
         public ImageView friendPhoto;
         public TextView charity;
-        public TextView message;
+        public com.rokonoid.widget.ExpandableTextView message;
         public ImageView pin;
         public TextView amount;
         public TextView tvLikesCount;
@@ -463,6 +469,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             friend = itemView.findViewById(R.id.tvFriendTransaction);
 
         }
+
+        @Override
+        public void onClick(View view) {
+
+        }
     }
 
     public class ViewHolderGreeting extends RecyclerView.ViewHolder{
@@ -478,10 +489,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             totalRaised = itemView.findViewById(R.id.totalRaised);
 
             ParseUser currUser = ParseUser.getCurrentUser();
+            Object totalRaisedStr = currUser.get("totalRaised");
+            Object totalDonatedstr = currUser.get("totalDonated");
 
             person.setText(currUser.get("firstName").toString());
-            totalDonated.setText("Total Donated: $" + currUser.get("totalDonated").toString());
-            totalRaised.setText("Total Raised: $" + User_Profile_Fragment.total);
+
+            if(totalDonatedstr != null){
+                totalDonated.setText("Total Donated: $" + totalDonatedstr);
+            }
+            else {
+                totalDonated.setText("Total Donated: $0");
+            }
+
+            if(totalRaisedStr != null){
+                totalRaised.setText("Total Raised: $" + totalRaisedStr);
+            }
+            else{
+                totalRaised.setText("Total Raised: $0");
+            }
         }
     }
 
