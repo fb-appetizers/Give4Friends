@@ -47,7 +47,7 @@ public final class Milestone {
     public static void milestoneAchieved(String milestone, @NonNull DonateAdapter.ViewHolder holder, Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Congrats!!! You have achieved the " + milestone + " milestone");
-        builder.setMessage("After 1 seconds, this dialog will be closed automatically!");
+        builder.setMessage("After 2 seconds, this dialog will be closed automatically!");
         builder.setCancelable(true);
 
         final AlertDialog dlg = builder.create();
@@ -58,7 +58,7 @@ public final class Milestone {
                 dlg.dismiss(); // when the task active then close the dialog
                 t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
             }
-        }, 1000); // after 2 second (or 2000 miliseconds), the task will be active
+        }, 2000); // after 2 second (or 2000 miliseconds), the task will be active
 
     }
 

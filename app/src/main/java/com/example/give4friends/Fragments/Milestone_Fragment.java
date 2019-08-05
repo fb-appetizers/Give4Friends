@@ -102,33 +102,33 @@ public class Milestone_Fragment extends Fragment {
         rvMilestones.setLayoutManager(gridLayoutManager);
         milestonesCompleted = new ArrayList<Object>();
 
-        try {
-            myUser = myUser.fetch();
-            milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
-            feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        //(new GetCallback<ParseObject>() {
-            /*
-                 @Override
-                 public void done(ParseObject object, ParseException e) {
-                     if (e == null) {
-                         milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
-                     } else {
-                         milestonesCompleted = null;
-                     }
-
-                 }
-             });
-          */
+//        try {
+//            myUser = myUser.fetch();
+//            milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
+//            feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
 
-        //construct the adapter from this datasource
-        //TODO add to the parameters of Milestone adapter
-        //RecyclerView setup (layout manager, use adapter)
-        rvMilestones.setAdapter(feedAdapter);
-        rvMilestones.scrollToPosition(0);
+        myUser.fetchInBackground(new GetCallback<ParseUser>() {
+            @Override
+            public void done(ParseUser object, ParseException e) {
+
+                Toast.makeText(getContext(), "My User Activated", Toast.LENGTH_SHORT).show();
+                milestonesCompleted = (ArrayList<Object>) ((object.getList("milestonesCompleted")));
+                feedAdapter = new MilestoneAdapter(milestones, object, milestonesCompleted);
+                //construct the adapter from this datasource
+                //TODO add to the parameters of Milestone adapter
+                //RecyclerView setup (layout manager, use adapter)
+                rvMilestones.setAdapter(feedAdapter);
+                rvMilestones.scrollToPosition(0);
+
+            }
+        });
+
+
+
     }
 
 
