@@ -73,6 +73,7 @@ public class PayPalActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PayPalActivity.this, Main_Fragment_Branch.class);
                 startActivity(intent);
+                finish();
             }
         });
 
