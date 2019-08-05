@@ -145,7 +145,8 @@ public class Charity_Search_Fragment extends Fragment {
 
 
         getEffective();
-//        Toast.makeText(getContext(), "Created", Toast.LENGTH_SHORT).show();
+
+
     }
 
 
