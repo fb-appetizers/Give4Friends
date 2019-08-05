@@ -168,6 +168,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                 if(code == null){
                     Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
                     startActivity(intent);
+                    finish();
                 }
 
                 String num_string = amount.getText().toString();
@@ -186,6 +187,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                 intent.putExtra("code", code);
                 intent.putExtra("amount", number);
                 startActivity(intent);
+                finish();
                 //Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
                 //startActivity(intent);
             }
