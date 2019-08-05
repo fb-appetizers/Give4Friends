@@ -19,10 +19,15 @@ public final class Milestone {
     static List<Pair<String, Integer>> milestones = Arrays.asList(Pair.create("First Donation", R.drawable.ic_filled_heart_80),
             Pair.create("First Raised", R.drawable.ic_happy_face_80),
             //check after transaction
-            Pair.create("First Friend", R.drawable.ic_first_friend_80px)
+            Pair.create("First Friend", R.drawable.ic_first_friend_80px),
+            Pair.create("Raised $20", R.drawable.ic_accessibility_80),
+            Pair.create("Donated $20", R.drawable.ic_filled_money_80),
+            Pair.create("Used For A Year", R.drawable.ic_cake_80),
+            Pair.create("Made 10 Friends", R.drawable.ic_people_80)
+
             //check after adding friend - make sure to not do it twice if they remove their friend
-             /*Pair.create("Raised $20", R.drawable.ic_baseline_star_rate_18px),
-            Pair.create("Donated $20", R.drawable.ic_baseline_star_rate_18px),
+             /*,
+            ,
             Pair.create("Raised $50", R.drawable.ic_baseline_star_rate_18px),
             Pair.create("Donated $100", R.drawable.ic_baseline_star_rate_18px),
             Pair.create("Raised $100", R.drawable.ic_baseline_star_rate_18px),
