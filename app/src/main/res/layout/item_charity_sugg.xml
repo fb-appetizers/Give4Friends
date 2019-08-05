@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="1dp"
-    android:layout_marginTop="1dp"
+    android:layout_marginTop="2dp"
     android:layout_marginRight="1dp"
     android:background="#2A03524A"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:longClickable="true"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="0dp"
     app:cardElevation="@dimen/card_elevation">
 
     <!--android:background="#2A03524A"-->
