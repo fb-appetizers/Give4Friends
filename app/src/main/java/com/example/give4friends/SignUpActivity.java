@@ -147,8 +147,6 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     InputStream inputStream = context.getContentResolver().openInputStream(photoUri);
                     photo = ProfilePicture.rotateBitmapOrientation(photo, inputStream);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

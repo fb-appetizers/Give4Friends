@@ -32,6 +32,7 @@ import com.example.give4friends.DonateSearchCharity;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.R;
 
+import com.example.give4friends.models.Milestone;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
@@ -72,7 +73,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        milestoneAchieved("First", holder);
+        Milestone.milestoneAchieved("First", holder, context);
 
         ParseUser user = users.get(position);
 
@@ -228,22 +229,6 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
     }
 
 
-    public void milestoneAchieved(String milestone, @NonNull ViewHolder holder){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Congrats!!! You have achieved the " + milestone + " milestone");
-        builder.setMessage("After 3 seconds, this dialog will be closed automatically!");
-        builder.setCancelable(true);
 
-        final AlertDialog dlg = builder.create();
-        dlg.show();
-        final Timer t = new Timer();
-        t.schedule(new TimerTask() {
-            public void run() {
-                dlg.dismiss(); // when the task active then close the dialog
-                t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
-            }
-        }, 3000); // after 2 second (or 2000 miliseconds), the task will be active
-
-    }
 
 }

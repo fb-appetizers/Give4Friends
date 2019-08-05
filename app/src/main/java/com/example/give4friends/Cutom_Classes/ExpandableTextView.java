@@ -17,7 +17,8 @@ import com.example.give4friends.R;
 public class ExpandableTextView extends TextView {
     private static final int DEFAULT_TRIM_LENGTH = 150;
     private static final String ELLIPSIS = " .....";
-    private static final Spanned ELLIPSIS2 = Html.fromHtml("<font color=\"#434040\"><b>....more</b></font>");
+    //#434040
+    private static final Spanned ELLIPSIS2 = Html.fromHtml("<font color=\"#434040\"><small><b>....more</b></small></font>");
 
     private CharSequence originalText;
     private CharSequence trimmedText;
