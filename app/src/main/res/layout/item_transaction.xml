@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="#FFFFFF"
-                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintBottom_toTopOf="@+id/tvAmount"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:srcCompat="@drawable/ic_vector_heart_stroke" />
 
