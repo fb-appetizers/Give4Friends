@@ -210,7 +210,6 @@ public class CharityAPI{
             JSONObject charityJson;
 
 
-
             try {
 
                 charityJson = array.getJSONObject(i);

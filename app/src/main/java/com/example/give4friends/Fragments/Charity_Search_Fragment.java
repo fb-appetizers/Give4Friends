@@ -254,7 +254,6 @@ public class Charity_Search_Fragment extends Fragment {
 
             postQuery.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
 
-
             postQuery.getFirstInBackground(new GetCallback<ParseUser>() {
                 @Override
                 public void done(ParseUser object, ParseException e) {
@@ -263,18 +262,21 @@ public class Charity_Search_Fragment extends Fragment {
                         charities = new ArrayList<Charity>();
                     }
 
-                    if (charities.size() > 0) {
-                        items.add("Charities Suggested For You");
-                    }
-                    // The suggestedNum now goes in decending order
-                    Integer suggestedNum = Integer.max((Integer) (charities.size() - 1 - NUMBER_OF_SUGGESTIONS), 0);
+                    if(items.size() <= size_of_recommended) {
+                        if (charities.size() > 0) {
+                            items.add("Charities Suggested For You");
+                        }
+                        // The suggestedNum now goes in decending order
+                        Integer suggestedNum = Integer.max((Integer) (charities.size() - 1 - NUMBER_OF_SUGGESTIONS), 0);
 
-                    for (int i = (charities.size() - 1); i > suggestedNum; i--) {
-                        items.add(CharityAPI.fromParse(charities.get(i)));
+                        for (int i = (charities.size() - 1); i > suggestedNum; i--) {
+                            items.add(CharityAPI.fromParse(charities.get(i)));
+                        }
+
+                        charityAdapterUpper.notifyDataSetChanged();
+                        hideProgressBar();
                     }
 
-                    charityAdapterUpper.notifyDataSetChanged();
-                    hideProgressBar();
                 }
             });
 
