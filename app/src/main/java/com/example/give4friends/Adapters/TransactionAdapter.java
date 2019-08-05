@@ -163,9 +163,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 }
             });
 
+
+        holder.ivarrow.setVisibility(View.GONE);
+        holder.amount.setVisibility(View.GONE);
+
         //populate the views according to this data
         // if user is current user
+
         if(!friend ){
+            holder.ivarrow.setVisibility(View.VISIBLE);
+            holder.amount.setVisibility(View.VISIBLE);
+
+
             if (transaction.getKeyAmountDonated() != null) {
                 holder.amount.setText("$" + transaction.getKeyAmountDonated().toString());
             } else {

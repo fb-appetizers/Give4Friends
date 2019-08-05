@@ -162,10 +162,6 @@ public class Main_Transaction_Fragment extends Fragment {
                         replace(R.id.flContainer, fragment1)
                         .addToBackStack(null).commit();
 
-
-                Toast.makeText(getContext(), "Impact Calculator selected", Toast.LENGTH_SHORT).show();
-
-
                 return true;
 
             case R.id.searchPeople:
@@ -177,12 +173,9 @@ public class Main_Transaction_Fragment extends Fragment {
                         .addToBackStack(null).commit();
 
 
-                Toast.makeText(getContext(), "Search People selected", Toast.LENGTH_SHORT).show();
-
-
                 return true;
             default:
-//                Log.e()
+
         }
         return true;
     }

@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-thin"
         android:text="PayPal"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -30,19 +31,18 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/wvPayPal"
         app:layout_constraintStart_toEndOf="@+id/ibcancelFinal2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/ibcancelFinal2"
         android:layout_width="34dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
-        app:layout_constraintStart_toStartOf="@+id/toolbar3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTransactionTrans2"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_x" />
 
     <WebView

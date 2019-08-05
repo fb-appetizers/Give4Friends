@@ -301,6 +301,8 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 CharityAPI charity = (CharityAPI) items.get(position);
                 final ViewHolderSuggested vh1 = (ViewHolderSuggested) holder;
 
+                // Initially set the checkmark to be invisible
+                vh1.ivcheckmarksugg.setVisibility(View.INVISIBLE);
 
                 // Initialize the values before you begin the thread process
                 vh1.ibCPLike.setImageResource(R.drawable.ic_like_icon);
@@ -347,8 +349,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             if(payPalnum == null || payPalnum.equals("")){
                                 vh1.ivcheckmarksugg.setVisibility(View.INVISIBLE);
                             }else{
-
-
 
                                 vh1.ivcheckmarksugg.setVisibility(View.VISIBLE);
                             }

@@ -36,7 +36,10 @@ import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.NameValuePair;
@@ -184,6 +187,8 @@ public final class ProfilePicture {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         String orientString = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
         int orientation = orientString != null ? Integer.parseInt(orientString) : ExifInterface.ORIENTATION_NORMAL;
         int rotationAngle = 0;
@@ -197,6 +202,37 @@ public final class ProfilePicture {
         // Return result
         return rotatedBitmap;
     }
+
+    public static Bitmap rotateBitmapOrientation(Bitmap photo, InputStream inputStream) {
+        // Create and configure BitmapFactory
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+
+        // Read EXIF Data
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
+
+        int rotationAngle = 0;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotationAngle = 90;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotationAngle = 180;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotationAngle = 270;
+        // Rotate Bitmap
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(rotationAngle);
+        return Bitmap.createBitmap(photo, 0, 0, photo.getWidth(), photo.getHeight(), matrix, true);
+
+    }
+
 
 
     public static String getRealPathFromURI(Context context, Uri contentUri) {
