@@ -107,7 +107,8 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             holder.addFriend.setVisibility(View.VISIBLE);
             holder.addFriend.setClickable(true);
 
-            //if already a friend make gray
+           
+            //if already a friend make gray and set first to false
             if (localFriends != null && localFriends.contains(user.getObjectId())) {
                 holder.addFriend.setColorFilter(Color.GRAY);
             }
@@ -122,7 +123,6 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                     //check if already friend -> remove
                     if (localFriends != null && localFriends.contains(user.getObjectId())) {
                         removeFriend(user, holder);
-
                     } else {
                         // new friend -> add
                         holder.addFriend.setColorFilter(Color.GRAY);

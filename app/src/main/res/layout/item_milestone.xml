@@ -18,8 +18,9 @@
         android:id="@+id/tvMilestoneName"
         android:layout_width="143dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivMilestone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
