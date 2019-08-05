@@ -48,6 +48,8 @@ public class PayPalActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 webView.loadUrl("javascript:(function() { document.getElementById('nemo_inputAmount').value = '"+amount.toString()+"';})()");
+                webView.loadUrl("javascript:(function() { var z = document.getElementById('nemo_donatebuttonNPO').click(); })()");
+
             }
         });
 
