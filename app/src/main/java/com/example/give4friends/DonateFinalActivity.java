@@ -20,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.models.Milestone;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -124,7 +125,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setSelection(amount.getText().length());
                 }
 
-
                 if (count == 1){
                     amount.setSelection(amount.getText().length());
                 }
@@ -141,10 +141,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     amount.setText(previous);
                     amount.setSelection(amount.getText().length());
                 }
-
-
-
-
             }
 
             @Override
@@ -157,12 +153,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 setNewTransaction();
-
-
-
 
                 String code = currentCharity.getKeyCode();
                 if(code == null){
@@ -222,11 +213,6 @@ public class DonateFinalActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-
         newTransaction.setKeyMessage(message.getText().toString());
         newTransaction.setKeyFriendId(currentFriend);
         newTransaction.setKeyDonorId(currentUser);
@@ -260,6 +246,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
 
+        //Milestone.addMilestone("First Raised", getApplicationContext() );
 
 
     }

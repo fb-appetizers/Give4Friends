@@ -128,7 +128,7 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             if(completedMilestones != null && completedMilestones.contains(milestone.first)){
                 //acheived!
-                ((ViewHolderMilestones) holder).ivMilestone.setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+                ((ViewHolderMilestones) holder).ivMilestone.setColorFilter(Color.parseColor("#CFB7E6"), PorterDuff.Mode.SRC_ATOP);
             }
 
         } else if (holder.getItemViewType() == TEXT) {
