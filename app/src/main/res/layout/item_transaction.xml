@@ -78,7 +78,6 @@
                 android:textColor="#99090808"
                 android:textColorLink="@color/colorPrimary"
                 android:textSize="16sp"
-                card_view:layout_constraintBottom_toTopOf="@+id/tvAmount"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
@@ -109,7 +108,7 @@
             <TextView
                 android:id="@+id/tvCharity"
                 android:layout_width="265dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
@@ -129,6 +128,7 @@
                 android:textSize="16sp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/tvMessage"
                 tools:visibility="visible" />
 
             <TextView
