@@ -107,10 +107,10 @@ public class DonateFinalActivity extends AppCompatActivity {
         amount.addTextChangedListener(new TextWatcher() {
 
             String previous;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 previous = charSequence.toString();
-
             }
 
             @Override
@@ -140,15 +140,17 @@ public class DonateFinalActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if(amount.getText().subSequence(1, amount.getText().length()).length() > 0 &&
+                        Integer.parseInt(amount.getText().subSequence(1, amount.getText().length()).toString()) > 0){
+                    submitDonation.setBackgroundColor(getResources().getColor(R.color.colorNow));
+                    submitDonation.setTextColor(getResources().getColor(R.color.colorWhite));
+                }
             }
         });
 
         submitDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
 
                 setNewTransaction();
 

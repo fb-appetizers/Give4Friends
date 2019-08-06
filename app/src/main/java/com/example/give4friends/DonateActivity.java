@@ -146,7 +146,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
-                        friends.add((ParseUser) objects.get(i));
+                        if(!friends.contains(objects.get(i)))
+                            friends.add((ParseUser) objects.get(i));
                     }
                 }
 
@@ -173,7 +174,10 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 } else {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
-                    friends.addAll(objects);
+                    for (int i = 0; i < objects.size(); i++){
+                        if(!friends.contains(objects.get(i)))
+                            friends.add(objects.get(i));
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
