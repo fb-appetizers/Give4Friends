@@ -77,31 +77,15 @@ public class PayPalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PayPalActivity.this, Main_Fragment_Branch.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
-            }
-        });
-
-    }
-
-    /*
-    private void configureToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextSize(30);
-        toolbarTitle.setText("Impact Calculator");
-        toolbar.setNavigationIcon(R.drawable.ic_x);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.popBackStack();
 
             }
         });
 
     }
-    */
+
+
 
 
 }

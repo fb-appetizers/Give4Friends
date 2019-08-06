@@ -1,44 +1,22 @@
 package com.example.give4friends.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.text.Html;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Cutom_Classes.InfoDialog;
-import com.example.give4friends.DonateActivity;
-import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
-import com.example.give4friends.models.CharityAPI;
-import com.example.give4friends.models.FavoriteCharities;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.give4friends.DonateActivity.charityName2;
-import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -67,7 +45,7 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 viewHolder = new MilestoneAdapter.ViewHolderMilestones(v1);
             return viewHolder;
         } else if (viewType == TEXT) {
-            View v2 = inflater.inflate(R.layout.header_item, parent, false);
+            View v2 = inflater.inflate(R.layout.item_header, parent, false);
             viewHolder = new MilestoneAdapter.ViewHolderText(v2);
             return viewHolder;
         }
