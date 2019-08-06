@@ -46,8 +46,6 @@ import java.util.List;
 
 public class Friend_Profile_Fragment extends Fragment {
 
-
-
     public ImageView ivProfileImage;
     public TextView tvUserName;
     public TextView tvBio;
@@ -76,7 +74,6 @@ public class Friend_Profile_Fragment extends Fragment {
         return inflater.inflate(R.layout.activity_friend_profile, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         context = getContext();
@@ -99,7 +96,6 @@ public class Friend_Profile_Fragment extends Fragment {
         FavMileToolbarFriend.addTab(FavMileToolbarFriend.newTab().setText("Favorites"));
         FavMileToolbarFriend.addTab(FavMileToolbarFriend.newTab().setText("Milestones"));
 
-
         FavMileToolbarFriend.setTabGravity(FavMileToolbarFriend.GRAVITY_FILL);
 
         pagerAdapter = new ProfilePagerAdapter(getChildFragmentManager(), FavMileToolbarFriend.getTabCount(), myUser);
@@ -111,20 +107,17 @@ public class Friend_Profile_Fragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPagerFriend.setCurrentItem(tab.getPosition());
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
         //if already a friend make gray and set first to false
-        if (localFriends != null && localFriends.contains(myUser)) {
+        if (localFriends != null && localFriends.contains(myUser.getObjectId())) {
             addFriend.setColorFilter(Color.GRAY);
         }
         //if not yet a friend make blue
@@ -136,7 +129,7 @@ public class Friend_Profile_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //check if already friend -> remove
-                if (localFriends != null && localFriends.contains(myUser)) {
+                if (localFriends != null && localFriends.contains(myUser.getObjectId())) {
                     removeFriend();
                 } else {
                     // new friend -> add
@@ -236,11 +229,7 @@ public class Friend_Profile_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
-
-
         main_activity_inflater.inflate(R.menu.friend_user_menu, menu);
-
-
     }
 
     @Override
@@ -267,21 +256,21 @@ public class Friend_Profile_Fragment extends Fragment {
         friends.getQuery().findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-//                localFriends.clear();
+                localFriends.clear();
                 if (e != null) {
                     // There was an error
                 } else {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
-                        users.add(objects.get(i));
+                        //users.add(objects.get(i));
                         ParseUser tempFriend = (ParseUser) objects.get(i);
                         localFriends.add(tempFriend.getObjectId());
                     }
                 }
+                return;
             }
         });
-        return;
     }
 
     public void removeFriend(){
