@@ -184,14 +184,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())){
                 holder.amount.setTextColor( context.getResources().getColor(R.color.colorPrimaryDark));
 
-                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setImageResource(R.drawable.right_arrow);
                 holder.ivarrow.setRotation(180);
                 holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.colorPrimaryDark)));
 
             }
             else{
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
-                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setImageResource(R.drawable.right_arrow);
                 holder.ivarrow.setRotation(0);
                 holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.mainBlue)));
             }
