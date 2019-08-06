@@ -67,6 +67,9 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
+
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -78,6 +81,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
                     case R.id.action_home:
 
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
+//                        menuItem.setIcon(R.drawable.ic_home_filled);
                         break;
                     case R.id.action_search:
 

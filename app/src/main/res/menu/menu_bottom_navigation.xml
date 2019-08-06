@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_home_empty"
+        android:icon="@drawable/home_menu_selector"
         android:title="Home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/ic_magnify_empty"
+        android:icon="@drawable/magnify_selector"
         android:title="Search"
         app:showAsAction="always" />
 
@@ -22,13 +22,13 @@
 
     <item
         android:id="@+id/action_transaction"
-        android:icon="@drawable/ic_transactions_empty"
+        android:icon="@drawable/transaction_selector"
         android:title="History"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_profile"
-        android:icon="@drawable/ic_profile_empty"
+        android:icon="@drawable/profile_selector"
         android:title="Profile"
         app:showAsAction="always" />
 
