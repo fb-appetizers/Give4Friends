@@ -4,6 +4,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class Charity extends ParseObject {
         return getList(KEY_LIKES_USERS);
     }
 
-    public void setKeyLikesUsers(List<User> list){
+    public void setKeyLikesUsers(List<ParseUser> list){
         put(KEY_LIKES_USERS, list);
     }
 

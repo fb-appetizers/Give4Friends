@@ -29,7 +29,7 @@ public final class FavoriteCharities {
     public static void setUpFavorites(Charity parseCharity, ParseUser myUser, ImageButton ibCPLike, TextView tvCPLikedNum)
     {
         //check if user is in likes list
-        List<User> array = parseCharity.getList("likesUsers");
+        List<ParseUser> array = parseCharity.getList("likesUsers");
 
         if (array == null || !(array.contains(myUser.getObjectId())) || array.size() == 0) {
             ibCPLike.setImageResource(R.drawable.ic_like_icon);
@@ -44,7 +44,7 @@ public final class FavoriteCharities {
             @Override
             public void onClick(View view) {
                 ParseRelation<ParseObject> relation = myUser.getRelation("favCharities");
-                List<User> array = parseCharity.getList("likesUsers");
+                List<ParseUser> array = parseCharity.getList("likesUsers");
                 if (array == null || !(array.contains(myUser.getObjectId()))) {
                     ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
                     ibCPLike.setColorFilter(Color.parseColor("#CFB7E6"));

@@ -102,15 +102,6 @@ public class Milestone_Fragment extends Fragment {
         rvMilestones.setLayoutManager(gridLayoutManager);
         milestonesCompleted = new ArrayList<Object>();
 
-//        try {
-//            myUser = myUser.fetch();
-//            milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
-//            feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-
         myUser.fetchInBackground(new GetCallback<ParseUser>() {
             @Override
             public void done(ParseUser object, ParseException e) {
@@ -119,7 +110,6 @@ public class Milestone_Fragment extends Fragment {
                 milestonesCompleted = (ArrayList<Object>) ((object.getList("milestonesCompleted")));
                 feedAdapter = new MilestoneAdapter(milestones, object, milestonesCompleted);
                 //construct the adapter from this datasource
-                //TODO add to the parameters of Milestone adapter
                 //RecyclerView setup (layout manager, use adapter)
                 rvMilestones.setAdapter(feedAdapter);
                 rvMilestones.scrollToPosition(0);

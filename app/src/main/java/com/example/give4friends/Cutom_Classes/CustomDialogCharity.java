@@ -72,7 +72,7 @@ public class CustomDialogCharity extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.item_charity_search,container,false);
+        View view = inflater.inflate(R.layout.item_charity_popup,container,false);
         tvCharityName = view.findViewById(R.id.tvCharityName);
         tvMission = view.findViewById(R.id.tvMission);
 

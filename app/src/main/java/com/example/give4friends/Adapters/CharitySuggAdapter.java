@@ -80,7 +80,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         } else if (viewType == TEXT) {
             //much change
-            View v2 = inflater.inflate(R.layout.header_item, parent, false);
+            View v2 = inflater.inflate(R.layout.item_header, parent, false);
             viewHolder = new CharitySuggAdapter.ViewHolderText(v2);
             return viewHolder;
     }

@@ -2,21 +2,17 @@ package com.example.give4friends.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,22 +27,16 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.Fragments.Create_Comments_Fragment;
-import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.models.FavoriteCharities;
 import com.example.give4friends.models.Comments;
-import com.example.give4friends.models.User;
 import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -117,7 +107,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh1.tvCommentsNum.setText(((Integer)parseCharity.getInt("CommentsNum")).toString());
 
 
-            List<User> array = parseCharity.getList("likesUsers");
+            List<ParseUser> array = parseCharity.getList("likesUsers");
 
             vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
                     + charity.getName() + "</a>"));
