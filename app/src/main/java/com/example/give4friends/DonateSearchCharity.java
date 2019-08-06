@@ -87,12 +87,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         svCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
-
 
             @Override
             public boolean onQueryTextChange(String s) {
@@ -109,8 +107,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 else{
                     getResponse(s.toString(),false);
                 }
-
-
                 return false;
             }
         });

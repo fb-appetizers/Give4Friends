@@ -54,7 +54,6 @@ public final class Milestone {
     public static void addMilestone(String milestone, Context context){
         ParseUser parseUser = ParseUser.getCurrentUser();
 
-
         List <String> milestones = parseUser.getList("milestonesCompleted");
 
 
@@ -71,9 +70,6 @@ public final class Milestone {
 
     }
 
-
-
-
     public static void milestoneAchieved(String milestone, Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Congrats!!! You have achieved the " + milestone + " milestone");
@@ -88,7 +84,7 @@ public final class Milestone {
                 dlg.dismiss(); // when the task active then close the dialog
                 t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
             }
-        }, 2000); // after 2 second (or 2000 miliseconds), the task will be active
+        }, 4000); // after 2 second (or 2000 miliseconds), the task will be active
 
     }
 

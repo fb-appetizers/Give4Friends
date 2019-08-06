@@ -121,8 +121,6 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             final ViewHolderMilestones vh3 = (ViewHolderMilestones) holder;
             Pair<String, Integer> milestone = (Pair<String, Integer>) items.get(position);
 
-            //TODO set all fields
-
             ((ViewHolderMilestones) holder).tvMilestoneName.setText(milestone.first);
             ((ViewHolderMilestones) holder).ivMilestone.setImageResource(milestone.second);
 
@@ -135,7 +133,6 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             String header = (String) items.get(position);
             MilestoneAdapter.ViewHolderText vh2 = (MilestoneAdapter.ViewHolderText) holder;
             vh2.tvHeader.setText(header);
-
         }
     }
 

@@ -91,8 +91,6 @@ public class DonateFinalActivity extends AppCompatActivity {
 
         charityName.setText(charityName2);
 
-
-
         friendsName.setText(currentFriend.get("firstName") + " " + currentFriend.get("lastName"));
         friendsUserName.setText("@" + currentFriend.getUsername());
 
@@ -153,6 +151,8 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Milestone.addMilestone("First Donation", DonateFinalActivity.this );
+
                 setNewTransaction();
 
                 String code = currentCharity.getKeyCode();
@@ -171,7 +171,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                 }else{
                     number = Double.parseDouble(amount.getText().toString().substring(1));
                 }
-
 
                 // query for code from charity when done do this
                 Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
@@ -198,12 +197,6 @@ public class DonateFinalActivity extends AppCompatActivity {
         ParseUser currentUser = ParseUser.getCurrentUser();
         Transaction newTransaction = new Transaction();
         String amountHere = amount.getText().toString();
-//
-//        for(int i = 0; i < amountHere.length(); i++){
-//            if(amountHere.charAt(i) == '$'){
-//
-//            }
-//        }
 
         int amountInt = 0;
         if(amountHere.length() <= 1){
@@ -237,6 +230,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             }
         });
 
+
         //update user totals
         currentUser.increment("totalDonated", amountInt);
         currentUser.saveInBackground();
@@ -246,7 +240,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
 
-        //Milestone.addMilestone("First Raised", getApplicationContext() );
+
 
 
     }
