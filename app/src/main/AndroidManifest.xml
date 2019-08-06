@@ -36,7 +36,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DonateFinalActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".DonateSearchCharity"
             android:screenOrientation="portrait" />
@@ -46,14 +47,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".CreditCardInfo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".DonateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".HistoryActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
