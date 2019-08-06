@@ -45,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/baseline-mood-24px.svg" />
-                                      <entry key="outputName" value="ic_happy_face" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/facebook_icons_nav-magnifying-glass (4)/nav-magnifying-glass_outline_32-3x.png" />
+                                      <entry key="outputName" value="ic_magnify_empty" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
