@@ -2,6 +2,8 @@ package com.example.give4friends.models;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +83,7 @@ public final class Milestone {
         // change the ImageView image source
         final ImageView dialogImageView = (ImageView) view.findViewById(R.id.ivMilestone);
         dialogImageView.setImageResource(image);
+        dialogImageView.setColorFilter(Color.parseColor("#CFB7E6"), PorterDuff.Mode.SRC_ATOP);
         final TextView dialogTextView = (TextView) view.findViewById(R.id.tvMilestone);
         dialogTextView.setText(milestone);
         builder.setView(view);
