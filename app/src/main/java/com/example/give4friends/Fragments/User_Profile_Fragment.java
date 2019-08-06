@@ -102,10 +102,6 @@ public class User_Profile_Fragment extends Fragment{
     public User_Profile_Fragment(ParseUser myUser, boolean from_another_fragment) {
         this.myUser = myUser;
         this.from_fragment = from_another_fragment;
-
-
-
-
     }
 
 
