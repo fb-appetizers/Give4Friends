@@ -33,6 +33,8 @@ import com.example.give4friends.Fragments.Friend_Profile_Fragment;
 import com.example.give4friends.R;
 
 import com.example.give4friends.models.Milestone;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
@@ -231,8 +233,4 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         dialog.show();
 
     }
-
-
-
-
 }
