@@ -78,6 +78,7 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
