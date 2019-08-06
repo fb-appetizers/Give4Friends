@@ -213,9 +213,9 @@ public class Charity_Search_Fragment extends Fragment {
 
         // Checks whether a hardware keyboard is available
         if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
-            Toast.makeText(getContext(), "keyboard visible", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), "keyboard visible", Toast.LENGTH_LONG).show();
         } else if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
-            Toast.makeText(getContext(), "keyboard hidden", Toast.LENGTH_LONG).show();
+           // Toast.makeText(getContext(), "keyboard hidden", Toast.LENGTH_LONG).show();
         }
     }
 
