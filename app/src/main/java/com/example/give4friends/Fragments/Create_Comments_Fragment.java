@@ -56,12 +56,8 @@ public class Create_Comments_Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         return inflater.inflate(R.layout.fragment_create_comments, container, false);
     }
-
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -73,10 +69,6 @@ public class Create_Comments_Fragment extends Fragment {
 
         tvCharityName.setText(charityName);
         tvhandlerComments.setText("@"+user.getUsername());
-
-
-
-
 
         String imageURL = user.getString("profileImageURL");
 

@@ -27,6 +27,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.Fragments.Create_Comments_Fragment;
+import com.example.give4friends.Fragments.Friend_Profile_Fragment;
+import com.example.give4friends.Fragments.User_Profile_Fragment;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
@@ -133,12 +135,25 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             vh2.tvCommentUsername.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view){
+
+
+                    if(comments.getUser().getObjectId().equals(ParseUser.getCurrentUser().getObjectId()) ){
+                        // Create a new fragment instead of an activity
+                        Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                        FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().
+                                replace(R.id.flContainer, fragment)
+                                .addToBackStack(null).commit();
+                    }
+                    else{
+
 //                    // Create a new fragment instead of an activity
-//                    Fragment fragment = new Friend_Profile_Fragment();
-//                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                    fragmentManager.beginTransaction().
-//                            replace(R.id.flContainer, fragment)
-//                            .addToBackStack(null).commit();
+                        Fragment fragment = new Friend_Profile_Fragment(comments.getUser());
+                        FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().
+                                replace(R.id.flContainer, fragment)
+                                .addToBackStack(null).commit();
+                    }
                 }
             });
             comments.getUser().fetchIfNeededInBackground(new GetCallback<ParseUser>() {
@@ -194,7 +209,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    public class ViewHolderCharity extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolderCharity extends RecyclerView.ViewHolder{
         TextView tvCPname;
         TextView tvCPCategory;
         TextView tvCPCause;
@@ -232,19 +247,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
 
 
-            tvCPMission.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View scrollView, int scrollX, int scrollY, int i2, int i3) {
-                    Integer offset = 774;
-                    int diff = (tvCPMission.getBottom() - (scrollView.getHeight() + scrollY + offset));
-                    if(diff == 0){
-//                        Toast.makeText(context, "Hit the bottom", Toast.LENGTH_SHORT).show();
-                    }else{
-
-                    }
-                }
-            });
-
             ibComments.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -279,10 +281,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             });
         }
 
-        @Override
-        public void onClick(View view) {
 
-        }
     }
 
     public class ViewHolderComment extends RecyclerView.ViewHolder implements View.OnClickListener {

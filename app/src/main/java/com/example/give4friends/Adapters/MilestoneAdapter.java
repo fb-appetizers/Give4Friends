@@ -73,8 +73,6 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvMilestoneName = (TextView) itemView.findViewById(R.id.tvMilestoneName);
             ivMilestone = itemView.findViewById(R.id.ivMilestone);
 
-
-
         }
     }
 

@@ -46,10 +46,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_donate);
         context = this;
 
-
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);
-
 
         searchFriend = findViewById(R.id.friends);
         rvFriends = findViewById(R.id.rvFriends);
@@ -57,7 +55,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
         friends = new ArrayList<ParseUser>();
 
-        //recyclerSetUp();
         populateRelations();
         getFriends();
 

@@ -39,7 +39,7 @@ import java.util.List;
 import static com.example.give4friends.DonateActivity.charityName2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 
-public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Object> items;
     private Context context;
@@ -49,7 +49,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Charity newCharity;
 
 
-    public CharitySuggAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search, boolean favorites) {
+    public CharitySearchAdapter(ArrayList<Object> items, boolean skip, boolean from_charity_search, boolean favorites) {
         this.items = items;
         this.skip = skip;
         // If the class is called from charity search then disable the buttons on the dialog fragment that pops up
@@ -70,18 +70,18 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (viewType == CHARITY) {
             if(favorites){
                  v1 = inflater.inflate(R.layout.item_charity_favorites, parent, false);
-                viewHolder = new CharitySuggAdapter.ViewHolderFavorites(v1);
+                viewHolder = new CharitySearchAdapter.ViewHolderFavorites(v1);
             }
             else {
                  v1 = inflater.inflate(R.layout.item_charity_sugg, parent, false);
-                viewHolder = new CharitySuggAdapter.ViewHolderSuggested(v1);
+                viewHolder = new CharitySearchAdapter.ViewHolderSuggested(v1);
             }
             return viewHolder;
 
         } else if (viewType == TEXT) {
             //much change
             View v2 = inflater.inflate(R.layout.item_header, parent, false);
-            viewHolder = new CharitySuggAdapter.ViewHolderText(v2);
+            viewHolder = new CharitySearchAdapter.ViewHolderText(v2);
             return viewHolder;
     }
 
@@ -217,7 +217,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 int position = getAdapterPosition();
                 CharityAPI charity = (CharityAPI) items.get(position);
-                //TODO Check if skip --> send to final donate activity TODO
 
                 Fragment fragment1 = new Charity_Profile_Fragment(charity);
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
@@ -225,8 +224,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         replace(R.id.flContainer, fragment1)
                         .addToBackStack(null)
                         .commit();
-
-
 
             }
         }
@@ -279,14 +276,12 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             if (favorites) {
                 // get data according to position.
-                // Charity charity = (Charity) charities.get(position);
                 final ViewHolderFavorites vh3 = (ViewHolderFavorites) holder;
                 Charity charity = (Charity) items.get(position);
                 vh3.name.setText(charity.getKeyName());
 
                 vh3.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
                 vh3.tvCPLikedNum.setText(((Integer)charity.getKeyNumLikes()).toString());
-
 
                 String payPalnum = charity.getString("payPal");
                 if(payPalnum == null || payPalnum.equals("")){
@@ -308,15 +303,9 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 vh1.ibCPLike.setImageResource(R.drawable.ic_like_icon);
                 vh1.ibCPLike.setColorFilter(Color.BLACK);
                 vh1.tvCPLikedNum.setText("0");
-
-
                 vh1.tvCharityNameSugg.setText(charity.getName());
-
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
-
-
-
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
@@ -340,11 +329,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                         if(currentCharity != null){
 
-
-
                             String payPalnum = currentCharity.getString("payPal");
-
-
 
                             if(payPalnum == null || payPalnum.equals("")){
                                 vh1.ivcheckmarksugg.setVisibility(View.INVISIBLE);
@@ -353,9 +338,7 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 vh1.ivcheckmarksugg.setVisibility(View.VISIBLE);
                             }
 
-
                             vh1.tvCPLikedNum.setText(((Integer)currentCharity.getKeyNumLikes()).toString());
-
                             FavoriteCharities.setUpFavorites(currentCharity, ParseUser.getCurrentUser(), vh1.ibCPLike, vh1.tvCPLikedNum);
                     }
                     }
@@ -379,8 +362,6 @@ public class CharitySuggAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         InfoDialog infoDialog = new InfoDialog();
                         infoDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "InfoDialog");
 
-                        //Intent intent = new Intent(view.getContext(), InformationActivity.class);
-                       // view.getContext().startActivity(intent);
                     }
                 });
             }

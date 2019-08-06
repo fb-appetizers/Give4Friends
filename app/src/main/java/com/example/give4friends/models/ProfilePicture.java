@@ -40,17 +40,6 @@ public final class ProfilePicture {
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
-    private static Bitmap photo;
-    public static String photoFileName = "photo.jpg";
-    public static File photoFile;
-    static Activity activity;
-
-
-
-
-
-
-
 
     public static File getPhotoFileUri(String fileName, Context context) {
 
@@ -64,15 +53,6 @@ public final class ProfilePicture {
 
         return file;
     }
-
-
-
-
-
-
-
-
-
 
 
     public static Bitmap rotateBitmapOrientation(String photoFilePath) {
@@ -136,13 +116,6 @@ public final class ProfilePicture {
     }
 
 
-
-
-
-
-
-
-
     public static void updatePhotoURL(ParseUser parseUser, String url) {
 
         parseUser.put("profileImageURL", url);
@@ -155,14 +128,9 @@ public final class ProfilePicture {
                 if (e!=null){
                     e.printStackTrace();
                 }
-
             }
         });
-
-
     }
-
-
 
 
     public static class UploadImage extends AsyncTask<Void,Void,Void>{
@@ -241,8 +209,6 @@ public final class ProfilePicture {
     private cz.msebera.android.httpclient.params.HttpParams getHttpRequestParams(){
 
         cz.msebera.android.httpclient.params.HttpParams httpRequestParams = new BasicHttpParams();
-
-
         cz.msebera.android.httpclient.params.HttpConnectionParams.setConnectionTimeout(httpRequestParams,1000*30);
         cz.msebera.android.httpclient.params.HttpConnectionParams.setSoTimeout(httpRequestParams, 100*30);
 

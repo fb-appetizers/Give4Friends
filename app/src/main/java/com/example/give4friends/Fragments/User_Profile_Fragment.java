@@ -103,9 +103,6 @@ public class User_Profile_Fragment extends Fragment{
         this.myUser = myUser;
         this.from_fragment = from_another_fragment;
 
-
-
-
     }
 
 
@@ -114,7 +111,6 @@ public class User_Profile_Fragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_fragment_profile, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -316,7 +312,6 @@ public class User_Profile_Fragment extends Fragment{
                 fragmentManager2.beginTransaction().
                         replace(R.id.flContainer, fragment2)
                         .addToBackStack(null).commit();
-
                 return true;
             case R.id.useOffline:
                 Toast.makeText(getContext(), "Use Offline selected", Toast.LENGTH_SHORT).show();
@@ -325,7 +320,7 @@ public class User_Profile_Fragment extends Fragment{
                 Toast.makeText(getContext(), "logging out...", Toast.LENGTH_SHORT).show();
                 logOut();
             default:
-//                Log.e()
+
         }
         return true;
     }
@@ -377,8 +372,6 @@ public class User_Profile_Fragment extends Fragment{
                     e.printStackTrace();
                 }
 
-
-
                 ExifInterface exifInterface = null;
                 try {
                     InputStream inputStream = context.getContentResolver().openInputStream(photoUri);
@@ -387,9 +380,6 @@ public class User_Profile_Fragment extends Fragment{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
-
 
                 Glide.with(context)
                         .load(photo)
@@ -406,20 +396,11 @@ public class User_Profile_Fragment extends Fragment{
                 new ProfilePicture.UploadImage(photo, imagePath, getContext(), false).execute();
                 ProfilePicture.updatePhotoURL(ParseUser.getCurrentUser(),URL_HEADER + imagePath + ".JPG");
 
-
             }
         }
 
-    };
-
-
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
     }
+
 
     public void updateBio(String bio){
         ParseUser user = ParseUser.getCurrentUser();
@@ -448,7 +429,7 @@ public class User_Profile_Fragment extends Fragment{
 
 
 
-    // this is upsettingly inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
+    // this is inefficient and I will hopefully be able to come back and make it more efficient later - Jessica
     protected void getRaised(){
 
         //get query
@@ -518,7 +499,6 @@ public class User_Profile_Fragment extends Fragment{
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.

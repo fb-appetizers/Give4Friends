@@ -68,20 +68,15 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_donate, parent, false);
 
-
         return new DonateAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
-
         ParseUser user = users.get(position);
 
         holder.friendsName.setText(user.get("firstName") + " " + user.get("lastName"));
         holder.friendsUserName.setText("@" + user.getUsername());
-
 
         String imageURL = user.getString("profileImageURL");
         if (imageURL != null) {
@@ -116,7 +111,6 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             holder.addFriend.setVisibility(View.VISIBLE);
             holder.addFriend.setClickable(true);
 
-           
             //if already a friend make gray and set first to false
             if (localFriends != null && localFriends.contains(user.getObjectId())) {
                 holder.addFriend.setColorFilter(Color.GRAY);
@@ -141,11 +135,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                         Milestone.addMilestone("First Friend", context);
                         ParseUser.getCurrentUser().saveInBackground();
 
-
-
                     }
-
-
                 }
             });
 
