@@ -199,6 +199,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (e == null) {
                                 Intent intent = new Intent(SignUpActivity.this, CreditCardInfo.class);
                                 startActivity(intent);
+                                overridePendingTransition(R.anim.enter, R.anim.exit);
                             } else {
                                 e.printStackTrace();
                                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_LONG).show();

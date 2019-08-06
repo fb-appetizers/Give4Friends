@@ -59,9 +59,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // For testing
-        //Milestone.milestoneAchieved("Used For A Year", Milestone.valueFromKey("Used For A Year"), getContext());
-
         searchFriend = view.findViewById(R.id.searchFriend);
         rvFriends = view.findViewById(R.id.rvFriends);
         users = new ArrayList<ParseUser>();

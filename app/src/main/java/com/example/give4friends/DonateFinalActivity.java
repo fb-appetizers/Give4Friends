@@ -2,6 +2,7 @@ package com.example.give4friends;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -175,6 +176,8 @@ public class DonateFinalActivity extends AppCompatActivity {
                 intent.putExtra("code", code);
                 intent.putExtra("amount", number);
                 startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+
                 finish();
             }
         });
@@ -183,10 +186,18 @@ public class DonateFinalActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     private void setNewTransaction(){

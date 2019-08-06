@@ -191,8 +191,6 @@ public class Charity_Profile_Fragment extends Fragment {
             public void onClick(View view) {
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
-
                 fragmentManager.popBackStack();
 
             }

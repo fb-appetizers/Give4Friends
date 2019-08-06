@@ -74,15 +74,7 @@ public class Milestone_Fragment extends Fragment {
 
 
     private void populateRelations() {
-        /*
-        String name = "Unnamed";
-        if (myUser.getObjectId() == ParseUser.getCurrentUser().getObjectId()) {
-            milestones.add("Your Milestones");
-        } else {
-            name = myUser.getString("firstName");
-            milestones.add(name + "'s Milestones");
-        }
-        */
+
 
         milestones.addAll(Milestone.getAllMilestones());
 

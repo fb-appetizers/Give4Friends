@@ -69,6 +69,7 @@ public class CreditCardInfo extends AppCompatActivity {
 
                             Intent intent = new Intent(CreditCardInfo.this, Main_Fragment_Branch.class);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -91,9 +92,15 @@ public class CreditCardInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CreditCardInfo.this, Main_Fragment_Branch.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     public void creditCardInfo(String cardNum, String expDate, String cvv, String zip, String phoneNum){

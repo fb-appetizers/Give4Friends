@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         if(currentUser != null){
             Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
             startActivity(intent);
+
         }
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +54,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
 

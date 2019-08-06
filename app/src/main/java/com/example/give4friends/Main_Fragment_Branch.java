@@ -56,7 +56,9 @@ public class Main_Fragment_Branch extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DonateActivity.class);
                 intent.putExtra("donateNow", false);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
 
@@ -127,6 +129,8 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
 
 
+
+
     protected void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -166,7 +170,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         if (onBackClickListener != null && onBackClickListener.onBackClick()) {
             return;
         }
-        super.onBackPressed();
+
     }
 
 
