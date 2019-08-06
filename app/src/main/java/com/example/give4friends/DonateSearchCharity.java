@@ -92,11 +92,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-                    //items.clear();
-                    //charityAdapter.notifyDataSetChanged();
+
                     getFavs();
                     topResult.setVisibility(View.GONE);
-                    //hideProgressBar();
+
                 }
                 else{
                     getResponse(s.toString(),false);

@@ -55,6 +55,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
         friends = new ArrayList<ParseUser>();
 
+        recyclerSetUp();
         populateRelations();
         getFriends();
 
@@ -148,7 +149,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                         friends.add((ParseUser) objects.get(i));
                     }
                 }
-                recyclerSetUp();
+
             }
 
         });
