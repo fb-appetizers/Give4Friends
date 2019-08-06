@@ -94,6 +94,9 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             tvMilestoneName = (TextView) itemView.findViewById(R.id.tvMilestoneName);
             ivMilestone = itemView.findViewById(R.id.ivMilestone);
+
+
+
         }
     }
 
@@ -129,6 +132,8 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             if(completedMilestones != null && completedMilestones.contains(milestone.first)){
                 //acheived!
                 ((ViewHolderMilestones) holder).ivMilestone.setColorFilter(Color.parseColor("#CFB7E6"), PorterDuff.Mode.SRC_ATOP);
+            }else{
+                ((ViewHolderMilestones) holder).ivMilestone.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
             }
 
         } else if (holder.getItemViewType() == TEXT) {
