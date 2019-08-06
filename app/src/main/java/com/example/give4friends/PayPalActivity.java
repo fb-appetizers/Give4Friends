@@ -19,6 +19,8 @@ import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.give4friends.models.Milestone;
+
 public class PayPalActivity extends AppCompatActivity {
     WebView webView;
     String charityCode;
@@ -43,6 +45,9 @@ public class PayPalActivity extends AppCompatActivity {
         webView.loadUrl(url);
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
 
+
+
+        Milestone.addMilestone("First Donation", PayPalActivity.this );
 
         webView.setWebViewClient(new WebViewClient(){
             @Override

@@ -151,7 +151,7 @@ public class DonateFinalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Milestone.addMilestone("First Donation", DonateFinalActivity.this );
+
 
                 setNewTransaction();
 
@@ -171,6 +171,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                 }else{
                     number = Double.parseDouble(amount.getText().toString().substring(1));
                 }
+
 
                 // query for code from charity when done do this
                 Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);

@@ -93,12 +93,10 @@
             android:id="@+id/tvCPLikedNum"
             android:layout_width="24dp"
             android:layout_height="19dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="36dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="8dp"
             android:text="TextView"
             android:textAlignment="textStart"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ibCPLike"
             app:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
