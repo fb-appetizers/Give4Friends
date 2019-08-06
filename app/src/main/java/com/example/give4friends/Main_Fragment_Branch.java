@@ -76,25 +76,30 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-
+//                        ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+//                        ibEmptyHeart.setColorFilter(getResources().getColor(R.color.colorNow));
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
                         break;
                     case R.id.action_search:
-
+//                        ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+//                        ibEmptyHeart.setColorFilter(getResources().getColor(R.color.colorNow));
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
-
+//                        ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+//                        ibEmptyHeart.setColorFilter(getResources().getColor(R.color.colorNow));
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
-
+//                        ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+//                        ibEmptyHeart.setColorFilter(getResources().getColor(R.color.colorNow));
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
 
                         break;
 
                     default:
-
+//                        ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
+//                        ibEmptyHeart.setColorFilter(getResources().getColor(R.color.colorNow));
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
                         break;
