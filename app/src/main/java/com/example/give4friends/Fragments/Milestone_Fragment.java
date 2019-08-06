@@ -115,7 +115,7 @@ public class Milestone_Fragment extends Fragment {
             @Override
             public void done(ParseUser object, ParseException e) {
 
-                Toast.makeText(getContext(), "My User Activated", Toast.LENGTH_SHORT).show();
+
                 milestonesCompleted = (ArrayList<Object>) ((object.getList("milestonesCompleted")));
                 feedAdapter = new MilestoneAdapter(milestones, object, milestonesCompleted);
                 //construct the adapter from this datasource
