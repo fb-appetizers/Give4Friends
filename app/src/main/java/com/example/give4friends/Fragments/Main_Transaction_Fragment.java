@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -138,10 +139,14 @@ public class Main_Transaction_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+                ((Activity)getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
 
             }
         });
     }
+
+
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -147,6 +148,7 @@ public class Charity_Search_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+                ((Activity)getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
 

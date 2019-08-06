@@ -158,6 +158,7 @@ public class CharityAPI{
         ArrayList<CharityAPI> charities = new ArrayList<>(array.length());
 
         final List<String> currentCharityIDs = new ArrayList<String>();
+        final List<Charity> currentCharityObj = new ArrayList<>();
         ParseUser mainUser = ParseUser.getCurrentUser();
 
 
@@ -177,7 +178,7 @@ public class CharityAPI{
             for(Charity charity : postQuery.find()){
                 //Searches all of the current charities
                 currentCharityIDs.add(charity.getKeyCharityID());
-
+                currentCharityObj.add(charity);
             }
 
         } catch (ParseException e) {
@@ -226,12 +227,12 @@ public class CharityAPI{
 
             }
             //Possibly add if already in the list
-//            if (charityAPI!=null && i<charitySavedSize && currentCharityIDs.contains(charityAPI.getEin())){
-//
-//
-//
-//                charityList.add(charity);
-//            }
+            if (charityAPI!=null && i<charitySavedSize && currentCharityIDs.contains(charityAPI.getEin())){
+
+                charityList.add(currentCharityObj.get(currentCharityIDs.indexOf(charityAPI.getEin())));
+
+
+            }
             if(charityAPI !=null){
 
                 charities.add(charityAPI);

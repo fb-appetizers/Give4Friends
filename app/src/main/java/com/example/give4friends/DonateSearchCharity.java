@@ -92,11 +92,10 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-                    //items.clear();
-                    //charityAdapter.notifyDataSetChanged();
+
                     getFavs();
                     topResult.setVisibility(View.GONE);
-                    //hideProgressBar();
+
                 }
                 else{
                     getResponse(s.toString(),false);
@@ -120,8 +119,15 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     private void setUpFriend(){

@@ -55,6 +55,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
         friends = new ArrayList<ParseUser>();
 
+        recyclerSetUp();
         populateRelations();
         getFriends();
 
@@ -87,9 +88,16 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     protected void queryFriends(String name) {
@@ -145,10 +153,11 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
-                        friends.add((ParseUser) objects.get(i));
+                        if(!friends.contains(objects.get(i)))
+                            friends.add((ParseUser) objects.get(i));
                     }
                 }
-                recyclerSetUp();
+
             }
 
         });
@@ -172,7 +181,10 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 } else {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
-                    friends.addAll(objects);
+                    for (int i = 0; i < objects.size(); i++){
+                        if(!friends.contains(objects.get(i)))
+                            friends.add(objects.get(i));
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }

@@ -59,9 +59,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        // For testing
-        //Milestone.milestoneAchieved("Used For A Year", Milestone.valueFromKey("Used For A Year"), getContext());
-
         searchFriend = view.findViewById(R.id.searchFriend);
         rvFriends = view.findViewById(R.id.rvFriends);
         users = new ArrayList<ParseUser>();
@@ -165,9 +162,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                     }
                 }
                 getFriends();
-
             }
-
         });
     }
 
@@ -178,7 +173,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
 
     private void getFriends() {
         friends = ParseUser.getCurrentUser().getRelation("friends");
@@ -197,10 +191,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                     }
                 }
                 recyclerSetUp();
-
             }
-
-
         });
     }
 }

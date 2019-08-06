@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -259,6 +260,7 @@ public class User_Profile_Fragment extends Fragment{
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+                ((Activity)getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
     }
