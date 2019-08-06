@@ -105,7 +105,7 @@
         android:fontFamily="sans-serif-thin"
         android:gravity="center|center_horizontal|center_vertical"
         android:hint="$0"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/etcommentMessage"
         app:layout_constraintEnd_toEndOf="parent"
