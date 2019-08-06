@@ -139,8 +139,6 @@ public class SignUpActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //photoFile = new File(photoUri.getPath());
-//                photoFile = new File(ProfilePicture.getRealPathFromURI(context, photoUri));
 
                 ExifInterface exifInterface = null;
                 try {
@@ -172,7 +170,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(String firstName, String lastName, String email, String username, String password) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
-
 
         user.setEmail(email);
         user.setUsername(username);
@@ -247,9 +244,7 @@ public class SignUpActivity extends AppCompatActivity {
         Uri fileProvider = FileProvider.getUriForFile(this, "com.example.give4friends", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
-
         if (intent.resolveActivity(getPackageManager()) != null) {
-
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
@@ -259,7 +254,6 @@ public class SignUpActivity extends AppCompatActivity {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.

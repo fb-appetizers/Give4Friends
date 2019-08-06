@@ -178,7 +178,6 @@ public class Charity_Profile_Fragment extends Fragment {
 
 
     protected void configureToolbar() {
-
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);

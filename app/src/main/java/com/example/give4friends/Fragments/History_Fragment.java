@@ -48,14 +48,13 @@ public class History_Fragment extends Main_Transaction_Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
         if(!friend){
             configureToolbar();
         }else {
             configureToolbarStripped();
         }
         setHasOptionsMenu(false);
-//        // Implement Recycler View
+        // Implement Recycler View
         rvTransactions = view.findViewById(R.id.rvTransactions);
         // Initialize array list of transactions
         transactions = new ArrayList<Transaction>();

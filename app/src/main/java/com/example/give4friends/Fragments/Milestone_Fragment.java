@@ -1,37 +1,25 @@
 package com.example.give4friends.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.MilestoneAdapter;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Milestone;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Milestone_Fragment extends Fragment {
 

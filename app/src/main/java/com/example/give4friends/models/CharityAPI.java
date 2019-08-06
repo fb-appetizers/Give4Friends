@@ -45,10 +45,6 @@ public class CharityAPI{
         this.mission = mission;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
     public void setEin(String ein) {
         this.ein = ein;
     }
@@ -77,10 +73,6 @@ public class CharityAPI{
         return mission;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
     public String getEin() {
         return ein;
     }
@@ -101,16 +93,7 @@ public class CharityAPI{
         return ratingsUrl;
     }
 
-    public void setParseCharity(Charity charity){
-        this.ParseCharity = charity;
-    }
-
-    public Charity getParseCharity(){
-        return ParseCharity;
-    }
-
-
-// Returns a CharityAPI instance from the expected JSON
+    // Returns a CharityAPI instance from the expected JSON
 
     public static CharityAPI fromParse(Charity charity){
         CharityAPI charityAPI = new CharityAPI();
@@ -124,7 +107,6 @@ public class CharityAPI{
 
         return charityAPI;
     }
-
 
 
     public static CharityAPI fromJSON(JSONObject object) {
@@ -182,10 +164,8 @@ public class CharityAPI{
         List<Charity> charityList = new ArrayList<Charity>();
 
 
-
         // This step is to save the first three results of the request into the Parse Server
         // for the suggestions. Along with some of our own directly inputted into Parse
-
 
         // Before you save the entries onto Parse first check if they're any duplicates using a query
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class);
@@ -232,8 +212,6 @@ public class CharityAPI{
                 charity.setKeyRatingURL(charityAPI.getRatingsUrl());
                 charity.setKeyCharityID(charityAPI.getEin());
 
-
-
                 // First save the newly created charity in background if the charity is new.
 
                 try {
@@ -260,7 +238,6 @@ public class CharityAPI{
             }
 
         }
-
 //        mainUser.put("charityArray", charityList);
         mainUser.addAllUnique("charityArray",charityList);
 

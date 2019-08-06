@@ -37,32 +37,6 @@ public class Transaction extends ParseObject{
 
     public Transaction(){}
 
-    public ParseFile getKeyDonorImage() {
-
-        return getParseFile(KEY_DONOR_IMAGE);
-    }
-
-    public ParseFile getKeyFriendImage() {
-
-        return getParseFile(KEY_FRIEND_IMAGE);
-    }
-
-
-    public String getKeyFriendName() {
-        return getString(KEY_FRIEND_NAME);
-    }
-
-    public String getKeyDonorName() {
-        return getString(KEY_DONOR_NAME);
-    }
-
-    public String getKeyCharityName() {
-        return getString(KEY_CHARITY_NAME);
-    }
-
-
-
-
     public ParseUser getKeyFriendId() {
         return getParseUser(KEY_FRIEND_ID);
     }
@@ -70,19 +44,10 @@ public class Transaction extends ParseObject{
     public void setKeyFriendId(ParseUser friend){
         put(KEY_FRIEND_ID, friend);
     }
-
-    public String getKeyObjectId() {
-        return getString(KEY_OBJECT_ID);
-    }
-
     public ParseUser getKeyDonorId() {
         return getParseUser("donorID");
 
     }
-    public ParseFile getKeyDonorProfile() {
-        return getParseUser("donorID").getParseFile("profileImage");
-    }
-
     public void setKeyDonorId(ParseUser donor){
         put(KEY_DONOR_ID, donor);
     }
@@ -111,7 +76,6 @@ public class Transaction extends ParseObject{
         increment(KEY_LIKES_COUNT, amount );
     }
 
-
     public List getKeyLikesUsers() {
         return getList(KEY_LIKES_USERS);
     }
@@ -132,11 +96,5 @@ public class Transaction extends ParseObject{
         put(KEY_CHARITY_ID, charity);
     }
 
-    public Date getKeyCreatedAt(){
-        return getDate(KEY_CREATED_AT);
-    }
-    public void setKeyCreatedAt(Date time){
-        put(KEY_CREATED_AT, time);
-    }
 
 }

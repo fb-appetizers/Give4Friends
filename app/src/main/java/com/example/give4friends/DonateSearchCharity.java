@@ -5,12 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,15 +19,12 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
-import com.example.give4friends.Adapters.CharitySuggAdapter;
-import com.example.give4friends.Adapters.DonateSearchAdapter;
-import com.example.give4friends.Adapters.FavCharitiesAdapter;
+import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.CharityAPI;
 import com.example.give4friends.net.CharityClient;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 
@@ -61,7 +55,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     private ImageButton cancel;
     CharityClient client;
     ArrayList<Object> items;
-    CharitySuggAdapter charityAdapter;
+    CharitySearchAdapter charityAdapter;
     ProgressBar miActionProgressItem;
 
     @Override
@@ -113,7 +107,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         items = new ArrayList<>();
 
-        charityAdapter = new CharitySuggAdapter(items, true, true, false);
+        charityAdapter = new CharitySearchAdapter(items, true, true, false);
         // attach the adapter to the RecyclerView
         rvCharitySearch.setAdapter(charityAdapter);
         // Set layout manager to position the items

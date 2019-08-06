@@ -185,10 +185,7 @@ public class Friend_Profile_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
-
-
         main_activity_inflater.inflate(R.menu.friend_user_menu, menu);
-
 
     }
 
@@ -211,43 +208,6 @@ public class Friend_Profile_Fragment extends Fragment {
         return true;
     }
 
-
-
-//    private void populateRelations() {
-//        charities.add("Favorite Charities");
-//        //Get relation
-//        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
-//
-//        //Get all charities in relation
-//        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
-//            @Override
-//            public void done(List<Charity> objects, ParseException e) {
-//                if (e != null) {
-//                    // There was an error
-//                } else {
-//                    if(objects.size() == 0) {
-//                        Toast.makeText(context, myUser.getString("firstName") + " does not have any favorites yet", Toast.LENGTH_SHORT).show();
-//                    }
-//                    // results have all the charities the current user liked.
-//                    // go through relation adding charities
-//                    for (int i = 0; i < objects.size(); i++) {
-//                        charities.add((Charity) objects.get(i));
-//
-//                    }
-//                    final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//                    rvCharities.setLayoutManager(linearLayoutManager);
-//
-//                    //construct the adapter from this datasource
-//                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
-//                    //RecyclerView setup (layout manager, use adapter)
-//                    rvCharities.setAdapter(feedAdapter);
-//                    rvCharities.scrollToPosition(0);
-//
-//                }
-//            }
-//        });
-//
-//    }
 
 }
 

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class DonateActivity extends AppCompatActivity implements Serializable {
     private SearchView searchFriend;
-    private Button cancelSearchBtn;
+    private ParseRelation<ParseUser> friendList;
     private RecyclerView rvFriends;
     public static ParseUser currentFriend;
     public static Charity currentCharity;
@@ -46,10 +46,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_donate);
         context = this;
 
-
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);
-
 
         searchFriend = findViewById(R.id.friends);
         rvFriends = findViewById(R.id.rvFriends);
@@ -57,8 +55,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
         friends = new ArrayList<ParseUser>();
 
-        //recyclerSetUp();
         populateRelations();
+        getFriends();
 
         searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -130,6 +128,8 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 adapter.notifyDataSetChanged();
             }
         });
+
+
     }
 
     private void populateRelations() {
@@ -160,5 +160,23 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         adapter = new DonateAdapter(friends, true, null, null);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void getFriends() {
+        friendList = ParseUser.getCurrentUser().getRelation("friends");
+        friendList.getQuery().findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    friends.addAll(objects);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+        });
     }
 }

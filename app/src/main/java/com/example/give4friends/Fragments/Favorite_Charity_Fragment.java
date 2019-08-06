@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.give4friends.Adapters.CharitySuggAdapter;
+import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
 import com.parse.FindCallback;
@@ -28,7 +28,7 @@ import java.util.List;
 public class Favorite_Charity_Fragment extends Fragment {
 
 
-    CharitySuggAdapter feedAdapter;
+    CharitySearchAdapter feedAdapter;
     ArrayList<Object> charities;
     RecyclerView rvCharities;
     private SwipeRefreshLayout swipeContainer;
@@ -104,7 +104,7 @@ public class Favorite_Charity_Fragment extends Fragment {
                     rvCharities.setLayoutManager(linearLayoutManager);
 
                     //construct the adapter from this datasource
-                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
+                    feedAdapter = new CharitySearchAdapter(charities, false, false, true);
                     //RecyclerView setup (layout manager, use adapter)
                     rvCharities.setAdapter(feedAdapter);
                     rvCharities.scrollToPosition(0);

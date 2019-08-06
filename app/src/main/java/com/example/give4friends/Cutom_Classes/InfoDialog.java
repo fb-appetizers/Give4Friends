@@ -44,7 +44,6 @@ public class InfoDialog extends DialogFragment {
 
         // The name in the dialog isn't clickable but we can change this later
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
-
         giveWell.setMovementMethod(LinkMovementMethod.getInstance());
 
         return view;

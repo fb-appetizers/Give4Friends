@@ -54,8 +54,6 @@ public class CustomDialogCharity extends DialogFragment {
     private boolean from_charity_donate_search;
 
 
-
-
     public CustomDialogCharity(CharityAPI charity, boolean from_charity_search) {
         this.charity = charity;
         this.from_charity_donate_search = from_charity_search;
@@ -127,15 +125,9 @@ public class CustomDialogCharity extends DialogFragment {
             tvMoreInfo.setVisibility(View.INVISIBLE);
             tvDonateNow.setVisibility(View.INVISIBLE);
 
-
         }
 
-
-
-
         tvMission.setText(Html.fromHtml(charity.getMission()));
-
-
         tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
 
         Glide.with(getContext())

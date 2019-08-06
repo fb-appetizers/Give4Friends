@@ -59,8 +59,6 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
 
         users = new ArrayList<ParseUser>();
         localFriends = new ArrayList<String>();
-
-
         getFriends();
 
         configureToolbar();
