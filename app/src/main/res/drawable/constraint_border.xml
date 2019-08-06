@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
 
 
-    <stroke
-        android:width=".375dp"
-        android:color="#808080"
 
-        />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<item android:bottom=".25dp">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle" >
 
-</shape>
+        <stroke
+            android:width=".375dp"
+            android:color="#808080"
+            android:dashGap="5dp"
+            />
+
+
+    </shape>
+</item>
+
+
+
+</layer-list>
