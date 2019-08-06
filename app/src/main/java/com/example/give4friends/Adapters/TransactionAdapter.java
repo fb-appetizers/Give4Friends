@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -64,6 +65,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // get data according to position.
         final Transaction transaction = transactions.get(position);
 
+//        .addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
         // Sets the like counter
         if(transaction.getKeyLikesCount()!=null){
 
@@ -88,7 +91,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.ibEmptyHeart.setColorFilter(Color.BLACK);
         }else{
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
-            holder.ibEmptyHeart.setColorFilter(Color.RED);
+            holder.ibEmptyHeart.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
         }
             holder.ibEmptyHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,7 +99,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     List<String> array = transaction.getKeyLikesUsers();
                     if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId())) || array.size() ==0) {
                         holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart);
-                        holder.ibEmptyHeart.setColorFilter(Color.RED);
+                        holder.ibEmptyHeart.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
                         //update transaction
                         //increment likes for transaction
 

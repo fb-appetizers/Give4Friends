@@ -1,6 +1,9 @@
 package com.example.give4friends.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -8,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,19 +33,28 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.ProfilePagerAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 import com.example.give4friends.R;
+import com.example.give4friends.models.Milestone;
 import com.google.android.material.tabs.TabLayout;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Friend_Profile_Fragment extends Fragment {
-
-
 
     public ImageView ivProfileImage;
     public TextView tvUserName;
     public TextView tvBio;
     public TextView tvFullName;
+
+    public ImageButton addFriend;
+    private List<String> localFriends;
+    private List<ParseUser> users;
+    private ParseRelation<ParseUser> friends;
 
     TabLayout FavMileToolbarFriend;
     ViewPager viewPagerFriend;
@@ -61,7 +74,6 @@ public class Friend_Profile_Fragment extends Fragment {
         return inflater.inflate(R.layout.activity_friend_profile, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         context = getContext();
@@ -71,11 +83,18 @@ public class Friend_Profile_Fragment extends Fragment {
 
         FavMileToolbarFriend = view.findViewById(R.id.FavMileToolbarFriend);
         viewPagerFriend = view.findViewById(R.id.viewPagerFriend);
+        addFriend = view.findViewById(R.id.ibAddFriend);
 
+        addFriend.setClickable(true);
+        addFriend.setVisibility(View.VISIBLE);
+
+        users = new ArrayList<ParseUser>();
+        localFriends = new ArrayList<String>();
+
+        getFriends();
 
         FavMileToolbarFriend.addTab(FavMileToolbarFriend.newTab().setText("Favorites"));
         FavMileToolbarFriend.addTab(FavMileToolbarFriend.newTab().setText("Milestones"));
-
 
         FavMileToolbarFriend.setTabGravity(FavMileToolbarFriend.GRAVITY_FILL);
 
@@ -88,15 +107,40 @@ public class Friend_Profile_Fragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPagerFriend.setCurrentItem(tab.getPosition());
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
 
+        //if already a friend make gray and set first to false
+        if (localFriends != null && localFriends.contains(myUser.getObjectId())) {
+            addFriend.setColorFilter(Color.GRAY);
+        }
+        //if not yet a friend make blue
+        else {
+            addFriend.setColorFilter(Color.BLUE);
+        }
+
+        addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //check if already friend -> remove
+                if (localFriends != null && localFriends.contains(myUser.getObjectId())) {
+                    removeFriend();
+                } else {
+                    // new friend -> add
+                    addFriend.setColorFilter(Color.GRAY);
+                    localFriends.add(myUser.getObjectId());
+                    friends.add(myUser);
+
+                    Milestone.addMilestone("First Friend", context);
+                    ParseUser.getCurrentUser().saveInBackground();
+
+                }
             }
         });
 
@@ -186,7 +230,6 @@ public class Friend_Profile_Fragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         MenuInflater main_activity_inflater = getActivity().getMenuInflater();
         main_activity_inflater.inflate(R.menu.friend_user_menu, menu);
-
     }
 
     @Override
@@ -208,6 +251,83 @@ public class Friend_Profile_Fragment extends Fragment {
         return true;
     }
 
+    private void getFriends() {
+        friends = ParseUser.getCurrentUser().getRelation("friends");
+        friends.getQuery().findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                localFriends.clear();
+                if (e != null) {
+                    // There was an error
+                } else {
+                    // results have all the charities the current user liked.
+                    // go through relation adding charities
+                    for (int i = 0; i < objects.size(); i++) {
+                        //users.add(objects.get(i));
+                        ParseUser tempFriend = (ParseUser) objects.get(i);
+                        localFriends.add(tempFriend.getObjectId());
+                    }
+                }
+                return;
+            }
+        });
+    }
+
+    public void removeFriend(){
+        String[] options = {"Yes", "Cancel"};
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("Are you sure you want to unfriend?");
+        dialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i == 0) {
+                    // remove friend
+                    localFriends.remove(myUser.getObjectId());
+                    friends.remove(myUser);
+                    ParseUser.getCurrentUser().saveInBackground();
+                    addFriend.setColorFilter(Color.BLUE);
+                }
+
+            }
+        });
+        dialog.show();
+    }
+
+//    private void populateRelations() {
+//        charities.add("Favorite Charities");
+//        //Get relation
+//        final ParseRelation<Charity> favCharities = myUser.getRelation("favCharities");
+//
+//        //Get all charities in relation
+//        favCharities.getQuery().findInBackground(new FindCallback<Charity>() {
+//            @Override
+//            public void done(List<Charity> objects, ParseException e) {
+//                if (e != null) {
+//                    // There was an error
+//                } else {
+//                    if(objects.size() == 0) {
+//                        Toast.makeText(context, myUser.getString("firstName") + " does not have any favorites yet", Toast.LENGTH_SHORT).show();
+//                    }
+//                    // results have all the charities the current user liked.
+//                    // go through relation adding charities
+//                    for (int i = 0; i < objects.size(); i++) {
+//                        charities.add((Charity) objects.get(i));
+//
+//                    }
+//                    final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//                    rvCharities.setLayoutManager(linearLayoutManager);
+//
+//                    //construct the adapter from this datasource
+//                    feedAdapter = new CharitySuggAdapter(charities, false, false, true);
+//                    //RecyclerView setup (layout manager, use adapter)
+//                    rvCharities.setAdapter(feedAdapter);
+//                    rvCharities.scrollToPosition(0);
+//
+//                }
+//            }
+//        });
+//
+//    }
 
 }
 

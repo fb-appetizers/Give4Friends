@@ -162,9 +162,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                     }
                 }
                 getFriends();
-
             }
-
         });
     }
 
@@ -175,7 +173,6 @@ public class Search_User_Fragment extends Fragment implements Serializable {
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
 
     private void getFriends() {
         friends = ParseUser.getCurrentUser().getRelation("friends");
@@ -194,10 +191,7 @@ public class Search_User_Fragment extends Fragment implements Serializable {
                     }
                 }
                 recyclerSetUp();
-
             }
-
-
         });
     }
 }
