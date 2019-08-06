@@ -119,6 +119,9 @@ public class DonateFinalActivity extends AppCompatActivity {
                 if (count == 0){
                     amount.setText("$");
                     amount.setSelection(amount.getText().length());
+
+                    submitDonation.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    submitDonation.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
 
                 if (count == 1){
