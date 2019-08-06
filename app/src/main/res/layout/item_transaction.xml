@@ -14,10 +14,10 @@
     card_view:cardElevation="0dp">
 
 
-    <!--android:background="@drawable/constraint_border"-->
+
     <View
         android:layout_width="350dp"
-        android:layout_height=".375dp"
+        android:layout_height=".75dp"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/black" />
 

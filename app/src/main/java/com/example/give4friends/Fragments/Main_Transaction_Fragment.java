@@ -134,6 +134,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
         toolbar.setNavigationIcon(R.drawable.ic_settings);
 
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

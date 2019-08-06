@@ -11,6 +11,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:contentInsetStart="0dp"
     app:navigationIcon="@drawable/ic_settings"
+
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
     >
