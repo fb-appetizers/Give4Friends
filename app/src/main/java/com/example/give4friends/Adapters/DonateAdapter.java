@@ -2,6 +2,8 @@ package com.example.give4friends.Adapters;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -193,11 +195,12 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                     Intent intent = new Intent(context, DonateSearchCharity.class);
 
                     context.startActivity(intent);
+                    ((Activity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
                 else{
                     Intent intent = new Intent(context, DonateFinalActivity.class);
-
                     context.startActivity(intent);
+                    ((Activity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
             }
         }

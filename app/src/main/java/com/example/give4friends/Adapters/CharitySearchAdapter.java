@@ -1,5 +1,6 @@
 package com.example.give4friends.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -130,6 +131,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
                     view.getContext().startActivity(intent);
+                    ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
             });
 
@@ -212,6 +214,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
                     view.getContext().startActivity(intent);
+                    ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
             } else {
 

@@ -74,6 +74,7 @@ public class PayPalActivity extends AppCompatActivity {
                 Intent intent = new Intent(PayPalActivity.this, Main_Fragment_Branch.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
             }
         });

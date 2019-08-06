@@ -47,6 +47,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:rotation="90"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarSettings"
         app:layout_constraintStart_toStartOf="@+id/toolbarSettings"
         app:layout_constraintTop_toTopOf="parent"
