@@ -13,15 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.braintreepayments.cardform.view.CardForm;
-import com.example.give4friends.models.FinancialInfo;
-import com.example.give4friends.models.User;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static com.parse.ParseUser.getCurrentUser;
 

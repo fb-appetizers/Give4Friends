@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Comments;
 import com.example.give4friends.models.Transaction;
-import com.example.give4friends.models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -40,7 +39,6 @@ public class ParseApplication extends Application {
         // any network interceptors must be added with the Configuration Builder given this syntax
 
         ParseObject.registerSubclass(Charity.class);
-        ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(Transaction.class);
         ParseObject.registerSubclass(Comments.class);
 

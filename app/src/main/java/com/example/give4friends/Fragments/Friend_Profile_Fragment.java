@@ -1,7 +1,6 @@
 package com.example.give4friends.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,35 +18,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
-import com.example.give4friends.Adapters.CharitySuggAdapter;
-import com.example.give4friends.Adapters.FavCharitiesAdapter;
 import com.example.give4friends.Adapters.ProfilePagerAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
-import com.example.give4friends.HistoryActivity;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.google.android.material.tabs.TabLayout;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Friend_Profile_Fragment extends Fragment {
 
