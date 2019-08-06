@@ -39,9 +39,7 @@ public class Liked_Transactions_Fragment extends History_Fragment {
                 if (e == null){
                     transactions.clear();
                     for (int i = 0; i < objects.size(); ++i){
-
                         transactions.add(objects.get(i));
-//                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }else {

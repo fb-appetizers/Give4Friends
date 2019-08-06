@@ -68,13 +68,10 @@ public class DonateFinalActivity extends AppCompatActivity {
         charityName = findViewById(R.id.tvCommentsCharityName);
 
         amount = findViewById(R.id.amount);
-        //amountEntered = findViewById(R.id.amountEntered);
         message = findViewById(R.id.etcommentMessage);
         charityName = findViewById(R.id.tvCommentsCharityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
-
-
 
         String imageURL = currentFriend.getString("profileImageURL");
 
@@ -179,8 +176,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                 intent.putExtra("amount", number);
                 startActivity(intent);
                 finish();
-                //Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
-                //startActivity(intent);
             }
         });
 
@@ -231,7 +226,6 @@ public class DonateFinalActivity extends AppCompatActivity {
             }
         });
 
-
         //update user totals
         currentUser.increment("totalDonated", amountInt);
         currentUser.saveInBackground();
@@ -240,9 +234,6 @@ public class DonateFinalActivity extends AppCompatActivity {
         ParseRelation<ParseObject> relation = ParseUser.getCurrentUser().getRelation("friendsRecent");
         relation.add(currentFriend);
         ParseUser.getCurrentUser().saveInBackground();
-
-
-
 
     }
 }

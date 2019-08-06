@@ -22,12 +22,10 @@ public class CharityClient {
     public void getCharities(final String search, boolean search_by_name, Callback handler){
         /*
         Parameter:
-        String search - String of what you want to be searched by the API
-        boolean search_by_name - boolean parameter. Input true if you want to search the API by name
-
+            String search - String of what you want to be searched by the API
+            boolean search_by_name - boolean parameter. Input true if you want to search the API by name
         Output:
-        String array
-
+            String array
          */
 
         Integer pageNum = 1;
@@ -35,7 +33,6 @@ public class CharityClient {
         String APP_ID  = "45f1c9cb";
         String API_KEY = "a6ec0399e2688d91fe0d419cf84443d0";
         String searchType = search_by_name ? "NAME_ONLY" : "DEFAULT";
-
 
         String base_url = "https://api.data.charitynavigator.org/v2/Organizations";
         //app_id code from the account
@@ -52,7 +49,6 @@ public class CharityClient {
         if (!search.equals("")){
             base_url = base_url + "&" + "search=" + search;
         }
-
         base_url = base_url + "&" + "searchType=" + searchType;
         Request request = new Request.Builder()
                 .url(base_url)

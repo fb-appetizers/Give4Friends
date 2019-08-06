@@ -45,16 +45,12 @@ public class PayPalActivity extends AppCompatActivity {
         webView.loadUrl(url);
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
 
-
-
         Milestone.addMilestone("First Donation", PayPalActivity.this );
 
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
                 webView.loadUrl("javascript:(function() { document.getElementById('nemo_inputAmount').value = '"+amount.toString()+"';})()");
-//                webView.loadUrl("javascript:(function() { var z = document.getElementById('nemo_donatebuttonNPO').click(); })()");
-
             }
         });
 
@@ -71,7 +67,6 @@ public class PayPalActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

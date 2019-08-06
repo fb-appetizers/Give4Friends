@@ -10,17 +10,14 @@ public class Comments extends ParseObject {
     public static final String USER = "user";
     public static final String MESSAGE = "Message";
 
-
     public ParseUser getUser(){
 
         return getParseUser(USER);
     }
 
     public void setUser(ParseUser user){
-
         put(USER, user);
     }
-
     public String getMessage(){
         return getString(MESSAGE);
     }

@@ -45,10 +45,6 @@ public class CharityAPI{
         this.mission = mission;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
     public void setEin(String ein) {
         this.ein = ein;
     }
@@ -77,10 +73,6 @@ public class CharityAPI{
         return mission;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
     public String getEin() {
         return ein;
     }
@@ -101,16 +93,7 @@ public class CharityAPI{
         return ratingsUrl;
     }
 
-    public void setParseCharity(Charity charity){
-        this.ParseCharity = charity;
-    }
-
-    public Charity getParseCharity(){
-        return ParseCharity;
-    }
-
-
-// Returns a CharityAPI instance from the expected JSON
+    // Returns a CharityAPI instance from the expected JSON
 
     public static CharityAPI fromParse(Charity charity){
         CharityAPI charityAPI = new CharityAPI();
@@ -124,7 +107,6 @@ public class CharityAPI{
 
         return charityAPI;
     }
-
 
 
     public static CharityAPI fromJSON(JSONObject object) {
@@ -176,16 +158,15 @@ public class CharityAPI{
         ArrayList<CharityAPI> charities = new ArrayList<>(array.length());
 
         final List<String> currentCharityIDs = new ArrayList<String>();
+        final List<Charity> currentCharityObj = new ArrayList<>();
         ParseUser mainUser = ParseUser.getCurrentUser();
 
 
         List<Charity> charityList = new ArrayList<Charity>();
 
 
-
         // This step is to save the first three results of the request into the Parse Server
         // for the suggestions. Along with some of our own directly inputted into Parse
-
 
         // Before you save the entries onto Parse first check if they're any duplicates using a query
         ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class);
@@ -197,7 +178,7 @@ public class CharityAPI{
             for(Charity charity : postQuery.find()){
                 //Searches all of the current charities
                 currentCharityIDs.add(charity.getKeyCharityID());
-
+                currentCharityObj.add(charity);
             }
 
         } catch (ParseException e) {
@@ -232,8 +213,6 @@ public class CharityAPI{
                 charity.setKeyRatingURL(charityAPI.getRatingsUrl());
                 charity.setKeyCharityID(charityAPI.getEin());
 
-
-
                 // First save the newly created charity in background if the charity is new.
 
                 try {
@@ -248,19 +227,18 @@ public class CharityAPI{
 
             }
             //Possibly add if already in the list
-//            if (charityAPI!=null && i<charitySavedSize && currentCharityIDs.contains(charityAPI.getEin())){
-//
-//
-//
-//                charityList.add(charity);
-//            }
+            if (charityAPI!=null && i<charitySavedSize && currentCharityIDs.contains(charityAPI.getEin())){
+
+                charityList.add(currentCharityObj.get(currentCharityIDs.indexOf(charityAPI.getEin())));
+
+
+            }
             if(charityAPI !=null){
 
                 charities.add(charityAPI);
             }
 
         }
-
 //        mainUser.put("charityArray", charityList);
         mainUser.addAllUnique("charityArray",charityList);
 

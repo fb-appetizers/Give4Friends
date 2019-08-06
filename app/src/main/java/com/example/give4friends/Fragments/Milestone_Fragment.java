@@ -1,37 +1,25 @@
 package com.example.give4friends.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.give4friends.Adapters.CharitySuggAdapter;
 import com.example.give4friends.Adapters.MilestoneAdapter;
 import com.example.give4friends.R;
-import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Milestone;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Milestone_Fragment extends Fragment {
 
@@ -102,15 +90,6 @@ public class Milestone_Fragment extends Fragment {
         rvMilestones.setLayoutManager(gridLayoutManager);
         milestonesCompleted = new ArrayList<Object>();
 
-//        try {
-//            myUser = myUser.fetch();
-//            milestonesCompleted = (ArrayList<Object>) ((myUser.getList("milestonesCompleted")));
-//            feedAdapter = new MilestoneAdapter(milestones, myUser, milestonesCompleted);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-
         myUser.fetchInBackground(new GetCallback<ParseUser>() {
             @Override
             public void done(ParseUser object, ParseException e) {
@@ -119,7 +98,6 @@ public class Milestone_Fragment extends Fragment {
                 milestonesCompleted = (ArrayList<Object>) ((object.getList("milestonesCompleted")));
                 feedAdapter = new MilestoneAdapter(milestones, object, milestonesCompleted);
                 //construct the adapter from this datasource
-                //TODO add to the parameters of Milestone adapter
                 //RecyclerView setup (layout manager, use adapter)
                 rvMilestones.setAdapter(feedAdapter);
                 rvMilestones.scrollToPosition(0);

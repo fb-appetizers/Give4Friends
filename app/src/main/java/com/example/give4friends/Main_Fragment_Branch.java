@@ -105,8 +105,6 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         });
 
-
-
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);

@@ -44,11 +44,9 @@ public class ExpandableTextView extends TextView {
                 trim = !trim;
                 setText();
 
-
             }
         });
     }
-
     private void setText() {
         super.setText(getDisplayableText(), bufferType);
     }
@@ -86,6 +84,5 @@ public class ExpandableTextView extends TextView {
     public int getTrimLength() {
         return trimLength;
     }
-
 
 }

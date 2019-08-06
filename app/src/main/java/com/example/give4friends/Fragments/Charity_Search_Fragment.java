@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.give4friends.Adapters.CharitySuggAdapter;
+import com.example.give4friends.Adapters.CharitySearchAdapter;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
 import com.example.give4friends.models.Charity;
@@ -55,7 +55,7 @@ public class Charity_Search_Fragment extends Fragment {
     public static Integer NUMBER_OF_SUGGESTIONS = 10;
 
     CharityClient client;
-    CharitySuggAdapter charityAdapterUpper;
+    CharitySearchAdapter charityAdapterUpper;
     private ArrayList<Object> items;
     private ArrayList <CharityAPI> itemCharity;
 
@@ -70,10 +70,8 @@ public class Charity_Search_Fragment extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        etCharity = view.findViewById(R.id.etCharity);
         sbCharity = view.findViewById(R.id.sbCharity);
         rvCharitySugg = view.findViewById(R.id.rvCharitySugg);
         etCharity = view.findViewById(R.id.etCharity);
@@ -85,12 +83,10 @@ public class Charity_Search_Fragment extends Fragment {
 
         sbCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
-
 
             @Override
             public boolean onQueryTextChange(String s) {
@@ -98,7 +94,6 @@ public class Charity_Search_Fragment extends Fragment {
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
-
 
                     getEffective();
                 }
@@ -116,7 +111,7 @@ public class Charity_Search_Fragment extends Fragment {
 
         items = new ArrayList<>();
 
-        charityAdapterUpper = new CharitySuggAdapter(items, false, false, false);
+        charityAdapterUpper = new CharitySearchAdapter(items, false, false, false);
         // attach the adapter to the RecyclerView
         rvCharitySugg.setAdapter(charityAdapterUpper);
 

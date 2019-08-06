@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.R;
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.Milestone;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -57,6 +58,9 @@ public class Search_User_Fragment extends Fragment implements Serializable {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        // For testing
+        //Milestone.milestoneAchieved("Used For A Year", Milestone.valueFromKey("Used For A Year"), getContext());
 
         searchFriend = view.findViewById(R.id.searchFriend);
         rvFriends = view.findViewById(R.id.rvFriends);

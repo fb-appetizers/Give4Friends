@@ -49,13 +49,8 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     @Override
     public void  onBindViewHolder(ViewHolder holder, int position) {
         // get data according to position.
-       // Charity charity = (Charity) charities.get(position);
         Charity charity = charities.get(position);
         holder.name.setText(charity.getKeyName());
-        //holder.name.setMovementMethod(LinkMovementMethod.getInstance());
-        //holder.name.setText(Html.fromHtml("<a href=\'"+charity.getKeyWebsiteURL()+"\'>"
-               // +charity.getKeyName() + " ("
-               // + charity.getKeyCategoryName() + ")"+ "</a>"));
         holder.causeName.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getKeyCauseName()));
         }
 
@@ -63,7 +58,6 @@ public class FavCharitiesAdapter extends RecyclerView.Adapter<FavCharitiesAdapte
     public int getItemCount() {
         return charities.size();
     }
-
 
     // create ViewHolder Class
     public class ViewHolder extends RecyclerView.ViewHolder {

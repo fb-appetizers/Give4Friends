@@ -82,8 +82,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //check if user is in likes list
         List<String> array = transaction.getKeyLikesUsers();
 
-
-
         // if user is in likesUsers - start red
         if(array == null || !(array.contains(ParseUser.getCurrentUser().getObjectId()))) {
             holder.ibEmptyHeart.setImageResource(R.drawable.ic_vector_heart_stroke);
@@ -184,14 +182,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())){
                 holder.amount.setTextColor( context.getResources().getColor(R.color.colorPrimaryDark));
 
-                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setImageResource(R.drawable.right_arrow);
                 holder.ivarrow.setRotation(180);
                 holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.colorPrimaryDark)));
 
             }
             else{
                 holder.amount.setTextColor(context.getResources().getColor((R.color.mainBlue)));
-                holder.ivarrow.setImageResource(R.drawable.ra1);
+                holder.ivarrow.setImageResource(R.drawable.right_arrow);
                 holder.ivarrow.setRotation(0);
                 holder.ivarrow.setColorFilter(context.getResources().getColor((R.color.mainBlue)));
             }
@@ -211,8 +209,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject object, ParseException e) {
-//                        holder.donor.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-//                        holder.friend.setText("on behalf of ");
+
                         holder.friend.setText(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
                     }
                 });
@@ -253,13 +250,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
         }
 
-//        transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-//            @Override
-//            public void done(ParseObject object, ParseException e) {
-//                holder.friend.setText("on behalf of ");
-//                holder.friend.append(Html.fromHtml("<font color=\"#434040\"><b>" + object.getString("firstName") + "</b></font>"));
-//            }
-//        });
 
         transaction.getKeyFriendId().fetchIfNeededInBackground(new GetCallback<ParseObject>() {
             @Override
@@ -335,7 +325,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 if(transaction.getKeyDonorId().getObjectId().equals(ParseUser.getCurrentUser().getObjectId())  ){
-   // Create a new fragment instead of an activity
+                    // Create a new fragment instead of an activity
 
                     Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
                     FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
@@ -410,7 +400,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             // perform findViewById lookups
             donor = itemView.findViewById(R.id.tvDonor);
-//            friend= itemView.findViewById(R.id.tvFriend);
             charity = itemView.findViewById(R.id.tvCharity);
             donorPhoto= itemView.findViewById(R.id.ivDonor);
             donorPhoto.setClickable(true);

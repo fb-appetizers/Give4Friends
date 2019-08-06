@@ -58,7 +58,6 @@ public class Main_Transaction_Fragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
 
         configureToolbar();
         setHasOptionsMenu(true);
