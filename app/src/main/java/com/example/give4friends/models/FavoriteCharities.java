@@ -3,6 +3,7 @@ package com.example.give4friends.models;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
@@ -35,7 +36,8 @@ public final class FavoriteCharities {
             ibCPLike.setColorFilter(Color.BLACK);
         } else {
             ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
-            ibCPLike.setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+            ibCPLike.setColorFilter(Color.parseColor("#CFB7E6"), PorterDuff.Mode.SRC_ATOP);
+
         }
 
         ibCPLike.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +47,7 @@ public final class FavoriteCharities {
                 List<User> array = parseCharity.getList("likesUsers");
                 if (array == null || !(array.contains(myUser.getObjectId()))) {
                     ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);
-                    ibCPLike.setColorFilter(Color.YELLOW);
+                    ibCPLike.setColorFilter(Color.parseColor("#CFB7E6"));
 
                     //update parse
                     //updateUser

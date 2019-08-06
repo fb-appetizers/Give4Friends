@@ -15,6 +15,7 @@ import android.widget.SearchView;
 
 import com.example.give4friends.Adapters.DonateAdapter;
 import com.example.give4friends.models.Charity;
+import com.example.give4friends.models.Milestone;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -44,6 +45,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate);
         context = this;
+
 
         Intent intent = getIntent();
         donateNow = intent.getBooleanExtra("donateNow", false);

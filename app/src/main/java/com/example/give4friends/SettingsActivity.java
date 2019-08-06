@@ -1,12 +1,18 @@
 package com.example.give4friends;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+
+import com.parse.ParseUser;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -33,6 +39,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("username", ParseUser.getCurrentUser().getUsername());
+        edit.putString("password", ParseUser.getCurrentUser().getString("password"));
+        edit.commit();
+
+//        save("username", ParseUser.getCurrentUser().getUsername(),getApplicationContext());
+
     }
 
 
@@ -42,6 +56,15 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
         }
+    }
+
+
+    public static void save(String valueKey, String value, Context context) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString(valueKey, value);
+        edit.commit();
     }
 
 

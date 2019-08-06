@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/grid_margin"
-    android:layout_marginTop="@dimen/cell_margin"
+    android:layout_marginTop="4dp"
     android:layout_marginRight="@dimen/grid_margin"
+    android:layout_marginBottom="4dp"
     android:background="@drawable/constraint_border"
     android:clickable="true"
     android:longClickable="true"
-    card_view:cardCornerRadius="10dp"
+    card_view:cardCornerRadius="0dp"
     card_view:cardElevation="@dimen/card_elevation">
 
 
@@ -102,7 +103,7 @@
             android:id="@+id/ibMoreInfo"
             android:layout_width="47dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:background="#00E6E6FA"
             android:clickable="true"
@@ -139,19 +140,23 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="4dp"
             android:text="More Info"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/ibMoreInfo" />
 
         <TextView
             android:id="@+id/textView17"
-            android:layout_width="79dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="4dp"
             android:text="Donate Now"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/textView16"
             card_view:layout_constraintTop_toTopOf="@+id/ibMoreInfo" />
 
