@@ -24,14 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <androidx.cardview.widget.CardView
 
 
         android:id="@+id/cvSugg"
 
         android:layout_width="396dp"
-        android:layout_height="493dp"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
 
         android:layout_marginTop="8dp"
@@ -40,6 +39,7 @@
         android:clickable="true"
         android:elevation="8dp"
         app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
