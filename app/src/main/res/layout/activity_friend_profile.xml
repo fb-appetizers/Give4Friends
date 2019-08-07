@@ -97,7 +97,7 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="#7CFFFFFF"
         android:foregroundTint="@color/colorAccent"
-        android:tint="@color/mainBlue"
+        android:tint="@color/colorNow"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

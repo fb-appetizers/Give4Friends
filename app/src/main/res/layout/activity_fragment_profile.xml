@@ -93,7 +93,7 @@
         android:src="@drawable/ic_edit_24px"
         android:text="Edit Bio"
         android:textSize="12sp"
-        android:tint="@color/colorPrimaryDark"
+        android:tint="@color/colorNow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
@@ -132,7 +132,7 @@
         android:background="#00FCFCFC"
         android:scrollbarSize="18dp"
         android:src="@drawable/ic_baseline_add_photo_alternate_24px"
-        android:tint="@color/design_default_color_primary_dark"
+        android:tint="@color/colorNow"
         app:layout_constraintStart_toStartOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="@+id/ivProfileImage" />
     />
