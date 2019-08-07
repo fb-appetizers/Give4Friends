@@ -8,72 +8,60 @@
     android:backgroundTint="#ffffff"
     android:orientation="vertical">
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
-    <ImageView
-        android:id="@+id/ivCPImage"
-        android:layout_width="206dp"
-        android:layout_height="157dp"
-        android:layout_marginEnd="230dp"
-        android:layout_marginBottom="12dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:src="@drawable/charity_temp_profile"
-        android:tintMode="src_over"
-        app:layout_constraintBottom_toTopOf="@+id/tvCPMission"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/charity_temp_profile" />
 
     <TextView
         android:id="@+id/tvCPname"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginStart="120dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
-        android:inputType="textMultiLine"
+        android:layout_marginEnd="8dp"
+        android:inputType="textMultiLine|textNoSuggestions"
         android:linksClickable="true"
         android:text="Name"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCPCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:inputType="textMultiLine"
         android:text="Category"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvCPCause"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/tvCPname" />
 
     <TextView
         android:id="@+id/tvCPCause"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:inputType="textMultiLine"
         android:text="Cause"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/tvCPCategory" />
 
     <TextView
         android:id="@+id/tvCPMission"
         android:layout_width="0dp"
-        android:layout_height="205dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/constraint_border"
         android:focusableInTouchMode="true"
         android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:scrollbars="vertical"
         android:text="Mission"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -81,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCPImage" />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
     <ImageButton
         android:id="@+id/ibCPLike"
@@ -113,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:background="#00E6E6FA"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -151,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Donate Now"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -159,13 +147,15 @@
         app:layout_constraintTop_toTopOf="@+id/tvDonateNowProfile" />
 
     <ImageView
-        android:id="@+id/ivcheckmarkprofile"
-        android:layout_width="18dp"
-        android:layout_height="14dp"
+        android:id="@+id/ivLogo"
+        android:layout_width="147dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/tvCPname"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blue_check_mark" />
+        app:srcCompat="@drawable/circle" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

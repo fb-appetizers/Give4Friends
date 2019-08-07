@@ -95,18 +95,18 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
             vh1.tvCPname.setMovementMethod(LinkMovementMethod.getInstance());
-            vh1.tvCPname.setText(Html.fromHtml("<a href=\'"+charity.getWebsiteUrl()+"\'>"
-                    +charity.getName()+ "</a>"));
+            vh1.tvCPname.setText(Html.fromHtml("<a href=\'" + charity.getWebsiteUrl() + "\'>"
+                    + charity.getName() + "</a>"));
 
             vh1.tvCPMission.setText(Html.fromHtml(charity.getMission()));
-            vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
-            vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+            vh1.tvCPCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
+            vh1.tvCPCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
 
             final boolean is_empty;
             parseCharity = convertCharity(charity);
 
-            vh1.tvCPLikedNum.setText(((Integer)parseCharity.getKeyNumLikes()).toString());
-            vh1.tvCommentsNum.setText(((Integer)parseCharity.getInt("CommentsNum")).toString());
+            vh1.tvCPLikedNum.setText(((Integer) parseCharity.getKeyNumLikes()).toString());
+            vh1.tvCommentsNum.setText(((Integer) parseCharity.getInt("CommentsNum")).toString());
 
 
             List<ParseUser> array = parseCharity.getList("likesUsers");
@@ -115,16 +115,50 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     + charity.getName() + "</a>"));
 
 
+            ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+            charityParseQuery.include(Charity.KEY_CHARITY_ID);
+            charityParseQuery.whereEqualTo("charityName", charity.getEin());
 
-            String payPalnum = parseCharity.getString("payPal");
-            if(payPalnum == null || payPalnum.equals("")){
-                vh1.ivcheckmarkprofile.setVisibility(View.INVISIBLE);
-            }else{
-                vh1.ivcheckmarkprofile.setVisibility(View.VISIBLE);
-            }
+            charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+                @Override
+                public void done(Charity object, ParseException e) {
+                    if (e != null) {
+                        if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+                            Glide.with(context)
+                                    .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                                    .apply(new RequestOptions()
+                                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCropTransform())
+                                    .into(vh1.ivLogo);
 
+                        } else {
+                            Log.e("CharityProfileAdapter", "Error with query of charity");
+                        }
+                    } else {
+                        String logo = object.getKeyLogo();
+                        if (logo != null) {
+                            Glide.with(context)
+                                    .load(logo)
+                                    .apply(new RequestOptions()
+                                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCropTransform()
+                                            .fitCenter()
+                                    )
+                                    .into(vh1.ivLogo);
+                        } else {
+                            Glide.with(context)
+                                    .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                                    .apply(new RequestOptions()
+                                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCrop()
+                                            .circleCropTransform()
+                                            .fitCenter())
+                                    .into(vh1.ivLogo);
+                        }
 
-
+                    }
+                }
+            });
 
             FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 
@@ -220,6 +254,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ImageButton ibComments;
         TextView tvCommentsNum;
         ImageView ivcheckmarkprofile;
+        ImageView ivLogo;
 
 
         public ViewHolderCharity(@NonNull View itemView) {
@@ -233,7 +268,8 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvDonateNow = itemView.findViewById(R.id.tvDonateNowProfile);
             ibComments = itemView.findViewById(R.id.ibComments);
             tvCommentsNum = itemView.findViewById(R.id.tvCommentsNum);
-            ivcheckmarkprofile = itemView.findViewById(R.id.ivcheckmarkprofile);
+            //ivcheckmarkprofile = itemView.findViewById(R.id.ivcheckmarkprofile);
+            ivLogo = itemView.findViewById(R.id.ivLogo);
 
             tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 

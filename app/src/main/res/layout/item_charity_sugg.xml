@@ -39,7 +39,7 @@
             android:layout_width="55dp"
             android:layout_height="45dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="12dp"
             android:background="#FFFFFF"
             android:outlineAmbientShadowColor="#00181717"
             android:outlineSpotShadowColor="#00131111"
@@ -106,13 +106,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvCauseSugg" />
 
         <TextView
-            android:id="@+id/seeMore"
+            android:id="@+id/tvseeMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:paddingBottom="15dp"
             android:text="See more"
-            android:textColor="@color/mainBlue"
+            android:textColor="@color/colorNow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMission" />
 

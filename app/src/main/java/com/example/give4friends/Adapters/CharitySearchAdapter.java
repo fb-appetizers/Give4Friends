@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.charityLogo2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -127,6 +128,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         currentCharity = (Charity) items.get(position);
                         charityName2 = currentCharity.getKeyName();
+                        charityLogo2 = currentCharity.getKeyLogo();
                     }
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
@@ -162,6 +164,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
         public TextView tvCPLikedNum;
         public ImageView  ivcheckmarksugg;
         public TextView tvMission;
+        public TextView tvSeeMore;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -175,13 +178,13 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ivcheckmarksugg = itemView.findViewById(R.id.ivpaypal);
             tvMission = itemView.findViewById(R.id.tvMission);
+            tvSeeMore = itemView.findViewById(R.id.tvseeMore);
+
+
         }
 
         public boolean onLongClick(View view) {
-            int position = getAdapterPosition();
-            CharityAPI charity = (CharityAPI) items.get(position);
-            CustomDialogCharity dialog = new CustomDialogCharity(charity, from_charity_search);
-            dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
             return false;
         }
 
@@ -208,15 +211,19 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 }
                             } else {
                                 currentCharity = object;
+                                charityLogo2 = object.getKeyLogo();
                             }
+
+                            charityName2 = selectedCharity.getName();
+
+
+                            Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                            view.getContext().startActivity(intent);
+                            ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                         }
+
                     });
 
-                    charityName2 = selectedCharity.getName();
-
-                    Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                    view.getContext().startActivity(intent);
-                    ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
             } else {
 
@@ -265,6 +272,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 if (e == null) {
                     Log.d("CharitySearchAdapter", "Created new charity");
                     currentCharity = newCharity;
+                    charityLogo2 = newCharity.getKeyLogo();
                 } else {
                     Log.d("CharitySearchAdapter", "Invalid charity");
                     e.printStackTrace();
@@ -311,7 +319,18 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh1.tvCharityNameSugg.setText(charity.getName());
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
-                vh1.tvMission.setText(charity.getMission());
+                vh1.tvMission.setText(Html.fromHtml(charity.getMission()));
+
+                vh1.tvSeeMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        CharityAPI charity = (CharityAPI) items.get(position);
+                        CustomDialogCharity dialog = new CustomDialogCharity(charity, from_charity_search);
+                        dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                    }
+                });
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);

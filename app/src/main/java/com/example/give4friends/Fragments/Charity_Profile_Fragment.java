@@ -86,6 +86,7 @@ public class Charity_Profile_Fragment extends Fragment {
                 scrollListener.resetState();
                 items.clear();
                 itemsAdapter.notifyDataSetChanged();
+
                 populateProfile();
                 populateComments();
                 swipeContainer.setRefreshing(false);
@@ -130,6 +131,7 @@ public class Charity_Profile_Fragment extends Fragment {
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
 
+
         charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
             @Override
             public void done(Charity charity, ParseException e) {
@@ -161,6 +163,7 @@ public class Charity_Profile_Fragment extends Fragment {
                                 // go through relation adding charities
                                 for (int i = 0; i < comment_obj.size(); i++) {
                                     items.add(comment_obj.get(i));
+
 
                                     if(i == (comment_obj.size()-1)){
                                         LastCommentCreatedAt = comment_obj.get(i).getDate("createdAt");

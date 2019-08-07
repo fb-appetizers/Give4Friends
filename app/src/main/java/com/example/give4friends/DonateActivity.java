@@ -32,6 +32,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     private RecyclerView rvFriends;
     public static ParseUser currentFriend;
     public static Charity currentCharity;
+    public static String charityLogo2;
     public static boolean donateNow;
     public static String charityName2;
     private ImageButton cancel;
