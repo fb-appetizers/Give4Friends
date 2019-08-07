@@ -15,7 +15,6 @@
     app:cardCornerRadius="0dp"
     app:cardElevation="@dimen/card_elevation">
 
-    <!--android:background="#2A03524A"-->
     <androidx.constraintlayout.widget.ConstraintLayout
 
 
