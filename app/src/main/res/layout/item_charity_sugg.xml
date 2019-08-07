@@ -98,7 +98,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="36dp"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             android:paddingBottom="10dp"
             android:text="Mission "
             app:layout_constraintEnd_toEndOf="parent"

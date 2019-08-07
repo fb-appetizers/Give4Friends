@@ -24,7 +24,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <androidx.cardview.widget.CardView
 
 
@@ -36,10 +35,12 @@
 
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="166dp"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:elevation="8dp"
         app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
