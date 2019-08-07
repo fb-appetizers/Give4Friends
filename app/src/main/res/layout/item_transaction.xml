@@ -17,7 +17,7 @@
 
     <View
         android:layout_width="375dp"
-        android:layout_height=".75dp"
+        android:layout_height=".1dp"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/black" />
 
@@ -88,7 +88,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#99090808"
                 android:textColorLink="@color/colorPrimary"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
