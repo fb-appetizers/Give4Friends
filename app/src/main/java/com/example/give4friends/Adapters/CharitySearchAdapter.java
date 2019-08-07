@@ -312,7 +312,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh1.tvCharityNameSugg.setText(charity.getName());
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
-                vh1.tvMission.setText(charity.getMission());
+                vh1.tvMission.setText(Html.fromHtml(charity.getMission()));
 
                 vh1.tvSeeMore.setOnClickListener(new View.OnClickListener() {
                     @Override
