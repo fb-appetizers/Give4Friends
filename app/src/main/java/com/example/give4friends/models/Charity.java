@@ -1,5 +1,6 @@
 package com.example.give4friends.models;
 
+import com.example.give4friends.Adapters.DonateAdapter;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -24,6 +25,7 @@ public class Charity extends ParseObject {
     public static final String KEY_WEBSITE = "websiteUrl";
     public static final String KEY_NUM_LIKES = "likesCount";
     public static final String KEY_CODE = "payPal";
+    public static final String KEY_LOGO = "logoUrl";
 
     public Charity(){}
 
@@ -102,4 +104,9 @@ public class Charity extends ParseObject {
     public int getKeyNumLikes(){
         return getInt(KEY_NUM_LIKES);
     }
+
+    public String getKeyLogo() {
+        return getString(KEY_LOGO);
+    }
+
 }
