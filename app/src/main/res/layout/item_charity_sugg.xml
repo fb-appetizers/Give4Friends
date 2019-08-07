@@ -28,17 +28,19 @@
             android:id="@+id/ivcheckmarksugg"
             android:layout_width="18dp"
             android:layout_height="14dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:background="#ffffff"
             android:scaleType="fitXY"
             app:layout_constraintStart_toEndOf="@+id/tvCharityNameSugg"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/blue_check_mark" />
+            app:srcCompat="@drawable/paypal2" />
 
         <ImageButton
             android:id="@+id/ibCPLike"
             android:layout_width="55dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:background="#FFFFFF"
             android:outlineAmbientShadowColor="#00181717"
@@ -46,55 +48,82 @@
             android:paddingLeft="8dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCPMission"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_like_icon" />
 
         <TextView
             android:id="@+id/tvCharityNameSugg"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:paddingTop="15dp"
             android:layout_marginTop="8dp"
-            android:gravity="center_horizontal"
             android:text="CharityName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#000000"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvCategorySugg"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="36dp"
             android:paddingBottom="10dp"
             android:text="Category"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCharityNameSugg" />
 
         <TextView
             android:id="@+id/tvCauseSugg"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="36dp"
             android:paddingBottom="10dp"
             android:text="Cause"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvCategorySugg"
-            app:layout_constraintTop_toBottomOf="@+id/tvCharityNameSugg" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCategorySugg" />
+
+        <TextView
+            android:id="@+id/tvMission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="36dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingBottom="10dp"
+            android:text="Mission "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCauseSugg" />
+
+        <TextView
+            android:id="@+id/seeMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:paddingBottom="15dp"
+            android:text="See more"
+            android:textColor="@color/mainBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMission" />
 
         <TextView
             android:id="@+id/tvCPLikedNum"
             android:layout_width="24dp"
             android:layout_height="19dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
             android:text="TextView"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="@+id/ibCPLike"

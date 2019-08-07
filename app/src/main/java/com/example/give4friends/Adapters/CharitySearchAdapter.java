@@ -161,6 +161,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
         public ImageButton ibCPLike;
         public TextView tvCPLikedNum;
         public ImageView  ivcheckmarksugg;
+        public TextView tvMission;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -173,6 +174,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ivcheckmarksugg = itemView.findViewById(R.id.ivcheckmarksugg);
+            tvMission = itemView.findViewById(R.id.tvMission);
         }
 
         public boolean onLongClick(View view) {
@@ -309,6 +311,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh1.tvCharityNameSugg.setText(charity.getName());
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
+                vh1.tvMission.setText(charity.getMission());
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
