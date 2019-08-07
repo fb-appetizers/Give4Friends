@@ -86,6 +86,7 @@ public class Charity_Profile_Fragment extends Fragment {
                 scrollListener.resetState();
                 items.clear();
                 itemsAdapter.notifyDataSetChanged();
+
                 populateProfile();
                 populateComments();
                 swipeContainer.setRefreshing(false);
@@ -129,8 +130,6 @@ public class Charity_Profile_Fragment extends Fragment {
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
-
-
 
 
         charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
