@@ -8,9 +8,6 @@
     android:backgroundTint="#ffffff"
     android:orientation="vertical">
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
 
     <TextView
         android:id="@+id/tvCPname"
@@ -64,6 +61,7 @@
         android:background="@drawable/constraint_border"
         android:focusableInTouchMode="true"
         android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:scrollbars="vertical"
         android:text="Mission"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -156,6 +154,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/paypalicon" />
         tools:srcCompat="@tools:sample/avatars" />
 
     <!--</androidx.cardview.widget.CardView>-->

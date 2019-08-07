@@ -14,15 +14,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/constraint_border"
         android:ems="10"
         android:gravity="top"
         android:hint="Comment..."
+
         android:inputType="textMultiLine|text"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-
         app:layout_constraintBottom_toTopOf="@+id/ivCommentProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

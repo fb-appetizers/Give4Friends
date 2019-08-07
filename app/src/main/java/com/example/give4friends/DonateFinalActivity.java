@@ -61,7 +61,6 @@ public class DonateFinalActivity extends AppCompatActivity {
     private ImageView ivLogo;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +105,7 @@ public class DonateFinalActivity extends AppCompatActivity {
 
         String imageURL = currentFriend.getString("profileImageURL");
 
-        if(imageURL != null){
+        if (imageURL != null) {
             Date imageDate = currentFriend.getDate("profileImageCreatedAt");
             Glide.with(this)
                     .load(imageURL)
@@ -126,7 +125,7 @@ public class DonateFinalActivity extends AppCompatActivity {
         amount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if (b){
+                if (b) {
                     amount.setText("$");
                     amount.setSelection(0);
                 }
@@ -146,26 +145,30 @@ public class DonateFinalActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                if (count == 0){
+                if (count == 0) {
                     amount.setText("$");
                     amount.setSelection(amount.getText().length());
 
                     submitDonation.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                     submitDonation.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                    submitDonation.setOnClickListener(null);
+
+
                 }
 
-                if (count == 1){
+                if (count == 1) {
                     amount.setSelection(amount.getText().length());
                 }
 
-                String temp = amount.getText().subSequence(1,amount.getText().length()).toString();
+                String temp = amount.getText().subSequence(1, amount.getText().length()).toString();
 
-                if(temp.contains("$")){
+                if (temp.contains("$")) {
                     amount.setSelection(amount.getText().length());
                     amount.setText(temp);
                 }
 
-                if(!temp.matches("^[$0-9]*+([.][0-9]{0,2})?$")) {
+                if (!temp.matches("^[$0-9]*+([.][0-9]{0,2})?$")) {
                     //[$0-9.]*
                     amount.setText(previous);
                     amount.setSelection(amount.getText().length());
@@ -174,48 +177,16 @@ public class DonateFinalActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(amount.getText().subSequence(1, amount.getText().length()).length() > 0 &&
-                        Integer.parseInt(amount.getText().subSequence(1, amount.getText().length()).toString()) > 0){
+                if (amount.getText().subSequence(1, amount.getText().length()).length() > 0 &&
+                        Integer.parseInt(amount.getText().subSequence(1, amount.getText().length()).toString()) > 0) {
                     submitDonation.setBackgroundColor(getResources().getColor(R.color.colorNow));
                     submitDonation.setTextColor(getResources().getColor(R.color.colorWhite));
+                    submitDonation.setOnClickListener(submitDonationObject());
                 }
             }
         });
 
-        submitDonation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                setNewTransaction();
-
-                String code = currentCharity.getKeyCode();
-                if(code == null){
-                    Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                String num_string = amount.getText().toString();
-                Double number;
-                if(num_string.equals("")){
-                    number = 0.0;
-                }else if(num_string.equals("$")){
-                    number = 0.0;
-                }else{
-                    number = Double.parseDouble(amount.getText().toString().substring(1));
-                }
-
-
-                // query for code from charity when done do this
-                Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
-                intent.putExtra("code", code);
-                intent.putExtra("amount", number);
-                startActivity(intent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
-
-                finish();
-            }
-        });
 
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +205,48 @@ public class DonateFinalActivity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
+
+
+    private View.OnClickListener submitDonationObject() {
+
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setNewTransaction();
+
+                String code = currentCharity.getKeyCode();
+                if (code == null) {
+                    Intent intent = new Intent(DonateFinalActivity.this, Main_Fragment_Branch.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                String num_string = amount.getText().toString();
+                Double number;
+                if (num_string.equals("")) {
+                    number = 0.0;
+                } else if (num_string.equals("$")) {
+                    number = 0.0;
+                } else {
+                    number = Double.parseDouble(amount.getText().toString().substring(1));
+                }
+
+
+                // query for code from charity when done do this
+                Intent intent = new Intent(DonateFinalActivity.this, PayPalActivity.class);
+                intent.putExtra("code", code);
+                intent.putExtra("amount", number);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                finish();
+            }
+
+        };
+    }
+
+
 
     private void setNewTransaction(){
         ParseUser currentUser = ParseUser.getCurrentUser();

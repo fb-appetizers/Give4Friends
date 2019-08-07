@@ -119,11 +119,11 @@ public class CustomDialogCharity extends DialogFragment {
 
 
         }else{
-            ibDonateNow.setVisibility(View.INVISIBLE);
-            ibMoreInfo.setVisibility(View.INVISIBLE);
+            ibDonateNow.setVisibility(View.GONE);
+            ibMoreInfo.setVisibility(View.GONE);
 
-            tvMoreInfo.setVisibility(View.INVISIBLE);
-            tvDonateNow.setVisibility(View.INVISIBLE);
+            tvMoreInfo.setVisibility(View.GONE);
+            tvDonateNow.setVisibility(View.GONE);
 
         }
 
