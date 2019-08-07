@@ -131,7 +131,7 @@ public class Charity_Profile_Fragment extends Fragment {
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
 
-        
+
         charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
             @Override
             public void done(Charity charity, ParseException e) {
