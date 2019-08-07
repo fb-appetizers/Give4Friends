@@ -46,8 +46,7 @@
             android:scaleType="fitXY"
             android:visibility="invisible"
             card_view:layout_constraintStart_toEndOf="@+id/tvCharityName"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:srcCompat="@drawable/blue_check_mark" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ibCPLike"

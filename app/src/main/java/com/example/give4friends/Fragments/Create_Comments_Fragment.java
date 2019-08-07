@@ -2,9 +2,12 @@ package com.example.give4friends.Fragments;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -69,8 +72,10 @@ public class Create_Comments_Fragment extends Fragment {
 
         tvCharityName.setText(charityName);
         tvhandlerComments.setText("@"+user.getUsername());
-
         String imageURL = user.getString("profileImageURL");
+
+
+
 
         if(imageURL != null){
             Date imageDate = user.getDate("profileImageCreatedAt");
@@ -96,6 +101,34 @@ public class Create_Comments_Fragment extends Fragment {
         }
 
 
+        etcommentMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    commentSubmitBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    commentSubmitBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+                }else{
+                    commentSubmitBtn.setBackgroundColor(getResources().getColor(R.color.colorNow));
+                    commentSubmitBtn.setTextColor(getResources().getColor(R.color.colorWhite));
+
+
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         commentSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +151,8 @@ public class Create_Comments_Fragment extends Fragment {
 
                     }
                 });
+
+
 
 
                 //Pops back the fragment if you cancel

@@ -8,9 +8,6 @@
     android:backgroundTint="#ffffff"
     android:orientation="vertical">
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
 
     <ImageView
         android:id="@+id/ivCPImage"
@@ -74,6 +71,7 @@
         android:background="@drawable/constraint_border"
         android:focusableInTouchMode="true"
         android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:scrollbars="vertical"
         android:text="Mission"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
