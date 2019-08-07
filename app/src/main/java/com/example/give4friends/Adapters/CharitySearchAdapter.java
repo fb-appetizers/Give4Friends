@@ -162,6 +162,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
         public TextView tvCPLikedNum;
         public ImageView  ivcheckmarksugg;
         public TextView tvMission;
+        public TextView tvSeeMore;
 
         public ViewHolderSuggested(@NonNull View itemView) {
             super(itemView);
@@ -175,13 +176,13 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
             ivcheckmarksugg = itemView.findViewById(R.id.ivpaypal);
             tvMission = itemView.findViewById(R.id.tvMission);
+            tvSeeMore = itemView.findViewById(R.id.tvseeMore);
+
+
         }
 
         public boolean onLongClick(View view) {
-            int position = getAdapterPosition();
-            CharityAPI charity = (CharityAPI) items.get(position);
-            CustomDialogCharity dialog = new CustomDialogCharity(charity, from_charity_search);
-            dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
             return false;
         }
 
@@ -312,6 +313,17 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh1.tvCategorySugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> " + charity.getCategoryName()));
                 vh1.tvCauseSugg.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> " + charity.getCauseName()));
                 vh1.tvMission.setText(charity.getMission());
+
+                vh1.tvSeeMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        CharityAPI charity = (CharityAPI) items.get(position);
+                        CustomDialogCharity dialog = new CustomDialogCharity(charity, from_charity_search);
+                        dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "CustomDialogCharity");
+
+                    }
+                });
 
                 ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
                 charityParseQuery.include(Charity.KEY_CHARITY_ID);
