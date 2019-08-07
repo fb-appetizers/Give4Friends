@@ -51,7 +51,6 @@
         android:id="@+id/rvCharitySearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +67,8 @@
         android:focusedByDefault="false"
         android:gravity="right"
         android:iconifiedByDefault="false"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
         android:queryHint="Search Charity ..."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
