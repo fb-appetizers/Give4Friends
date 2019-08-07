@@ -9,10 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
+import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -41,20 +45,91 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
         SharedPreferences.Editor edit = prefs.edit();
+
         edit.putString("username", ParseUser.getCurrentUser().getUsername());
         edit.putString("password", ParseUser.getCurrentUser().getString("password"));
+        edit.putString("email", ParseUser.getCurrentUser().getString("email"));
         edit.commit();
+
+
+
+
 
 //        save("username", ParseUser.getCurrentUser().getUsername(),getApplicationContext());
 
     }
 
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+
+    }
+
+
+
+
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+
+
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(this);
+
+
+
+        }
+
+        @Override
+        public void onPause() {
+            PreferenceManager.getDefaultSharedPreferences(getContext()).unregisterOnSharedPreferenceChangeListener(this);
+            super.onPause();
+        }
+
+        private void updateSummary(EditTextPreference preference) {
+            // set the EditTextPreference's summary value to its current text
+            preference.setSummary(preference.getText());
+        }
+
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+
+            
+            switch (s){
+                case "username":
+                    ParseUser.getCurrentUser().setUsername(sharedPreferences.getString(s, "username"));
+                    break;
+                case "password":
+                    ParseUser.getCurrentUser().setUsername(sharedPreferences.getString(s, "password"));
+                    break;
+                case "email":
+                    ParseUser.getCurrentUser().setEmail(sharedPreferences.getString(s, "email"));
+                    break;
+                default:
+                    Toast.makeText(getContext(), "No Match in Settings", Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+
+
+
+
+
+
 
         }
     }
