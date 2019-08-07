@@ -79,7 +79,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
 
 
-
         svCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -221,6 +220,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     e.printStackTrace();
                 }
                 charityAdapter.notifyDataSetChanged();
+                hideProgressBar();
             }
         });
     }
