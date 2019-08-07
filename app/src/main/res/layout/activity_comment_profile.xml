@@ -40,8 +40,8 @@
 
     <ImageView
         android:id="@+id/ivCommentProfile"
-        android:layout_width="101dp"
-        android:layout_height="87dp"
+        android:layout_width="76dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
