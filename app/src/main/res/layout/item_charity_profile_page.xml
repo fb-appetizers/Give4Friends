@@ -165,7 +165,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/tvCPname"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blue_check_mark" />
+        app:srcCompat="@drawable/paypalicon" />
 
     <!--</androidx.cardview.widget.CardView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
