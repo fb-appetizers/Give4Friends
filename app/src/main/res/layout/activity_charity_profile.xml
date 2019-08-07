@@ -20,15 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/container">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCPProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/browser_actions_title_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCPProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
