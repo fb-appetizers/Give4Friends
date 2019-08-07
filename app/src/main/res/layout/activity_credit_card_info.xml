@@ -17,6 +17,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="Do Not Enter Real CC Info"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
         android:textIsSelectable="false"
         android:textSize="36sp"
         android:typeface="sans"
