@@ -146,6 +146,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
                         transactions.add(transaction);
 
+                        // Save the last transaction
                         if(i == (transactionList.size()-1)){
                             try {
                                 transaction.save();
