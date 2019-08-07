@@ -29,7 +29,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toEndOf="@+id/ivCharityImage"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:text="Cause"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCharityImage"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/tvCharityName" />
 
     <ImageButton
@@ -121,7 +121,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivRating" />
 
     <ImageView
-        android:id="@+id/ivCharityImage"
+        android:id="@+id/ivLogo"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="4dp"

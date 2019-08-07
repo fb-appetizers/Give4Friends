@@ -150,23 +150,26 @@
 
     <TextView
         android:id="@+id/tvCommentsCharityName"
-        android:layout_width="195dp"
+        android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-thin"
         android:gravity="center|left|center_vertical"
+        android:inputType="textMultiLine"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/donateSubmitBtn"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/ivLogo" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivLogo"
         android:layout_width="93dp"
         android:layout_height="64dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/charity_temp_profile" />

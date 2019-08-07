@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.charityLogo2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 
 public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -127,6 +128,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         currentCharity = (Charity) items.get(position);
                         charityName2 = currentCharity.getKeyName();
+                        charityLogo2 = currentCharity.getKeyLogo();
                     }
                     Intent intent = new Intent(view.getContext(), DonateActivity.class);
                     intent.putExtra("donateNow", true);
@@ -208,15 +210,19 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 }
                             } else {
                                 currentCharity = object;
+                                charityLogo2 = object.getKeyLogo();
                             }
+
+                            charityName2 = selectedCharity.getName();
+
+
+                            Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
+                            view.getContext().startActivity(intent);
+                            ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                         }
+
                     });
 
-                    charityName2 = selectedCharity.getName();
-
-                    Intent intent = new Intent(view.getContext(), DonateFinalActivity.class);
-                    view.getContext().startActivity(intent);
-                    ((Activity)view.getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
                 }
             } else {
 
@@ -265,6 +271,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 if (e == null) {
                     Log.d("CharitySearchAdapter", "Created new charity");
                     currentCharity = newCharity;
+                    charityLogo2 = newCharity.getKeyLogo();
                 } else {
                     Log.d("CharitySearchAdapter", "Invalid charity");
                     e.printStackTrace();

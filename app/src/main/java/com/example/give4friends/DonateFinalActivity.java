@@ -21,9 +21,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Milestone;
 import com.example.give4friends.models.Transaction;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -41,6 +43,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.example.give4friends.DonateActivity.charityName2;
+import static com.example.give4friends.DonateActivity.charityLogo2;
 import static com.example.give4friends.DonateActivity.currentCharity;
 import static com.example.give4friends.DonateActivity.currentFriend;
 
@@ -55,6 +58,7 @@ public class DonateFinalActivity extends AppCompatActivity {
     private TextView friendsName;
     private TextView friendsUserName;
     private TextView charityName;
+    private ImageView ivLogo;
 
 
 
@@ -73,6 +77,32 @@ public class DonateFinalActivity extends AppCompatActivity {
         charityName = findViewById(R.id.tvCommentsCharityName);
         submitDonation = findViewById(R.id.donateSubmitBtn);
         cancelBtn = findViewById(R.id.ibcancelFinal);
+        ivLogo = findViewById(R.id.ivLogo);
+
+
+        if (charityLogo2 != null) {
+            Glide.with(getApplicationContext())
+                    .load(charityLogo2)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24)
+                            .fitCenter()
+                    )
+                    .into(ivLogo);
+        } else {
+            Glide.with(getApplicationContext())
+                    .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .fitCenter()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24))
+                    .into(ivLogo);
+        }
+
 
         String imageURL = currentFriend.getString("profileImageURL");
 
