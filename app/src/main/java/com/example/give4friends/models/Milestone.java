@@ -68,7 +68,7 @@ public final class Milestone {
         }
 
         if (!milestones.contains(milestone)) {
-            Milestone.milestoneAchieved(milestone, valueFromKey(milestone), context);
+            milestoneAchieved(milestone, valueFromKey(milestone), context);
             parseUser.add("milestonesCompleted", milestone);
             parseUser.saveInBackground();
 
@@ -76,7 +76,7 @@ public final class Milestone {
 
     }
 
-    public static void milestoneAchieved(String milestone, int image, Context context) {
+    private static void milestoneAchieved(String milestone, int image, Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         final View view = inflater.inflate(R.layout.item_milestone_dialog, null);
@@ -111,7 +111,7 @@ public final class Milestone {
 
     }
 
-    public static int valueFromKey(String key) {
+    private static int valueFromKey(String key) {
         for (int i = 0; i < milestones.size(); ++i) {
             if (milestones.get(i).first.equals(key)) {
                 return milestones.get(i).second;

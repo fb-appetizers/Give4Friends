@@ -33,6 +33,7 @@ public final class FavoriteCharities {
 
         if (array == null || !(array.contains(myUser.getObjectId())) || array.size() == 0) {
             ibCPLike.setImageResource(R.drawable.ic_like_icon);
+
             ibCPLike.setColorFilter(Color.BLACK);
         } else {
             ibCPLike.setImageResource(R.drawable.ic_baseline_star_rate_18px);

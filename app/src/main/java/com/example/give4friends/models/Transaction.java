@@ -32,8 +32,8 @@ public class Transaction extends ParseObject{
     public static final String KEY_LIKES_USERS  = "likesUsers";
     public static final String KEY_CHARITY_ID  = "charityId";
     public static final String KEY_CREATED_AT  = "createdAt";
-    public static final String KEY_DONOR_IMAGE  = "donorProfile";
-    public static final String KEY_FRIEND_IMAGE  = "friendProfile";
+    public static final String KEY_UPDATED_AT = "updatedAt";
+
 
     public Transaction(){}
 

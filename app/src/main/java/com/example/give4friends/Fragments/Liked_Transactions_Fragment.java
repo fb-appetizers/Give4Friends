@@ -16,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 public class Liked_Transactions_Fragment extends History_Fragment {
@@ -30,16 +31,32 @@ public class Liked_Transactions_Fragment extends History_Fragment {
         ParseQuery<Transaction> query = new ParseQuery<Transaction>(Transaction.class)
                 .whereContains(Transaction.KEY_LIKES_USERS, ParseUser.getCurrentUser().getObjectId());
 
-        query.setLimit(20);
-        query.addDescendingOrder(Transaction.KEY_CREATED_AT);
+        query.setLimit(MAX_NUMBER_OF_TRANSACTIONS);
+        query.addDescendingOrder(Transaction.KEY_UPDATED_AT);
+
+        if(transactions.size() > 0 ){
+            Date updatedAt = transactions.get(transactions.size() - 1).getCreatedAt();
+            query.whereLessThan(Transaction.KEY_UPDATED_AT, updatedAt);
+        }
+
         query.findInBackground(new FindCallback<Transaction>() {
             //iterate through query
             @Override
-            public void done(List<Transaction> objects, ParseException e) {
+            public void done(List<Transaction> transactionList, ParseException e) {
                 if (e == null){
-                    transactions.clear();
-                    for (int i = 0; i < objects.size(); ++i){
-                        transactions.add(objects.get(i));
+
+                    for (int i = 0; i < transactionList.size(); ++i){
+                        Transaction transaction = transactionList.get(i);
+                        transactions.add(transaction);
+
+                        if(i == (transactionList.size()-1)){
+                            try {
+                                transaction.save();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }else {
