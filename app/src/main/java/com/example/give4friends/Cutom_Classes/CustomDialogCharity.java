@@ -19,6 +19,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.Fragments.Charity_Profile_Fragment;
 import com.example.give4friends.R;
@@ -49,6 +52,7 @@ public class CustomDialogCharity extends DialogFragment {
     public TextView tvCause;
     public ImageView ivRating;
     public ImageButton ibDonateNow;
+    public ImageView ivLogo;
 
     public ImageButton ibMoreInfo;
     private boolean from_charity_donate_search;
@@ -69,17 +73,15 @@ public class CustomDialogCharity extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.item_charity_popup,container,false);
         tvCharityName = view.findViewById(R.id.tvCharityName);
         tvMission = view.findViewById(R.id.tvMission);
-
 
         tvCause = view.findViewById(R.id.tvCause);
         ivRating = view.findViewById(R.id.ivRating);
         ibDonateNow = view.findViewById(R.id.ibDonateNow);
         ibMoreInfo = view.findViewById(R.id.ibMoreInfo);
-
+        ivLogo = view.findViewById(R.id.ivLogo);
 
         tvDonateNow = view.findViewById(R.id.tvDonateNow);
         tvMoreInfo = view.findViewById(R.id.tvMoreInfo);
@@ -112,16 +114,12 @@ public class CustomDialogCharity extends DialogFragment {
                     fragmentManager.beginTransaction().
                             replace(R.id.flContainer, fragment)
                             .addToBackStack(null).commit();
-
                 }
             });
-
-
 
         }else{
             ibDonateNow.setVisibility(View.GONE);
             ibMoreInfo.setVisibility(View.GONE);
-
             tvMoreInfo.setVisibility(View.GONE);
             tvDonateNow.setVisibility(View.GONE);
 
@@ -134,13 +132,62 @@ public class CustomDialogCharity extends DialogFragment {
                 .load(charity.getRatingsUrl())
                 .into(ivRating);
 
+        ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
+        charityParseQuery.include(Charity.KEY_CHARITY_ID);
+        charityParseQuery.whereEqualTo("charityName", charity.getEin());
+
+        charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
+            @Override
+            public void done(Charity object, ParseException e) {
+                if (e != null) {
+                    if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+                        Glide.with(getContext())
+                                .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                                .apply(new RequestOptions()
+                                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                                        .circleCropTransform()
+                                        )
+                                .into(ivLogo);
+
+                    } else {
+                        Log.e("CharityProfileAdapter", "Error with query of charity");
+                    }
+                } else {
+                    String logo = object.getKeyLogo();
+                    if (logo != null) {
+                        Glide.with(getContext())
+                                .load(logo)
+                                .apply(new RequestOptions()
+                                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                                        .circleCropTransform()
+                                        .fitCenter()
+                                )
+                                .into(ivLogo);
+                    } else {
+                        Glide.with(getContext())
+                                .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                                .apply(new RequestOptions()
+                                        .transforms(new CenterCrop(), new RoundedCorners(20))
+                                        .circleCropTransform()
+                                        .fitCenter())
+                                .into(ivLogo);
+                    }
+
+                }
+            }
+        });
+
+
+
+
+
+
         return view;
     }
 
     private void setCurrentCharity(){
         ParseQuery<Charity> charityParseQuery = new ParseQuery<Charity>(Charity.class);
         charityParseQuery.include(Charity.KEY_CHARITY_ID);
-
         charityParseQuery.whereEqualTo("charityName", charity.getEin());
 
         charityParseQuery.getFirstInBackground(new GetCallback<Charity>() {
