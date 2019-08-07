@@ -51,6 +51,7 @@ import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
+import com.example.give4friends.models.Milestone;
 import com.example.give4friends.models.ProfilePicture;
 import com.example.give4friends.models.Transaction;
 import com.google.android.material.tabs.TabLayout;
@@ -451,6 +452,10 @@ public class User_Profile_Fragment extends Fragment{
                                                        total = (total + (int) (objects.get(i).getKeyAmountDonated()));
                                                    }
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
+                                               }
+
+                                               if(total > 0){
+                                                   Milestone.addMilestone("First Raised", getContext());
                                                }
                                                tvTotalRaised.setText("Total Raised: $" + total);
                                            }else {
