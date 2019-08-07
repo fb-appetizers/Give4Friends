@@ -173,7 +173,7 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvMoreInfo = itemView.findViewById(R.id.ibMoreInfo);
             ibCPLike = itemView.findViewById(R.id.ibCPLike);
             tvCPLikedNum = itemView.findViewById(R.id.tvCPLikedNum);
-            ivcheckmarksugg = itemView.findViewById(R.id.ivcheckmarksugg);
+            ivcheckmarksugg = itemView.findViewById(R.id.ivpaypal);
             tvMission = itemView.findViewById(R.id.tvMission);
         }
 
