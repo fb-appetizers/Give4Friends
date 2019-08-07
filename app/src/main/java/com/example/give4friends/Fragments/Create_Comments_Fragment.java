@@ -77,6 +77,8 @@ public class Create_Comments_Fragment extends Fragment {
 
 
 
+
+
         if(imageURL != null){
             Date imageDate = user.getDate("profileImageCreatedAt");
             Glide.with(getContext())
@@ -112,11 +114,12 @@ public class Create_Comments_Fragment extends Fragment {
                 if(charSequence.length() == 0){
                     commentSubmitBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                     commentSubmitBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                    commentSubmitBtn.setOnClickListener(null);
                 }else{
                     commentSubmitBtn.setBackgroundColor(getResources().getColor(R.color.colorNow));
                     commentSubmitBtn.setTextColor(getResources().getColor(R.color.colorWhite));
-
-
+                    commentSubmitBtn.setOnClickListener(commentSubmitObj());
                 }
 
 
@@ -129,7 +132,15 @@ public class Create_Comments_Fragment extends Fragment {
         });
 
 
-        commentSubmitBtn.setOnClickListener(new View.OnClickListener() {
+
+
+
+        configureToolbar();
+
+    }
+
+    private View.OnClickListener commentSubmitObj(){
+        return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create the comment and attach that to the user and the comment
@@ -163,10 +174,7 @@ public class Create_Comments_Fragment extends Fragment {
 
 
             }
-        });
-
-
-        configureToolbar();
+        };
 
     }
 
