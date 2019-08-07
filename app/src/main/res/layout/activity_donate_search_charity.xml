@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
-        android:text="Search Charity"
+        android:text="Select Charity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -51,6 +51,7 @@
         android:id="@+id/rvCharitySearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,21 +60,17 @@
         app:layout_constraintTop_toBottomOf="@+id/topResult" />
 
 
-
-
     <SearchView
         android:id="@+id/svCharity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:defaultFocusHighlightEnabled="true"
         android:focusedByDefault="false"
         android:gravity="right"
         android:iconifiedByDefault="false"
-        android:queryHint="Search for charities ..."
+        android:queryHint="Search Charity ..."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
- />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/topResult"

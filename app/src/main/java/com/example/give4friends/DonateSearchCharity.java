@@ -51,7 +51,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     public static Charity charity;
     private SearchView svCharity;
     private RecyclerView rvCharitySearch;
-    private Button btnCancel;
     private ImageButton cancel;
     CharityClient client;
     ArrayList<Object> items;
@@ -71,13 +70,15 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
 
         rvCharitySearch = findViewById(R.id.rvCharitySearch);
         svCharity = findViewById(R.id.svCharity);
-        btnCancel = findViewById(R.id.btnCancel);
         cancel = findViewById(R.id.ibcancelFinal);
         topResult = findViewById(R.id.topResult);
         //Added another field to check if this is in the Donate Search charity.
         miActionProgressItem = findViewById(R.id.progressBar);
 
         topResult.setVisibility(View.GONE);
+
+
+
 
         svCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -199,37 +200,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         });
     }
 
-    public void getEffective(final String search, final boolean search_by_name){
-
-        //TODO -- do the and operator
-        ParseQuery<Charity> query1 = new ParseQuery<Charity>(Charity.class);
-        ParseQuery<Charity> q1 = query1.whereMatches("name", "("+search+")", "i");
-
-        ParseQuery<Charity> postQuery = new ParseQuery<Charity>(Charity.class)
-                .whereEqualTo("highlyEffective", true);
-
-        ParseQuery<Charity> q2 = postQuery.whereMatchesQuery("name",q1);
-
-        q2.findInBackground(new FindCallback<Charity>() {
-            //iterate through query
-            @Override
-            public void done(List<Charity> objects, ParseException e) {
-
-                items.clear() ;
-                if (e == null) {
-                    for (int i = 0; i < objects.size(); i++) {
-                        items.add(CharityAPI.fromParse(objects.get(i)));
-                    }
-                    charityAdapter.notifyDataSetChanged();
-                } else {
-                    Log.e("MainActivity", "Can't get transaction");
-                    e.printStackTrace();
-                }
-                getResponse(search, search_by_name);
-
-            }
-        });
-    }
 
     public void getRecommended(){
 
