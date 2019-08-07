@@ -39,7 +39,7 @@
             android:layout_width="55dp"
             android:layout_height="45dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="12dp"
             android:background="#FFFFFF"
             android:outlineAmbientShadowColor="#00181717"
             android:outlineSpotShadowColor="#00131111"
