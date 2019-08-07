@@ -128,9 +128,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
                                     .apply(new RequestOptions()
                                             .transforms(new CenterCrop(), new RoundedCorners(20))
-                                            .circleCropTransform()
-                                            .placeholder(R.drawable.user_outline_24)
-                                            .error(R.drawable.user_outline_24))
+                                            .circleCropTransform())
                                     .into(vh1.ivLogo);
 
                         } else {
@@ -144,8 +142,6 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     .apply(new RequestOptions()
                                             .transforms(new CenterCrop(), new RoundedCorners(20))
                                             .circleCropTransform()
-                                            .placeholder(R.drawable.user_outline_24)
-                                            .error(R.drawable.user_outline_24)
                                             .fitCenter()
                                     )
                                     .into(vh1.ivLogo);
@@ -154,28 +150,15 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
                                     .apply(new RequestOptions()
                                             .transforms(new CenterCrop(), new RoundedCorners(20))
+                                            .circleCrop()
                                             .circleCropTransform()
-                                            .fitCenter()
-                                            .placeholder(R.drawable.user_outline_24)
-                                            .error(R.drawable.user_outline_24))
+                                            .fitCenter())
                                     .into(vh1.ivLogo);
                         }
 
                     }
                 }
             });
-
-            /*
-            String payPalnum = parseCharity.getString("payPal");
-            if(payPalnum == null || payPalnum.equals("")){
-                vh1.ivcheckmarkprofile.setVisibility(View.INVISIBLE);
-            }else{
-                vh1.ivcheckmarkprofile.setVisibility(View.VISIBLE);
-            }
-            */
-
-
-
 
             FavoriteCharities.setUpFavorites(parseCharity, myUser, vh1.ibCPLike, vh1.tvCPLikedNum);
 

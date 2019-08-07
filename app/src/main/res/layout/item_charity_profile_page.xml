@@ -154,7 +154,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/paypalicon" />
+        app:srcCompat="@drawable/circle" />
         tools:srcCompat="@tools:sample/avatars" />
 
     <!--</androidx.cardview.widget.CardView>-->

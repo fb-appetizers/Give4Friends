@@ -85,8 +85,6 @@ public class DonateFinalActivity extends AppCompatActivity {
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
-                            .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24)
                             .fitCenter()
                     )
                     .into(ivLogo);
@@ -96,9 +94,7 @@ public class DonateFinalActivity extends AppCompatActivity {
                     .apply(new RequestOptions()
                             .transforms(new CenterCrop(), new RoundedCorners(20))
                             .circleCropTransform()
-                            .fitCenter()
-                            .placeholder(R.drawable.user_outline_24)
-                            .error(R.drawable.user_outline_24))
+                            .fitCenter())
                     .into(ivLogo);
         }
 
