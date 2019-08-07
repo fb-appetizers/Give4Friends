@@ -112,7 +112,7 @@
             android:layout_marginStart="16dp"
             android:paddingBottom="15dp"
             android:text="See more"
-            android:textColor="@color/mainBlue"
+            android:textColor="@color/colorNow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMission" />
 
