@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +120,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             }
             //if not yet a friend make blue
             else {
-                holder.addFriend.setColorFilter(Color.BLUE);
+                holder.addFriend.setColorFilter(Color.parseColor("#644BDF"), PorterDuff.Mode.SRC_ATOP);
             }
 
             holder.addFriend.setOnClickListener(new View.OnClickListener() {
@@ -218,7 +219,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
                     localFriends.remove(user.getObjectId());
                     friends.remove(user);
                     ParseUser.getCurrentUser().saveInBackground();
-                    holder.addFriend.setColorFilter(Color.BLUE);
+                    holder.addFriend.setColorFilter(Color.parseColor("#644BDF"), PorterDuff.Mode.SRC_ATOP);
                 }
 
             }

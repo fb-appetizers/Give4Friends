@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -122,7 +123,7 @@ public class Friend_Profile_Fragment extends Fragment {
         }
         //if not yet a friend make blue
         else {
-            addFriend.setColorFilter(Color.BLUE);
+            addFriend.setColorFilter(Color.parseColor("#644BDF"), PorterDuff.Mode.SRC_ATOP);
         }
 
         addFriend.setOnClickListener(new View.OnClickListener() {
@@ -285,7 +286,7 @@ public class Friend_Profile_Fragment extends Fragment {
                     localFriends.remove(myUser.getObjectId());
                     friends.remove(myUser);
                     ParseUser.getCurrentUser().saveInBackground();
-                    addFriend.setColorFilter(Color.BLUE);
+                    addFriend.setColorFilter(Color.parseColor("#644BDF"), PorterDuff.Mode.SRC_ATOP);
                 }
 
             }

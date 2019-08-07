@@ -224,7 +224,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 @Override
                 public void done(final ParseObject object, ParseException e) {
                     if(object != null){
-                        holder.charity.setText(Html.fromHtml("<font color=\"#2196F3\"><b>" + object.getString("name") + "</b></font>"));
+                        holder.charity.setText(Html.fromHtml("<font color=\"#644BDF\"><b>" + object.getString("name") + "</b></font>"));
                         holder.charity.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

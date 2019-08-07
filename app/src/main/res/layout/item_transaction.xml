@@ -124,6 +124,7 @@
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:textAlignment="textStart"
+                android:textColor="@color/colorNow"
                 android:textSize="18sp"
                 card_view:layout_constraintEnd_toEndOf="@+id/tvDonor"
                 card_view:layout_constraintHorizontal_bias="0.052"
