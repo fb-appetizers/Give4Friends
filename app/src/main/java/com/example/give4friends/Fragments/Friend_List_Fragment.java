@@ -54,7 +54,6 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         rvFriends = view.findViewById(R.id.rvFriends);
 
         users = new ArrayList<ParseUser>();
@@ -62,12 +61,10 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
         getFriends();
 
         configureToolbar();
-
     }
 
     protected void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-
 
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setTextSize(30);

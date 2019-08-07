@@ -57,11 +57,12 @@
 
     <TextView
         android:id="@+id/tvBio"
-        android:layout_width="377dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-light"
         android:text="Bio:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#020202"

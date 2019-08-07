@@ -31,14 +31,11 @@
             android:id="@+id/tvCPLikedNum"
             android:layout_width="44dp"
             android:layout_height="17dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="75dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:text="TextView"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/ibCPLike"
-            card_view:layout_constraintTop_toTopOf="@+id/ibCPLike"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintEnd_toEndOf="@+id/tvCharityName"
+            card_view:layout_constraintTop_toTopOf="@+id/ibCPLike" />
 
         <ImageView
             android:id="@+id/ivcheckmarkfav"
@@ -54,32 +51,34 @@
 
         <ImageButton
             android:id="@+id/ibCPLike"
-            android:layout_width="50dp"
-            android:layout_height="42dp"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="#00FFFFFF"
             android:outlineAmbientShadowColor="#00181717"
             android:outlineSpotShadowColor="#00131111"
             android:paddingLeft="8dp"
             android:scaleType="fitCenter"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tvCPMission"
+            card_view:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/ic_like_icon" />
 
         <TextView
             android:id="@+id/tvCharityName"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:gravity="center_horizontal"
 
             android:inputType="textMultiLine|textNoSuggestions"
             android:linksClickable="true"
+            android:paddingTop="10dp"
             android:paddingRight="5dp"
             android:text="CharityName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorLink="#2196F3"
+            android:textSize="16dp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -89,7 +88,7 @@
             android:id="@+id/tvCause"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             android:paddingRight="5dp"
@@ -123,8 +122,8 @@
             android:id="@+id/ibDonateNow"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="6dp"
             android:background="#00E6E6FA"
             android:clickable="false"
             android:src="@drawable/ic_payment_24px"
@@ -133,6 +132,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:tint="@color/colorPrimaryDark"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView17"
             card_view:layout_constraintStart_toEndOf="@+id/ibMoreInfo"
             card_view:layout_constraintTop_toBottomOf="@+id/tvCause" />
 
@@ -140,25 +140,27 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:text="More Info"
+            android:textSize="12sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/ibMoreInfo" />
+            card_view:layout_constraintTop_toBottomOf="@+id/ibMoreInfo" />
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
             android:layout_marginBottom="4dp"
             android:text="Donate Now"
+            android:textSize="12sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/textView16"
-            card_view:layout_constraintTop_toTopOf="@+id/ibMoreInfo" />
+            card_view:layout_constraintTop_toTopOf="@+id/textView16"
+            card_view:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

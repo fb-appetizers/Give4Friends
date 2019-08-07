@@ -79,35 +79,23 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
-//                        menuItem.setIcon(R.drawable.ic_home_filled);
                         break;
                     case R.id.action_search:
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment2).commit();
                         break;
                     case R.id.action_profile:
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment3).commit();
                         break;
                     case R.id.action_transaction:
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment4).commit();
-
                         break;
-
                     default:
-
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
-
                         break;
                 }
-
                 return true;
             }
-
-
 
         });
 
@@ -176,8 +164,4 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         }
 
     }
-
-
-
-
 }
