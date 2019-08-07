@@ -106,13 +106,13 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
 
-            
+
             switch (s){
                 case "username":
                     ParseUser.getCurrentUser().setUsername(sharedPreferences.getString(s, "username"));
                     break;
                 case "password":
-                    ParseUser.getCurrentUser().setUsername(sharedPreferences.getString(s, "password"));
+                    ParseUser.getCurrentUser().setPassword(sharedPreferences.getString(s, "password"));
                     break;
                 case "email":
                     ParseUser.getCurrentUser().setEmail(sharedPreferences.getString(s, "email"));
@@ -120,10 +120,9 @@ public class SettingsActivity extends AppCompatActivity {
                 default:
                     Toast.makeText(getContext(), "No Match in Settings", Toast.LENGTH_SHORT).show();
 
-
-
-
             }
+
+            ParseUser.getCurrentUser().saveInBackground();
 
 
 
