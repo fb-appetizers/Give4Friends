@@ -95,7 +95,11 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
 
     private void getFriends() {
         friends = ParseUser.getCurrentUser().getRelation("friends");
-        friends.getQuery().findInBackground(new FindCallback<ParseUser>() {
+
+        ParseQuery friendQuery = friends.getQuery();
+        friendQuery.orderByDescending("updatedAt");
+
+        friendQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 localFriends.clear();

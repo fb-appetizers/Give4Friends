@@ -110,6 +110,18 @@ public class DonateFinalActivity extends AppCompatActivity {
                             .circleCrop()
                             .signature(new ObjectKey(imageDate)))
                     .into(friendsImage);
+        }else{
+
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.user_outline_24)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24)
+
+                    )
+                    .into(friendsImage);
         }
 
         charityName.setText(charityName2);
