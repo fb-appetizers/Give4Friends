@@ -35,7 +35,7 @@
             android:orientation="vertical"
             android:paddingBottom="8dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivDonor"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -92,7 +92,7 @@
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvCharity" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivFriend"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -100,6 +100,8 @@
                 android:layout_alignParentBottom="false"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
+                card_view:civ_border_color="#ffffff"
+                card_view:civ_border_width="3dp"
                 android:scaleType="centerCrop"
                 card_view:layout_constraintStart_toStartOf="@+id/ivDonor"
                 card_view:layout_constraintTop_toTopOf="@+id/ivDonor" />

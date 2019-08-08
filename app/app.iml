@@ -122,6 +122,7 @@
     <orderEntry type="library" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.scottyab:showhidepasswordedittext:0.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: de.hdodenhof:circleimageview:3.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.parse-community.Parse-SDK-Android:parse:1.20.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0-rc01@aar" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10@jar" level="project" />

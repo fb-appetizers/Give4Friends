@@ -39,6 +39,8 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactions;
     private boolean friend;
@@ -267,10 +269,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     Glide.with(context)
                             .load(imageURL)
                             .apply(new RequestOptions()
-                                    .transforms(new CircleCrop(), new RoundedCorners(20))
-                                    .circleCrop()
                                             .signature(new ObjectKey(imageDate))
-//                                    .placeholder(R.drawable.instagram_user_outline_24)
 
                                     )
 
@@ -387,8 +386,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //public TextView charityName;
         public TextView donor;
         public TextView friend;
-        public ImageView donorPhoto;
-        public ImageView friendPhoto;
+        public CircleImageView donorPhoto;
+        public CircleImageView friendPhoto;
         public TextView charity;
         public ExpandableTextView message;
         public ImageView pin;
