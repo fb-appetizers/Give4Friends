@@ -16,7 +16,6 @@
 
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <PreferenceCategory app:title="@string/account">
 
 
@@ -61,7 +60,6 @@
             app:useSimpleSummaryProvider="true"/>
         />
 
-
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/notifications">
@@ -73,8 +71,6 @@
         <SwitchPreferenceCompat
             app:key="likes"
             app:title="@string/likes_title" />
-
-
 
     </PreferenceCategory>
 

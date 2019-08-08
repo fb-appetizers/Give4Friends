@@ -15,7 +15,12 @@
     </style>
 
     <style name="PreferenceScreen" parent="AppTheme">
-        <item name="android:color">@color/mainBlue</item>
+        <item name="android:color">@color/colorNow</item>
+        <item name="android:textAppearanceLarge">@style/MyTextAppearance</item>
+    </style>
+
+    <style name="MyTextAppearance" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/colorNow</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
