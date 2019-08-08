@@ -236,6 +236,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                         .addToBackStack(null).commit();
                             }
                         });
+                        /*
                         holder.pin.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -248,6 +249,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                                         .addToBackStack(null).commit();
                             }
                         });
+                        */
                     }
                 }
             });
@@ -411,7 +413,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             message = itemView.findViewById(R.id.tvMessage);
             // like button
             ibEmptyHeart = itemView.findViewById(R.id.ib_empty_heart);
-            pin = itemView.findViewById(R.id.ivPin);
+            //pin = itemView.findViewById(R.id.ivPin);
             amount = itemView.findViewById(R.id.tvAmount);
             tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
             ivarrow = itemView.findViewById(R.id.ivarrow);

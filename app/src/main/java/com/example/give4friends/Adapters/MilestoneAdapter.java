@@ -3,10 +3,12 @@ package com.example.give4friends.Adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.media.Image;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,9 +57,11 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class ViewHolderText extends RecyclerView.ViewHolder{
         public TextView tvHeader;
+        public ImageButton ibQuestion;
         public ViewHolderText(@NonNull View itemView) {
             super(itemView);
             tvHeader = itemView.findViewById(R.id.tvHeader);
+            ibQuestion = itemView.findViewById(R.id.ibQuestion);
         }
     }
     //first check done
@@ -114,6 +118,8 @@ public class MilestoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             String header = (String) items.get(position);
             MilestoneAdapter.ViewHolderText vh2 = (MilestoneAdapter.ViewHolderText) holder;
             vh2.tvHeader.setText(header);
+            vh2.ibQuestion.setVisibility(View.INVISIBLE);
+            vh2.ibQuestion.setClickable(false);
         }
     }
 

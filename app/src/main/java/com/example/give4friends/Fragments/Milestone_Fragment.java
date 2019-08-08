@@ -77,6 +77,7 @@ public class Milestone_Fragment extends Fragment {
 
 
         milestones.addAll(Milestone.getAllMilestones());
+        milestones.add(" ");
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
         rvMilestones.setLayoutManager(gridLayoutManager);
