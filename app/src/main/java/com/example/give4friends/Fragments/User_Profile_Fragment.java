@@ -453,8 +453,14 @@ public class User_Profile_Fragment extends Fragment{
                                                    }
 //                        transactionAdapter.notifyItemInserted(transactions.size() - 1);
                                                }
-
-                                               if(total > 0){
+                                               if(total > 50){
+                                                   Milestone.addMilestone("Raised $50", getContext());
+                                               }
+                                               else if(total > 25 )
+                                               {
+                                                   Milestone.addMilestone("Raised $25", getContext());
+                                               }
+                                               else if(total > 0){
                                                    Milestone.addMilestone("First Raised", getContext());
                                                }
                                                tvTotalRaised.setText("Total Raised: $" + total);

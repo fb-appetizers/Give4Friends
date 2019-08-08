@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -319,7 +317,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public ViewHolderComment(@NonNull View itemView) {
 
             super(itemView);
-            ivCommentProfile = itemView.findViewById(R.id.ivCommentProfile);
+            ivCommentProfile = itemView.findViewById(R.id.ivLogo);
             tvCommentUsername = itemView.findViewById(R.id.tvCommentUsername);
             tvComment = itemView.findViewById(R.id.tvComment);
         }
