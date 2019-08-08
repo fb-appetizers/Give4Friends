@@ -32,8 +32,10 @@ public final class Milestone {
             Pair.create("First Friend", R.drawable.ic_first_friend_80px),
             Pair.create("Raised $20", R.drawable.ic_accessibility_80),
             Pair.create("Donated $20", R.drawable.ic_filled_money_80),
-            Pair.create("Used For A Year", R.drawable.ic_cake_80),
-            Pair.create("Made 10 Friends", R.drawable.ic_people_80)
+            Pair.create("Made 10 Friends", R.drawable.ic_people_80),
+            Pair.create("Raised $50", R.drawable.ic_giftcard_80),
+            Pair.create("Donated $50", R.drawable.ic_card_80),
+            Pair.create("Used For A Year", R.drawable.ic_cake_80)
 
             //check after adding friend - make sure to not do it twice if they remove their friend
              /*,
