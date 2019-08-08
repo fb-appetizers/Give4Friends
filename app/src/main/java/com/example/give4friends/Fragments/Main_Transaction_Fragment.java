@@ -75,14 +75,7 @@ public class Main_Transaction_Fragment extends Fragment {
 
 
 
-        rvTransactions.getItemAnimator().setChangeDuration(0);
-        RecyclerView.ItemAnimator animator = rvTransactions.getItemAnimator();
-        if (animator instanceof SimpleItemAnimator) {
-            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
-        }
-        rvTransactions.setHasFixedSize(true);
-
-        transactionAdapter.setHasStableIds(true);
+        removeFlickering();
 
 
         rvTransactions.setLayoutManager(linearLayoutManager);
@@ -135,6 +128,19 @@ public class Main_Transaction_Fragment extends Fragment {
 
         scrollListener.resetState();
         rvTransactions.addOnScrollListener(scrollListener);
+
+    }
+
+
+    private void removeFlickering(){
+        // This basically removed a lot of the flickering from getting new transactions
+        rvTransactions.getItemAnimator().setChangeDuration(0);
+        RecyclerView.ItemAnimator animator = rvTransactions.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
+        rvTransactions.setHasFixedSize(true);
+        transactionAdapter.setHasStableIds(true);
 
     }
 
