@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
@@ -62,9 +64,16 @@ public class History_Fragment extends Main_Transaction_Fragment {
         transactionAdapter = new TransactionAdapter(transactions, friend);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
+
+        removeFlickering();
+
+
+
+
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
         rvTransactions.scrollToPosition(0);
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -107,6 +116,19 @@ public class History_Fragment extends Main_Transaction_Fragment {
         scrollListener.resetState();
 
         rvTransactions.addOnScrollListener(scrollListener);
+    }
+
+
+    private void removeFlickering(){
+        // This basically removed a lot of the flickering from getting new transactions
+        rvTransactions.getItemAnimator().setChangeDuration(0);
+        RecyclerView.ItemAnimator animator = rvTransactions.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
+        rvTransactions.setHasFixedSize(true);
+        transactionAdapter.setHasStableIds(true);
+
     }
 
     @Override
@@ -214,6 +236,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+                ((Activity)getContext()).overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
             }
         });

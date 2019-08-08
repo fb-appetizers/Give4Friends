@@ -18,11 +18,9 @@
 
     <PreferenceCategory app:title="@string/account">
 
-
         <EditTextPreference
             app:key="username"
             app:title="@string/username"
-
             />
 
         <EditTextPreference
@@ -34,7 +32,6 @@
             app:key="email"
             app:title="@string/email"
             />
-
 
     </PreferenceCategory>
 

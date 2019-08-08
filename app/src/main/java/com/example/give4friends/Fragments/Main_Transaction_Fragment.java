@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.TransactionAdapter;
@@ -72,8 +73,14 @@ public class Main_Transaction_Fragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
+
+
+        removeFlickering();
+
+
         rvTransactions.setLayoutManager(linearLayoutManager);
         rvTransactions.setAdapter(transactionAdapter);
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -124,6 +131,19 @@ public class Main_Transaction_Fragment extends Fragment {
 
     }
 
+
+    private void removeFlickering(){
+        // This basically removed a lot of the flickering from getting new transactions
+        rvTransactions.getItemAnimator().setChangeDuration(0);
+        RecyclerView.ItemAnimator animator = rvTransactions.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
+        rvTransactions.setHasFixedSize(true);
+        transactionAdapter.setHasStableIds(true);
+
+    }
+
     private void configureToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 
@@ -140,7 +160,7 @@ public class Main_Transaction_Fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
-                ((Activity)getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
+                ((Activity)getContext()).overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
             }
         });

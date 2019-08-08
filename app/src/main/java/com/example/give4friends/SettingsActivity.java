@@ -1,5 +1,6 @@
 package com.example.give4friends;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+
+                overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
 
@@ -104,16 +106,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
 
-    public static void save(String valueKey, String value, Context context) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putString(valueKey, value);
-        edit.commit();
-    }
+
 
 }
