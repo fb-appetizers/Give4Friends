@@ -140,7 +140,6 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
         if(imageURL != null){
 
             Date imageDate = currentFriend.getDate("profileImageCreatedAt");
-
             Glide.with(getApplicationContext())
                     .load(imageURL)
                     .apply(new RequestOptions()
@@ -148,6 +147,24 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                             .signature(new ObjectKey(imageDate))
                             .circleCrop())
                     .into(friendsImage);
+        }else{
+
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.user_outline_24)
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .placeholder(R.drawable.user_outline_24)
+                            .error(R.drawable.user_outline_24)
+
+                            )
+                    .into(friendsImage);
+
+
+
+
+
+
         }
     }
 
