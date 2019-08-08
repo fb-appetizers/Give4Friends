@@ -20,6 +20,7 @@
         android:linksClickable="true"
         android:text="Name"
         android:textAlignment="viewStart"
+        android:textColorLink="@color/colorNow"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
