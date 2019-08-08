@@ -77,8 +77,8 @@
                 android:id="@+id/tvMessage"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="13dp"
                 android:autoLink="web"
                 android:fontFamily="sans-serif-light"
                 android:linksClickable="true"
@@ -104,31 +104,17 @@
                 card_view:layout_constraintStart_toStartOf="@+id/ivDonor"
                 card_view:layout_constraintTop_toTopOf="@+id/ivDonor" />
 
-            <ImageView
-                android:id="@+id/ivPin"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="82dp"
-                android:layout_marginTop="10dp"
-                android:background="#00FFFFFF"
-                android:clickable="true"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvDonor"
-                card_view:srcCompat="@drawable/pin" />
-
             <TextView
                 android:id="@+id/tvCharity"
                 android:layout_width="265dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="88dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorNow"
                 android:textSize="18sp"
-                card_view:layout_constraintEnd_toEndOf="@+id/tvDonor"
-                card_view:layout_constraintHorizontal_bias="0.052"
-                card_view:layout_constraintStart_toEndOf="@+id/ivPin"
+                card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvDonor" />
 
             <TextView
