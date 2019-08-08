@@ -16,14 +16,11 @@
 
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <PreferenceCategory app:title="@string/account">
-
 
         <EditTextPreference
             app:key="username"
             app:title="@string/username"
-
             />
 
         <EditTextPreference
@@ -35,7 +32,6 @@
             app:key="email"
             app:title="@string/email"
             />
-
 
     </PreferenceCategory>
 
@@ -61,7 +57,6 @@
             app:useSimpleSummaryProvider="true"/>
         />
 
-
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/notifications">
@@ -73,8 +68,6 @@
         <SwitchPreferenceCompat
             app:key="likes"
             app:title="@string/likes_title" />
-
-
 
     </PreferenceCategory>
 
