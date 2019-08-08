@@ -380,6 +380,9 @@ public class CharitySearchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh2.ibQuestion.setClickable(false);
             }
             else{
+                vh2.ibQuestion.setVisibility(View.VISIBLE);
+                vh2.ibQuestion.setClickable(true);
+
                 vh2.ibQuestion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
