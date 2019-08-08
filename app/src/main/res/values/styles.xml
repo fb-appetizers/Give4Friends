@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorNow</item>
+        <item name="colorAccent">@color/mainBlue</item>
     </style>
 
     <!-- This configures the styles for the title within the Toolbar  -->
