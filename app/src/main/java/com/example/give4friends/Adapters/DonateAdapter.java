@@ -190,7 +190,7 @@ public class DonateAdapter extends RecyclerView.Adapter<DonateAdapter.ViewHolder
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 currentFriend = users.get(position);
 
-                Toast.makeText(context, "Friend: " + currentFriend.getUsername(), Toast.LENGTH_SHORT).show();
+               
 
                 if(donateNow == false){
                     Intent intent = new Intent(context, DonateSearchCharity.class);
