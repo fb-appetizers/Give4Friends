@@ -38,8 +38,6 @@ public final class ProfilePicture {
     public static final String APP_TAG = "SignUpActivity";
     private static final String SERVER_ADDRESS = "https://give4friends.000webhostapp.com/";
 
-    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
-    public final static int SELECT_IMAGE_REQUEST_CODE = 1111;
 
     public static File getPhotoFileUri(String fileName, Context context) {
 
@@ -192,7 +190,7 @@ public final class ProfilePicture {
                 hideProgressBar();
             }
 
-            Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
+
         }
 
         public void showProgressBar() {
