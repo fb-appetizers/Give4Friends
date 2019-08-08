@@ -92,9 +92,7 @@ public class Favorite_Charity_Fragment extends Fragment {
                     // There was an error
                 } else {
                     // results have all the charities the current user liked.
-                    if(objects.size() == 0){
-                        Toast.makeText(getContext(),"You do not have any favorites yet", Toast.LENGTH_SHORT).show();
-                    }
+
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
                         charities.add((Charity) objects.get(i));
