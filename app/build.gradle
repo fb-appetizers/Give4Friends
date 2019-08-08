@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -49,7 +50,7 @@ dependencies {
     implementation 'com.android.support:support-v4:29.2.0'
     implementation 'com.android.support:design:29.2.0'
 
-    implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
+    implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.17.3'
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.braintreepayments:card-form:3.1.1'
@@ -73,5 +74,13 @@ dependencies {
 
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+
+
+
+
+    implementation ('com.parse:parse-fcm-android:1.17.3') {
+        exclude group: "com.parse", module: "parse-android"
+    }
 
 }

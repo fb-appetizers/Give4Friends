@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "641550357369",
+    "firebase_url": "https://give4friends.firebaseio.com",
+    "project_id": "give4friends",
+    "storage_bucket": "give4friends.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641550357369:android:5f1f3321606888e1",
+        "android_client_info": {
+          "package_name": "com.example.give4friends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641550357369-en9nk15m4854qdqpuvuss8k60uf7a9v4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeXCZe8AtOOtmDaEVNf-bDEgC-U4hN2So"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641550357369-en9nk15m4854qdqpuvuss8k60uf7a9v4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
