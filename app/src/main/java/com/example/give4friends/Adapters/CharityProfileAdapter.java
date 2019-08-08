@@ -271,16 +271,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             //ivcheckmarkprofile = itemView.findViewById(R.id.ivcheckmarkprofile);
             ivLogo = itemView.findViewById(R.id.ivLogo);
 
-            tvCPMission.setMovementMethod(new ScrollingMovementMethod());
 
-            tvCPMission.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    view.onTouchEvent(motionEvent);
-                    return true;
-                }
-            });
 
 
             ibComments.setOnClickListener(new View.OnClickListener() {
