@@ -57,7 +57,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         friends = new ArrayList<ParseUser>();
 
         recyclerSetUp();
-        populateRelations();
         getFriends();
 
         searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -78,6 +77,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                 }
                 else{
                     queryFriends(s.toString());
+                    populateRelations();
                 }
                 return false;
             }
