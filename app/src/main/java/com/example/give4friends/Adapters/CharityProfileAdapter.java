@@ -219,6 +219,32 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     .into(vh2.ivCommentProfile);
                         }
 
+                        // Makes the comment clickable
+                        vh2.ivCommentProfile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view){
+
+                                if(myUser.getObjectId().equals(ParseUser.getCurrentUser().getObjectId()) ){
+                                    // Create a new fragment instead of an activity
+                                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().
+                                            replace(R.id.flContainer, fragment)
+                                            .addToBackStack(null).commit();
+                                }
+                                else{
+
+                                    Fragment fragment = new Friend_Profile_Fragment(myUser);
+                                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().
+                                            replace(R.id.flContainer, fragment)
+                                            .addToBackStack(null).commit();
+                                }
+                            }
+                        });
+
+
+
                     }
                 }
             });
