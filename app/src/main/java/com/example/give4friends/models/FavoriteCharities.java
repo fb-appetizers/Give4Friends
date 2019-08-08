@@ -1,27 +1,16 @@
 package com.example.give4friends.models;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.Html;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.example.give4friends.Adapters.CharityProfileAdapter;
-import com.example.give4friends.Adapters.DonateSearchAdapter;
 import com.example.give4friends.R;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class FavoriteCharities {
