@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.give4friends.models.Milestone;
+import com.parse.ParseUser;
 
 public class PayPalActivity extends AppCompatActivity {
     WebView webView;
@@ -46,8 +47,12 @@ public class PayPalActivity extends AppCompatActivity {
         webSettings.setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
 
         //TODO might actually check user but unsure if it has been updated
-        Milestone.addMilestone("Donated $50", PayPalActivity.this);
-        Milestone.addMilestone("Donated $20", PayPalActivity.this);
+        if((int) ParseUser.getCurrentUser().getNumber("totalDonated") > 50){
+            Milestone.addMilestone("Donated $50", PayPalActivity.this);
+        }
+        else if((int) ParseUser.getCurrentUser().getNumber("totalDonated") > 20){
+            Milestone.addMilestone("Donated $20", PayPalActivity.this);
+        }
         Milestone.addMilestone("First Donation", PayPalActivity.this );
 
         webView.setWebViewClient(new WebViewClient(){
