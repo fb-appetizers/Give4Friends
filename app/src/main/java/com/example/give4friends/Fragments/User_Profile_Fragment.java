@@ -261,7 +261,7 @@ public class User_Profile_Fragment extends Fragment{
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
-                ((Activity)getContext()).overridePendingTransition(R.anim.enter, R.anim.exit);
+                ((Activity)getContext()).overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
             }
         });
     }

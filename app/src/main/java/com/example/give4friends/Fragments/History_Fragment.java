@@ -1,5 +1,6 @@
 package com.example.give4friends.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -214,6 +215,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
+                ((Activity)getContext()).overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
             }
         });
