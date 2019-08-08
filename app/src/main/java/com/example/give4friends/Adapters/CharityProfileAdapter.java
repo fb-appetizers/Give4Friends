@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -221,6 +219,32 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     .into(vh2.ivCommentProfile);
                         }
 
+                        // Makes the comment clickable
+                        vh2.ivCommentProfile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view){
+
+                                if(myUser.getObjectId().equals(ParseUser.getCurrentUser().getObjectId()) ){
+                                    // Create a new fragment instead of an activity
+                                    Fragment fragment = new User_Profile_Fragment(ParseUser.getCurrentUser(), true);
+                                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().
+                                            replace(R.id.flContainer, fragment)
+                                            .addToBackStack(null).commit();
+                                }
+                                else{
+
+                                    Fragment fragment = new Friend_Profile_Fragment(myUser);
+                                    FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().
+                                            replace(R.id.flContainer, fragment)
+                                            .addToBackStack(null).commit();
+                                }
+                            }
+                        });
+
+
+
                     }
                 }
             });
@@ -319,7 +343,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public ViewHolderComment(@NonNull View itemView) {
 
             super(itemView);
-            ivCommentProfile = itemView.findViewById(R.id.ivCommentProfile);
+            ivCommentProfile = itemView.findViewById(R.id.ivLogo);
             tvCommentUsername = itemView.findViewById(R.id.tvCommentUsername);
             tvComment = itemView.findViewById(R.id.tvComment);
         }

@@ -37,6 +37,8 @@ import com.parse.SaveCallback;
 
 import java.util.Date;
 
+import static com.example.give4friends.DonateActivity.charityLogo2;
+
 public class Create_Comments_Fragment extends Fragment {
 
     String charityName;
@@ -46,6 +48,8 @@ public class Create_Comments_Fragment extends Fragment {
     TextView tvCharityName;
     Button commentSubmitBtn;
     ImageView ivProfileCreateComments;
+    ImageView ivLogo;
+    TextView tvFullName;
 
     TextView tvhandlerComments;
 
@@ -69,13 +73,33 @@ public class Create_Comments_Fragment extends Fragment {
         commentSubmitBtn = view.findViewById(R.id.commentSubmitBtn);
         ivProfileCreateComments = view.findViewById(R.id.ivProfileCreateComments);
         tvhandlerComments = view.findViewById(R.id.tvhandlerComments);
+        ivLogo = view.findViewById(R.id.ivLogo);
+        tvFullName = view.findViewById(R.id.tvFullName);
 
         tvCharityName.setText(charityName);
         tvhandlerComments.setText("@"+user.getUsername());
+        tvFullName.setText(user.getString("firstName") + " " + user.getString("lastName"));
         String imageURL = user.getString("profileImageURL");
 
-
-
+        Charity parseCharity = (Charity) charity;
+        if ( parseCharity.getKeyLogo() != null) {
+            Glide.with(getContext())
+                    .load(parseCharity.getKeyLogo())
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .fitCenter()
+                    )
+                    .into(ivLogo);
+        } else {
+            Glide.with(getContext())
+                    .load("https://png.pngtree.com/svg/20170801/c502e4e69e.png")
+                    .apply(new RequestOptions()
+                            .transforms(new CenterCrop(), new RoundedCorners(20))
+                            .circleCropTransform()
+                            .fitCenter())
+                    .into(ivLogo);
+        }
 
 
 
