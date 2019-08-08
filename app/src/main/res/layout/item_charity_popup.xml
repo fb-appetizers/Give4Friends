@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,8 +26,9 @@
         android:text="CharityName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColorLink="#2196F3"
-        android:textStyle="bold"
+        android:textSize="18sp"
 
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toEndOf="@+id/ivLogo"
@@ -39,13 +41,15 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="sans-serif-light"
         android:paddingLeft="5dp"
+        android:paddingTop="5dp"
         android:paddingRight="5dp"
         android:text="Charity Mission"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
         tools:paddingLeft="4dp"
         tools:paddingRight="4dp" />
 
@@ -53,14 +57,14 @@
         android:id="@+id/ivRating"
         android:layout_width="192dp"
         android:layout_height="32dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:background="@android:color/white"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDonateNow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMission"
+        app:layout_constraintStart_toEndOf="@+id/tvDonateNow"
         app:srcCompat="@drawable/noratings" />
 
     <TextView
@@ -77,14 +81,27 @@
         app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/tvCharityName" />
 
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingRight="5dp"
+        android:text="Category"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvCause" />
+
     <ImageButton
         android:id="@+id/ibMoreInfo"
         android:layout_width="98dp"
         android:layout_height="40dp"
-        android:layout_marginStart="11dp"
         android:layout_marginTop="8dp"
 
-        android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
         android:background="#00E6E6FA"
         android:clickable="true"
@@ -96,7 +113,6 @@
         android:tint="@color/colorPrimaryDark"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivRating"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMission" />
 
@@ -104,9 +120,7 @@
         android:id="@+id/ibDonateNow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="8dp"
         android:background="#00E6E6FA"
         android:clickable="true"
         android:src="@drawable/ic_payment_40"
@@ -115,10 +129,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
         android:tint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toEndOf="@+id/ivRating" />
+        app:layout_constraintStart_toEndOf="@+id/ibMoreInfo"
+        app:layout_constraintTop_toTopOf="@+id/ibMoreInfo" />
 
     <ImageView
         android:id="@+id/ivLogo"
@@ -133,22 +145,24 @@
         android:id="@+id/tvMoreInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginBottom="4dp"
         android:text="More Info"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ibMoreInfo"
+        app:layout_constraintStart_toStartOf="@+id/ibMoreInfo"
         app:layout_constraintTop_toBottomOf="@+id/ibMoreInfo" />
 
     <TextView
         android:id="@+id/tvDonateNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
         android:text="Donate Now"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ibDonateNow"
+        app:layout_constraintStart_toStartOf="@+id/ibDonateNow"
         app:layout_constraintTop_toBottomOf="@+id/ibDonateNow" />
 </androidx.constraintlayout.widget.ConstraintLayout>
