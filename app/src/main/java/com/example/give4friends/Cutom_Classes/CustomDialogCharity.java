@@ -50,6 +50,7 @@ public class CustomDialogCharity extends DialogFragment {
     public TextView tvMoreInfo;
 
     public TextView tvCause;
+    public TextView tvCategory;
     public ImageView ivRating;
     public ImageButton ibDonateNow;
     public ImageView ivLogo;
@@ -78,6 +79,7 @@ public class CustomDialogCharity extends DialogFragment {
         tvMission = view.findViewById(R.id.tvMission);
 
         tvCause = view.findViewById(R.id.tvCause);
+        tvCategory = view.findViewById(R.id.tvCategory);
         ivRating = view.findViewById(R.id.ivRating);
         ibDonateNow = view.findViewById(R.id.ibDonateNow);
         ibMoreInfo = view.findViewById(R.id.ibMoreInfo);
@@ -127,6 +129,7 @@ public class CustomDialogCharity extends DialogFragment {
 
         tvMission.setText(Html.fromHtml(charity.getMission()));
         tvCause.setText(Html.fromHtml("<font color=\"#434040\"><b>Cause:</b></font> "+charity.getCauseName()));
+        tvCategory.setText(Html.fromHtml("<font color=\"#434040\"><b>Category:</b></font> "+charity.getCategoryName()));
 
         Glide.with(getContext())
                 .load(charity.getRatingsUrl())
