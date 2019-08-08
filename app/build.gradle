@@ -72,8 +72,6 @@ dependencies {
     implementation 'com.github.parse-community:ParseFacebookUtils-Android:1.14.0'
 
 
-    implementation 'com.android.support:exifinterface:28.1.0'
-
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
 }
