@@ -58,6 +58,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         LayoutInflater inflater = LayoutInflater.from(context);
         View CharityView = inflater.inflate(R.layout.item_transaction, parent, false);
         ViewHolder viewHolder = new ViewHolder(CharityView);
+
         return viewHolder;
     }
 
@@ -65,6 +66,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void  onBindViewHolder(final ViewHolder holder, int position) {
         // get data according to position.
+
         final Transaction transaction = transactions.get(position);
 
 //        .addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
@@ -378,6 +380,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public int getItemCount() {
         return transactions.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+
+        return position;
     }
 
     // create ViewHolder Class
