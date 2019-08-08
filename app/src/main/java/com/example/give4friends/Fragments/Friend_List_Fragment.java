@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,6 +45,7 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
     ParseRelation<ParseUser> friends;
     ArrayList<String> localFriends;
     DonateAdapter adapter;
+    private SwipeRefreshLayout swipeContainer;
 
 
     @Nullable
@@ -56,9 +58,35 @@ public class Friend_List_Fragment extends Fragment implements Serializable {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvFriends = view.findViewById(R.id.rvFriends);
 
+
         users = new ArrayList<ParseUser>();
         localFriends = new ArrayList<String>();
         getFriends();
+
+
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerFriendList);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                users.clear();
+                localFriends.clear();
+                adapter.notifyDataSetChanged();
+
+                getFriends();
+                swipeContainer.setRefreshing(false);
+            }
+
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_purple,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         configureToolbar();
     }
