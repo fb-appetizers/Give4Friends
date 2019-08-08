@@ -81,7 +81,7 @@ public class History_Fragment extends Main_Transaction_Fragment {
 
         });
         // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+        swipeContainer.setColorSchemeResources(android.R.color.holo_purple,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
