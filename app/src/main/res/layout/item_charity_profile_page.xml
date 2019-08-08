@@ -92,6 +92,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="37dp"
         android:gravity="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/ibCPLike"
         app:layout_constraintStart_toStartOf="@+id/ibCPLike"
         app:layout_constraintTop_toTopOf="@+id/ibCPLike" />
@@ -126,10 +127,11 @@
 
     <TextView
         android:id="@+id/tvCommentsNum"
-        android:layout_width="44dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/ibComments"
         app:layout_constraintStart_toStartOf="@+id/ibComments"
         app:layout_constraintTop_toTopOf="@+id/ibComments" />
@@ -138,12 +140,13 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="37dp"
         android:layout_marginBottom="16dp"
         android:text="Donate Now"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvDonateNowProfile"
+        app:layout_constraintStart_toStartOf="@+id/tvDonateNowProfile"
         app:layout_constraintTop_toTopOf="@+id/tvDonateNowProfile" />
 
     <ImageView
