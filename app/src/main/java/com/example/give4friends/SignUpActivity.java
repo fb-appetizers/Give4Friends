@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.icu.util.Calendar;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -48,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText userName;
     private TextView addProfilePic;
     private Button signUp;
+    private Button cancelBtn;
     private ImageView profilePic;
     private ShowHidePasswordEditText passWord;
     Context context;
@@ -74,6 +76,15 @@ public class SignUpActivity extends AppCompatActivity {
         profilePic = findViewById(R.id.profilePic);
         signUp = findViewById(R.id.signUpBtn);
         addProfilePic = findViewById(R.id.addProfilePic);
+        cancelBtn = findViewById(R.id.cancelBtn);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+            }
+        });
 
         // Make sure to logout before you sign up !!
         ParseUser.logOut();
