@@ -14,11 +14,10 @@
     card_view:cardElevation="0dp">
 
 
-
     <View
-        android:layout_width="375dp"
+        android:layout_width="304dp"
         android:layout_height=".1dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="right"
         android:background="@android:color/black" />
 
 

@@ -192,7 +192,6 @@ public final class ProfilePicture {
                 hideProgressBar();
             }
 
-            Toast.makeText(context, "Image Uploaded", Toast.LENGTH_SHORT).show();
         }
 
         public void showProgressBar() {
