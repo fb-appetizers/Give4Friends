@@ -59,7 +59,7 @@ public class Charity_Search_Fragment extends Fragment {
     private RecyclerView rvCharitySugg;
 
     public static Integer NUMBER_OF_SUGGESTIONS = 10;
-    public static Integer SEARCH_TIME_OUT_MILLIS = 3000;
+    public static Integer SEARCH_TIME_OUT_MILLIS = 5000;
 
     CharityClient client = null;
     CharitySearchAdapter charityAdapterUpper;
