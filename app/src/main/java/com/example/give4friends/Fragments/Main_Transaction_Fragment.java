@@ -73,6 +73,8 @@ public class Main_Transaction_Fragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
+
+
         removeFlickering();
 
 

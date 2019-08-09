@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -50,6 +49,7 @@ dependencies {
     implementation 'com.android.support:support-v4:29.2.0'
     implementation 'com.android.support:design:29.2.0'
 
+    implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.braintreepayments:card-form:3.1.1'
@@ -72,16 +72,8 @@ dependencies {
     implementation 'com.github.parse-community:ParseFacebookUtils-Android:1.14.0'
 
 
+    implementation 'com.android.support:exifinterface:28.1.0'
+
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-    // Don't forget to change the line below with the latest versions of Firebase SDKs
-    implementation 'com.google.firebase:firebase-core:17.0.1'
-    implementation 'com.google.firebase:firebase-messaging:19.0.1'
-    implementation "com.github.parse-community.Parse-SDK-Android:fcm:1.20.0"
-    implementation 'com.parse.bolts:bolts-android:1.1.2'
-    // Add this line
-    //implementation "com.parse:parse-fcm-android:1.17.3"
-    implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
-    //implementation "com.github.parse-community.Parse-SDK-Android:1.17.3"
-    //implementation "com.github.parse-community.Parse-SDK-Android:fcm:1.17.3"
 
 }

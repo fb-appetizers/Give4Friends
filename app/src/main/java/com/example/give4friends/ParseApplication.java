@@ -6,7 +6,6 @@ import com.example.give4friends.models.Charity;
 import com.example.give4friends.models.Comments;
 import com.example.give4friends.models.Transaction;
 import com.parse.Parse;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 
 
@@ -30,10 +29,6 @@ public class ParseApplication extends Application {
                 .build();
 
         Parse.initialize(configuration);
-
-        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.put("GCMSenderId", "641550357369");
-        installation.saveInBackground();
 
     }
 }
