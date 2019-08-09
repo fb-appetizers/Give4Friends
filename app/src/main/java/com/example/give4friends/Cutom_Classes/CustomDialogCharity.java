@@ -126,7 +126,6 @@ public class CustomDialogCharity extends DialogFragment {
             tvDonateNow.setVisibility(View.GONE);
             ivRating.setVisibility(View.GONE);
 
-
         }
 
         tvMission.setText(Html.fromHtml(charity.getMission()));

@@ -49,7 +49,6 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.give4friends.Adapters.ProfilePagerAdapter;
 import com.example.give4friends.Cutom_Classes.CustomDialogProfileImage;
 
-import com.example.give4friends.Cutom_Classes.ExpandableTextView;
 import com.example.give4friends.LoginActivity;
 import com.example.give4friends.R;
 import com.example.give4friends.SettingsActivity;
@@ -77,7 +76,7 @@ public class User_Profile_Fragment extends Fragment{
     int total = 0;
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
-    private static final Integer MAX_BIO_LENGTH = 110;
+    private static final Integer MAX_BIO_LENGTH = 130;
     private ImageButton btEditBio;
     private ImageButton btChangePic;
 
@@ -296,9 +295,8 @@ public class User_Profile_Fragment extends Fragment{
         }
 
 
+
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
