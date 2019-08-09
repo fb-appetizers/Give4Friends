@@ -34,14 +34,14 @@ public class LoginActivity extends AppCompatActivity {
         signUp = findViewById(R.id.createAccount);
         loadingProgressBar = findViewById(R.id.loading);
 
-        /*
+
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
             startActivity(intent);
 
         }
-        */
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
-/*
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    */
+
 
     private void login(String username, String password){
         ParseUser.logInInBackground(username, password, new LogInCallback() {
