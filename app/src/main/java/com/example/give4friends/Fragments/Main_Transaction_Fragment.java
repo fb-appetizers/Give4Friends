@@ -72,7 +72,7 @@ public class Main_Transaction_Fragment extends Fragment {
         transactionAdapter = new TransactionAdapter(transactions, true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        
+
         removeFlickering();
 
 
