@@ -106,7 +106,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         });
 
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).addToBackStack(null).commit();
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
@@ -169,6 +169,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         if (onBackClickListener != null && onBackClickListener.onBackClick()) {
             return;
         }
+
 
     }
 }

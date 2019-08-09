@@ -367,7 +367,7 @@ public class User_Profile_Fragment extends Fragment{
         } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Uri photoUri = data.getData();
-                Toast.makeText(context,"Image selected", Toast.LENGTH_SHORT).show();
+
                 try {
                     photo = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
 
