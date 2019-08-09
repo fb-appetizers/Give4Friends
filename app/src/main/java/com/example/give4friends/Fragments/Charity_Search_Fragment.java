@@ -119,6 +119,7 @@ public class Charity_Search_Fragment extends Fragment {
         });
 
 
+
         constraintLayoutMain = view.findViewById(R.id.clCharitySearch);
 
         items = new ArrayList<>();
@@ -140,8 +141,6 @@ public class Charity_Search_Fragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
-
 
     }
 
@@ -326,8 +325,6 @@ public class Charity_Search_Fragment extends Fragment {
 
     public void showProgressBar() {
         // Show progress item
-
-
         progressBarHome.setVisibility(View.VISIBLE);
     }
 
