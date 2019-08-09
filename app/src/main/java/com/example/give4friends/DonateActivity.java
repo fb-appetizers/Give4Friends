@@ -39,6 +39,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     Context context;
 
     ArrayList<ParseUser> friends;
+    ArrayList<String> friendObjID;
     DonateAdapter adapter;
 
     @Override
@@ -55,9 +56,14 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         cancel = findViewById(R.id.ibcancelFinal);
 
         friends = new ArrayList<ParseUser>();
+        friendObjID = new ArrayList<String>();
 
         recyclerSetUp();
-        getFriends();
+
+        populateRelations();
+
+
+
 
         searchFriend.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -70,14 +76,15 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (s.equals("")){
+                if (s.equals("") || s==null){
                     friends.clear();
+                    friendObjID.clear();
                     adapter.notifyDataSetChanged();
                     populateRelations();
+
                 }
                 else{
                     queryFriends(s.toString());
-                    populateRelations();
                 }
                 return false;
             }
@@ -99,6 +106,13 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
     }
 
     protected void queryFriends(String name) {
@@ -132,6 +146,7 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     return;
                 }
                 friends.clear();
+                friendObjID.clear();
                 adapter.notifyDataSetChanged();
                 friends.addAll(objects);
                 adapter.notifyDataSetChanged();
@@ -154,10 +169,15 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++) {
-                        if(!friends.contains(objects.get(i)))
+                        if(!friendObjID.contains(objects.get(i).getObjectId())) {
                             friends.add((ParseUser) objects.get(i));
+                            friendObjID.add(objects.get(i).getObjectId());
+                        }
+
                     }
                 }
+
+                getFriends();
 
             }
 
@@ -183,8 +203,11 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
                     // results have all the charities the current user liked.
                     // go through relation adding charities
                     for (int i = 0; i < objects.size(); i++){
-                        if(!friends.contains(objects.get(i)))
+                        if(!friendObjID.contains(objects.get(i).getObjectId())){
                             friends.add(objects.get(i));
+                            friendObjID.add(objects.get(i).getObjectId());
+                        }
+
                     }
                 }
                 adapter.notifyDataSetChanged();
