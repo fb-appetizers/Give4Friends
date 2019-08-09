@@ -124,8 +124,6 @@ public class CustomDialogCharity extends DialogFragment {
             ibMoreInfo.setVisibility(View.GONE);
             tvMoreInfo.setVisibility(View.GONE);
             tvDonateNow.setVisibility(View.GONE);
-            ivRating.setVisibility(View.GONE);
-
 
         }
 

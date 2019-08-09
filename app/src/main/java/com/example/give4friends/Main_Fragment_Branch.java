@@ -1,6 +1,7 @@
 package com.example.give4friends;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
 import com.example.give4friends.Fragments.Charity_Search_Fragment;
@@ -33,6 +35,7 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private ImageButton suggBtn;
+    SharedPreferences prefs = null;
 
     //        // define your fragments here
     final Fragment fragment1 = new Main_Transaction_Fragment();
@@ -48,8 +51,10 @@ public class Main_Fragment_Branch extends AppCompatActivity {
 
         setContentView(R.layout.activity_fragment_home);
         suggBtn = findViewById(R.id.suggBtn);
-
         suggBtn.setBackgroundDrawable(null);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // This indicated that it's not the apps first run
+        prefs.edit().putBoolean("firstrun", false).commit();
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.give4friends.Adapters.CharityProfileAdapter;
@@ -71,15 +70,10 @@ public class Charity_Profile_Fragment extends Fragment {
         rvCPProfile = view.findViewById(R.id.rvCPProfile);
         items = new ArrayList<Object>();
         itemsAdapter = new CharityProfileAdapter(items);
-
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-
-        removeFlickering();
-
         // attach the adapter to the RecyclerView
         rvCPProfile.setAdapter(itemsAdapter);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         // Set layout manager to position the items
         rvCPProfile.setLayoutManager(linearLayoutManager);
         // Lookup the swipe container view
@@ -121,19 +115,6 @@ public class Charity_Profile_Fragment extends Fragment {
         itemsAdapter.notifyDataSetChanged();
         populateProfile();
         populateComments();
-    }
-
-
-    private void removeFlickering(){
-        // This basically removed a lot of the flickering from getting new transactions
-        rvCPProfile.getItemAnimator().setChangeDuration(0);
-        RecyclerView.ItemAnimator animator = rvCPProfile.getItemAnimator();
-        if (animator instanceof SimpleItemAnimator) {
-            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
-        }
-        rvCPProfile.setHasFixedSize(true);
-        itemsAdapter.setHasStableIds(true);
-
     }
 
 

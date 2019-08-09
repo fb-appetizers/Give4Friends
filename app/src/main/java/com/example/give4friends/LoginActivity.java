@@ -1,8 +1,10 @@
 package com.example.give4friends;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button signUp;
 
     ProgressBar loadingProgressBar;
+    SharedPreferences prefs = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if(currentUser != null){
-            Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
-            startActivity(intent);
+        if (!prefs.getBoolean("firstrun", true)) {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+
+            if(currentUser != null){
+                Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
+                startActivity(intent);
+
+            }
+
 
         }
 
@@ -73,11 +82,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
-            startActivity(intent);
+        if (!prefs.getBoolean("firstrun", true)) {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+
+            if(currentUser != null){
+                Intent intent = new Intent(LoginActivity.this, Main_Fragment_Branch.class);
+                startActivity(intent);
+
+            }
+
         }
+
+
     }
 
     private void login(String username, String password){
