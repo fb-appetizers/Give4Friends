@@ -28,6 +28,7 @@ public class ParseApplication extends Application {
                 .server("http://give4friends.herokuapp.com/parse")
                 .build();
 
+
         Parse.initialize(configuration);
 
     }
