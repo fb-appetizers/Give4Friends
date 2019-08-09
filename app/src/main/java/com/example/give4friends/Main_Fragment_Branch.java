@@ -53,8 +53,10 @@ public class Main_Fragment_Branch extends AppCompatActivity {
         suggBtn = findViewById(R.id.suggBtn);
         suggBtn.setBackgroundDrawable(null);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        // This indicated that it's not the apps first run
-        prefs.edit().putBoolean("firstrun", false).commit();
+        // This indicates that it's not the apps first run
+        if (prefs.getBoolean("firstrun", true)) {
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
 
         suggBtn.setOnClickListener(new View.OnClickListener() {
             @Override
