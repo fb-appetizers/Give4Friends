@@ -28,9 +28,8 @@ Required Must-have Stories
 
 
 ### Super Stretch
-* Having charities be able to Charity
+* Having people able to actually donate
 * Milestones
-
 
 
 ## Screen Archetypes
