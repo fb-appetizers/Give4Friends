@@ -23,6 +23,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.example.give4friends.Cutom_Classes.ExpandableTextView;
 import com.example.give4friends.DonateActivity;
 import com.example.give4friends.Fragments.Create_Comments_Fragment;
 import com.example.give4friends.Fragments.Friend_Profile_Fragment;
@@ -339,7 +340,7 @@ public class CharityProfileAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         ImageView ivCommentProfile;
         TextView tvCommentUsername;
-        TextView tvComment;
+        ExpandableTextView tvComment;
         public ViewHolderComment(@NonNull View itemView) {
 
             super(itemView);

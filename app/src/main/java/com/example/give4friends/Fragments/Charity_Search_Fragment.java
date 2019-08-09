@@ -222,6 +222,8 @@ public class Charity_Search_Fragment extends Fragment {
             public void onFailure(Call call, IOException e) {
 
 
+
+
             }
 
             @Override
