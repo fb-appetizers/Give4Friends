@@ -1,15 +1,25 @@
 package com.example.give4friends.net;
 
+import java.io.IOException;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class CharityClient {
 
     OkHttpClient client;
 
     public CharityClient(){
-        this.client = new OkHttpClient();
+        this.client = new OkHttpClient.Builder()
+                .callTimeout(4, TimeUnit.SECONDS)
+                .writeTimeout(4, TimeUnit.SECONDS)
+                .readTimeout(4, TimeUnit.SECONDS)
+
+                .build();
 
 
 
@@ -54,7 +64,12 @@ public class CharityClient {
                 .url(base_url)
                 .build();
 
+
+
+
         client.newCall(request).enqueue(handler);
+
+
 
 
     }

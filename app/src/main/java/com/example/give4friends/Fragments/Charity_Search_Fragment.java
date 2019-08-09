@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +44,8 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -54,8 +59,9 @@ public class Charity_Search_Fragment extends Fragment {
     private RecyclerView rvCharitySugg;
 
     public static Integer NUMBER_OF_SUGGESTIONS = 10;
+    public static Integer SEARCH_TIME_OUT_MILLIS = 3000;
 
-    CharityClient client;
+    CharityClient client = null;
     CharitySearchAdapter charityAdapterUpper;
     private ArrayList<Object> items;
     private ArrayList <CharityAPI> itemCharity;
@@ -63,6 +69,7 @@ public class Charity_Search_Fragment extends Fragment {
 
     ConstraintLayout constraintLayoutMain;
     ProgressBar progressBarHome;
+    Timer timer= null;
 
     @Nullable
     @Override
@@ -82,6 +89,7 @@ public class Charity_Search_Fragment extends Fragment {
 
         configureToolbar();
 
+
         sbCharity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -94,6 +102,9 @@ public class Charity_Search_Fragment extends Fragment {
                 if (s.equals("")){
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
+                    }
+                    if(timer!=null){
+                        timer.cancel();
                     }
 
                     getEffective();
@@ -154,6 +165,39 @@ public class Charity_Search_Fragment extends Fragment {
 
     }
 
+
+    private TimerTask getTimer(){
+
+
+        return new TimerTask() {
+            public void run() {
+
+//
+                Handler mainHandler = new Handler(getContext().getMainLooper());
+
+                Runnable myRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        items.clear();
+                        hideProgressBar();
+                        items.add("NO RESULTS");
+                        charityAdapterUpper.notifyDataSetChanged();
+
+                        // If there is a timeout then also cancel all of the other client calls
+                        if(client!=null) {
+                            client.getClient().dispatcher().cancelAll();
+                        }
+
+
+                    } // This is your code
+                };
+                mainHandler.post(myRunnable);
+
+
+            }
+        }; // after 3 second (or 3000 miliseconds), the task will be active
+    }
+
     // TODO -- shut down a thread when another one calls it
 
     private void getResponseSearch(String search, boolean search_by_name){
@@ -163,22 +207,41 @@ public class Charity_Search_Fragment extends Fragment {
             client.getClient().dispatcher().cancelAll();
         }
 
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        timer = new Timer();
+        timer.schedule(getTimer(), SEARCH_TIME_OUT_MILLIS);
+
         client = new CharityClient();
+
         showProgressBar();
         client.getCharities(search, false, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
 
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()){
+
+
+
                     final String myResponse = response.body().string();
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+
+                            // If the result is successful then stop the timer
+                            if(timer!=null){
+                                timer.cancel();
+                            }
+
                             try {
                                 JSONArray charityArray;
                                 charityArray = new JSONArray(myResponse);
