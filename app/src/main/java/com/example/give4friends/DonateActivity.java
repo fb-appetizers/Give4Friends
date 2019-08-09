@@ -108,13 +108,6 @@ public class DonateActivity extends AppCompatActivity implements Serializable {
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
-
     protected void queryFriends(String name) {
         ParseQuery<ParseUser> query1 = ParseUser.getQuery();
 
