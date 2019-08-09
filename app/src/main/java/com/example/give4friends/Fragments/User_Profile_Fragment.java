@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.INotificationSideChannel;
+import android.text.InputFilter;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -75,7 +76,7 @@ public class User_Profile_Fragment extends Fragment{
     int total = 0;
 
     private static final String URL_HEADER = "https://give4friends.000webhostapp.com/pictures/";
-
+    private static final Integer MAX_BIO_LENGTH = 110;
     private ImageButton btEditBio;
     private ImageButton btChangePic;
 
@@ -414,6 +415,13 @@ public class User_Profile_Fragment extends Fragment{
     private void showAddItemDialog(Context c) {
         final EditText taskEditText = new EditText(c);
         taskEditText.setText(myUser.getString("bio"));
+
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(MAX_BIO_LENGTH);
+        taskEditText.setFilters(FilterArray);
+
+
+
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Edit Bio")
                 .setView(taskEditText)
