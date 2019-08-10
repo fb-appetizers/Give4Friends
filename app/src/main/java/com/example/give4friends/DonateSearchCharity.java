@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -36,12 +38,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 import static com.example.give4friends.DonateActivity.currentFriend;
+import static com.example.give4friends.Fragments.Charity_Search_Fragment.SEARCH_TIME_OUT_MILLIS;
 
 public class DonateSearchCharity extends AppCompatActivity implements Serializable {
     private TextView friendsUserName;
@@ -56,6 +61,7 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
     ArrayList<Object> items;
     CharitySearchAdapter charityAdapter;
     ProgressBar miActionProgressItem;
+    Timer timer= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +98,9 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     if(client!=null) {
                         client.getClient().dispatcher().cancelAll();
                     }
+                    if(timer!=null){
+                        timer.cancel();
+                    }
 
                     getFavs();
                     topResult.setVisibility(View.GONE);
@@ -122,6 +131,36 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
             }
         });
+    }
+
+
+    private TimerTask getTimer(){
+
+        return new TimerTask() {
+            public void run() {
+                Handler mainHandler = new Handler(getApplicationContext().getMainLooper());
+
+                Runnable myRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        items.clear();
+                        hideProgressBar();
+                        items.add("NO RESULTS");
+                        charityAdapter.notifyDataSetChanged();
+
+                        // If there is a timeout then also cancel all of the other client calls
+                        if(client!=null) {
+                            client.getClient().dispatcher().cancelAll();
+                        }
+
+
+                    } // This is your code
+                };
+                mainHandler.post(myRunnable);
+
+
+            }
+        };
     }
 
     @Override
@@ -175,6 +214,14 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
             client.getClient().dispatcher().cancelAll();
         }
 
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        timer = new Timer();
+        timer.schedule(getTimer(), SEARCH_TIME_OUT_MILLIS);
+
+
         client = new CharityClient();
         showProgressBar();
         client.getCharities(search, false, new Callback() {
@@ -192,6 +239,13 @@ public class DonateSearchCharity extends AppCompatActivity implements Serializab
                     DonateSearchCharity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            
+
+                            // If the result is successful then stop the timer
+                            if(timer!=null){
+                                timer.cancel();
+                            }
+
                             try {
                                 JSONArray charityArray;
                                 charityArray = new JSONArray(myResponse);

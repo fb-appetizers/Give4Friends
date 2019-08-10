@@ -194,7 +194,7 @@ public class Charity_Search_Fragment extends Fragment {
 
 
             }
-        }; // after 3 second (or 3000 miliseconds), the task will be active
+        };
     }
 
     // TODO -- shut down a thread when another one calls it
