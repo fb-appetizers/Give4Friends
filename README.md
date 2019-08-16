@@ -219,5 +219,13 @@ info | String | Information on the charityAPI
 - [x] Dogfooded
 - [x] Updated from feedback
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='Appwalkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 
 
